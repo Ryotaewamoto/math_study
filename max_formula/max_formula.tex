@@ -10,6 +10,7 @@
 \usepackage[dvipdfmx]{graphicx}
 % 箇条書き
 \usepackage{enumitem}
+
 % 枠付き文章
 \usepackage{ascmac}
 
@@ -22,7 +23,7 @@
   Fenchel Duality  \\
   \large 3.1 Subgradients and Convex Functions}
 \author{Ryota Iwamoto}
-\date{\today}
+\date{February 7, 2023}
 \maketitle
 
 We use the book; Convex Analysis and Nonlinear Optimization (author: J.M.BORWEIN and A.S.LEWIS), pp.33-36.
@@ -165,6 +166,28 @@ Figure:
   Therefore we got $-f(x) \leq f(-x)$ for all $x$ in $\mathbb{E}$.
 \end{proof}
 
+\begin{itembox}[l]{\underline{Proposition (the former of Proposition 3.1.1) }}
+  If the function $f$ is sublinear if and only if $f$ is positively homogeneous and subadditive.
+\end{itembox}
+
+\begin{proof}
+  We show that
+
+  \begin{center}
+    $f$ is sublinear $\Leftrightarrow$ f is positively homogeneous and subadditive.
+  \end{center}
+
+  ($\Rightarrow$) By the definition of sublinear of $f$, for any $y$ we take $y=0$ and $\mu=0$. Then f is positively homogeneous.
+
+  ($\Leftarrow$) By the definition of subadditive and positively homogeneous of $f$, $\forall x, y \in{\mathbb{E}},\: \lambda, \mu \in{\mathbb{R}}_+$,
+
+  \begin{equation}
+    f(\lambda x + \mu y) \leq f(\lambda x) + f(\mu y) = \lambda f(x) + \mu f(y) . \notag
+  \end{equation}
+
+  Therefore we completed to prove it.
+\end{proof}
+
 \begin{itembox}[l]{\underline{Definition (Lineality Space) }}
   The $lineality\:space$ of a
   sublinear function $f$, denoted by $lin f$, is the set
@@ -173,5 +196,66 @@ Figure:
     lin f = \{x \in \mathbb{E}\:|\:-f(x) = f(-x)\}. \notag
   \end{equation}
 \end{itembox}
+
+\begin{quote}
+  Quote:
+
+  The following result (whose proof is left as an exercise) shows this set is a subspace.
+
+\end{quote}
+
+\begin{itembox}[l]{\underline{Proposition 3.1.1 (Sublinearity) }}
+  A function $f$ : $\mathbb{E}$ → $ \left ( -\infty ,+\infty \right ] $ is sublinear if and only if it is positively homogeneous and subadditive. For a
+
+sublinear function $f$, the lineality space $lin f$ is the largest subspace of $\mathbb{E}$ on
+which $f$ is linear.
+\end{itembox}
+
+\begin{proof}
+  The former proposition has already been proved. Accordingly we show the latter one, that the way of proof is two steps;
+
+  \begin{enumerate}[label=\Roman*,align=CenterWithParen]
+    \item $lin f$ is a subspace of $\mathbb{E}$.
+    \item $lin f$ is the "largest" subspace of $\mathbb{E}$.
+  \end{enumerate}
+
+  ( $\mathrm{I}$ ) We show that
+
+  \begin{enumerate}[label=\roman*,align=CenterWithParen]
+    \item $\forall x, y \in lin f$, $x + y \in lin f$.
+    \item $\forall x \in lin f$, $\alpha \in{\mathbb{R}}$, $\alpha x \in lin f$ .
+  \end{enumerate}
+
+  ( $\mathrm{i}$ ) We show that $\forall x, y \in lin f$,
+
+  \begin{center}
+    $-f(x+y) = f(-x-y)$.
+  \end{center}
+
+  For any $x$ and $y$, by the definition of linearity space, it holds that
+
+  \begin{center}
+    $-f(x) = f(-x)$ and
+    $-f(y) = f(-y)$.
+  \end{center}
+
+  And, Since f is sublinear, we have $f(x + y) \leq f(x) + f(y)$. Using the result of the above proposition about a sublinear property, we can get the inequality:
+
+  \begin{center}
+    $-f(x+y) \geq - f(x) - f(y) = f(-x) + f(-y) \geq f(-x-y) = f(-(x+y)) \geq -f(x+y)$.
+  \end{center}
+
+  This inequality means that $-f(x+y) = f(-x-y)$.
+
+  ( $\mathrm{ii}$ ) We show that $\forall x \in lin f$, $\alpha \in{\mathbb{R}}$,
+
+  \begin{center}
+    $-f(\alpha x) = f(-\alpha x)$.
+  \end{center}
+
+
+
+
+\end{proof}
 
 \end{document}
