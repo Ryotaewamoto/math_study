@@ -1,6 +1,6 @@
 # Math Study
 
-This repository is outputs of my studying mathematics, whose style is LaTeX. The main content will be convex analysis or nonlinear optimization. Maybe I push python code like figure used in some pdf.
+This repository is outputs of my studying mathematics, whose style is LaTeX. The main content will be convex analysis or nonlinear optimization. Maybe I push python codes like algorisms and figures used in some explanations.
 
 ## LaTeX Coding Environment
 I pretended this below article; this title means preparing the best LaTeX environment with VSCode.
