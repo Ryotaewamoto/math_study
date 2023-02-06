@@ -1,0 +1,7 @@
+# latex compile
+*.aux
+*.dvi
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex.gz
