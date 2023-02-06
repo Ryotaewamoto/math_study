@@ -4,6 +4,7 @@
 \usepackage[english]{babel}
 % 数式
 \usepackage{amsmath,amsfonts}
+\usepackage{amsthm}
 \usepackage{bm}
 % 画像
 \usepackage[dvipdfmx]{graphicx}
@@ -121,7 +122,6 @@ Figure:
   \includegraphics[width=8cm]{sublinear_output.png}
 \end{center}
 
-
 \begin{itembox}[l]{\underline{Definition (Positively Homogeneous and Subadditive) }}
   A convex function $f$ is \textbf{positively homogeneous} if this $f$ satisfies the condition
 
@@ -134,8 +134,36 @@ Figure:
   \begin{equation}
     f( x + y) \leq f(x) + f(y),\:for \:all\: x, y \in{\mathbb{E}}. \notag
   \end{equation}
-
 \end{itembox}
+
+\begin{itembox}[l]{\underline{Proposition }}
+  If the function $f$
+  is sublinear then $-f(x) \leq f(-x)$ for all $x$ in $\mathbb{E}$.
+\end{itembox}
+
+\begin{proof}
+  We show that it holds $-f(x) \leq f(-x)$ for all $x$ in $\mathbb{E}$.
+
+  By the assumption of sublinear of $f$, we can use the inequality
+
+  \begin{equation}
+    f(\lambda x + \mu y) \leq \lambda f(x) + \mu f(y),\:for \:all\: x, y \in{\mathbb{E}},\: \lambda, \mu \in{\mathbb{R}}_+. \notag
+  \end{equation}
+
+  For any $x$ and $y$, we take $y=-x$ since ${\mathbb{E}}$ is a vector space, and also take $\lambda=\mu=1$. These values and the above assumption, we get the inequality
+
+  \begin{equation}
+    f(x + (-x)) \leq f(x) + f(-x). \notag
+  \end{equation}
+
+  By $f(0) = 0$,
+
+  \begin{equation}
+    0 \leq f(x) + f(-x). \notag
+  \end{equation}
+
+  Therefore we got $-f(x) \leq f(-x)$ for all $x$ in $\mathbb{E}$.
+\end{proof}
 
 \begin{itembox}[l]{\underline{Definition (Lineality Space) }}
   The $lineality\:space$ of a
