@@ -6,6 +6,7 @@
 \usepackage{amsmath,amsfonts}
 \usepackage{amsthm}
 \usepackage{bm}
+\usepackage{mathtools}
 % 画像
 \usepackage[dvipdfmx]{graphicx}
 % 箇条書き
@@ -27,33 +28,35 @@
 \maketitle
 
 We use the book; Convex Analysis and Nonlinear Optimization (author: J.M.BORWEIN and A.S.LEWIS), pp.33-36.
+\begin{center}
 
-\begin{quote}
-  Quote:
+  \fbox{
+    \begin{minipage}{.8\textwidth}
+      We have already seen, in the First order sufficient condition (2.1.2), one
+      benefit of convexity in optimization: critical points of convex functions are
+      global minimizers. In this section we extend the types of functions we
+      consider in two important ways:
 
-  We have already seen, in the First order sufficient condition (2.1.2), one
-  benefit of convexity in optimization: critical points of convex functions are
-  global minimizers. In this section we extend the types of functions we
-  consider in two important ways:
-
-  \qquad
-    \begin{enumerate}[label=\roman*,align=CenterWithParen]
-      \item We do not require $f$ to be differentiable.
-      \item We allow $f$ to take the value $+\infty$.
-    \end{enumerate}
-\end{quote}
+      \begin{enumerate}[label=\roman*,align=CenterWithParen]
+        \item We do not require $f$ to be differentiable.
+        \item We allow $f$ to take the value $+\infty$.
+      \end{enumerate}
+    \end{minipage}
+  }
+\end{center}
 
 This book Chapter 2 explains a optimization of convex functions with good conditions, which is differentiable and not including infinity points. In this section, we consider extended functions like being not differentiable and allowed to take the value $+\infty$.
 
-\begin{quote}
-  Quote:
-
-  Our derivation of first order conditions in Section 2.3  illustrates the utility of considering nonsmooth functions even in the context of smooth problems. Allowing the value $+\infty$ lets us rephrase a problem like
-$$ \inf \text{$\{ g(x)\:|\:x \in{C}\}$} $$
-as $ \inf \text{$(g+\delta_C)$} $, where the indicator function $\delta_C$($x$) is 0 for $x$ in $C$ and $+\infty$
-otherwise.
-
-\end{quote}
+\begin{center}
+  \fbox{
+    \begin{minipage}{.8\textwidth}
+      Our derivation of first order conditions in Section 2.3  illustrates the utility of considering nonsmooth functions even in the context of smooth problems. Allowing the value $+\infty$ lets us rephrase a problem like
+      $$ \inf \text{$\{ g(x)\:|\:x \in{C}\}$} $$
+      as $ \inf \text{$(g+\delta_C)$} $, where the indicator function $\delta_C$($x$) is 0 for $x$ in $C$ and $+\infty$
+      otherwise.
+    \end{minipage}
+  }
+\end{center}
 
 Here We consider the definition of indicator function.
 
@@ -70,35 +73,35 @@ Here We consider the definition of indicator function.
   \end{equation}
 \end{itembox}
 
-\begin{quote}
-  Quote:
+\begin{center}
+  \fbox{
+    \begin{minipage}{.8\textwidth}
+      The domain of a function $f$ : $\mathbb{E}$ $\to$ $ \left ( -\infty ,+\infty \right ] $ is the set
 
-  The domain of a function $f$ : $\mathbb{E}$ → $ \left ( -\infty ,+\infty \right ] $ is the set
+      \begin{equation}
+        dom f = \{x \in{\mathbb{E}}\:|\:f(x) < +\infty \}. \notag
+      \end{equation}
+      We say $f$ is convex if it is convex on its domain, and proper if its domain
+      is nonempty. We call a function $g$ : $\mathbb{E}$ $\to$ $ \left [ -\infty ,+\infty \right ) $ concave if $-g$ is
+      convex, although for reasons of simplicity we will consider primarily convex
+      functions. If a convex function $f$ satisfies the stronger condition
 
-  \begin{equation}
-    dom f = \{x \in{\mathbb{E}}\:|\:f(x) < +\infty \}. \notag
-  \end{equation}
-  We say $f$ is convex if it is convex on its domain, and proper if its domain
-  is nonempty. We call a function $g$ : $\mathbb{E}$ → $ \left [ -\infty ,+\infty \right ) $ concave if $-g$ is
-  convex, although for reasons of simplicity we will consider primarily convex
-  functions. If a convex function $f$ satisfies the stronger condition
+      \begin{equation}
+        f(\lambda x + \mu y) \leq \lambda f(x) + \mu f(y),\:for \:all\: x, y \in{\mathbb{E}},\: \lambda, \mu \in{\mathbb{R}}_+ \notag
+      \end{equation}
 
-  \begin{equation}
-    f(\lambda x + \mu y) \leq \lambda f(x) + \mu f(y),\:for \:all\: x, y \in{\mathbb{E}},\: \lambda, \mu \in{\mathbb{R}}_+ \notag
-  \end{equation}
+      we say $f$ is $sublinear$. If $f(\lambda x) = \lambda f(x)$ for all $x$ in $\mathbb{E}$ and $\lambda$ in ${\mathbb{R}}_+$ then
+      $f$ is $positively\:homogeneous$: in particular this implies $f(0) = 0$. (Recall the convention 0 · (+$\infty$) = 0.) If $ f(x + y) \leq f(x) +  f(y) $ for all $x$ and $y
+      $  in $\mathbb{E}$ then we say $f$ is $subadditive$. It is immediate that if the function $f$
+      is sublinear then $-f(x) \leq f(-x)$ for all $x$ in $\mathbb{E}$. The $lineality\:space$ of a
+      sublinear function $f$ is the set
 
-  we say $f$ is $sublinear$. If $f(\lambda x) = \lambda f(x)$ for all $x$ in $\mathbb{E}$ and $\lambda$ in ${\mathbb{R}}_+$ then
-  $f$ is $positively\:homogeneous$: in particular this implies $f(0) = 0$. (Recall the convention 0 · (+$\infty$) = 0.) If $ f(x + y) \leq f(x) +  f(y) $ for all $x$ and $y
-$  in $\mathbb{E}$ then we say $f$ is $subadditive$. It is immediate that if the function $f$
-  is sublinear then $-f(x) \leq f(-x)$ for all $x$ in $\mathbb{E}$. The $lineality\:space$ of a
-  sublinear function $f$ is the set
-
-  \begin{equation}
-    lin f = \{x \in \mathbb{E}\:|\:-f(x) = f(-x)\}. \notag
-  \end{equation}
-
-\end{quote}
-
+      \begin{equation}
+        lin f = \{x \in \mathbb{E}\:|\:-f(x) = f(-x)\}. \notag
+      \end{equation}
+    \end{minipage}
+  }
+\end{center}
 We describe some definitions and the figure below.
 
 \begin{itembox}[l]{\underline{Definition (Sublinear) }}
@@ -197,15 +200,16 @@ Figure:
   \end{equation}
 \end{itembox}
 
-\begin{quote}
-  Quote:
-
-  The following result (whose proof is left as an exercise) shows this set is a subspace.
-
-\end{quote}
+\begin{center}
+  \fbox{
+    \begin{minipage}{.8\textwidth}
+      The following result (whose proof is left as an exercise) shows this set is a subspace.
+    \end{minipage}
+    }
+\end{center}
 
 \begin{itembox}[l]{\underline{Proposition 3.1.1 (Sublinearity) }}
-  A function $f$ : $\mathbb{E}$ → $ \left ( -\infty ,+\infty \right ] $ is sublinear if and only if it is positively homogeneous and subadditive. For a
+  A function $f$ : $\mathbb{E}$ $\to$ $ \left ( -\infty ,+\infty \right ] $ is sublinear if and only if it is positively homogeneous and subadditive. For a
 
 sublinear function $f$, the lineality space $lin f$ is the largest subspace of $\mathbb{E}$ on
 which $f$ is linear.
@@ -226,7 +230,7 @@ which $f$ is linear.
     \item $\forall x \in lin f$, $\alpha \in{\mathbb{R}}$, $\alpha x \in lin f$ .
   \end{enumerate}
 
-  ( $\mathrm{i}$ ) We show that $\forall x, y \in lin f$,
+  ( $\mathrm{i}$ ) We prove that $\forall x, y \in lin f$,
 
   \begin{center}
     $-f(x+y) = f(-x-y)$.
@@ -253,8 +257,75 @@ which $f$ is linear.
     $-f(\alpha x) = f(-\alpha x)$.
   \end{center}
 
+  By the definition of positively homogeneous of $f$ and the definition of lineality space,
 
+  \begin{center}
+    $-f(\alpha x) = - \alpha f(x) = \alpha f(-x) = f(- \alpha x)$.
+  \end{center}
 
+  For the result of ( $\mathrm{i}$ ) and ( $\mathrm{ii}$ ), $lin f$ is a subspace of $\mathbb{E}$.
+
+  ( $\mathrm{II}$ ) We show that for a sublinear function $f$ it holds that
+
+  \begin{center}
+    $\forall V \subset \mathbb{E}$, where $V$ is subspace of $\mathbb{E}$, $V \subset lin f$ \\
+    $\Leftrightarrow$ $\exists V_0 \subset \mathbb{E}$, where $V$ is subspace of $\mathbb{E}$, $V_0 \not\subset lin f$.
+  \end{center}
+
+  Suppose to the contrary that there exists a subspace $V_0$ which is not included in $lin f$,
+
+  \begin{equation}
+    \exists x_0 \in V_0 \:s.t.\: x_0 \not\in lin f.
+  \end{equation}
+
+  By (1) and the definition of linearity space,
+
+  \begin{center}
+    $-f(x_0) \not= f(-x_0)$.
+  \end{center}
+
+  However $V_0$ is a subspace of $\mathbb{E}$ so it holds that $-f(x_0) = f(-x_0)$.
+
+  We can find a contradiction to the assumption that $V_0$ is a subspace of $\mathbb{E}$, therefore $lin f$ is the largest subspace of $\mathbb{E}$.
+\end{proof}
+
+\begin{center}
+  \fbox{
+    \begin{minipage}{.8\textwidth}
+      As in the First order sufficient condition (2.1.2), it is easy to check that if the point $\bar{x}$ lies in the domain of the convex function $f$ then the directional derivative $f'(\bar{x};\cdot)$ is well-defined and positively homogeneous, taking values in $ \left [ -\infty ,+\infty \right ] $. The core of a set $C$ (written $core (C)$) is the set of points $x$ in $C$ such that for any direction $d$ in $\mathbb{E}$, $x + td$ lies in $C$ for all small real $t$. This set clearly contains the interior of $C$, although it may be larger (Exercise 2).
+    \end{minipage}
+  }
+\end{center}
+
+\begin{itembox}[l]{\underline{Definition (the core of a set) }}
+  Let $C \subset \mathbb{E}$. The $\textbf{core}$ of the set $C$ is defined as
+
+  \begin{center}
+    $core (C)$ $\coloneqq$ $\{x \in \mathbb{E} \:|\: \forall d \in \mathbb{E}, \exists t_0 > 0 \:s.t.\: \forall t (0<t<t_0), x+td \in C \}$ .
+  \end{center}
+\end{itembox}
+
+Figure: 
+
+\begin{itembox}[l]{\underline{Exercise 2 (Core versus interior) }}
+  Considering the set in $\mathbb{R}^2$
+
+  \begin{center}
+    $D=\{(x,y) \:|\: y = 0 \:or\: |y| \geq x^2 \}$ .
+  \end{center}
+
+  Prove $0 \in core (D) \backslash int (D) $
+\end{itembox}
+
+\begin{proof}
+
+\end{proof}
+
+\begin{itembox}[l]{\underline{Proposition 3.1.2 (Sublinearity of the directional derivative) }}
+  If the function $f$ : $\mathbb{E}$ $\to$ $ \left ( -\infty ,+\infty \right ] $ is convex then for any points $\bar{x}$ in $core(dom f)$, the directional derivative $f'(\bar{x};\cdot)$ is everywhere finite and sublinear.
+\end{itembox}
+
+\begin{proof}
 
 \end{proof}
 
