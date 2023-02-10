@@ -1,3 +1,4 @@
+% !TeX root = max_formula.tex
 \documentclass[a4paper,11pt]{jsarticle}
 
 % 英文化
@@ -5,6 +6,7 @@
 % 数式
 \usepackage{amsmath,amsfonts}
 \usepackage{amsthm}
+\usepackage{amssymb}
 \usepackage{bm}
 \usepackage{mathtools}
 % 画像
@@ -58,6 +60,8 @@ This book Chapter 2 explains a optimization of convex functions with good condit
   }
 \end{center}
 
+In the case of having $g_1, \dots, g_n$, these domains usually are different. However if we use $\delta_C$($x$), these domains is equal to $\mathbb{E}$.
+
 Here We consider the definition of indicator function.
 
 % タイトルの位置は，カギ括弧[]の中で指定します．l:左，c:中央，r:右にタイトルが書かれます．
@@ -68,7 +72,7 @@ Here We consider the definition of indicator function.
     \delta_C(x)=
     \begin{cases}
       0 & if\:x \in{C}, \\
-      \infty & if\:otherwise. \notag
+      \infty & otherwise. \notag
     \end{cases}
   \end{equation}
 \end{itembox}
@@ -102,10 +106,14 @@ Here We consider the definition of indicator function.
     \end{minipage}
   }
 \end{center}
+
+In many cases of convex analysis, we need to
+consider minimization problems . For the reason, we exclude $-\infty$ from a range of function.
+
 We describe some definitions and the figure below.
 
 \begin{itembox}[l]{\underline{Definition (Sublinear) }}
-  A convex function $f$ is \textbf{sublinear} if this $f$ satisfies the condition
+  A function $f$ is \textbf{sublinear} if this $f$ satisfies the condition
 
   \begin{equation}
     f(\lambda x + \mu y) \leq \lambda f(x) + \mu f(y),\:for \:all\: x, y \in{\mathbb{E}},\: \lambda, \mu \in{\mathbb{R}}_+. \notag
@@ -127,13 +135,13 @@ Figure:
 \end{center}
 
 \begin{itembox}[l]{\underline{Definition (Positively Homogeneous and Subadditive) }}
-  A convex function $f$ is \textbf{positively homogeneous} if this $f$ satisfies the condition
+  A function $f$ is \textbf{positively homogeneous} if this $f$ satisfies the condition
 
   \begin{equation}
     f(\lambda x) = \lambda f(x),\:for \:all\: x \in{\mathbb{E}},\: \lambda \in{\mathbb{R}}_+. \notag
   \end{equation}
 
-  And a convex function $f$ is \textbf{subadditive} if this $f$ satisfies the condition
+  Also a function $f$ is \textbf{subadditive} if this $f$ satisfies the condition
 
   \begin{equation}
     f( x + y) \leq f(x) + f(y),\:for \:all\: x, y \in{\mathbb{E}}. \notag
@@ -141,7 +149,7 @@ Figure:
 \end{itembox}
 
 \begin{itembox}[l]{\underline{Proposition }}
-  If the function $f$
+  If a proper function $f$
   is sublinear then $-f(x) \leq f(-x)$ for all $x$ in $\mathbb{E}$.
 \end{itembox}
 
@@ -162,6 +170,9 @@ Figure:
 
   By $f(0) = 0$,
 
+  $\because$ Since $f$ is proper, $\exists x_0 \in \mathbb{E} \:s.t.\: f(x_0) < +\infty$. Then $f(0) = f(0 \cdot x) = 0 \cdot f(x) = 0$
+
+
   \begin{equation}
     0 \leq f(x) + f(-x). \notag
   \end{equation}
@@ -180,7 +191,7 @@ Figure:
     $f$ is sublinear $\Leftrightarrow$ f is positively homogeneous and subadditive.
   \end{center}
 
-  ($\Rightarrow$) By the definition of sublinear of $f$, for any $y$ we take $y=0$ and $\mu=0$. Then f is positively homogeneous.
+  ($\Rightarrow$) By the definition of sublinear of $f$, for any $y$ we take $y=0$ and $\mu=0$. Then f is positively homogeneous. Like that, the subadditive of $f$ holds; you should put $\lambda=\mu=1$ to the inequality of sublinear.
 
   ($\Leftarrow$) By the definition of subadditive and positively homogeneous of $f$, $\forall x, y \in{\mathbb{E}},\: \lambda, \mu \in{\mathbb{R}}_+$,
 
@@ -193,10 +204,10 @@ Figure:
 
 \begin{itembox}[l]{\underline{Definition (Lineality Space) }}
   The $lineality\:space$ of a
-  sublinear function $f$, denoted by $lin f$, is the set
+  sublinear function $f$, denoted by lin$f$, is the set
 
   \begin{equation}
-    lin f = \{x \in \mathbb{E}\:|\:-f(x) = f(-x)\}. \notag
+      \text{lin} f = \{x \in \mathbb{E}\:|\:-f(x) = f(-x)\}. \notag
   \end{equation}
 \end{itembox}
 
@@ -209,9 +220,7 @@ Figure:
 \end{center}
 
 \begin{itembox}[l]{\underline{Proposition 3.1.1 (Sublinearity) }}
-  A function $f$ : $\mathbb{E}$ $\to$ $ \left ( -\infty ,+\infty \right ] $ is sublinear if and only if it is positively homogeneous and subadditive. For a
-
-sublinear function $f$, the lineality space $lin f$ is the largest subspace of $\mathbb{E}$ on
+  A function $f$ : $\mathbb{E}$ $\to$ $ \left ( -\infty ,+\infty \right ] $ is sublinear if and only if it is positively homogeneous and subadditive. For a sublinear function $f$, the lineality space lin$f$ is the largest subspace of $\mathbb{E}$ on
 which $f$ is linear.
 \end{itembox}
 
@@ -219,8 +228,8 @@ which $f$ is linear.
   The former proposition has already been proved. Accordingly we show the latter one, that the way of proof is two steps;
 
   \begin{enumerate}[label=\Roman*,align=CenterWithParen]
-    \item $lin f$ is a subspace of $\mathbb{E}$.
-    \item $lin f$ is the "largest" subspace of $\mathbb{E}$.
+    \item lin$f$ is a subspace of $\mathbb{E}$.
+    \item lin$f$ is the ``largest'' subspace of $\mathbb{E}$.
   \end{enumerate}
 
   ( $\mathrm{I}$ ) We show that
@@ -230,7 +239,7 @@ which $f$ is linear.
     \item $\forall x \in lin f$, $\alpha \in{\mathbb{R}}$, $\alpha x \in lin f$ .
   \end{enumerate}
 
-  ( $\mathrm{i}$ ) We prove that $\forall x, y \in lin f$,
+  ( $\mathrm{i}$ ) We prove that $\forall x, y \in \text{lin}f$,
 
   \begin{center}
     $-f(x+y) = f(-x-y)$.
@@ -251,7 +260,7 @@ which $f$ is linear.
 
   This inequality means that $-f(x+y) = f(-x-y)$.
 
-  ( $\mathrm{ii}$ ) We show that $\forall x \in lin f$, $\alpha \in{\mathbb{R}}$,
+  ( $\mathrm{ii}$ ) We show that $\forall x \in \text{lin}f$, $\alpha \in{\mathbb{R}}$,
 
   \begin{center}
     $-f(\alpha x) = f(-\alpha x)$.
@@ -263,30 +272,21 @@ which $f$ is linear.
     $-f(\alpha x) = - \alpha f(x) = \alpha f(-x) = f(- \alpha x)$.
   \end{center}
 
-  For the result of ( $\mathrm{i}$ ) and ( $\mathrm{ii}$ ), $lin f$ is a subspace of $\mathbb{E}$.
+  For the result of ( $\mathrm{i}$ ) and ( $\mathrm{ii}$ ), $\text{lin}f$ is a subspace of $\mathbb{E}$.
 
   ( $\mathrm{II}$ ) We show that for a sublinear function $f$ it holds that
 
   \begin{center}
-    $\forall V \subset \mathbb{E}$, where $V$ is subspace of $\mathbb{E}$, $V \subset lin f$ \\
-    $\Leftrightarrow$ $\exists V_0 \subset \mathbb{E}$, where $V$ is subspace of $\mathbb{E}$, $V_0 \not\subset lin f$.
+    $\forall V \subset \mathbb{E}$, where $V$ is subspace of $\mathbb{E}$, $V \subset \text{lin}f$
   \end{center}
 
-  Suppose to the contrary that there exists a subspace $V_0$ which is not included in $lin f$,
-
-  \begin{equation}
-    \exists x_0 \in V_0 \:s.t.\: x_0 \not\in lin f.
-  \end{equation}
-
-  By (1) and the definition of linearity space,
+  For any $x$ in $V$, $-x \in V$ holds because $V$ is a subspace of $\mathbb{E}$. Since f is linear,
 
   \begin{center}
-    $-f(x_0) \not= f(-x_0)$.
+    $0 = f(0) = f(x + (-x)) = f(x) + f(-x)$.
   \end{center}
 
-  However $V_0$ is a subspace of $\mathbb{E}$ so it holds that $-f(x_0) = f(-x_0)$.
-
-  We can find a contradiction to the assumption that $V_0$ is a subspace of $\mathbb{E}$, therefore $lin f$ is the largest subspace of $\mathbb{E}$.
+  Therefore $\text{lin}f$ is the largest subspace of $\mathbb{E}$.
 \end{proof}
 
 \begin{center}
@@ -305,7 +305,7 @@ which $f$ is linear.
   \end{center}
 \end{itembox}
 
-Figure: 
+Figure:
 
 \begin{itembox}[l]{\underline{Exercise 2 (Core versus interior) }}
   Considering the set in $\mathbb{R}^2$

@@ -12,3 +12,8 @@ I pretended this below article; this title means preparing the best LaTeX enviro
 
 - Convex Analysis and Nonlinear Optimization (author: J.M.BORWEIN and A.S.LEWIS)
 
+## Note
+
+``cmd + option + j``: you can check where your tex codes is in outputted pdf.
+
+``cmd`` + click in pdf: you find your tex codes for a click point.
