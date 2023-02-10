@@ -4,7 +4,8 @@
 % 英文化
 \usepackage[english]{babel}
 % 数式
-\usepackage{amsmath,amsfonts}
+\usepackage{amsmath}
+\usepackage{amsfonts}
 \usepackage{amsthm}
 \usepackage{amssymb}
 \usepackage{bm}
@@ -305,7 +306,6 @@ which $f$ is linear.
   \end{center}
 \end{itembox}
 
-Figure:
 
 \begin{itembox}[l]{\underline{Exercise 2 (Core versus interior) }}
   Considering the set in $\mathbb{R}^2$
@@ -317,15 +317,63 @@ Figure:
   Prove $0 \in core (D) \backslash int (D) $
 \end{itembox}
 
-\begin{proof}
+Figure:
 
-\end{proof}
 
 \begin{itembox}[l]{\underline{Proposition 3.1.2 (Sublinearity of the directional derivative) }}
   If the function $f$ : $\mathbb{E}$ $\to$ $ \left ( -\infty ,+\infty \right ] $ is convex then for any points $\bar{x}$ in $core(dom f)$, the directional derivative $f'(\bar{x};\cdot)$ is everywhere finite and sublinear.
 \end{itembox}
 
 \begin{proof}
+  For $d$ in $\mathbb{E}$ and nonzero $t$ in $\mathbb{R}$, define
+
+  \begin{equation}
+    g(d; \cdot) = \frac{f(\bar{x}+td) - f(\bar{x})}{t}. \notag
+  \end{equation}
+
+  By convexity we deduce, for $0<t\leq s \in \mathbb{R}$, the inequality
+
+  \begin{equation}
+    g(d;-s) \leq g(d;-t) \leq g(d;t) \leq g(d;s). \notag
+  \end{equation}
+
+  $\because$ $\forall t_1,t_2 (t_1 \leq t_2) \in \mathbb{R}$, $g(d;t_1) \leq g(d;t_2)$.
+
+  Since $\bar{x}$ lies in $\text{core($\text{dom}f$)}$, for small $s > 0$ both $g(d;-s)$ and $g(d;s)$ are finite, so as $t\downarrow 0$ we have
+
+  \begin{equation}
+    +\infty > g(d;s) \geq g(d;t) \downarrow f'(\bar{x};d) \geq g(d; -s) > -\infty.
+  \end{equation}
+
+  Again bu convexity we have, for any directions $d$ and $e$ in $\mathbb{E}$ and real $t>0$,
+
+  \begin{equation}
+    g(d+e;t) \leq g(d;2t) + g(e;2t). \notag
+  \end{equation}
+
+  $\because$
+
+  \begin{equation}
+    \begin{split}
+      g(d+e;t) &= \frac{f(\bar{x}+t(d+e))-f(\bar{x})}{t}\\
+      &= \frac{2f(\bar{x}+2t(\frac{1}{2}d+\frac{1}{2}e))-2f(\bar{x})}{2t}\\
+      &= \frac{2f(\frac{1}{2}(\bar{x}+2td)+\frac{1}{2}(\bar{x}+2te))-2f(\bar{x})}{2t}\\
+      &\leq \frac{f(\bar{x}+2td)-f(\bar{x})}{2t} + \frac{f(\bar{x}+2te)-f(\bar{x})}{2t}\\
+      &= g(d;2t) + g(e;2t) \notag
+    \end{split}
+  \end{equation}
+
+  Now letting $t \downarrow 0$ gives subadditivity of $f'(\bar{x};\cdot)$. The positively homogeneity is easy to check.
+
+  $\because$ Like that, $\forall d \in \mathbb{E},\lambda \geq 0, t>0$,
+
+  \begin{equation}
+    \begin{split}
+      g(\lambda d;t) &= \frac{f(\bar{x}+t\lambda d) - f(\bar{x})}{t}\\
+      &= \frac{\lambda (f(\bar{x}+t\lambda d) - f(\bar{x}))}{\lambda t}\\
+      &= \lambda g(d;\lambda t) \notag
+    \end{split}
+  \end{equation}
 
 \end{proof}
 
