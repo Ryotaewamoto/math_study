@@ -27,7 +27,7 @@
   Fenchel Duality  \\
   \large 3.1 Subgradients and Convex Functions}
 \author{Ryota Iwamoto}
-\date{February 7, 2023}
+\date{February 14, 2023}
 \maketitle
 
 We use the book; Convex Analysis and Nonlinear Optimization (author: J.M.BORWEIN and A.S.LEWIS), pp.33-36.
@@ -61,7 +61,7 @@ This book Chapter 2 explains a optimization of convex functions with good condit
   }
 \end{center}
 
-In the case of having $g_1, \dots, g_n$, these domains usually are different. However if we use $\delta_C$($x$), these domains is equal to $\mathbb{E}$.
+In the case of having $g_1, \dots, g_n$, these domains are usually different. However if we use $\delta_C$($x$), these domains is equal to $\mathbb{E}$.
 
 Here We consider the definition of indicator function.
 
@@ -281,7 +281,7 @@ which $f$ is linear.
     $\forall V \subset \mathbb{E}$, where $V$ is subspace of $\mathbb{E}$, $V \subset \text{lin}f$
   \end{center}
 
-  For any $x$ in $V$, $-x \in V$ holds because $V$ is a subspace of $\mathbb{E}$. Since f is linear,
+  For any $x$ in $V$, $-x \in V$ holds because $V$ is a subspace of $\mathbb{E}$. Since $f$ is linear,
 
   \begin{center}
     $0 = f(0) = f(x + (-x)) = f(x) + f(-x)$.
@@ -374,7 +374,56 @@ Figure:
       &= \lambda g(d;\lambda t) \notag
     \end{split}
   \end{equation}
-
 \end{proof}
+
+\begin{center}
+  \fbox{
+    \begin{minipage}{.8\textwidth}
+      The idea of the derivative is fundamental in analysis because it allows us to approximate a wide class of functions using $\textit{linear functions}$. In optimization we are concerned specifically with the minimization of functions,
+
+      and hence often a $\textit{one-sided approximation}$ is sufficient. In place of the gradient we therefore consider $\textit{subgradients}$, those elements $\phi$ of $\mathbb{E}$ satisfying
+
+      \begin{equation}
+        \left\langle \phi ,x-\bar{x}\right\rangle \leq f(x) - f(\bar{x})\:\text{for all points $x \in \mathbb{E}$} \tag*{(3.1.4)}
+      \end{equation}
+
+      We denote the set of subgradients (called the $\textit{subdifferential}$) by $\partial f(\bar{x})$, defining $\partial f(\bar{x})= \emptyset $ for  $\bar{x}$ not in $\text{dom}f$. The subdifferential is always a closed convex set. We can think of $\partial f(\bar{x})$ as the value at  $\bar{x}$ of the ``multifunction'' or ``set-valued map'' $\partial f$ : $\mathbb{E}$ $\to$ $\mathbb{E}$. The importance of such maps is another of our themes. We define its $\textit{domain}$
+
+      \begin{equation}
+        \text{dom} \partial f= \{ x\in\mathbb{E} \:|\: \partial f(x) \ne \emptyset \} \notag
+      \end{equation}
+
+      (Exercise 19). We say $f$ is $\textit{essentially strictly convex}$ if it is strictly convex on any convex subset of $\text{dom}\partial f$.
+
+      The following very easy observation suggests the fundamental significance of subgradients in optimization.
+    \end{minipage}
+  }
+\end{center}
+
+\begin{itembox}[l]{\underline{Definition (Subgtarients and Subdifferential) }}
+  Let $f$ : $\mathbb{E}$ $\to$ $ \left ( -\infty ,+\infty \right ] $ and $\bar{x}$ in $\mathbb{E}$. If it holds that
+
+  \begin{equation}
+    \exists \phi \in \mathbb{E} \:s.t.\: f(x) \geq f(\bar{x}) + \left\langle \phi, x-\bar{x} \right\rangle, \forall x \in \mathbb{E} \notag
+  \end{equation}
+
+  then $\phi$ is called the subgradient of $f$ at $\bar{x}$.
+
+  Also, the set of all subgradients of $f$ at $\bar{x}$ is called the subdifferential of $f$ at $\bar{x}$, denoted by $\partial f(\bar{x})$, that is
+
+  \begin{equation}
+    \partial f(\bar{x}) \coloneqq \{\phi \in \mathbb{E}\:|\:f(x) \geq f(\bar{x}) + \left\langle \phi, x-\bar{x} \right\rangle, \forall x \in \mathbb{E} \}. \notag
+  \end{equation}
+\end{itembox}
+
+\begin{itembox}[l]{\underline{Exercise 19 (Domain of subdifferential) }}
+  Considering the set in $\mathbb{R}^2$
+
+  \begin{center}
+    $D=\{(x,y) \:|\: y = 0 \:or\: |y| \geq x^2 \}$ .
+  \end{center}
+
+  Prove $0 \in core (D) \backslash int (D) $
+\end{itembox}
 
 \end{document}
