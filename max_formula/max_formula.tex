@@ -72,8 +72,8 @@ Here We consider the definition of indicator function.
   \begin{equation}
     \delta_C(x)=
     \begin{cases}
-      0 & if\:x \in{C}, \\
-      \infty & otherwise. \notag
+      0 & \text{if}\:x \in{C}, \\
+      \infty & \text{otherwise}. \notag
     \end{cases}
   \end{equation}
 \end{itembox}
@@ -417,13 +417,17 @@ Figure:
 \end{itembox}
 
 \begin{itembox}[l]{\underline{Exercise 19 (Domain of subdifferential) }}
-  Considering the set in $\mathbb{R}^2$
+  If the function $f$ : $\mathbb{R}^2$ $\to$ $ \left ( -\infty ,+\infty \right ] $ is defined by
 
-  \begin{center}
-    $D=\{(x,y) \:|\: y = 0 \:or\: |y| \geq x^2 \}$ .
-  \end{center}
+  \begin{equation}
+    f(x_1,x_2) =
+    \begin{cases}
+      \text{max}\{1-\sqrt{x_1}, |x_2|  \} & \text{if}\:x_1 \geq 0, \\
+      +\infty & \text{otherwise}. \notag
+    \end{cases}
+  \end{equation}
 
-  Prove $0 \in core (D) \backslash int (D) $
+  prove that $f$ is convex but that $\text{dom}\partial f$ is not convex.
 \end{itembox}
 
 \end{document}
