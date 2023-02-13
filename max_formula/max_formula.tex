@@ -132,7 +132,7 @@ Figure:
 \end{equation}
 
 \begin{center}
-  \includegraphics[width=8cm]{sublinear_output.png}
+  \includegraphics[width=8cm]{figures/sublinear_output.png}
 \end{center}
 
 \begin{itembox}[l]{\underline{Definition (Positively Homogeneous and Subadditive) }}
@@ -400,7 +400,7 @@ Figure:
   }
 \end{center}
 
-\begin{itembox}[l]{\underline{Definition (Subgtarients and Subdifferential) }}
+\begin{itembox}[l]{\underline{Definition (Subgradient and Subdifferential) }}
   Let $f$ : $\mathbb{E}$ $\to$ $ \left ( -\infty ,+\infty \right ] $ and $\bar{x}$ in $\mathbb{E}$. If it holds that
 
   \begin{equation}
@@ -416,6 +416,42 @@ Figure:
   \end{equation}
 \end{itembox}
 
+Observation(1):
+
+We consider the inequality as the relation between two functions. The  graph is written as the shifted one of $y=\left\langle \phi,x \right\rangle$ with the direction of $(x_0,f(x_0))$.
+
+\begin{equation}
+  \begin{split}
+    y &= f(x) \\
+    y &= \left\langle \phi,x \right\rangle + f(x_0) \notag
+  \end{split}
+\end{equation}
+
+Figure:
+
+\begin{center}
+  \includegraphics[width=8cm]{figures/subgradient_(1).png}
+\end{center}
+
+Observation(2):
+
+We consider the inequality as the inner product.
+
+\begin{equation}
+  \begin{split}
+    f(x) \geq f(\bar{x}) + \left\langle \phi, x-\bar{x} \right\rangle\\
+    \left\langle \phi, x-\bar{x} \right\rangle + f(\bar{x}) - f(x)\leq 0\\
+    \left\langle \phi, x-\bar{x} \right\rangle + (-1)(f(x) - f(\bar{x}))\leq 0\\
+    \left\langle \binom{\phi}{-1},\binom{x}{f(x)} - \binom{x_0}{f(x_0)} \right\rangle \leq 0 \notag`'
+  \end{split}
+\end{equation}
+
+Figure:
+
+\begin{center}
+  \includegraphics[width=8cm]{figures/subgradient_(2).png}
+\end{center}
+
 \begin{itembox}[l]{\underline{Exercise 19 (Domain of subdifferential) }}
   If the function $f$ : $\mathbb{R}^2$ $\to$ $ \left ( -\infty ,+\infty \right ] $ is defined by
 
@@ -429,5 +465,41 @@ Figure:
 
   prove that $f$ is convex but that $\text{dom}\partial f$ is not convex.
 \end{itembox}
+
+\begin{itembox}[l]{\underline{Proposition 3.1.5 (Subgradients at optimality) }}
+  For any proper functions $f$ : $\mathbb{E}$ $\to$ $ \left ( -\infty ,+\infty \right ] $, the points $\bar{x}$ is a (global) minimizer of $f$ if and only if the condition $0 \in \partial f(\bar{x})$ holds.
+\end{itembox}
+
+\begin{proof}
+
+\end{proof}
+
+\begin{center}
+  \fbox{
+    \begin{minipage}{.8\textwidth}
+      Alternatively put, minimizers of $f$ correspond exactly to ``zeroes'' of $\partial f$.
+      The derivative is a local property whereas the subgradient definition (3.1.4) describes a global property. The main result of this section shows
+      that the set of subgradients of a convex function is usually \textit{nonempty}, and
+      that we can describe it locally in terms of the directional derivative. We
+      begin with another simple exercise.
+    \end{minipage}
+  }
+\end{center}
+
+\begin{itembox}[l]{\underline{Proposition 3.1.6 (Subgradients and directional derivatives) }}
+  If the function $f$ : $\mathbb{E}$ $\to$ $ \left ( -\infty ,+\infty \right ] $ is convex and the point $\bar{x}$ lies in $\text{dom}f$, then an element $\phi$ of $\mathbb{E}$ is a subgradient of $f$ at $\bar{x}$ if and only if it satisfies $\left\langle \phi,\cdot \right\rangle \leq f'(\bar{x};\cdot)$.
+\end{itembox}
+
+\begin{proof}
+
+\end{proof}
+
+\begin{center}
+  \fbox{
+    \begin{minipage}{.8\textwidth}
+      The idea behind the construction of a subgradient for a function $f$ that we present here is rather simple. We recursively construct a decreasing sequence of sublinear functions which, after translation, minorize $f$. At each step we guarantee one extra direction of linearity. The basic step is summarized in the following exercise.
+    \end{minipage}
+  }
+\end{center}
 
 \end{document}
