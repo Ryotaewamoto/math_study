@@ -84,7 +84,7 @@ Here We consider the definition of indicator function.
       The domain of a function $f$ : $\mathbb{E}$ $\to$ $ \left ( -\infty ,+\infty \right ] $ is the set
 
       \begin{equation}
-        dom f = \{x \in{\mathbb{E}}\:|\:f(x) < +\infty \}. \notag
+        \text{dom} f = \{x \in{\mathbb{E}}\:|\:f(x) < +\infty \}. \notag
       \end{equation}
       We say $f$ is convex if it is convex on its domain, and proper if its domain
       is nonempty. We call a function $g$ : $\mathbb{E}$ $\to$ $ \left [ -\infty ,+\infty \right ) $ concave if $-g$ is
@@ -102,14 +102,14 @@ Here We consider the definition of indicator function.
       sublinear function $f$ is the set
 
       \begin{equation}
-        lin f = \{x \in \mathbb{E}\:|\:-f(x) = f(-x)\}. \notag
+        \text{lin} f = \{x \in \mathbb{E}\:|\:-f(x) = f(-x)\}. \notag
       \end{equation}
     \end{minipage}
   }
 \end{center}
 
 In many cases of convex analysis, we need to
-consider minimization problems . For the reason, we exclude $-\infty$ from a range of function.
+consider minimization problems. For the reason, we exclude $-\infty$ from a range of function.
 
 We describe some definitions and the figure below.
 
@@ -126,8 +126,8 @@ Figure:
 \begin{equation}
   f(x, y)=
   \begin{cases}
-    2|x| + y & if\:y \leq 0, \\
-    2|x| + 6y & if\:y > 0. \notag
+    2|x| + y & \text{if}\:y \leq 0, \\
+    2|x| + 6y & \text{if}\:y > 0. \notag
   \end{cases}
 \end{equation}
 
@@ -319,9 +319,12 @@ which $f$ is linear.
 
 Figure:
 
+\begin{center}
+  \includegraphics[width=8cm]{figures/core_versus_interior.png}
+\end{center}
 
 \begin{itembox}[l]{\underline{Proposition 3.1.2 (Sublinearity of the directional derivative) }}
-  If the function $f$ : $\mathbb{E}$ $\to$ $ \left ( -\infty ,+\infty \right ] $ is convex then for any points $\bar{x}$ in $core(dom f)$, the directional derivative $f'(\bar{x};\cdot)$ is everywhere finite and sublinear.
+  If the function $f$ : $\mathbb{E}$ $\to$ $ \left ( -\infty ,+\infty \right ] $ is convex then for any points $\bar{x}$ in $\text{core}(\text{dom} f)$, the directional derivative $f'(\bar{x};\cdot)$ is everywhere finite and sublinear.
 \end{itembox}
 
 \begin{proof}
@@ -342,10 +345,10 @@ Figure:
   Since $\bar{x}$ lies in $\text{core($\text{dom}f$)}$, for small $s > 0$ both $g(d;-s)$ and $g(d;s)$ are finite, so as $t\downarrow 0$ we have
 
   \begin{equation}
-    +\infty > g(d;s) \geq g(d;t) \downarrow f'(\bar{x};d) \geq g(d; -s) > -\infty.
+    +\infty > g(d;s) \geq g(d;t) \downarrow f'(\bar{x};d) \geq g(d; -s) > -\infty. \notag
   \end{equation}
 
-  Again bu convexity we have, for any directions $d$ and $e$ in $\mathbb{E}$ and real $t>0$,
+  Again by convexity we have, for any directions $d$ and $e$ in $\mathbb{E}$ and real $t>0$,
 
   \begin{equation}
     g(d+e;t) \leq g(d;2t) + g(e;2t). \notag
@@ -365,7 +368,7 @@ Figure:
 
   Now letting $t \downarrow 0$ gives subadditivity of $f'(\bar{x};\cdot)$. The positively homogeneity is easy to check.
 
-  $\because$ Like that, $\forall d \in \mathbb{E},\lambda \geq 0, t>0$,
+  $\because$ If $\lambda=0$, it's clear. $\forall d \in \mathbb{E},\lambda > 0, t>0$,
 
   \begin{equation}
     \begin{split}
@@ -442,7 +445,7 @@ We consider the inequality as the inner product.
     f(x) \geq f(\bar{x}) + \left\langle \phi, x-\bar{x} \right\rangle\\
     \left\langle \phi, x-\bar{x} \right\rangle + f(\bar{x}) - f(x)\leq 0\\
     \left\langle \phi, x-\bar{x} \right\rangle + (-1)(f(x) - f(\bar{x}))\leq 0\\
-    \left\langle \binom{\phi}{-1},\binom{x}{f(x)} - \binom{x_0}{f(x_0)} \right\rangle \leq 0 \notag`'
+    \left\langle \binom{\phi}{-1},\binom{x}{f(x)} - \binom{x_0}{f(x_0)} \right\rangle \leq 0 \notag
   \end{split}
 \end{equation}
 
@@ -466,11 +469,56 @@ Figure:
   prove that $f$ is convex but that $\text{dom}\partial f$ is not convex.
 \end{itembox}
 
+Figure:
+
+\begin{center}
+  \includegraphics[width=7cm]{figures/subgradients_at_optimality.png}
+\end{center}
+
 \begin{itembox}[l]{\underline{Proposition 3.1.5 (Subgradients at optimality) }}
   For any proper functions $f$ : $\mathbb{E}$ $\to$ $ \left ( -\infty ,+\infty \right ] $, the points $\bar{x}$ is a (global) minimizer of $f$ if and only if the condition $0 \in \partial f(\bar{x})$ holds.
 \end{itembox}
 
 \begin{proof}
+  The definition that $\bar{x} \in \mathbb{E}$ is a global minimizer of $f$ is
+
+  \begin{equation}
+    \forall x \in \mathbb{E},f(\bar{x}) \leq f(x).
+  \end{equation}
+
+  Also $0 \in \partial f$ means that
+
+  \begin{equation}
+    \forall x \in \mathbb{E}, f(x) \geq f(\bar{x}) + \left\langle 0, x-\bar{x} \right\rangle.
+  \end{equation}
+
+  We prove (1) $\Rightarrow $ (2) and  (1) $\Leftarrow $ (2).
+
+  ($\Rightarrow$) Paying attention to the property of proper of $f$, $\forall x \in \mathbb{E}$
+
+  \begin{equation}
+    \begin{split}
+      f(\bar{x}) \leq f(x)\\
+      0 \leq f(x) - f(\bar{x})\\
+      \left\langle 0, x-\bar{x} \right\rangle \leq f(x) - f(\bar{x}). \notag
+    \end{split}
+  \end{equation}
+
+  It means that $0 \in \partial f(\bar{x})$ holds.
+
+  ($\Leftarrow$) By (2), like above, $\forall x \in \mathbb{E}$
+
+  \begin{equation}
+    \begin{split}
+      \left\langle 0, x-\bar{x} \right\rangle \leq f(x) - f(\bar{x})\\
+      0 \leq f(x) - f(\bar{x})\\
+      f(\bar{x}) \leq f(x). \notag
+    \end{split}
+  \end{equation}
+
+  That is, $\bar{x}$ is a global minimizer of $f$.
+
+  Therefore we have got (1) $\Leftrightarrow$ (2).
 
 \end{proof}
 
@@ -497,7 +545,33 @@ Figure:
 \begin{center}
   \fbox{
     \begin{minipage}{.8\textwidth}
-      The idea behind the construction of a subgradient for a function $f$ that we present here is rather simple. We recursively construct a decreasing sequence of sublinear functions which, after translation, minorize $f$. At each step we guarantee one extra direction of linearity. The basic step is summarized in the following exercise.
+      The idea behind the construction of a subgradient for a function $f$ that we present here is rather simple. recursively construct a decreasing sequence of sublinear functions which, after translation, minorize $f$. At each step we guarantee one extra direction of linearity. The basic step is summarized in the following exercise.
+    \end{minipage}
+  }
+\end{center}
+
+\begin{itembox}[l]{\underline{Lemma 3.1.7 }}
+  Suppose that the function $p$ : $\mathbb{E}$ $\to$ $ \left ( -\infty ,+\infty \right ] $ is sublinear and that the points $\bar{x}$ lies in $\text{core}(\text{dom }p)$. Then the function $q(\cdot) = p'(\bar{x};\cdot)$ satisfies the conditions
+
+  \begin{enumerate}[label=\roman*,align=CenterWithParen]
+    \item $q(\lambda \bar{x}) = \lambda p (\bar{x})$ for all real. $\lambda$
+    \item $q \leq p$, and
+    \item $\text{lin}q \supset \text{lin}p + \text{span}\{\bar{x}\}$.
+  \end{enumerate}
+\end{itembox}
+
+\begin{proof} We show these relations.
+  
+  ( $\mathrm{i}$ )
+
+  ( $\mathrm{ii}$ )
+
+\end{proof}
+
+\begin{center}
+  \fbox{
+    \begin{minipage}{.8\textwidth}
+      With this tool we are now ready for the main result, which gives conditions guaranteeing the existence of a subgradient. Proposition 3.1.6 showed how to identify subgradients from directional derivatives; this next result shows how to move in the reverse direction.
     \end{minipage}
   }
 \end{center}
