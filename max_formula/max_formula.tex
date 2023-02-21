@@ -27,7 +27,7 @@
   Fenchel Duality  \\
   \large 3.1 Subgradients and Convex Functions}
 \author{Ryota Iwamoto}
-\date{February 14, 2023}
+\date{February 22, 2023}
 \maketitle
 
 We use the book; Convex Analysis and Nonlinear Optimization (author: J.M.BORWEIN and A.S.LEWIS), pp.33-36.
@@ -236,8 +236,8 @@ which $f$ is linear.
   ( $\mathrm{I}$ ) We show that
 
   \begin{enumerate}[label=\roman*,align=CenterWithParen]
-    \item $\forall x, y \in lin f$, $x + y \in lin f$.
-    \item $\forall x \in lin f$, $\alpha \in{\mathbb{R}}$, $\alpha x \in lin f$ .
+    \item $\forall x, y \in \text{lin} f$, $x + y \in \text{lin} f$.
+    \item $\forall x \in \text{lin} f$, $\alpha \in{\mathbb{R}}$, $\alpha x \in \text{lin} f$ .
   \end{enumerate}
 
   ( $\mathrm{i}$ ) We prove that $\forall x, y \in \text{lin}f$,
@@ -293,7 +293,7 @@ which $f$ is linear.
 \begin{center}
   \fbox{
     \begin{minipage}{.8\textwidth}
-      As in the First order sufficient condition (2.1.2), it is easy to check that if the point $\bar{x}$ lies in the domain of the convex function $f$ then the directional derivative $f'(\bar{x};\cdot)$ is well-defined and positively homogeneous, taking values in $ \left [ -\infty ,+\infty \right ] $. The core of a set $C$ (written $core (C)$) is the set of points $x$ in $C$ such that for any direction $d$ in $\mathbb{E}$, $x + td$ lies in $C$ for all small real $t$. This set clearly contains the interior of $C$, although it may be larger (Exercise 2).
+      As in the First order sufficient condition (2.1.2), it is easy to check that if the point $\bar{x}$ lies in the domain of the convex function $f$ then the directional derivative $f'(\bar{x};\cdot)$ is well-defined and positively homogeneous, taking values in $ \left [ -\infty ,+\infty \right ] $. The core of a set $C$ (written $\text{core} (C)$) is the set of points $x$ in $C$ such that for any direction $d$ in $\mathbb{E}$, $x + td$ lies in $C$ for all small real $t$. This set clearly contains the interior of $C$, although it may be larger (Exercise 2).
     \end{minipage}
   }
 \end{center}
@@ -302,7 +302,7 @@ which $f$ is linear.
   Let $C \subset \mathbb{E}$. The $\textbf{core}$ of the set $C$ is defined as
 
   \begin{center}
-    $core (C)$ $\coloneqq$ $\{x \in \mathbb{E} \:|\: \forall d \in \mathbb{E}, \exists t_0 > 0 \:s.t.\: \forall t (0<t<t_0), x+td \in C \}$ .
+    $\text{core} (C)$ $\coloneqq$ $\{x \in \mathbb{E} \:|\: \forall d \in \mathbb{E}, \exists t_0 > 0 \:s.t.\: \forall t (0<t<t_0), x+td \in C \}$ .
   \end{center}
 \end{itembox}
 
@@ -314,10 +314,12 @@ which $f$ is linear.
     $D=\{(x,y) \:|\: y = 0 \:or\: |y| \geq x^2 \}$ .
   \end{center}
 
-  Prove $0 \in core (D) \backslash int (D) $
+  Prove $0 \in \text{core} (D) \backslash \text{int} (D) $
 \end{itembox}
 
-Figure:
+Figure($\text{core} (D)$):
+
+
 
 \begin{center}
   \includegraphics[width=8cm]{figures/core_versus_interior.png}
@@ -331,7 +333,7 @@ Figure:
   For $d$ in $\mathbb{E}$ and nonzero $t$ in $\mathbb{R}$, define
 
   \begin{equation}
-    g(d; \cdot) = \frac{f(\bar{x}+td) - f(\bar{x})}{t}. \notag
+    g(d;t) = \frac{f(\bar{x}+td) - f(\bar{x})}{t}. \notag
   \end{equation}
 
   By convexity we deduce, for $0<t\leq s \in \mathbb{R}$, the inequality
@@ -340,7 +342,13 @@ Figure:
     g(d;-s) \leq g(d;-t) \leq g(d;t) \leq g(d;s). \notag
   \end{equation}
 
-  $\because$ $\forall t_1,t_2 (t_1 \leq t_2) \in \mathbb{R}$, $g(d;t_1) \leq g(d;t_2)$.
+  $\because$ $\forall t_1,t_2 (0 < t_1 \leq t_2)$, $\mathop{\underline{g(d;t_1) \leq g(d;t_2)}}\limits_{(1)}$, $\mathop{\underline{g(d;-t_2) \leq g(d;-t_1)}}\limits_{(2)}$, and $\mathop{\underline{g(d;-t_1) \leq g(d;t_1)}}\limits_{(3)}$.
+
+  (1) We use the convexity of $f$.
+
+  (2) It's leaded from (1) $\times (-1)$.
+
+  (3) We can get since $f(\bar{x})$ is the middle points of $f(\bar{x}+td)$ and $f(\bar{x}-td)$.
 
   Since $\bar{x}$ lies in $\text{core($\text{dom}f$)}$, for small $s > 0$ both $g(d;-s)$ and $g(d;s)$ are finite, so as $t\downarrow 0$ we have
 
@@ -538,7 +546,18 @@ Figure:
   If the function $f$ : $\mathbb{E}$ $\to$ $ \left ( -\infty ,+\infty \right ] $ is convex and the point $\bar{x}$ lies in $\text{dom}f$, then an element $\phi$ of $\mathbb{E}$ is a subgradient of $f$ at $\bar{x}$ if and only if it satisfies $\left\langle \phi,\cdot \right\rangle \leq f'(\bar{x};\cdot)$.
 \end{itembox}
 
+  \begin{enumerate}[label=\arabic*,align=CenterWithParen]
+    \item $\phi$ is a subgradient of $f$ at $\bar{x}$.
+    \item $\forall d \in \mathbb{E}, \left\langle \phi,d \right\rangle \leq f'(\bar{x};d)$.
+  \end{enumerate}
+
 \begin{proof}
+
+  We show (1) $\Rightarrow$ (2) and (1) $\Leftarrow$ (2).
+
+  ($\Rightarrow$)
+
+  ($\Leftarrow$)
 
 \end{proof}
 
@@ -554,17 +573,38 @@ Figure:
   Suppose that the function $p$ : $\mathbb{E}$ $\to$ $ \left ( -\infty ,+\infty \right ] $ is sublinear and that the points $\bar{x}$ lies in $\text{core}(\text{dom }p)$. Then the function $q(\cdot) = p'(\bar{x};\cdot)$ satisfies the conditions
 
   \begin{enumerate}[label=\roman*,align=CenterWithParen]
-    \item $q(\lambda \bar{x}) = \lambda p (\bar{x})$ for all real. $\lambda$
+    \item $q(\lambda \bar{x}) = \lambda p (\bar{x})$ for all real $\lambda$,
     \item $q \leq p$, and
     \item $\text{lin}q \supset \text{lin}p + \text{span}\{\bar{x}\}$.
   \end{enumerate}
 \end{itembox}
 
 \begin{proof} We show these relations.
-  
-  ( $\mathrm{i}$ )
 
-  ( $\mathrm{ii}$ )
+  ( $\mathrm{i}$ ) If $\lambda \geq 0$,
+
+  \begin{equation}
+    \begin{split}
+      q(\lambda \bar{x}) = p'(\bar{x};\lambda \bar{x}) &= \lim_{t \downarrow \infty} \frac{p(\bar{x}+\lambda \bar{x}t)-p(\bar{x})}{t} \\
+      &= \lim_{t \downarrow \infty} \frac{p((1 + \lambda t)\bar{x}) - p(\bar{x})}{t} \\
+      &= \lim_{t \downarrow \infty} \frac{(1 + \lambda t)p(\bar{x}) - p(\bar{x})}{t} \because \text{$f$ is sublinear}\\
+      &= \lambda p(\bar{x}). \notag
+    \end{split}
+  \end{equation}
+
+  I cannot prove the case of $\lambda<0$.
+
+  ( $\mathrm{ii}$ )$\forall x \in \mathbb{E}$,
+
+  \begin{equation}
+    \begin{split}
+      q(x) = p'(\bar{x};x) &= \lim_{t \downarrow \infty} \frac{p(\bar{x}+tx)-p(\bar{x})}{t} \\
+      &\leq \lim_{t \downarrow \infty} \frac{p(\bar{x}) + tp(x) - p(\bar{x})}{t} \because \text{$f$ is sublinear}\\
+      &= p(x). \notag
+    \end{split}
+  \end{equation}
+
+  ( $\mathrm{iii}$ ) Not yet.
 
 \end{proof}
 
@@ -575,5 +615,21 @@ Figure:
     \end{minipage}
   }
 \end{center}
+
+\begin{itembox}[l]{\underline{Theorem 3.1.8 (Max formula) }}
+  If the function $f$ : $\mathbb{E}$ $\to$ $ \left ( -\infty ,+\infty \right ] $ is convex then any points $\bar{x}$ in $\text{core}(\text{dom}f)$ and any direction $d$ $\in \mathbb{E}$ satisfying
+
+  \begin{equation}
+    f'(\bar{x};d) = \text{max}\{\left\langle \phi , d\right\rangle \:|\: \phi \in \partial f(\bar{x})\} \tag*{(3.1.9)}
+  \end{equation}
+
+  In particular, the subdifferential $\partial f(\bar{x})$ is nonempty.
+\end{itembox}
+
+\begin{proof}
+  In view of Proposition 3.1.6 we simply have to show that for  any fixed $d$ in $\mathbb{E}$ there is a subgradient $\phi$ satisfying $\left\langle \phi , d\right\rangle = f'(\bar{x};d)$. Choose a bases $\{e_1,e_2,\dots,e_n\}$ for $\mathbb{E}$ with $e_1=d$ if $d$ is nonzero. Now define a sequence of functions $p_0,p_1,\dots,p_n$ recursively by $p_0(\cdot)=f'(\bar{x};\cdot)$, and $p_k(\cdot)=p_{k-1}'(e_k;\cdot)$ for $k=1,2,\dots,n$. We essentially show that $p_n(\cdot)$ is the required subgradient.
+
+
+\end{proof}
 
 \end{document}
