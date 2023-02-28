@@ -581,30 +581,72 @@ Figure:
 
 \begin{proof} We show these relations.
 
-  ( $\mathrm{i}$ ) If $\lambda \geq 0$,
+  ( $\mathrm{i}$ ) Since $\bar{x} \in \text{core}(\text{dom}p)$, for a given $\lambda$
+
+  \begin{equation}
+    \exists\hat{t}>0 \:s.t.\: \forall t \in (0,\hat{t}), \bar{x}+t(\lambda \bar{x}) \in \text{dom}p \:\text{and}\: \bar{x}+t(-\lambda \bar{x}) \in \text{dom}p. \tag*{(1)}
+  \end{equation}
+
+  Also given $\lambda \in \mathbb{R}$, it holds that
+
+  \begin{equation}
+    \exists\widetilde{t}>0 \:s.t.\: \forall t \in (-\widetilde{t},\widetilde{t}), 1+\lambda t>0 \:\text{and}\: 1-\lambda t<0. \tag*{(2)}
+  \end{equation}
+
+
+  For the $t$ which satisfies (1) and (2), i.e., for $t = \text{min}\{\hat{t},\widetilde{t}\} >0$,
 
   \begin{equation}
     \begin{split}
-      q(\lambda \bar{x}) = p'(\bar{x};\lambda \bar{x}) &= \lim_{t \downarrow \infty} \frac{p(\bar{x}+\lambda \bar{x}t)-p(\bar{x})}{t} \\
-      &= \lim_{t \downarrow \infty} \frac{p((1 + \lambda t)\bar{x}) - p(\bar{x})}{t} \\
-      &= \lim_{t \downarrow \infty} \frac{(1 + \lambda t)p(\bar{x}) - p(\bar{x})}{t} \because \text{$f$ is sublinear}\\
+      q(\lambda \bar{x}) = p'(\bar{x};\lambda \bar{x}) &= \lim_{t \downarrow 0} \frac{p(\bar{x}+\lambda \bar{x}t)-p(\bar{x})}{t} \\
+      &= \lim_{t \downarrow 0} \frac{p((1 + \lambda t)\bar{x}) - p(\bar{x})}{t} \\
+      &= \lim_{t \downarrow 0} \frac{(1 + \lambda t)p(\bar{x}) - p(\bar{x})}{t} \because \text{$f$ is sublinear}\\
       &= \lambda p(\bar{x}). \notag
     \end{split}
   \end{equation}
 
-  I cannot prove the case of $\lambda<0$.
-
-  ( $\mathrm{ii}$ )$\forall x \in \mathbb{E}$,
+  ( $\mathrm{ii}$ )$\forall x \in \mathbb{E}$, there exist $t>0$ satisfying (1) that is described with not $\bar{x}$ but $x$,
 
   \begin{equation}
     \begin{split}
-      q(x) = p'(\bar{x};x) &= \lim_{t \downarrow \infty} \frac{p(\bar{x}+tx)-p(\bar{x})}{t} \\
-      &\leq \lim_{t \downarrow \infty} \frac{p(\bar{x}) + tp(x) - p(\bar{x})}{t} \because \text{$f$ is sublinear}\\
+      q(x) = p'(\bar{x};x) &= \lim_{t \downarrow 0} \frac{p(\bar{x}+tx)-p(\bar{x})}{t} \\
+      &\leq \lim_{t \downarrow 0} \frac{p(\bar{x}) + tp(x) - p(\bar{x})}{t} \because \text{$f$ is sublinear}\\
       &= p(x). \notag
     \end{split}
   \end{equation}
 
-  ( $\mathrm{iii}$ ) Not yet.
+  ( $\mathrm{iii}$ ) We show that
+
+  \begin{equation}
+    \forall y \in \text{lin}\:p + \text{span}\{\bar{x}\}, y \in \text{lin}\:q. \notag
+  \end{equation}
+
+  Since $q$ is sublinear, it holds that $-q(y) \leq q(-y)$. Accordingly we prove the reverse, $-q(y) \geq q(-y)$.
+
+  As $y \in \text{lin}\:p + \text{span}\{\bar{x}\}$,
+
+  \begin{equation}
+    \exists x \in \text{lin}\:p, \alpha \in \mathbb{R} \:s.t.\: y=x+\alpha \bar{x}. \notag
+  \end{equation}
+
+  Also since x is in $\text{lin}\:p$, $-p(x)=p(-x)$ holds by the definition of lineality space.
+
+  Then,
+
+  \begin{equation}
+    \begin{split}
+      q(-y) &= q(-(x+\alpha \bar{x}))\\
+      &\leq q(-x) + q(-\alpha \bar{x}) \because \text{$q$ is sublinear}\\
+      &\leq p(-x) + -p(\alpha \bar{x}) \because \text{Lemma3.1.7 ( $\mathrm{i}$ ), ( $\mathrm{ii}$ )}\\
+      &= -p(x) + -p(\alpha \bar{x}) \because \text{$x \in \text{lin}\:p$}\\
+      &\leq -q(x) - q(\alpha \bar{x}) \because \text{Lemma3.1.7 ( $\mathrm{ii}$ )}\\
+      &= (-1)(q(x)+q(\alpha \bar{x}))\\
+      &= (-1)(q(x+\alpha \bar{x}))\\
+      &= -q(y). \notag
+    \end{split}
+  \end{equation}
+
+  Therefore it holds that $\text{lin}q \supset \text{lin}p + \text{span}\{\bar{x}\}$.
 
 \end{proof}
 
