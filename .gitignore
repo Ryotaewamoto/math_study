@@ -5,3 +5,9 @@
 *.fls
 *.log
 *.synctex.gz
+
+# slide
+*.nav
+*.out
+*.snm
+*.toc
