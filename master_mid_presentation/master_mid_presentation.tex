@@ -38,11 +38,11 @@
 \newcommand{\green}[1]{\textcolor{green!40!black}{#1}}
 \newcommand{\blue}[1]{\textcolor{blue!80!black}{#1}}
 
-\title[Short title]{タイトル}
-\subtitle{副題}
-\author[著者略称]{氏名}
-\institute[所属略称]{所属}
-\date{\today}
+\title[凸解析学における漸近挙動]{凸解析学における漸近挙動}
+\subtitle{Introduction of Asymptotic Cones}
+\author[岩本 崚汰]{岩本 崚汰}
+\institute[新潟大学大学院]{新潟大学大学院自然科学研究科}
+\date{March 14, 2023}
 
 \begin{document}
 \maketitle
@@ -51,36 +51,104 @@
     \tableofcontents
 \end{frame}
 
-\section{Section 1}
+\section{動機づけ (Motivation) }
 \begin{frame}{目次}
     \tableofcontents[currentsection]
 \end{frame}
 
-\begin{frame}{ブロック環境}
-    \begin{block}{block}
-    block
-    \end{block}
-    \begin{alertblock}{alertblock}
-    alertblock
-    \end{alertblock}
-    \begin{exampleblock}{exampleblock}
-    exampleblock
-    \end{exampleblock}
-    \begin{tcolorbox}[colframe=green,
-    colback=green!10!white,
-    colbacktitle=green!40!white,
-    coltitle=black, fonttitle=\bfseries,
-    title=My box]
-        box contents
-    \end{tcolorbox}
+\begin{frame}{動機づけ (Motivation) }
+
+  漸近推 (Asymptotic cones) の定義に入る前に、一般的な点列の収束について考える。
+
+  \begin{block}{定義 1.1}
+    ある点列 $\{ x_k \}$ がある点 $x$ に収束するような部分列を持つ時にこの点$x$ を点列 $\{ x_k \}$ の収積点と呼ぶ。
+  \end{block}
+
+  \begin{block}{命題 1.2}
+    $\mathbb{R} ^n$ の実ベクトル空間において、ある点列 $\{ x_k \}_{k \in \mathbb{N}}$ がある点 $x$ への収束することと、その点列が有界で唯一つの収積点を持つ、ということが同値である。
+
+    収積点
+  \end{block}
+
+  一般に、$\mathbb{R} ^n$ の実ベクトル空間である点への収束性を考える場合、その集合の有界性と唯一つの収積点を持つ、ということが必要である。
 \end{frame}
 
-\section{Section 2}
+\begin{frame}{動機づけ (Motivation) }
+  \begin{alertblock}{注意}
+    ここで点列が有界であることから、ボルツァーノ・ワイエルシュトラスの定理より、収束する部分列が存在することが言える。
+  \end{alertblock}
+
+  では、与えられた点列に有界性がない場合はどうすればいいのか？
+\end{frame}
+
+\begin{frame}{動機づけ (Motivation) }
+  例: $D = \{(x,y) \:|\: y=x^2\}$
+
+\end{frame}
+
+
+\section{漸近錐とは (What's Asymptotic cones?) }
 \begin{frame}{目次}
     \tableofcontents[currentsection]
 \end{frame}
 
-\begin{frame}{箇条書き}
+\begin{frame}{漸近錐とは (What's Asymptotic cones?) }
+    \begin{itemize}
+    \item アイテム1
+    \item \alert{アイテム2}
+        \begin{itemize}
+        \item アイテム1
+        \item \alert{アイテム2}
+            \begin{itemize}
+            \item アイテム1
+            \item \alert{アイテム2}
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+    \[
+    \bm{x}^\top\bm{y}
+    \]
+    \begin{enumerate}
+    \item abcde
+    \item \structure{ABCDE}
+    \item
+    \end{enumerate}
+\end{frame}
+
+\section{漸近関数とは (What's Asymptotic functions?) }
+\begin{frame}{目次}
+    \tableofcontents[currentsection]
+\end{frame}
+
+\begin{frame}{漸近関数とは (What's Asymptotic functions?) }
+    \begin{itemize}
+    \item アイテム1
+    \item \alert{アイテム2}
+        \begin{itemize}
+        \item アイテム1
+        \item \alert{アイテム2}
+            \begin{itemize}
+            \item アイテム1
+            \item \alert{アイテム2}
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+    \[
+    \bm{x}^\top\bm{y}
+    \]
+    \begin{enumerate}
+    \item abcde
+    \item \structure{ABCDE}
+    \item
+    \end{enumerate}
+\end{frame}
+
+\section{今後の目標 (Next goal) }
+\begin{frame}{目次}
+    \tableofcontents[currentsection]
+\end{frame}
+
+\begin{frame}{今後の目標 (Next goals) }
     \begin{itemize}
     \item アイテム1
     \item \alert{アイテム2}
