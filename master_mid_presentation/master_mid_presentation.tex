@@ -63,7 +63,7 @@
   また、内積は以下のように定義する。
 
   \begin{equation}
-    \text{For}\: x=(x_1,\dots,x_n) \in \mathbb{R}^n \:\text{and}\: y=(y_1,\dots,y_n) \in \mathbb{R}^n, \left\langle x,y\right\rangle \coloneqq \sum_{n = 1}^{n} x_i y_i. \notag
+    \text{For}\: x=(x_1,\dots,x_n) \in \mathbb{R}^n \:\text{and}\: y=(y_1,\dots,y_n) \in \mathbb{R}^n, \left\langle x,y\right\rangle \coloneqq \sum_{i = 1}^{n} x_i y_i. \notag
   \end{equation}
 
   ノルムに関しては、$\left\lVert x \right\rVert \coloneqq \left\langle x,x\right\rangle ^{1/2} $ とする。
@@ -91,7 +91,19 @@
     \end{equation}
 
   \end{block}
-  %TODO 図を挿入
+  \centering
+  \begin{columns}
+    \begin{column}{0.31\textwidth}
+      \includegraphics[keepaspectratio, scale=0.08]{figures/cone_figure_1.jpg}
+    \end{column}
+    \begin{column}{0.31\textwidth}
+      \includegraphics[keepaspectratio, scale=0.06]{figures/cone_figure_2.jpg}
+    \end{column}
+    \begin{column}{0.31\textwidth}
+      \includegraphics[keepaspectratio, scale=0.06]{figures/cone_figure_3.jpg}
+    \end{column}
+\end{columns}
+
 \end{frame}
 
 \begin{frame}{錐の定義 (2) }
@@ -103,7 +115,16 @@
     (b) $C$ は $C + C \subset C$ を満たす錐である。
 
   \end{block}
-  %TODO 図を挿入
+
+  \centering
+  \begin{columns}
+    \begin{column}{0.48\textwidth}
+      \includegraphics[keepaspectratio, scale=0.08]{figures/cone_figure_1.jpg}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \includegraphics[keepaspectratio, scale=0.06]{figures/cone_figure_2.jpg}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{錐の特徴付け (1)}
@@ -115,7 +136,16 @@
     \end{equation}
 
   \end{block}
-  %TODO 図を挿入
+
+  \centering
+  \begin{columns}
+    \begin{column}{0.48\textwidth}
+      \includegraphics[keepaspectratio, scale=0.08]{figures/cone_figure_1.jpg}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \includegraphics[keepaspectratio, scale=0.06]{figures/cone_figure_3.jpg}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{錐の特徴付け (2)}
@@ -127,7 +157,8 @@
     \end{equation}
 
   \end{block}
-  %TODO 図を挿入
+  \centering
+  \includegraphics[keepaspectratio, scale=0.06]{figures/polar_cone.jpg}
 \end{frame}
 
 \begin{frame}{錐の特徴付け (3)}
@@ -139,7 +170,16 @@
     \end{equation}
 
   \end{block}
-  %TODO 図を挿入
+
+  \centering
+  \begin{columns}
+    \begin{column}{0.48\textwidth}
+      \includegraphics[keepaspectratio, scale=0.06]{figures/normal_cone_1.jpg}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \includegraphics[keepaspectratio, scale=0.06]{figures/normal_cone_2.jpg}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{錐の特徴付け (4)}
@@ -151,7 +191,16 @@
     \end{equation}
 
   \end{block}
-  %TODO 図を挿入
+
+  \centering
+  \begin{columns}
+    \begin{column}{0.48\textwidth}
+      \includegraphics[keepaspectratio, scale=0.06]{figures/tangent_cone_1.jpg}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \includegraphics[keepaspectratio, scale=0.06]{figures/tangent_cone_2.jpg}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \section{動機づけ (Motivation) }
@@ -180,15 +229,14 @@
   \end{alertblock}
 
 \pause
-
   では、与えられた点列に有界性がない場合はどうすればいいのか？
-\end{frame}
+\pause
 
-\begin{frame}{動機づけ (Motivation) (3) }
   例: $D = \{(x,y) \in \mathbb{R}^2 \:|\: y=x^2\}$
 
+  \centering
+  \includegraphics[keepaspectratio, scale=0.06]{figures/unbounded_example.jpg}
 \end{frame}
-
 
 \section{漸近錐とは (Asymptotic Cones) }
 \begin{frame}{目次}
