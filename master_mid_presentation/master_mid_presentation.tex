@@ -63,7 +63,7 @@
   また、内積は以下のように定義する。
 
   \begin{equation}
-    \text{For}\: x=(x_1,\dots,x_n) \in \mathbb{R}^n \:\text{and}\: y=(y_1,\dots,y_n) \in \mathbb{R}^n, \left\langle x,y\right\rangle \coloneqq \sum_{i = 1}^{n} x_i y_i. \notag
+    \text{For}\: x=(x_1,\dots,x_n)^T \in \mathbb{R}^n \:\text{and}\: y=(y_1,\dots,y_n)^T \in \mathbb{R}^n, \left\langle x,y\right\rangle \coloneqq \sum_{i = 1}^{n} x_i y_i. \notag
   \end{equation}
 
   ノルムに関しては、$\left\lVert x \right\rVert \coloneqq \left\langle x,x\right\rangle ^{1/2} $ とする。
@@ -84,7 +84,7 @@
 
 \begin{frame}{錐の定義 (1) }
   \begin{block}{定義 2.1}
-    $C \subset \mathbb{R}^n$, $C \neq \varnothing$ とする。以下を満たすときに $C$ は \textit{cone} であるという。
+    $C \subset \mathbb{R}^n$, $C \neq \varnothing$ とする。以下を満たすときに $C$ は錐であるという。
 
     \begin{equation}
       \forall x \in C, t \geq 0, tx \in C. \notag
@@ -249,7 +249,7 @@
     以下の条件を満たしている時、ある点列 $\{ x_k \} \subset \mathbb{R} ^n$ が $d \in \mathbb{R} ^n$ に収束する、と定義する。
 
     \begin{equation}
-      \exists\{ t_k \}, with\: t_k \rightarrow +\infty \:s.t.\: \lim_{k \to \infty} \frac{x_k}{t_k} = d \tag*{(2.1)}
+      \exists\{ t_k \}, with\: t_k \rightarrow +\infty \:s.t.\: \lim_{k \to \infty} \frac{x_k}{t_k} = d \notag
     \end{equation}
   \end{block}
 \end{frame}
@@ -264,6 +264,20 @@
     \mathbb{R}^n \:|\: \exists t_k \rightarrow +\infty, \exists x_k \in C \:with\: \lim_{k \to \infty} \frac{x_k}{t_k} = d \}. \notag
     \end{equation}
   \end{block}
+
+  例: $D = \{(x,y) \in \mathbb{R}^2 \:|\: y=x^2\}$
+
+  \centering
+  \begin{columns}
+    \pause
+    \begin{column}{0.48\textwidth}
+      \includegraphics[keepaspectratio, scale=0.06]{figures/unbounded_example.jpg}
+    \end{column}
+    \pause
+    \begin{column}{0.48\textwidth}
+      \includegraphics[keepaspectratio, scale=0.06]{figures/example_asynptotoc_cone.jpg}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{漸近錐とは (Asymptotic Cones) (3) }
@@ -280,7 +294,7 @@
 
 \begin{frame}{今後の目標 (Next goals) }
     \begin{itemize}
-    \item 漸近推の性質
+    \item 漸近錐の性質
     \item 漸近関数の性質
     \item 最適化問題との関係
     \end{itemize}
@@ -292,7 +306,7 @@
   使用しているテキストの紹介
   \begin{itemize}
   \item Asymptotic Cones and Functions in Optimization and Variational Inequalities (A.Auslender and M.Teboulle [著])
-  \item 凸解析学と最適化理論 (田中謙介[著])
+  \item 凸解析学と最適化理論 (田中謙輔[著])
   \end{itemize}
 \end{frame}
 
