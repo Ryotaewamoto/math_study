@@ -1,0 +1,61 @@
+% !TeX root = definitions_of_asymptotic_cones.tex
+\documentclass[a4paper,11pt]{jsarticle}
+
+% 英文化
+\usepackage[english]{babel}
+% 数式
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{mathtools}
+% 画像
+\usepackage[dvipdfmx]{graphicx}
+% 箇条書き
+\usepackage{enumitem}
+
+% 枠付き文章
+\usepackage{ascmac}
+
+\newcommand{\QUOTEBOX}[1]{\begin{center}\fbox{\begin{minipage}{.8\textwidth}{#1}\end{minipage}}\end{center}}
+\newcommand{\DEFINITION}[2]{\begin{itembox}[l]{\underline{Definition {#1} }}{#2}\end{itembox}}
+
+\newcommand{\REALNUMBERS}{\mathbb{R}}
+\newcommand{\NDEMENTIONESPACE}{\mathbb{R}^n}
+
+
+\SetLabelAlign{Center}{\hfil#1\hfil}
+\SetLabelAlign{CenterWithParen}{\hfil(\makebox[1.0em]{#1})\hfil}
+
+\begin{document}
+
+\title{%
+  2 Asymptotic Cones and Functions \\
+  \large 2.1 Definition of Asymptotic Cones}
+\author{Ryota Iwamoto}
+\date{March 27, 2023}
+\maketitle
+
+We use the book; Asymptotic Cones and Functions in Optimization and Variational Inequalities (author: A.AUSLENDER and M.TEBOULLE), pp.25-31.
+
+\QUOTEBOX{
+  The set of natural numbers is denoted by $\mathbb{N}$, so that $k \in \mathbb{N}$ means $k = 1,2, \dots .$ A sequence $\{x_k\}_{k \in \mathbb{N}}$ or simply $\{x_k\}$ in $\NDEMENTIONESPACE$ is said to converge to $x$ if $\left\lVert x_k - x\right\rVert \rightarrow 0$ as $k \rightarrow \infty$, and this will be indicated by the notation $x_k \rightarrow x$ or $x = \lim_{k \to \infty} x_k$. We say that $x$ is a cluster point of $\{x_k\}$ if some subsequence converge to $x$. Recall that every bounded sequence in $\NDEMENTIONESPACE$ converges to $x$ if and only if it is bounded and has $x$ as its unique cluster point.
+
+  Let $\{x_k\}$ be a sequence in $\NDEMENTIONESPACE$. We are interested in knowing how to handle convergence properties, we are led to consider direction $d_k \coloneqq x_k\left\lVert x_k\right\rVert^{-1}$ with $x_k \neq 0$, $k \in \mathbb{N}$. From classical analysis, the Bolzano-Weierstrass theorem implies that we can extract a convergent subsequence $d = \lim_{k \in K} d_k$, $K \subset \mathbb{N}$, with $d \neq 0$. Now suppose that the sequence $\{x_k\} \subset \NDEMENTIONESPACE$ is such that $\left\lVert x_k \right\rVert \rightarrow + \infty$. Then
+  \begin{equation}
+    \exists t_k \coloneqq \left\lVert x_k \right\rVert, k \in K \subset \mathbb{N}, \text{ such that } \lim_{k \in K} t_k = + \infty \text{and} \lim_{k \in K} \frac{x_k}{t_k} = d. \notag
+  \end{equation}
+  This leads us to introduce the following concepts.
+}
+
+\DEFINITION{2.1.1}{
+  A sequence $\{x_k\} \subset \REALNUMBERS$ is said to converge to a direction $d \in \NDEMENTIONESPACE$ if
+  \begin{equation}
+    \exists \{t_k\}, with t_k \rightarrow + \infty \:\text{ such that }\: \lim_{x \to \infty} \frac{x_k}{t_k} = d. \notag
+  \end{equation}
+}
+
+
+
+\end{document}

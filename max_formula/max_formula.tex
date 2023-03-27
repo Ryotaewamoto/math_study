@@ -669,8 +669,57 @@ Figure:
 \end{itembox}
 
 \begin{proof}
-  In view of Proposition 3.1.6 we simply have to show that for  any fixed $d$ in $\mathbb{E}$ there is a subgradient $\phi$ satisfying $\left\langle \phi , d\right\rangle = f'(\bar{x};d)$. Choose a bases $\{e_1,e_2,\dots,e_n\}$ for $\mathbb{E}$ with $e_1=d$ if $d$ is nonzero. Now define a sequence of functions $p_0,p_1,\dots,p_n$ recursively by $p_0(\cdot)=f'(\bar{x};\cdot)$, and $p_k(\cdot)=p_{k-1}'(e_k;\cdot)$ for $k=1,2,\dots,n$. We essentially show that $p_n(\cdot)$ is the required subgradient.
+  In view of Proposition 3.1.6 we simply have to show that for  any fixed $d$ in $\mathbb{E}$ there is a subgradient $\phi$ satisfying $\left\langle \phi , d\right\rangle = f'(\bar{x};d)$.
 
+  Choose a bases $\{e_1,e_2,\dots,e_n\}$ for $\mathbb{E}$ with $e_1=d$ if $d$ is nonzero. Now define a sequence of functions $p_0,p_1,\dots,p_n$ recursively by $p_0(\cdot)=f'(\bar{x};\cdot)$, and $p_k(\cdot)=p_{k-1}'(e_k;\cdot)$ for $k=1,2,\dots,n$. We essentially show that $p_n(\cdot)$ is the required subgradient. (Remark: If $p_n(\cdot) = \left\langle \phi ,\cdot \right\rangle$ and $p_0(\cdot) = p_n(\cdot)$, we can get $f'(\bar{x};\cdot) = p_0(\cdot) = p_n(\cdot) = \left\langle \phi ,\cdot \right\rangle $.)
+
+  First note that, by Proposition 3.1.2, each $p_k$ is everywhere finite and sublinear. By part (iii) of Lemma 3.1.7 we know
+  \begin{equation}
+    \text{lin } p_k \supset \text{lin } p_{k-1} + \text{span }\{{e_k}\} \:\:\text{for $k = 1,2,\dots,n$.} \notag
+  \end{equation}
+  so $p_n$ is linear.
+
+  $\because$
+
+  For $k = 1,2,\dots,n$,
+  \begin{align}
+    \text{lin } p_k &\supset \text{lin } p_{k-1} + \text{span }\{{e_k}\} \notag \\
+    \text{lin } p_k &\supset \text{lin } p_{k-2} + \text{span }\{{e_{k-1}}\} + \text{span }\{{e_k}\} \notag \\
+    &\vdots \notag \\
+    \text{lin } p_k &\supset \text{lin } p_0 + \text{span }\{{e_{1}}\}+ \dots + \text{span }\{{e_k}\} \notag.
+  \end{align}
+
+  That is, $\text{lin } p_k = \mathbb{E}$.
+
+  Thus there is an element $\phi$ of $\mathbb{E}$ satisfying $\left\langle \phi ,\cdot \right\rangle = p_n(\cdot)$. Part (ii) of Lemma 3.1.7 implies $p_n \leq p_{n-1} \leq \dots \leq p_0$, so certainly, by Proposition 3.1.6, any point $x$ in E satisfies
+
+  \begin{equation}
+    p_n(x-\bar{x}) \leq p_0(x-\bar{x}) = f'(\bar{x}; x-\bar{x}) \leq f(x) - f(\bar{x}). \notag
+  \end{equation}
+
+  $\because$
+
+  To identify $\phi$ is a subgradient, we show the inequality:
+
+  \begin{equation}
+    f(x) \leq f(\bar{x}) + \left\langle \phi , x - \bar{x}\right\rangle. \notag
+  \end{equation}
+
+  By the definition of the directional derivative,
+
+  \begin{equation}
+    f'(\bar{x}; x - \bar{x}) = \lim_{x \downarrow 0 } \frac{f(\bar{x} + t(x - \bar{x})) - f(\bar{x})}{t} \leq \frac{f(\bar{x} + 1(x - \bar{x})) - f(\bar{x})}{1} = f(x) - f(\bar{x}). \notag
+  \end{equation}
+
+  Thus $\phi$ is a subgradient. If $d$ is zero then we have $p_n = 0 = f'(\bar{x}; 0)$.
+
+  Finally, if $d$ is nonzero then by part (i) of Lemma 3.1.7 we see
+  \begin{align}
+    p_n(d) \leq p_0(d) = p_0(e_1) = -p_0'(e_1; -e_1) = \notag \\
+    -p_1(-e_1) = -p_1(-d) \leq -p_n(-d) = p_n(d). \notag
+  \end{align}
+
+  whence $p_n(d) = p_0(d) = f'(\bar{x}; d)$.
 
 \end{proof}
 
