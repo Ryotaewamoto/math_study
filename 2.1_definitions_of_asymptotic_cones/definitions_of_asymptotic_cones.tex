@@ -20,17 +20,24 @@
 
 \newcommand{\QUOTEBOX}[1]{\begin{center}\fbox{\begin{minipage}{.8\textwidth}{#1}\end{minipage}}\end{center}}
 \newcommand{\DEFINITION}[2]{\begin{itembox}[l]{\underline{Definition {#1} }}{#2}\end{itembox}}
+\newcommand{\PROPOSITION}[2]{\begin{itembox}[l]{\underline{Proposition {#1} }}{#2}\end{itembox}}
 
-\newcommand{\REALNUMBERS}{\mathbb{R}}
-\newcommand{\NDEMENTIONESPACE}{\mathbb{R}^n}
+\newcommand{\NaturalNumberSet}{\mathbb{N}}
+\newcommand{\RealNumberSet}{\mathbb{R}}
+\newcommand{\NDemenstionalRealEuclidianSpace}{\mathbb{R}^n}
 
 
 \SetLabelAlign{Center}{\hfil#1\hfil}
 \SetLabelAlign{CenterWithParen}{\hfil(\makebox[1.0em]{#1})\hfil}
 
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{(\theenumi)}
+\renewcommand{\theenumii}{\theenumi-\alph{enumii}}
+\renewcommand{\labelenumii}{(\theenumii)}
+
 \begin{document}
 
-\title{%
+\title{
   2 Asymptotic Cones and Functions \\
   \large 2.1 Definition of Asymptotic Cones}
 \author{Ryota Iwamoto}
@@ -40,22 +47,76 @@
 We use the book; Asymptotic Cones and Functions in Optimization and Variational Inequalities (author: A.AUSLENDER and M.TEBOULLE), pp.25-31.
 
 \QUOTEBOX{
-  The set of natural numbers is denoted by $\mathbb{N}$, so that $k \in \mathbb{N}$ means $k = 1,2, \dots .$ A sequence $\{x_k\}_{k \in \mathbb{N}}$ or simply $\{x_k\}$ in $\NDEMENTIONESPACE$ is said to converge to $x$ if $\left\lVert x_k - x\right\rVert \rightarrow 0$ as $k \rightarrow \infty$, and this will be indicated by the notation $x_k \rightarrow x$ or $x = \lim_{k \to \infty} x_k$. We say that $x$ is a cluster point of $\{x_k\}$ if some subsequence converge to $x$. Recall that every bounded sequence in $\NDEMENTIONESPACE$ converges to $x$ if and only if it is bounded and has $x$ as its unique cluster point.
+  The set of natural numbers is denoted by $\NaturalNumberSet$, so that $k \in \NaturalNumberSet$ means $k = 1,2, \dots .$ A sequence $\{x_k\}_{k \in \NaturalNumberSet}$ or simply $\{x_k\}$ in $\NDemenstionalRealEuclidianSpace$ is said to converge to $x$ if $\left\lVert x_k - x\right\rVert \rightarrow 0$ as $k \rightarrow \infty$, and this will be indicated by the notation $x_k \rightarrow x$ or $x = \lim_{k \to \infty} x_k$. We say that $x$ is a cluster point of $\{x_k\}$ if some subsequence converge to $x$. Recall that every bounded sequence in $\NDemenstionalRealEuclidianSpace$ converges to $x$ if and only if it is bounded and has $x$ as its unique cluster point.
 
-  Let $\{x_k\}$ be a sequence in $\NDEMENTIONESPACE$. We are interested in knowing how to handle convergence properties, we are led to consider direction $d_k \coloneqq x_k\left\lVert x_k\right\rVert^{-1}$ with $x_k \neq 0$, $k \in \mathbb{N}$. From classical analysis, the Bolzano-Weierstrass theorem implies that we can extract a convergent subsequence $d = \lim_{k \in K} d_k$, $K \subset \mathbb{N}$, with $d \neq 0$. Now suppose that the sequence $\{x_k\} \subset \NDEMENTIONESPACE$ is such that $\left\lVert x_k \right\rVert \rightarrow + \infty$. Then
+  Let $\{x_k\}$ be a sequence in $\NDemenstionalRealEuclidianSpace$. We are interested in knowing how to handle convergence properties, we are led to consider direction $d_k \coloneqq x_k\left\lVert x_k\right\rVert^{-1}$ with $x_k \neq 0$, $k \in \NaturalNumberSet$. From classical analysis, the Bolzano-Weierstrass theorem implies that we can extract a convergent subsequence $d = \lim_{k \in K} d_k$, $K \subset \NaturalNumberSet$, with $d \neq 0$. Now suppose that the sequence $\{x_k\} \subset \NDemenstionalRealEuclidianSpace$ is such that $\left\lVert x_k \right\rVert \rightarrow + \infty$. Then
   \begin{equation}
-    \exists t_k \coloneqq \left\lVert x_k \right\rVert, k \in K \subset \mathbb{N}, \text{ such that } \lim_{k \in K} t_k = + \infty \text{and} \lim_{k \in K} \frac{x_k}{t_k} = d. \notag
+    \exists t_k \coloneqq \left\lVert x_k \right\rVert, k \in K \subset \NaturalNumberSet, \text{ such that } \lim_{k \in K} t_k = + \infty \text{and} \lim_{k \in K} \frac{x_k}{t_k} = d. \notag
   \end{equation}
   This leads us to introduce the following concepts.
 }
 
 \DEFINITION{2.1.1}{
-  A sequence $\{x_k\} \subset \REALNUMBERS$ is said to converge to a direction $d \in \NDEMENTIONESPACE$ if
+  A sequence $\{x_k\} \subset \RealNumberSet$ is said to converge to a direction $d \in \NDemenstionalRealEuclidianSpace$ if
   \begin{equation}
-    \exists \{t_k\}, with t_k \rightarrow + \infty \:\text{ such that }\: \lim_{x \to \infty} \frac{x_k}{t_k} = d. \notag
+    \exists \{t_k\}, \:with\: t_k \rightarrow + \infty \:\text{ such that }\: \lim_{k \to \infty} \frac{x_k}{t_k} = d. \notag
   \end{equation}
 }
 
+\DEFINITION{2.1.2}{
+  Let $C$ be a nonempty set in $\NDemenstionalRealEuclidianSpace$. Then the asymptotic cone of the set $C$, denoted by $C_{\infty}$, is the set of vectors $d \in \NDemenstionalRealEuclidianSpace$ that are limits in direction of the sequences $\{x_k\} \subset C$, namely
+  \begin{equation}
+    C_{\infty} = \{d \in \NDemenstionalRealEuclidianSpace \:|\: \exists t_k \rightarrow + \infty , \exists x_k \in C \:\text{ with }\: \lim_{k \to \infty} \frac{x_k}{t_k} = d \}. \notag
+  \end{equation}
+}
+
+\QUOTEBOX{
+  From the definition we immediately deduce the following elementary facts.
+}
+
+\PROPOSITION{2.1.1}{
+  Let $C \subset \NDemenstionalRealEuclidianSpace$ be nonempty. Then:
+  \begin{enumerate}[label=\roman*,align=CenterWithParen]
+    \item $C_{\infty}$ is a closed cone.
+    \item $(\text{cl}\:C)_{\infty} = C_{\infty}$.
+    \item If $C$ is a cone, then $C_{\infty} = \text{cl}\:C$.
+  \end{enumerate}
+}
+
+\begin{proof}
+  We will prove each part separately.
+  \begin{enumerate}[label=\roman*,align=CenterWithParen]
+    \item $C_{\infty}$ is a closed cone.
+
+      We need to show two propositions: (i-a) $C_{\infty}$ is a cone and (i-b) $C_{\infty}$ is a closed set.
+
+      \begin{enumerate}[label=i-\alph*,align=CenterWithParen]
+        \item We show that $C_{\infty}$ is a cone, that is, $\forall \alpha \geq 0, d \in C_{\infty}, \alpha d \in C_{\infty}$.
+
+        Since $0 \in C_{\infty}$, it is clear in the case of $\alpha = 0$.
+
+        $\because$ Since $C$ is nonempty, we can take a element $x_0$ from $C$. In addition we consider a sequence $\{t_k\}_{k=1}^{\infty}$ with $t_k \rightarrow + \infty$ as $k \rightarrow \infty$. Of course this sequence exists, for example $x_k \coloneqq k$.
+
+        \item 二つ目
+      \end{enumerate}
+
+    \item $(\text{cl}\:C)_{\infty} = C_{\infty}$.
+
+
+    \item If $C$ is a cone, then $C_{\infty} = \text{cl}\:C$.
+
+
+
+  \end{enumerate}
+\end{proof}
+
+\QUOTEBOX{
+  The importance of the asymptotic cone is revealed by the following key property, which is a immediate consequence of its definition.
+}
+
+\PROPOSITION{2.1.2}{
+  A set $C \subset \NDemenstionalRealEuclidianSpace$ is bounded if and only if $C_{\infty} = \{0\}$.
+}
 
 
 \end{document}
