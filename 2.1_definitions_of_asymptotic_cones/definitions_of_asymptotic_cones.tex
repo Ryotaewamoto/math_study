@@ -93,15 +93,31 @@ We use the book; Asymptotic Cones and Functions in Optimization and Variational 
       \begin{enumerate}[label=i-\alph*,align=CenterWithParen]
         \item We show that $C_{\infty}$ is a cone, that is, $\forall \alpha \geq 0, d \in C_{\infty}, \alpha d \in C_{\infty}$.
 
-        Since $0 \in C_{\infty}$, it is clear in the case of $\alpha = 0$.
+        Since $0$ is a element of $C_{\infty}$, it is clear in the case of $\alpha = 0$.
 
-        $\because$ Since $C$ is nonempty, we can take a element $x_0$ from $C$. In addition we consider a sequence $\{t_k\}_{k=1}^{\infty}$ with $t_k \rightarrow + \infty$ as $k \rightarrow \infty$. Of course this sequence exists, for example $x_k \coloneqq k$.
+        ($\because$ Since $C$ is nonempty, we can take a element $x_0$ from $C$. In addition we take a sequence $\{t_k\}_{k=1}^{\infty}$ with $t_k \rightarrow + \infty$ as $k \rightarrow \infty$. Of course this sequence exists, for example $t_k \coloneqq k$. By using $t_k \coloneqq k$ and $x_k \coloneqq x_0$, we can obtain $0$ as the limit. Hence $0$ is a element of $C_{\infty}$.)
 
-        \item 二つ目
+        Also we consider the other case $\alpha > 0$. To prove that $C_{\infty}$ is a cone, we take a any direction $d$ from $C_{\infty}$. Since d is a element of $C_{\infty}$,
+
+        \begin{equation}
+          \exists t_k \rightarrow + \infty , \exists x_k \in C \:\text{ with }\: \lim_{k \to \infty} \frac{x_k}{t_k} = d. \notag
+        \end{equation}
+
+        Then we define a sequence $\{t'_k\}_{k=1}^{\infty} \coloneqq \frac{t_k}{\alpha}$, exactly whose limit becomes $+\infty$ as $k \rightarrow \infty$. Accordingly there exist $t'_k \rightarrow + \infty$ and $x_k \in C$ with
+
+        \begin{equation}
+          \lim_{k \to \infty} \frac{x_k}{t'_k} = \lim_{k \to \infty} \alpha \cdot \frac{x_k}{t_k} = \alpha d. \notag
+        \end{equation}
+
+        This means $d \in C_{\infty}$.
+
+
+        By these results, we can get $$\forall \alpha \geq 0, d \in C_{\infty}, \alpha d \in C_{\infty}$$. Therefore $C_{\infty}$ is a cone.
+
+        \item 
       \end{enumerate}
 
     \item $(\text{cl}\:C)_{\infty} = C_{\infty}$.
-
 
     \item If $C$ is a cone, then $C_{\infty} = \text{cl}\:C$.
 
