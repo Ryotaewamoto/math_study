@@ -51,7 +51,7 @@ We use the book; Asymptotic Cones and Functions in Optimization and Variational 
 
   Let $\{x_k\}$ be a sequence in $\NDemenstionalRealEuclidianSpace$. We are interested in knowing how to handle convergence properties, we are led to consider direction $d_k \coloneqq x_k\left\lVert x_k\right\rVert^{-1}$ with $x_k \neq 0$, $k \in \NaturalNumberSet$. From classical analysis, the Bolzano-Weierstrass theorem implies that we can extract a convergent subsequence $d = \lim_{k \in K} d_k$, $K \subset \NaturalNumberSet$, with $d \neq 0$. Now suppose that the sequence $\{x_k\} \subset \NDemenstionalRealEuclidianSpace$ is such that $\left\lVert x_k \right\rVert \rightarrow + \infty$. Then
   \begin{equation}
-    \exists t_k \coloneqq \left\lVert x_k \right\rVert, k \in K \subset \NaturalNumberSet, \text{ such that } \lim_{k \in K} t_k = + \infty \text{and} \lim_{k \in K} \frac{x_k}{t_k} = d. \notag
+    \exists t_k \coloneqq \left\lVert x_k \right\rVert, k \in K \subset \NaturalNumberSet, \text{ such that } \lim_{k \in K} t_k = + \infty \:\text{and}\: \lim_{k \in K} \frac{x_k}{t_k} = d. \notag
   \end{equation}
   This leads us to introduce the following concepts.
 }
@@ -115,6 +115,10 @@ We use the book; Asymptotic Cones and Functions in Optimization and Variational 
         By these results, we can get $$\forall \alpha \geq 0, d \in C_{\infty}, \alpha d \in C_{\infty}$$. Therefore $C_{\infty}$ is a cone.
 
         \item We show that $C_{\infty}$ is a closed set. In order to prove closeness, we consider convergency of a sequence of $C_{\infty}$. First we take a sequence $\{d_k\}_{k=1}^{\infty} \subset C_{\infty}$ with $d_k \rightarrow d$ as $k \rightarrow \infty$ for some $d$. Then we don't forget that $d \in C_{\infty}$ is our goal.
+
+        For each $d_k$,
+
+        % add a figure about sequences
       \end{enumerate}
 
     \item $(\text{cl}\:C)_{\infty} = C_{\infty}$.
