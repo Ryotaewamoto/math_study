@@ -29,6 +29,8 @@
 
 \SetLabelAlign{Center}{\hfil#1\hfil}
 \SetLabelAlign{CenterWithParen}{\hfil(\makebox[1.0em]{#1})\hfil}
+\SetLabelAlign{CenterWithParen2}{\hfil(\makebox[1.5em]{#1})\hfil}
+
 
 \renewcommand{\theenumi}{\roman{enumi}}
 \renewcommand{\labelenumi}{(\theenumi)}
@@ -116,16 +118,128 @@ We use the book; Asymptotic Cones and Functions in Optimization and Variational 
 
         \item We show that $C_{\infty}$ is a closed set. In order to prove closeness, we consider convergency of a sequence of $C_{\infty}$. First we take a sequence $\{d_k\}_{k=1}^{\infty} \subset C_{\infty}$ with $d_k \rightarrow d$ as $k \rightarrow \infty$ for some $d$. Then we don't forget that $d \in C_{\infty}$ is our goal.
 
-        For each $d_k$,
+        For each $k \in \NaturalNumberSet$,
 
-        % add a figure about sequences
+        \begin{equation}
+          \exists \{x_k^{(n)}\}_{n=1}^{\infty} \subset C \:\text{and}\: \{t_k^{(n)}\}_{n=1}^{\infty} \:\text{with}\: t_k^{(n)} \rightarrow \infty \:\text{as}\: n \rightarrow \infty. \notag
+        \end{equation}
+
+        The below figure represents $x_k^{(n)}$ and $t_k^{(n)}$.
+        \medskip
+
+        Figure:
+
+        \medskip
+
+        \begin{center}
+          \large
+          \begin{tabular}{|c|c|c|c|c|c|c|} \hline
+            $k$ \textbackslash $n$ & $1$ & $2$ & $\cdots$ & $m$ & $\cdots$ & limit \\ \hline
+            $1$ & $x_1^{(1)}$, $t_1^{(1)}$ & $x_1^{(2)}$, $t_1^{(2)}$ & $\cdots$ & $x_1^{(m)}$, $t_1^{(m)}$ & $\cdots$ & $d_{1}$ \\
+            $2$ & $x_2^{(1)}$, $t_2^{(1)}$ & $x_2^{(2)}$, $t_2^{(2)}$ & $\cdots$ & $x_2^{(m)}$, $t_2^{(m)}$ & $\cdots$ & $d_{2}$ \\
+            $\vdots$ & $\vdots$ & $\vdots$ & $\ddots$ & $\vdots$ & $\vdots$ & $\vdots$ \\
+            $m$ & $x_m^{(1)}$, $t_m^{(1)}$ & $x_m^{(2)}$, $t_m^{(2)}$ & $\cdots$ & $x_m^{(m)}$, $t_m^{(m)}$ & $\cdots$ & $d_{m}$ \\
+            $\vdots$ & \multicolumn{6}{|c|}{$\vdots$} \\ \hline
+          \end{tabular}
+        \end{center}
+
+        \medskip
+
+        Then we define
+
+        \begin{equation}
+          x_m \coloneqq x_m^{(m)} \:\text{and}\: t_m \coloneqq t_m^{(m)}. \notag
+        \end{equation}
+
+        By the definition of convergence of a sequence,
+
+        \begin{equation}
+          \begin{split}
+            \forall \epsilon &> 0, \exists \bar{m} \in \NaturalNumberSet \:s.t.\: \forall m \geq \bar{m}, ||d_m -d|| < \frac{\epsilon}{2}, \text{and} \\
+            \forall \epsilon &> 0, \exists \hat{m} \in \NaturalNumberSet \:s.t.\: \forall m \geq \hat{m}, ||\frac{x_m}{t_m} -d_m|| < \frac{\epsilon}{2}. \notag
+          \end{split}
+        \end{equation}
+
+        Also, we let $\tilde{m} \coloneqq \:\text{max}\:\{\bar{m},\hat{m}\} \in \NaturalNumberSet$. By using triangle inequality,
+
+        \begin{equation}
+            \forall \epsilon > 0, \exists \tilde{m} \in \NaturalNumberSet \:s.t.\: \forall m \geq \bar{m}, ||\frac{x_m}{t_m} -d|| < \epsilon.\notag
+        \end{equation}
+
+        ($\because ||\frac{x_m}{t_m} -d|| \leq ||\frac{x_m}{t_m} - d_m|| + ||d_m - d|| < \epsilon.\notag $.)
+
+        Therefore $c_{\infty}$ is a closed set.
       \end{enumerate}
-
+      Then (i)'s proof is completed.
     \item $(\text{cl}\:C)_{\infty} = C_{\infty}$.
 
+    We need to show two relations: (ii-a) $(\text{cl}\:C)_{\infty} \supset C_{\infty}$ (ii-b) $(\text{cl}\:C)_{\infty} \subset C_{\infty}$.
+
+      \begin{enumerate}[label=ii-\alph*,align=CenterWithParen2]
+        \item We show that $C_{\infty}$ is included in $(\text{cl}\:C)_{\infty}$. However it is clear from the definition of asymptotic cone.
+
+        \item We show that $(\text{cl}\:C)_{\infty} \subset C_{\infty}$. In order to prove that a element of $(\text{cl}\:C)_{\infty}$ satisfies the asymptotic cone's relation, we consider convergency of a sequences of $(\text{cl}\:C)_{\infty}$ and $\text{cl}\:C$. First we take any $d \in (\text{cl}\:C)_{\infty}$ which satisfies
+
+        \begin{equation}
+          \exists t_k \rightarrow + \infty , \exists x_k \in \text{cl}\:C \:\text{ with }\: \lim_{k \to \infty} \frac{x_k}{t_k} = d. \notag
+        \end{equation}
+
+        For each $k \in \NaturalNumberSet$,
+
+        \begin{equation}
+          \exists \{y_k^{(n)}\}_{n=1}^{\infty} \subset C \:\text{with}\: y_k^{(n)} \rightarrow x_k \:\text{as}\: n \rightarrow \infty. \notag
+        \end{equation}
+
+        The below figure represents $y_k^{(n)}$.
+        \medskip
+
+        Figure:
+
+        \medskip
+
+        \begin{center}
+          \large
+          \begin{tabular}{|c|c|c|c|c|c|c|} \hline
+            $k$ \textbackslash $n$ & $1$ & $2$ & $\cdots$ & $m$ & $\cdots$ & limit \\ \hline
+            $1$ & $y_1^{(1)}$ & $y_1^{(2)}$ & $\cdots$ & $y_1^{(m)}$ & $\cdots$ & $x_{1}$ \\
+            $2$ & $y_2^{(1)}$ & $y_2^{(2)}$ & $\cdots$ & $y_2^{(m)}$& $\cdots$ & $x_{2}$ \\
+            $\vdots$ & $\vdots$ & $\vdots$ & $\ddots$ & $\vdots$ & $\vdots$ & $\vdots$ \\
+            $m$ & $y_m^{(1)}$ & $y_m^{(2)}$ & $\cdots$ & $y_m^{(m)}$ & $\cdots$ & $x_{m}$ \\
+            $\vdots$ & \multicolumn{6}{|c|}{$\vdots$} \\ \hline
+          \end{tabular}
+        \end{center}
+
+        \medskip
+
+        Then we define
+
+        \begin{equation}
+          y_m \coloneqq y_m^{(m)}. \notag
+        \end{equation}
+
+        By the definition of convergence of a sequence,
+
+        \begin{equation}
+          \begin{split}
+            \forall \epsilon &> 0, \exists \bar{m} \in \NaturalNumberSet \:s.t.\: \forall m \geq \bar{m}, ||d_m -d|| < \frac{\epsilon}{2}, \\
+            \forall \epsilon &> 0, \exists \hat{m} \in \NaturalNumberSet \:s.t.\: \forall m \geq \hat{m}, ||y_m^{m} -x_m|| < \frac{\sqrt{\epsilon}}{2}, \text{and} \\
+            \forall \epsilon &> 0, \exists \tilde{m} \in \NaturalNumberSet \:s.t.\: \forall m \geq \tilde{m}, |\frac{1}{t_m}| < \sqrt{\epsilon}. \notag
+          \end{split}
+        \end{equation}
+
+        Also, we let $m_0 \coloneqq \:\text{max}\:\{\bar{m},\hat{m}, \tilde{m}\} \in \NaturalNumberSet$. By using triangle inequality,
+
+        \begin{equation}
+            \forall \epsilon > 0, \exists m_0 \in \NaturalNumberSet \:s.t.\: \forall m \geq \bar{m}, ||\frac{y_m}{t_m} -d|| < \epsilon.\notag
+        \end{equation}
+
+        ($\because ||\frac{y_m}{t_m} -d|| \leq \frac{1}{|t_m|} \cdot ||y_m - d_m|| + ||\frac{y_m}{t_m} - d|| < \epsilon. \notag $)
+
+        Therefore $(\text{cl}\:C)_{\infty} \subset C_{\infty}$.
+
+      \end{enumerate}
+      Then (ii)'s proof is also completed.
     \item If $C$ is a cone, then $C_{\infty} = \text{cl}\:C$.
-
-
 
   \end{enumerate}
 \end{proof}
@@ -137,6 +251,30 @@ We use the book; Asymptotic Cones and Functions in Optimization and Variational 
 \PROPOSITION{2.1.2}{
   A set $C \subset \NDemenstionalRealEuclidianSpace$ is bounded if and only if $C_{\infty} = \{0\}$.
 }
+
+\begin{proof}
+  % proof of Proposition 2.1.2
+\end{proof}
+
+\QUOTEBOX{
+  Associated with the asymptotic cone $C_{\infty}$ is the following related concept, which will help us in simplifying the definition of $C_{\infty}$ in the particular case where $C \in \NDemenstionalRealEuclidianSpace$ is assumed convex.
+}
+
+\DEFINITION{2.1.3}{
+  Let $C \in \NDemenstionalRealEuclidianSpace$ be nonempty and define
+  \begin{equation}
+    C_{\infty}^1 = \{d \in \NDemenstionalRealEuclidianSpace \:|\: \forall t_k \rightarrow + \infty , \exists x_k \in C \:\text{ with }\: \lim_{k \to \infty} \frac{x_k}{t_k} = d \}. \notag
+  \end{equation}
+  We say that C is asymptotically regular if $C_{\infty} = C_{\infty}^1$
+}
+
+\PROPOSITION{2.1.3}{
+  Let $C$ be a nonempty convex set in $\NDemenstionalRealEuclidianSpace$. Then $C$ is asymptotically regular.
+}
+
+\begin{proof}
+  % proof of Proposition 2.1.3 
+\end{proof}
 
 
 \end{document}
