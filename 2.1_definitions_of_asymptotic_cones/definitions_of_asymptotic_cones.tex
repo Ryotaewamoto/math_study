@@ -113,8 +113,9 @@ We use the book; Asymptotic Cones and Functions in Optimization and Variational 
 
         This means $d \in C_{\infty}$.
 
+        By these results, we can get $\forall \alpha \geq 0, d \in C_{\infty}, \alpha d \in C_{\infty}$.
 
-        By these results, we can get $$\forall \alpha \geq 0, d \in C_{\infty}, \alpha d \in C_{\infty}$$. Therefore $C_{\infty}$ is a cone.
+        Therefore $C_{\infty}$ is a cone.
 
         \item We show that $C_{\infty}$ is a closed set. In order to prove closeness, we consider convergency of a sequence of $C_{\infty}$. First we take a sequence $\{d_k\}_{k=1}^{\infty} \subset C_{\infty}$ with $d_k \rightarrow d$ as $k \rightarrow \infty$ for some $d$. Then we don't forget that $d \in C_{\infty}$ is our goal.
 
@@ -241,6 +242,47 @@ We use the book; Asymptotic Cones and Functions in Optimization and Variational 
       Then (ii)'s proof is also completed.
     \item If $C$ is a cone, then $C_{\infty} = \text{cl}\:C$.
 
+    We need to show two relations: (iii-a) $C_{\infty} \subset \text{cl}\:C$ and (iii-b) $C_{\infty} \supset  \text{cl}\:C$.
+
+    \begin{enumerate}[label=iii-\alph*,align=CenterWithParen2]
+      \item We take any direction $d \in C_{\infty}$ which satisfies
+
+      \begin{equation}
+        \exists t_k \rightarrow + \infty , \exists x_k \in C \:\text{ with }\: \lim_{k \to \infty} \frac{x_k}{t_k} = d. \notag
+      \end{equation}
+
+      Let $d_k \coloneqq \frac{x_k}{t_k}$ (with $d_k \rightarrow d$ as $k \rightarrow \infty$). Since $C$ is a cone,
+
+      \begin{equation}
+        d_k = \frac{1}{t_k} \cdot x_k \in C. \notag
+      \end{equation}
+
+      Due to $d_k \in C$, the limit of $d_k$ is a element of $\text{cl}\:C$, i.e., $d \in \text{cl}\:C$.
+
+      Therefore $C_{\infty} \subset \text{cl}\:C$.
+
+      \item We take any $d \in \text{cl}\:C$ and show $d \in C_{\infty}$, that is,
+
+      \begin{equation}
+        \exists t_k \rightarrow + \infty , \exists x_k \in C \:\text{ with }\: \lim_{k \to \infty} \frac{x_k}{t_k} = d. \notag
+      \end{equation}
+
+      By $d \in \text{cl}\:C$,
+
+      \begin{equation}
+        \exists \{d_k\}_{k=1}^{\infty} \in C \:\text{with}\: d_k \rightarrow d \:\text{as}\: \infty, \notag
+      \end{equation}
+
+      in other words,
+
+      \begin{equation}
+        \lim_{k \to \infty} d_k = d. \notag
+      \end{equation}
+
+
+
+    \end{enumerate}
+
   \end{enumerate}
 \end{proof}
 
@@ -273,7 +315,7 @@ We use the book; Asymptotic Cones and Functions in Optimization and Variational 
 }
 
 \begin{proof}
-  % proof of Proposition 2.1.3 
+  % proof of Proposition 2.1.3
 \end{proof}
 
 
