@@ -118,59 +118,56 @@ We use the book; Asymptotic Cones and Functions in Optimization and Variational 
 
         Therefore $C_{\infty}$ is a cone.
 
-        \item We show that $C_{\infty}$ is a closed set. In order to prove closeness, we consider convergency of a sequence of $C_{\infty}$. First we take a sequence $\{d_k\}_{k=1}^{\infty} \subset C_{\infty}$ with $d_k \rightarrow d$ as $k \rightarrow \infty$ for some $d$. Then we don't forget that $d \in C_{\infty}$ is our goal.
+        \item We show that $C_{\infty}$ is a closed set. In order to prove closeness, we consider convergency of a sequence in $C_{\infty}$. First we take a sequence $\{d_k\}_{k=1}^{\infty} \subset C_{\infty}$ with $d_k \rightarrow d$ as $k \rightarrow \infty$ for some $d$. To obtain $d \in C_{\infty}$, we need two sequences like $\{t_n\}_{n=1}^{\infty}$ with $t_n \rightarrow \infty$ as $n \rightarrow \infty$ and $\{x_n\}_{n=1}^{\infty}$ where $\frac{x_n}{t_n} \rightarrow d$ as $n \rightarrow \infty$.
 
-        For each $k \in \NaturalNumberSet$,
-
-        \begin{equation}
-          \exists \{x_k^{(n)}\}_{n=1}^{\infty} \subset C \:\text{and}\: \{t_k^{(n)}\}_{n=1}^{\infty} \:\text{with}\: t_k^{(n)} \rightarrow \infty \:\text{as}\: n \rightarrow \infty. \notag
-        \end{equation}
-
-        The below figure represents $x_k^{(n)}$ and $t_k^{(n)}$.
-        \medskip
-
-        Figure:
-
-        \medskip
-
-        \begin{center}
-          \large
-          \begin{tabular}{|c|c|c|c|c|c|c|} \hline
-            $k$ \textbackslash $n$ & $1$ & $2$ & $\cdots$ & $m$ & $\cdots$ & limit \\ \hline
-            $1$ & $x_1^{(1)}$, $t_1^{(1)}$ & $x_1^{(2)}$, $t_1^{(2)}$ & $\cdots$ & $x_1^{(m)}$, $t_1^{(m)}$ & $\cdots$ & $d_{1}$ \\
-            $2$ & $x_2^{(1)}$, $t_2^{(1)}$ & $x_2^{(2)}$, $t_2^{(2)}$ & $\cdots$ & $x_2^{(m)}$, $t_2^{(m)}$ & $\cdots$ & $d_{2}$ \\
-            $\vdots$ & $\vdots$ & $\vdots$ & $\ddots$ & $\vdots$ & $\vdots$ & $\vdots$ \\
-            $m$ & $x_m^{(1)}$, $t_m^{(1)}$ & $x_m^{(2)}$, $t_m^{(2)}$ & $\cdots$ & $x_m^{(m)}$, $t_m^{(m)}$ & $\cdots$ & $d_{m}$ \\
-            $\vdots$ & \multicolumn{6}{|c|}{$\vdots$} \\ \hline
-          \end{tabular}
-        \end{center}
-
-        \medskip
-
-        Then we define
-
-        \begin{equation}
-          x_m \coloneqq x_m^{(m)} \:\text{and}\: t_m \coloneqq t_m^{(m)}. \notag
-        \end{equation}
-
-        By the definition of convergence of a sequence,
+        Since $d_k \rightarrow d$ and ${t_k^m}^{-1} \cdot x_k^m \rightarrow d_k$ as $m \rightarrow \infty$ for each $k \in \NaturalNumberSet$,
 
         \begin{equation}
           \begin{split}
-            \forall \epsilon &> 0, \exists \bar{m} \in \NaturalNumberSet \:s.t.\: \forall m \geq \bar{m}, ||d_m -d|| < \frac{\epsilon}{2}, \text{and} \\
-            \forall \epsilon &> 0, \exists \hat{m} \in \NaturalNumberSet \:s.t.\: \forall m \geq \hat{m}, ||\frac{x_m}{t_m} -d_m|| < \frac{\epsilon}{2}. \notag
+            \forall n &\in \NaturalNumberSet, \exists k(n) \in \NaturalNumberSet \:s.t.\: \forall j \geq k(n), ||d_j -d|| < \frac{1}{n}, \text{and} \\
+            \forall k &\in \NaturalNumberSet (1 \leq k \leq k(n)), \exists m(n,k) \in \NaturalNumberSet \:s.t.\: \forall m \geq m(n,k), ||\frac{x_k^m}{t_k^m} -d_k|| < \frac{1}{n}. \notag
           \end{split}
         \end{equation}
 
-        Also, we let $\tilde{m} \coloneqq \:\text{max}\:\{\bar{m},\hat{m}\} \in \NaturalNumberSet$. By using triangle inequality,
+        Now we can rearrange
 
         \begin{equation}
-            \forall \epsilon > 0, \exists \tilde{m} \in \NaturalNumberSet \:s.t.\: \forall m \geq \bar{m}, ||\frac{x_m}{t_m} -d|| < \epsilon.\notag
+          \begin{split}
+          k(n) &\coloneqq \max\{k(n-1),k(n)\} \:\text{and}\: \\
+          m(n) &\coloneqq \max_{1 \leq k \leq k(n)} m(n,k) \notag
+          \end{split}
         \end{equation}
 
-        ($\because ||\frac{x_m}{t_m} -d|| \leq ||\frac{x_m}{t_m} - d_m|| + ||d_m - d|| < \epsilon.\notag $.)
+        as sequences of $n \in \NaturalNumberSet$. Then it holds that $k(1) \leq k(2) \leq \ldots$ and $m(1) \leq m(2) \leq \ldots$.
 
-        Therefore $c_{\infty}$ is a closed set.
+        Let's define
+
+        \begin{equation}
+          \begin{split}
+            t_n &\coloneqq \max\{t_{k(n)}^{m(n)}, n\} \:\text{and}\: \\
+            x_n &\coloneqq x_{k(n)}^{m(n)}. \notag
+          \end{split}
+        \end{equation}
+
+        Also we can find that
+
+        \begin{equation}
+          \begin{split}
+            t_n &\rightarrow \infty \:\text{as}\: n \rightarrow \infty, \\
+            x_n &\in C, \:\text{and}\: \\
+            \frac{x_n}{t_n} &= \frac{x_{k(n)}^{m(n)}}{t_{k(n)}^{m(n)}} \:\text{or}\: \frac{x_{k(n)}^{m(n)}}{n}. \notag
+          \end{split}
+        \end{equation}
+
+        Hence we get for each $n \in \NaturalNumberSet$
+
+        \begin{equation}
+          0 \leq \left\lVert \frac{x_n}{t_n} - d\right\rVert \leq \left\lVert \frac{x_{k(n)}^{m(n)}}{t_{k(n)}^{m(n)}} - d_{k(n)}\right\rVert + \left\lVert d_{k(n)} -d \right\rVert< \frac{1}{2n} \rightarrow 0 \notag
+        \end{equation}
+
+        as $n \rightarrow \infty$.
+
+        Thus $d \in C_{\infty}$, that is, $C_{\infty}$ is a closed set.
       \end{enumerate}
       Then (i)'s proof is completed.
     \item $(\text{cl}\:C)_{\infty} = C_{\infty}$.
@@ -343,25 +340,23 @@ Why do we take a subsequence of $\{d_k\}$?
 \end{center}
 
 \QUOTEBOX{
-  Associated with the asymptotic cone $C_{\infty}$ is the following related concept, which will help us in simplifying the definition of $C_{\infty}$ in the particular case where $C \in \NDemenstionalRealEuclidianSpace$ is assumed convex.
+  Associated with the asymptotic cone $C_{\infty}$ is the following related concept, which will help us in simplifying the definition of $C_{\infty}$ in the particular case where $C \subset \NDemenstionalRealEuclidianSpace$ is assumed convex.
 }
 
 \DEFINITION{2.1.3}{
-  Let $C \in \NDemenstionalRealEuclidianSpace$ be nonempty and define
+  Let $C \subset \NDemenstionalRealEuclidianSpace$ be nonempty and define
   \begin{equation}
     C_{\infty}^1 = \{d \in \NDemenstionalRealEuclidianSpace \:|\: \forall t_k \rightarrow + \infty , \exists x_k \in C \:\text{ with }\: \lim_{k \to \infty} \frac{x_k}{t_k} = d \}. \notag
   \end{equation}
-  We say that C is asymptotically regular if $C_{\infty} = C_{\infty}^1$
+  We say that C is asymptotically regular if $C_{\infty} = C_{\infty}^1$.
 }
-
-Remark: A set $D=\{(x,y) \in \RealNumberSet_{+} \times \RealNumberSet_{+} \:|\: y= e^x - 1\}$ is not asymptotically regular.
 
 \PROPOSITION{2.1.3}{
   Let $C$ be a nonempty convex set in $\NDemenstionalRealEuclidianSpace$. Then $C$ is asymptotically regular.
 }
 
 \begin{proof}
-  The inclusion $C_{\infty}^{1} \subset C_{\infty}$ clearly holds from the definition of $C_{\infty}^{1}$ and $C_{\infty}$, respectively. Let $d \in C_{\infty}$. Then $\exists \{x_k\} \in C$, $\exists s_k \rightarrow \infty$ such that $d = \lim_{k \to \infty} s^{-1} x_k$. Let $x \in C$ and define $d_k = s^{-1}(x_k - x)$. Then we have
+  The inclusion $C_{\infty}^{1} \subset C_{\infty}$ clearly holds from the definition of $C_{\infty}^{1}$ and $C_{\infty}$, respectively. Let $d \in C_{\infty}$. Then $\exists \{x_k\} \in C$, $\exists s_k \rightarrow \infty$ such that $d = \lim_{k \to \infty} s_k^{-1} x_k$. Let $x \in C$ and define $d_k = s_k^{-1}(x_k - x)$. Then we have
 
   \begin{equation}
     d = \lim_{k \to \infty} d_k, x + s_k d_k \in C. \notag
@@ -369,7 +364,7 @@ Remark: A set $D=\{(x,y) \in \RealNumberSet_{+} \times \RealNumberSet_{+} \:|\: 
 
   $\because$ $x_k = x + s_k d_k \in C$.
 
-  Now note that an arbitrary sequence such that $\lim_{k \to \infty} t_k = +\infty$. For any fixed $m \in \NaturalNumberSet$, there exists $k(m)$ with $\lim_{m \to \infty} k(m) = +\infty$ such that $t_m \leq s_{k(m)}$, and since $C$ is convex, we have $x'_m = x + t_m + t_m d_{m(k)} \in C$. Hence, $d = \lim_{m \to \infty} t_m^{-1} x'_m$, showing that $d \in C_{\infty}^1$.
+  Now note that an arbitrary sequence such that $\lim_{k \to \infty} t_k = +\infty$. For any fixed $m \in \NaturalNumberSet$, there exists $k(m)$ with $\lim_{m \to \infty} k(m) = +\infty$ such that $t_m \leq s_{k(m)}$, and since $C$ is convex, we have $x'_m \coloneqq x + t_m d_{m(k)} \in C$. Hence, $d = \lim_{m \to \infty} t_m^{-1} x'_m$, showing that $d \in C_{\infty}^1$.
 
 \end{proof}
 
@@ -390,6 +385,36 @@ If $\{s_k\} = 1,2,3,7,8,9,13, \cdots$ and $\{t_k\} = 1,3,4,6,8,10,11, \cdots$, t
 \QUOTEBOX{
   We note that a set can be nonconvex, yet asymptotically regular Indeed, consider, for example, sets definition by $C \coloneqq S + K$, with $S$ compact and $K$ a closed convex cone. Then clearly $C$ is not necessarily convex, but it can be easily seen that $C_{\infty} = C_{\infty}^1$.
 }
+
+
+\begin{figure}[htbp]
+  \begin{minipage}{0.3\hsize}
+    \begin{center}
+      \includegraphics[keepaspectratio, width=40mm]{figures/not_convex_but_asymptotically_regular_1.png}
+    \end{center}
+    \caption{$S$:compact}
+    \label{fig:one}
+  \end{minipage}
+  \begin{minipage}{0.3\hsize}
+    \begin{center}
+      \includegraphics[keepaspectratio, width=40mm]{figures/not_convex_but_asymptotically_regular_2.png}
+    \end{center}
+    \caption{$K$:closed convex cone}
+    \label{fig:two}
+  \end{minipage}
+  \begin{minipage}{0.3\hsize}
+    \begin{center}
+      \includegraphics[keepaspectratio, width=40mm]{figures/not_convex_but_asymptotically_regular_3.png}
+    \end{center}
+    \caption{$C \coloneqq S + K$}
+    \label{fig:three}
+  \end{minipage}
+\end{figure}
+
+\begin{proof}
+  We show that for any $d \in C_{\infty}$, $d \in C_{\infty}^1$.
+\end{proof}
+
 \REMARK{2.1.1}{
   Note that the definitions of $C_{\infty}$ and $C_{\infty}^1$ are related to the theory of set convergence of Painleve-Kuratowski. Indeed, for a family $\{C_t\}_{t>0}$ of subsets of $\NDemenstionalRealEuclidianSpace$, the outer limit as $t \rightarrow + \infty$ is the set.
 
@@ -408,6 +433,16 @@ If $\{s_k\} = 1,2,3,7,8,9,13, \cdots$ and $\{t_k\} = 1,3,4,6,8,10,11, \cdots$, t
   \begin{equation}
     C_{\infty} = \limsup_{t \to +\infty} t^{-1} C,\:\: C_{\infty}^1  = \liminf_{t \to +\infty} t^{-1} C. \notag
   \end{equation}
+}
+
+\PROPOSITION{2.1.4}{
+  Let $C \subset \NDemenstionalRealEuclidianSpace$ be nonempty and define the normalized sets
+
+  \begin{equation}
+    C_N \coloneqq \{d \in \NDemenstionalRealEuclidianSpace \:|\: \exists \{x_k\} \in C, \left\lVert x_k \right\rVert \rightarrow +\infty \:\text{with}\: d = \lim_{k \to \infty} \frac{x_k}{\left\lVert x_k \right\rVert }\}. \notag
+  \end{equation}
+
+  Then $C_{\infty} = \text{pos}\:C_N$, where for any set $C$, $\text{pos}\:C = \{\lambda x \:|\: x \in C, \lambda \geq 0\}$.
 
 }
 
