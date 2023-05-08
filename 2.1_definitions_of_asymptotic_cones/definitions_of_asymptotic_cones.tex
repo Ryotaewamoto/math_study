@@ -133,8 +133,8 @@ We use the book; Asymptotic Cones and Functions in Optimization and Variational 
 
         \begin{equation}
           \begin{split}
-          k(n) &\coloneqq \max\{k(n-1),k(n)\} \:\text{and}\: \\
-          m(n) &\coloneqq \max_{1 \leq k \leq k(n)} m(n,k) \notag
+          k(n) &\coloneqq \max\{k(n-1),k(n)\} + n \:\text{and}\: \\
+          m(n) &\coloneqq \max_{1 \leq k \leq k(n)}\{m(n,k)\} + n \notag
           \end{split}
         \end{equation}
 
@@ -144,7 +144,7 @@ We use the book; Asymptotic Cones and Functions in Optimization and Variational 
 
         \begin{equation}
           \begin{split}
-            t_n &\coloneqq \max\{t_{k(n)}^{m(n)}, n\} \:\text{and}\: \\
+            t_n &\coloneqq t_{k(n)}^{m(n)}, \:\text{and}\: \\
             x_n &\coloneqq x_{k(n)}^{m(n)}. \notag
           \end{split}
         \end{equation}
@@ -155,7 +155,7 @@ We use the book; Asymptotic Cones and Functions in Optimization and Variational 
           \begin{split}
             t_n &\rightarrow \infty \:\text{as}\: n \rightarrow \infty, \\
             x_n &\in C, \:\text{and}\: \\
-            \frac{x_n}{t_n} &= \frac{x_{k(n)}^{m(n)}}{t_{k(n)}^{m(n)}} \:\text{or}\: \frac{x_{k(n)}^{m(n)}}{n}. \notag
+            \frac{x_n}{t_n} &= \frac{x_{k(n)}^{m(n)}}{t_{k(n)}^{m(n)}}. \notag
           \end{split}
         \end{equation}
 
@@ -177,64 +177,7 @@ We use the book; Asymptotic Cones and Functions in Optimization and Variational 
       \begin{enumerate}[label=ii-\alph*,align=CenterWithParen2]
         \item We show that $C_{\infty}$ is included in $(\text{cl}\:C)_{\infty}$. However it is clear from the definition of asymptotic cone.
 
-        \item We show that $(\text{cl}\:C)_{\infty} \subset C_{\infty}$. In order to prove that a element of $(\text{cl}\:C)_{\infty}$ satisfies the asymptotic cone's relation, we consider convergency of a sequences of $(\text{cl}\:C)_{\infty}$ and $\text{cl}\:C$. First we take any $d \in (\text{cl}\:C)_{\infty}$ which satisfies
-
-        \begin{equation}
-          \exists t_k \rightarrow + \infty , \exists x_k \in \text{cl}\:C \:\text{ with }\: \lim_{k \to \infty} \frac{x_k}{t_k} = d. \notag
-        \end{equation}
-
-        For each $k \in \NaturalNumberSet$,
-
-        \begin{equation}
-          \exists \{y_k^{(n)}\}_{n=1}^{\infty} \subset C \:\text{with}\: y_k^{(n)} \rightarrow x_k \:\text{as}\: n \rightarrow \infty. \notag
-        \end{equation}
-
-        The below figure represents $y_k^{(n)}$.
-        \medskip
-
-        Figure:
-
-        \medskip
-
-        \begin{center}
-          \large
-          \begin{tabular}{|c|c|c|c|c|c|c|} \hline
-            $k$ \textbackslash $n$ & $1$ & $2$ & $\cdots$ & $m$ & $\cdots$ & limit \\ \hline
-            $1$ & $y_1^{(1)}$ & $y_1^{(2)}$ & $\cdots$ & $y_1^{(m)}$ & $\cdots$ & $x_{1}$ \\
-            $2$ & $y_2^{(1)}$ & $y_2^{(2)}$ & $\cdots$ & $y_2^{(m)}$& $\cdots$ & $x_{2}$ \\
-            $\vdots$ & $\vdots$ & $\vdots$ & $\ddots$ & $\vdots$ & $\vdots$ & $\vdots$ \\
-            $m$ & $y_m^{(1)}$ & $y_m^{(2)}$ & $\cdots$ & $y_m^{(m)}$ & $\cdots$ & $x_{m}$ \\
-            $\vdots$ & \multicolumn{6}{|c|}{$\vdots$} \\ \hline
-          \end{tabular}
-        \end{center}
-
-        \medskip
-
-        Then we define
-
-        \begin{equation}
-          y_m \coloneqq y_m^{(m)}. \notag
-        \end{equation}
-
-        By the definition of convergence of a sequence,
-
-        \begin{equation}
-          \begin{split}
-            \forall \epsilon &> 0, \exists \bar{m} \in \NaturalNumberSet \:s.t.\: \forall m \geq \bar{m}, ||d_m -d|| < \frac{\epsilon}{2}, \\
-            \forall \epsilon &> 0, \exists \hat{m} \in \NaturalNumberSet \:s.t.\: \forall m \geq \hat{m}, ||y_m^{m} -x_m|| < \frac{\sqrt{\epsilon}}{2}, \text{and} \\
-            \forall \epsilon &> 0, \exists \tilde{m} \in \NaturalNumberSet \:s.t.\: \forall m \geq \tilde{m}, |\frac{1}{t_m}| < \sqrt{\epsilon}. \notag
-          \end{split}
-        \end{equation}
-
-        Also, we let $m_0 \coloneqq \:\text{max}\:\{\bar{m},\hat{m}, \tilde{m}\} \in \NaturalNumberSet$. By using triangle inequality,
-
-        \begin{equation}
-            \forall \epsilon > 0, \exists m_0 \in \NaturalNumberSet \:s.t.\: \forall m \geq \bar{m}, ||\frac{y_m}{t_m} -d|| < \epsilon.\notag
-        \end{equation}
-
-        ($\because ||\frac{y_m}{t_m} -d|| \leq \frac{1}{|t_m|} \cdot ||y_m - d_m|| + ||\frac{y_m}{t_m} - d|| < \epsilon. \notag $)
-
-        Therefore $(\text{cl}\:C)_{\infty} \subset C_{\infty}$.
+        \item We show that $(\text{cl}\:C)_{\infty} \subset C_{\infty}$. Like (i-b), we'll show that.
 
       \end{enumerate}
       Then (ii)'s proof is also completed.
@@ -413,6 +356,41 @@ If $\{s_k\} = 1,2,3,7,8,9,13, \cdots$ and $\{t_k\} = 1,3,4,6,8,10,11, \cdots$, t
 
 \begin{proof}
   We show that for any $d \in C_{\infty}$, $d \in C_{\infty}^1$.
+
+  By the definition of the asymptotic cone,
+
+  \begin{equation}
+    \exists t_k \rightarrow \infty, \exists x_k \in C \:\text{with}\: \lim_{k \to \infty} \frac{x_k}{t_k} = d. \notag
+  \end{equation}
+
+  As $S$ is compact, $S$ is asymptotically regular, that is,
+
+  \begin{equation}
+    \forall t'_l \rightarrow \infty, \exists s_l \in C \:\text{with}\: \lim_{l \to \infty} \frac{x_l}{t'_l} = 0. \notag
+  \end{equation}
+
+  For each $k$,
+
+  \begin{equation}
+    \exists s_k \in S, b_k \in K \:s.t.\: x_k = s_k + b_k. \notag
+  \end{equation}
+
+  Then we get $d \in k_{\infty}$ because it holds that
+
+  \begin{equation}
+    \exists t_k \rightarrow \infty, \exists b_k \in K \:\text{with}\: \frac{b_k}{t_k} \rightarrow d. \notag
+  \end{equation}
+
+  The convexity of $K$ and Proposition 2.1.3 lead to $d \in K_{\infty}^1$.
+
+  Thus we obtain $d \in C_{\infty}^1$ because it holds that
+
+  \begin{equation}
+    \forall t'_l \rightarrow \infty, \exists x_l \in C \:\text{where}\: x_l \coloneqq b_l + s_l \:\text{with}\: \lim_{l \to \infty} \frac{x_l}{t'_l} = d. \notag
+  \end{equation}
+
+  Therefore $C_{\infty} = C_{\infty}^1$.
+
 \end{proof}
 
 \REMARK{2.1.1}{
@@ -443,7 +421,86 @@ If $\{s_k\} = 1,2,3,7,8,9,13, \cdots$ and $\{t_k\} = 1,3,4,6,8,10,11, \cdots$, t
   \end{equation}
 
   Then $C_{\infty} = \text{pos}\:C_N$, where for any set $C$, $\text{pos}\:C = \{\lambda x \:|\: x \in C, \lambda \geq 0\}$.
-
 }
 
+\begin{proof}
+  Clearly, one always has $\text{pos}\:C_N \subset C_{\infty}$. Conversely, let $0 \ne d \in C_{\infty}$.
+
+  Then there exists $t_k \rightarrow \infty$, $x_k \in C$ such that
+
+  \begin{equation}
+    d = \lim_{k \to \infty} \frac{x_k}{t_k} = \lim_{k \to \infty} \frac{1}{t_k} \cdot \left\lVert x_k \right\rVert \cdot \frac{x_k}{\left\lVert x_k \right\rVert }, \:\text{with}\: \left\lVert x_k \right\rVert \rightarrow \infty. \notag
+  \end{equation}
+
+  Thus the sequence $\{t_k^{-1}\left\lVert x_k \right\rVert \}$ is a nonnegative bounded sequence, and by the Bolzano-Weierstrass theorem, there exists a subsequence $\{t_k^{-1}\left\lVert x_k \right\rVert\}_{k \in K}$ with $K \subset \NaturalNumberSet$ such that $\lim_{k \in K} t_k^{-1} \left\lVert x_k \right\rVert = \lambda \geq 0$, which means that $d = \lambda d_N$ with $d_N \in C_N$, namely $d \in \text{pos}\:C_N$.
+\end{proof}
+
+\PROPOSITION{2.1.5}{
+  Let $C$ be a nonempty convex set in $\NDemenstionalRealEuclidianSpace$. Then the asymptotic cone $C_{\infty}$ is a closed convex cone. Moreover, define the following sets:
+  \begin{equation}
+    \begin{split}
+      D(x) &\coloneqq \{d \in \NDemenstionalRealEuclidianSpace \:|\: x + td \in \text{cl}\:C, \forall t >0\}\: \forall x \in C, \\
+      E &\coloneqq \{d \in \NDemenstionalRealEuclidianSpace \:|\: \exists x \in C \:s.t.\: x + td \in \text{cl}\:C, \forall t > 0\}, \\
+      F &\coloneqq \{d \in \NDemenstionalRealEuclidianSpace \:|\: d + \text{cl}\:C \subset \text{cl}\:C\}. \notag
+    \end{split}
+  \end{equation}
+
+  Then $D(x)$ is in fact independent of $x$, which is thus now denoted by $D$, and $C_{\infty} = D = E = F$.
+}
+
+\begin{proof}
+  We show that
+
+  \begin{enumerate}[label=\roman*,align=CenterWithParen]
+    \item $C_{\infty}$ is convex,
+    \item $C_{\infty} \subset D(x)$,
+    \item $D(x) \subset E$,
+    \item $E \subset C_{\infty}$,
+    \item $C_{\infty} \subset F$,
+    \item $C_{\infty} \supset F$.
+  \end{enumerate}
+
+  \begin{enumerate}[label=\roman*,align=CenterWithParen]
+    \item We'll show that $C_{\infty}$ is convex.
+
+    It follows that $C$ is asymptotically regular from Proposition 2.1.3.
+
+    For any $d_1$ and $d_2$,
+
+    \begin{equation}
+      \begin{split}
+        \forall t_k &\rightarrow \infty, \exists \{x_k\}_{k=1}^{\infty} \:\text{with}\: \frac{x_k}{t_k} \rightarrow d_1 \:\text{as}\: k \rightarrow \infty \\
+        (\forall \epsilon &> 0, \exists k_0 \in \NaturalNumberSet \:s.t.\: \forall k \geq k_0, \left\lVert \frac{x_k}{t_k} - d_1\right\rVert < \epsilon ), \\
+        \forall s_l &\rightarrow \infty, \exists \{y_l\}_{l=1}^{\infty} \:\text{with}\: \frac{y_l}{s_l} \rightarrow d_2 \:\text{as}\: l \rightarrow \infty \\
+        (\forall \epsilon &> 0, \exists l_0 \in \NaturalNumberSet \:s.t.\: \forall l \geq l_0, \left\lVert \frac{y_l}{s_l} - d_2\right\rVert < \epsilon ). \notag
+      \end{split}
+    \end{equation}
+
+    Then we'll check the convexity, that is,
+
+    \begin{equation}
+      \lambda d_1 + (1 - \lambda) d_2 \in C_{\infty} \:\text{where}\: \lambda \in (0,1). \notag
+    \end{equation}
+
+    We take a sequence $\{u_m\}_{m=1}^{\infty}$ where $u_m \coloneqq \max \{t_m,s_m\}$ and $m_0 \coloneqq \max \{k_0,l_0\} \in \NaturalNumberSet$.
+
+    Then you can find $u_m \rightarrow \infty$.
+
+    Also we define a sequence as $\{ \lambda x_m + (1 - \lambda) y_m \}_{m=1}^{\infty}$.
+
+    $\forall m \geq m_0$,
+
+    \begin{equation}
+      \begin{split}
+        \left\lVert \frac{\lambda x_m + (1 - \lambda) y_m}{u_m} - (\lambda d_1 + (1 - \lambda) d_2) \right\rVert &\leq \lambda \left\lVert \frac{x_m}{u_m} - d_1 \right\rVert + (1 - \lambda) \left\lVert \frac{y_m}{u_m} - d_2 \right\rVert \\
+        &< \lambda \epsilon + (1 - \lambda) \epsilon = \epsilon. \notag
+      \end{split}
+    \end{equation}
+
+    Therefore $C_{\infty}$ is convex.
+
+    \item We now prove that $C_{\infty} \subset D(x)$
+
+  \end{enumerate}
+\end{proof}
 \end{document}
