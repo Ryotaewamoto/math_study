@@ -421,7 +421,7 @@ If $\{s_k\} = 1,2,3,7,8,9,13, \cdots$ and $\{t_k\} = 1,3,4,6,8,10,11, \cdots$, t
 
   \begin{enumerate}
     \item $C_{\infty} = \limsup_{t \to + \infty} t^{-1}C$, and
-    \item $C_{\infty} = \liminf_{t \to + \infty} t^{-1}C$.
+    \item $C_{\infty}^{1} = \liminf_{t \to + \infty} t^{-1}C$.
   \end{enumerate}
 }
 
@@ -528,13 +528,63 @@ If $\{s_k\} = 1,2,3,7,8,9,13, \cdots$ and $\{t_k\} = 1,3,4,6,8,10,11, \cdots$, t
   Second, we show that (ii).
 
   \begin{enumerate}[label=ii-\alph*,align=CenterWithParen2]
-    \item We prove $C_{\infty} \subset \liminf_{t \to + \infty} t^{-1}C$.
+    \item We prove $C_{\infty}^{1} \subset \liminf_{t \to + \infty} t^{-1}C$.
 
+    $\forall d \in C_{\infty}^{1}$,
 
-    \item We prove $C_{\infty} \supset \liminf_{t \to + \infty} t^{-1}C$.
+    \begin{equation}
+      \forall t_k \rightarrow \infty, \exists x_k \in C \:\text{with}\: \lim_{k \to \infty} \frac{x_k}{t_k} = d. \notag
+    \end{equation}
 
+    Also,
+
+    \begin{equation}
+      \forall \epsilon > 0, \exists k_0 \in \NaturalNumberSet \SuchThat \forall k \geq k_0, \left\lVert \frac{x_k}{t_k} - d \right\rVert < \epsilon. \notag
+    \end{equation}
+
+    We let $\alpha (s) \coloneqq \sup_{u \geq s} \inf_{y \in u^{-1} C} \left\lVert y - d \right\rVert \geq 0$.z
+
+    For each $s = 1,2,\cdots$, $\exists t_s \geq s$,
+
+    \begin{equation}
+      - \frac{1}{s} \leq \alpha (s) - \frac{1}{s} < \inf_{y \in t_{s}^{-1} C} \left\lVert y - d \right\rVert \leq \left\lVert \frac{x_s}{t_s} - d \right\rVert. \notag
+    \end{equation}
+
+    Now $\{t_k\}_{k \in \NaturalNumberSet}$ satisfies $t_k \to \infty$.
+
+    Since $d \in C_{\infty}^{1}$,
+
+    \begin{equation}
+      \exists x_s \in C \SuchThat \lim_{k \to \infty} \frac{x_s}{t_s} = d. \notag
+    \end{equation}
+
+    Thus $d \in \liminf_{t \to + \infty} t^{-1}C$.
+
+    \item We prove $C_{\infty}^{1} \supset \liminf_{t \to + \infty} t^{-1}C$.
+
+    $\forall d \in \liminf_{t \to + \infty} t^{-1}C$,
+
+    \begin{equation}
+      \forall \epsilon, \exists s_0 \in \NaturalNumberSet \SuchThat \forall s \geq s_0, 0 \leq \sup_{u \geq s} \inf_{y \in u^{-1} C} \left\lVert y - d \right\rVert < \epsilon. \notag
+    \end{equation}
+
+    $\forall n \geq s$,
+
+    \begin{equation}
+      0 \leq \inf_{y \in n^{-1}C} \left\lVert y - d \right\rVert \leq \sup_{u \geq s} \inf_{y \in u^{-1} C} \left\lVert y - d \right\rVert < \epsilon. \notag
+    \end{equation}
+
+    By the definition of infimum, for any $\{t_k\} \to \infty$,
+
+    \begin{equation}
+      \exists u_0 \geq s \:\text{where}\: t_{u_0} \geq s \SuchThat \forall u \geq u_0, \exists x_u \in C, \left\lVert \frac{x_u}{t_u} - d \right\rVert < \epsilon. \notag
+    \end{equation}
+
+    Thus $d \in C_{\infty}^{1}$.
 
   \end{enumerate}
+
+  Therefore $C_{\infty}^{1} = \liminf_{t \to + \infty} t^{-1}C$.
 \end{proof}
 
 \PROPOSITION{2.1.4}{
