@@ -1,0 +1,81 @@
+% !TeX root = definitions_of_asymptotic_cones.tex
+\documentclass[a4paper,11pt]{jsarticle}
+
+% 英文化
+\usepackage[english]{babel}
+% 数式
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{mathtools}
+% 画像
+\usepackage[dvipdfmx]{graphicx}
+% 箇条書き
+\usepackage{enumitem}
+
+% 枠付き文章
+\usepackage{ascmac}
+
+% Boxes
+\newcommand{\QUOTEBOX}[1]{\begin{center}\fbox{\begin{minipage}{.8\textwidth}{#1}\end{minipage}}\end{center}}
+\newcommand{\DEFINITION}[2]{\begin{itembox}[l]{\underline{Definition {#1} }}{#2}\end{itembox}}
+\newcommand{\PROPOSITION}[2]{\begin{itembox}[l]{\underline{Proposition {#1} }}{#2}\end{itembox}}
+\newcommand{\REMARK}[2]{\begin{itembox}[l]{\underline{Remark {#1} }}{#2}\end{itembox}}
+
+% Sets
+\newcommand{\NaturalNumberSet}{\mathbb{N}}
+\newcommand{\RealNumberSet}{\mathbb{R}}
+\newcommand{\NDemenstionalRealEuclidianSpace}{\mathbb{R}^n}
+
+% Texts
+\newcommand{\SuchThat}{\:\text{s.t.}\:}
+
+\newcommand{\Space}[2]{
+  \text{(${#1}$, ${#2}$)}
+}
+
+
+
+
+
+\SetLabelAlign{Center}{\hfil#1\hfil}
+\SetLabelAlign{CenterWithParen}{\hfil(\makebox[1.0em]{#1})\hfil}
+\SetLabelAlign{CenterWithParen2}{\hfil(\makebox[1.5em]{#1})\hfil}
+
+
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{(\theenumi)}
+\renewcommand{\theenumii}{\theenumi-\alph{enumii}}
+\renewcommand{\labelenumii}{(\theenumii)}
+
+\begin{document}
+
+\title{
+  Painleve-Kuratowski convergence \\
+  \large with base of topological space}
+\author{Ryota Iwamoto}
+\date{\today}
+\maketitle
+
+We use the book; Variational Methods in Partially Ordered Spaces (author: A.Gopfert, H.Riahi, C.Tammer, and C.Zalinescu).
+
+p.24
+% the definition of topological linear space
+
+\DEFINITION{2.1.20}{
+  Let $X$ be a linear space endowed with a topology $\tau$. We say that $\Space{X}{\tau}$ is a topological linear space or topological vector space (t.l.s or t.v.s for short) if both operations on $X$ (the addition and the multiplication by scalers) are continuous; in this case $\tau$ is called a linear topology on $X$.
+}
+
+\QUOTEBOX{
+  Since these operations are defined on product spaces, we call that for two topological spaces $\Space{X_{1}}{\tau_{1}}$ and $\Space{X_{2}}{\tau_{2}}$, there exists a unique topology on $X_{1} \times X_{2}$, denoted by $\tau_{1} \times \tau_{2}$, with the property that
+
+  \begin{equation}
+    \mathcal{B} (x_{1}, x_{2}) \coloneqq \{U_{1} \times U_{2} \:|\: U_{1} \in \mathcal{N}_{\tau_{1}} (x_{1}), U_{2} \in \mathcal{N}_{\tau_{2}} (x_{2})\} \notag
+  \end{equation}
+
+  is a neighborhood base of $(x_{1}, x_{2})$ w.r.t (= with regard as) $\tau_{1} \times \tau_{2}$ for every $(x_{1}, x_{2}) \in X_{1} \times X_{2}$; $\tau_{1} \times \tau_{2}$ is called the product topology on $X_{1} \times X_{2}$. Of course, in Definition 2.1.20 the topology on $X \times X$ is $\tau \times \tau$, and the topology on $\RealNumberSet \times X$ is $\tau_{0} \times \tau$, where $\tau_{0}$ is the usual topology of $\RealNumberSet$. It is easy to see that when $\Space{X}{\tau}$ is a topological linear space, $a \in X$ and $\lambda \in \RealNumberSet \backslash \{0\}$, the mappings $T_{a}$, $H_{\lambda} : X \to X$ defined by $T_{a}(x) = a + x$, $H_{\lambda} \coloneqq \lambda x$, are bijective and continuous with continuous inverse i.e., they are homeomorphisms.
+}
+
+\end{document}
