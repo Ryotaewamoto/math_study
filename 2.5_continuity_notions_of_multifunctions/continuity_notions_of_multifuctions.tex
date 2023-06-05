@@ -1,0 +1,203 @@
+% !TeX root = definitions_of_asymptotic_cones.tex
+\documentclass[a4paper,11pt]{jsarticle}
+
+% use English
+\usepackage[english]{babel}
+% mathematical expression or mathematical formula
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{mathtools}
+% images
+\usepackage[dvipdfmx]{graphicx}
+% bullet points
+\usepackage{enumitem}
+% boxes with lines
+\usepackage{ascmac}
+
+% Boxes
+\newcommand{\QUOTEBOX}[1]{\begin{center}\fbox{\begin{minipage}{.8\textwidth}{#1}\end{minipage}}\end{center}} % quote
+\newcommand{\DEFINITION}[2]{\begin{itembox}[l]{\underline{Definition {#1} }}{#2}\end{itembox}} % definition
+\newcommand{\PROPOSITION}[2]{\begin{itembox}[l]{\underline{Proposition {#1} }}{#2}\end{itembox}} % propositio
+\newcommand{\NOTE}[1]{\begin{itembox}[l]{\underline{Note}}{#1}\end{itembox}} % note
+\newcommand{\REMARK}[2]{\begin{itembox}[l]{\underline{Remark {#1} }}{#2}\end{itembox}} % remark
+
+% (Useful) Sets
+\newcommand{\NaturalNumberSet}{\mathbb{N}}
+\newcommand{\RealNumberSet}{\mathbb{R}}
+\newcommand{\NDemenstionalRealEuclidianSpace}{\mathbb{R}^n}
+
+% (Useful) Texts
+\newcommand{\SuchThat}{\:\text{s.t.}\:}
+\newcommand{\Backslash}{\:\backslash\:}
+
+% Symbols
+\newcommand{\Int}[1]{\text{int\:${#1}$}} % int
+\newcommand{\Cl}[1]{\text{cl\:${#1}$}} % cl
+\newcommand{\Dom}[1]{\text{dom\:${#1}$}} % dom
+
+% Set form e.g. {x | ...}
+% #1: element
+% #2: conditions
+\newcommand{\SetForm}[2]{
+  \{{#1}\:|\:{#2}\}
+}
+
+% Space e.g. (X,a)
+% #1: set
+% #2: topology
+\newcommand{\Space}[2]{
+  \text{(${#1}$, ${#2}$)}
+}
+
+% Non-center neighborhood
+% #1: set
+\newcommand{\NonCenterNeighborhood}[1]{
+  {#1}^{\bullet}
+}
+
+% Family of neighborhoods
+% #1: based space
+% #2: based point
+\newcommand{\FammilyOfNeighborhood}[2]{
+  \mathcal{V}_{{#1}}({#2})
+}
+
+% Multifunction
+% #1: function name
+% #2: domain
+% #3: codomain
+\newcommand{\Multifuncion}[3]{
+  {#1} : {#2} \rightrightarrows {#3}
+}
+
+% Inverse sets (to function)
+% #1: function name
+% #2: domain
+\newcommand{\ImageSet}[2]{
+  {#1}({#2})
+}
+
+% Inverse sets (to function)
+% #1(optional): inverse symbol (default=-)
+% #2: function name
+% #3: codomain
+\newcommand{\InverseSet}[3][-]{
+  {#2}^{{#1}1}({#3})
+}
+
+\SetLabelAlign{Center}{\hfil#1\hfil}
+\SetLabelAlign{CenterWithParen}{\hfil(\makebox[1.0em]{#1})\hfil}
+\SetLabelAlign{CenterWithParen2}{\hfil(\makebox[1.5em]{#1})\hfil}
+
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{(\theenumi)}
+\renewcommand{\theenumii}{\theenumi-\alph{enumii}}
+\renewcommand{\labelenumii}{(\theenumii)}
+
+\begin{document}
+
+\title{
+  2 Functional Analysis over Cones \\
+  \large 2.5 Continuity Notions of Multifunctions}
+\author{Ryota Iwamoto}
+\date{\today}
+\maketitle
+
+We use the book; Variational Methods in Partially Ordered Spaces (author: A.Gopfert, H.Riahi, C.Tammer, and C.Zalinescu).
+
+p.51
+
+\QUOTEBOX{
+  In this section $X$ and $Y$ are separated (in the sense of Hausdorff) topological spaces and $\Multifuncion{\varGamma}{X}{Y}$ a multifunction. When mentioned explicitly, $Y$ is a separeated topological vector space (s.t.v.s).
+}
+
+``$\rightrightarrows$'' is one of symbols that mean multifunction. Also, ``$\twoheadrightarrow $'' and ``$X \rightarrow 2^X$'' have the same meaning.
+
+\DEFINITION{2.5.1}{
+  Let $x_0 \in X$. We say that
+
+  \begin{enumerate}[label=(\alph*)]
+    % upper continuous at x_0
+    \item $\varGamma$ is upper continuous (u.c.) at $x_0$ if
+    \begin{equation}
+      \forall D \subset Y, D \:\text{open}, \varGamma (x_0) \subset D, \exists U \in \FammilyOfNeighborhood{X}{x_0} \SuchThat \forall x \in U, \varGamma (x) \subset D, \tag*{(2.33)}
+    \end{equation}
+
+    i.e., $\InverseSet[+]{\varGamma}{D}$ is a neighborhood of $x_0$ for each open set $D \subset Y$ such that $F(x_0) \subset D$;
+
+    % lower continuous at x_0
+    \item $\varGamma$ is lower continuous (l.c.) at $x_0$ if
+    \begin{equation}
+      \forall D \subset Y, D \:\text{open}, \varGamma (x_0) \cap D \ne \emptyset , \exists U \in \FammilyOfNeighborhood{X}{x_0} \SuchThat \forall x \in U, \varGamma (x) \cap D \ne \emptyset, \tag*{(2.34)}
+    \end{equation}
+
+    i.e., $\InverseSet{\varGamma}{D}$ is a neighborhood of $x_0$ for each open set $D \subset Y$ such that $\varGamma (x) \cap D \ne \emptyset$.
+
+    % continuous
+    \item $\varGamma$ is continuous at $x_0$ if $\varGamma$ is u.c. and l.c. at $x_0$.
+
+    % continuous everywhere
+    \item $\varGamma$ is upper continuous (lower continuous, continuous) at $x_0$ if $\varGamma$ is so at every $x \in X$;
+
+    % lower continuous at (x_0, y_0)
+    \item $\varGamma$ is lower continuous at $(x_0, y_0) \in X \times Y$ if
+    \begin{equation}
+      \forall V \in \FammilyOfNeighborhood{Y}{y_0}, \exists U \in \FammilyOfNeighborhood{X}{x_0} \SuchThat \forall x \in U, \varGamma (x) \cap D \ne \emptyset. \notag
+    \end{equation}
+
+  \end{enumerate}
+}
+
+\QUOTEBOX{
+  It follows from the definition that $x_0 \in \Int{(\Dom{\varGamma})}$ and $y_0 \in \Cl{(\varGamma (x_0))}$ if $\varGamma$ is l.c. at $(x_0, y_0)$ and $\varGamma$ is l.c. at $x_0 \in \Dom{\varGamma}$ if and only if $\varGamma$ is l.c. at every $(x_0, y_0)$ with $y \in \varGamma(x_0)$; moreover, $\varGamma$ is l.c. at every $x_0 \in X \Backslash \Dom{\varGamma}$. If $x_0 \in X \Backslash \Dom{\varGamma}$, then $\varGamma$ is u.c. at $x_0$ if and only if $x_0 \in \Int{(X \Backslash \Dom{\varGamma})}$. So, if $\varGamma$ is u.c., then $\Dom{\varGamma}$ is closed, while if $\varGamma$ is l.c., then $\Dom{\varGamma}$ is open.
+  The next result follows immediately from the definitions.
+}
+
+It means that below.
+
+\NOTE{
+  \begin{enumerate}[label=\roman*,align=CenterWithParen]
+    \item $\varGamma$: l.c. at $(x_0, y_0)$ $\Rightarrow$ $x_0 \in \Int{(\Dom{\varGamma})}$, $y_0 \in \Cl{(\varGamma (x_0))}$
+    \item $\varGamma$: l.c. at $x_0 \in \Dom{\varGamma}$ $\Leftrightarrow$ $\varGamma$: l.c. at $\forall (x_0, y)$ with $y \in \varGamma (x_0)$
+    \item $\varGamma$: l.c. at $\forall x_0 \in X \Backslash \Dom{\varGamma}$
+    \item $\varGamma$: u.c. at $x_0 \in X \Backslash \Dom{\varGamma}$ $\Leftrightarrow$ $x_0 \in \Int{(X \Backslash \Dom{\varGamma})}$
+    \item $\varGamma$: u.c. $\Rightarrow$ $\Dom{\varGamma}$: closed
+    \item $\varGamma$: l.c. $\Rightarrow$ $\Dom{\varGamma}$: open
+  \end{enumerate}
+}
+
+\begin{proof}
+  Coming soon...
+\end{proof}
+
+\PROPOSITION{2.5.2}{
+  \begin{enumerate}[label=\roman*,align=CenterWithParen]
+    \item $\varGamma$: u.c. $\Leftrightarrow$ $\forall D \subset Y$: open, $\InverseSet[+]{\varGamma}{D}$: open
+    \item $\varGamma$: l.c. $\Leftrightarrow$ $\forall D \subset Y$: open, $\InverseSet{\varGamma}{D}$: open
+  \end{enumerate}
+}
+
+\begin{proof}
+  Coming soon...
+\end{proof}
+\DEFINITION{(limit inferior and limi superior)}{
+  The limit inferior of $\varGamma$ at $x_0 \in X$ is defeined by
+  \begin{equation}
+    \liminf_{x \to x_0} \varGamma (x) \coloneqq \SetForm{y \in Y}{\forall V \in \FammilyOfNeighborhood{Y}{y}, \exists U \in \FammilyOfNeighborhood{X}{x_0} \SuchThat \forall x \in \NonCenterNeighborhood{U}, \varGamma (x) \cap D \ne \emptyset}, \notag
+  \end{equation}
+
+  while the limit superior of $\varGamma$ at $x_0 \in X$ is defined by
+  \begin{equation}
+    \begin{split}
+      \limsup_{x \to x_0} \varGamma (x) &\coloneqq \SetForm{y \in Y}{\forall V \in \FammilyOfNeighborhood{Y}{y}, \forall U \in \FammilyOfNeighborhood{X}{x_0}, \exists x \in \NonCenterNeighborhood{U} \SuchThat \varGamma (x) \cap D \ne \emptyset}, \\
+      &= \bigcap_{U \in \FammilyOfNeighborhood{X}{x_0}} \Cl{(\ImageSet{\varGamma}{\NonCenterNeighborhood{U}})}, \notag
+    \end{split}
+  \end{equation}
+
+  where for $U \in \FammilyOfNeighborhood{X}{x_0}$, $\NonCenterNeighborhood{U} \coloneqq U \Backslash \{x_0\}$.
+}
+
+\end{document}
