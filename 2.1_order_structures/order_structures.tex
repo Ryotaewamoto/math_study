@@ -1,0 +1,139 @@
+% !TeX root = definitions_of_asymptotic_cones.tex
+\documentclass[a4paper,11pt]{jsarticle}
+
+% use English
+\usepackage[english]{babel}
+% mathematical expression or mathematical formula
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{mathtools}
+% images
+\usepackage[dvipdfmx]{graphicx}
+% bullet points
+\usepackage{enumitem}
+% boxes with lines
+\usepackage{ascmac}
+
+% Boxes
+\newcommand{\QUOTEBOX}[1]{\begin{center}\fbox{\begin{minipage}{.8\textwidth}{#1}\end{minipage}}\end{center}} % quote
+\newcommand{\DEFINITION}[2]{\begin{itembox}[l]{\underline{Definition {#1} }}{#2}\end{itembox}} % definition
+\newcommand{\PROPOSITION}[2]{\begin{itembox}[l]{\underline{Proposition {#1} }}{#2}\end{itembox}} % propositio
+\newcommand{\NOTE}[1]{\begin{itembox}[l]{\underline{Note}}{#1}\end{itembox}} % note
+\newcommand{\REMARK}[2]{\begin{itembox}[l]{\underline{Remark {#1} }}{#2}\end{itembox}} % remark
+
+% (Useful) Sets
+\newcommand{\NaturalNumberSet}{\mathbb{N}}
+\newcommand{\RealNumberSet}{\mathbb{R}}
+\newcommand{\NDemenstionalRealEuclidianSpace}{\mathbb{R}^n}
+
+% (Useful) Texts
+\newcommand{\SuchThat}{\:\text{s.t.}\:}
+\newcommand{\Backslash}{\:\backslash\:}
+
+% Symbols
+\newcommand{\Int}[1]{\text{int\:${#1}$}} % int
+\newcommand{\Cl}[1]{\text{cl\:${#1}$}} % cl
+\newcommand{\Dom}[1]{\text{dom\:${#1}$}} % dom
+
+% Set form e.g. {x | ...}
+% #1: element
+% #2: conditions
+\newcommand{\SetForm}[2]{
+  \{{#1}\:|\:{#2}\}
+}
+
+% Space e.g. (X,a)
+% #1: set
+% #2: topology
+\newcommand{\Space}[2]{
+  \text{(${#1}$, ${#2}$)}
+}
+
+% Structure e.g. (X,a)
+% #1: set
+% #2: structure
+\newcommand{\Structure}[2]{
+  \text{(${#1}$, ${#2}$)}
+}
+
+% Non-center neighborhood
+% #1: set
+\newcommand{\NonCenterNeighborhood}[1]{
+  {#1}^{\bullet}
+}
+
+% Family of neighborhoods
+% #1: based space
+% #2: based point
+\newcommand{\FammilyOfNeighborhood}[2]{
+  \mathcal{V}_{{#1}}({#2})
+}
+
+% Multifunction
+% #1: function name
+% #2: domain
+% #3: codomain
+\newcommand{\Multifuncion}[3]{
+  {#1} : {#2} \rightrightarrows {#3}
+}
+
+% Inverse sets (to function)
+% #1: function name
+% #2: domain
+\newcommand{\ImageSet}[2]{
+  {#1}({#2})
+}
+
+% Inverse sets (to function)
+% #1(optional): inverse symbol (default=-)
+% #2: function name
+% #3: codomain
+\newcommand{\InverseSet}[3][-]{
+  {#2}^{{#1}1}({#3})
+}
+
+\SetLabelAlign{Center}{\hfil#1\hfil}
+\SetLabelAlign{CenterWithParen}{\hfil(\makebox[1.0em]{#1})\hfil}
+\SetLabelAlign{CenterWithParen2}{\hfil(\makebox[1.5em]{#1})\hfil}
+
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{(\theenumi)}
+\renewcommand{\theenumii}{\theenumi-\alph{enumii}}
+\renewcommand{\labelenumii}{(\theenumii)}
+
+\begin{document}
+
+\title{
+  2 Functional Analysis over Cones \\
+  \large 2.1 Order Structures}
+\author{Ryota Iwamoto}
+\date{\today}
+\maketitle
+
+We use the book; Variational Methods in Partially Ordered Spaces (author: A.Gopfert, H.Riahi, C.Tammer, and C.Zalinescu).
+
+p.13
+
+\QUOTEBOX{
+  As seen in the introduction, we are concerned with certain sets $M$ with order structures. In the sequel we give the basic definitions.
+  As usual, when $M$ is a nonempty set, $M \times M$ is the set of ordered paris elemennts of $M$:
+  \begin{equation}
+    M \times M \coloneqq \SetForm{(x_1, x_2)}{x_1, x_2 \in M}. \notag
+  \end{equation}
+}
+
+\DEFINITION{2.1.1}{
+  Let $M$ be a nonempty set and $\mathcal{R}$ a nonempty subset of $M \times M$. Then $\mathcal{R}$ is called a binary relation or an order structure on $M$, and $\Structure{X}{\mathcal{R}}$ is a set $M$ with order structure $\mathcal{R}$. The fact that $(x_1,x_2) \in \mathcal{R}$ will be denoted by $x_1 \mathcal{R} x_2$. We say that $\mathcal{R}$ is
+
+  \begin{enumerate}[label=\alph*,align=CenterWithParen]
+    \item reflexive if $\forall x \in M : x \mathcal{R} x$,
+    \item transitive if$\forall x_1, x_2, x_3 \in M : x_1 \mathcal{R} x_2, x_2 \mathcal{R} x_3 \Rightarrow x_1 \mathcal{R} x_3$,
+    \item antisymmetric if $\forall x_1, x_2 \in M : x_1 \mathcal{R} x_2, x_2 \mathcal{R} x_1 \Rightarrow x_1 = x_2$.
+  \end{enumerate}
+}
+
+
+\end{document}
