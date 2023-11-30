@@ -1,4 +1,11 @@
 {
   "editor.tabSize": 2,
-  "cSpell.words": ["Kuratowski", "Painleve"]
+  "cSpell.words": [
+    "Kuratowski",
+    "nondecreasing",
+    "Painleve",
+    "semicontinuous",
+    "semidefinite",
+    "subdifferential"
+  ]
 }
