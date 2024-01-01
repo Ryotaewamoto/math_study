@@ -25,11 +25,9 @@
 
 \newcommand{\NaturalNumberSet}{\mathbb{N}}
 \newcommand{\RealNumberSet}{\mathbb{R}}
-\newcommand{\NDemenstionalRealEuclidianSpace}{\mathbb{R}^n}
+\newcommand{\NDemenstionalRealEuclideanSpace}{\mathbb{R}^n}
 
 \newcommand{\SuchThat}{\:\text{s.t.}\:}
-
-
 
 \SetLabelAlign{Center}{\hfil#1\hfil}
 \SetLabelAlign{CenterWithParen}{\hfil(\makebox[1.0em]{#1})\hfil}
@@ -53,9 +51,9 @@
 We use the book; Asymptotic Cones and Functions in Optimization and Variational Inequalities (author: A.AUSLENDER and M.TEBOULLE), pp.25-31.
 
 \QUOTEBOX{
-  The set of natural numbers is denoted by $\NaturalNumberSet$, so that $k \in \NaturalNumberSet$ means $k = 1,2, \dots .$ A sequence $\{x_k\}_{k \in \NaturalNumberSet}$ or simply $\{x_k\}$ in $\NDemenstionalRealEuclidianSpace$ is said to converge to $x$ if $\left\lVert x_k - x\right\rVert \rightarrow 0$ as $k \rightarrow \infty$, and this will be indicated by the notation $x_k \rightarrow x$ or $x = \lim_{k \to \infty} x_k$. We say that $x$ is a cluster point of $\{x_k\}$ if some subsequence converge to $x$. Recall that every bounded sequence in $\NDemenstionalRealEuclidianSpace$ converges to $x$ if and only if it is bounded and has $x$ as its unique cluster point.
+  The set of natural numbers is denoted by $\NaturalNumberSet$, so that $k \in \NaturalNumberSet$ means $k = 1,2, \dots .$ A sequence $\{x_k\}_{k \in \NaturalNumberSet}$ or simply $\{x_k\}$ in $\NDemenstionalRealEuclideanSpace$ is said to converge to $x$ if $\left\lVert x_k - x\right\rVert \rightarrow 0$ as $k \rightarrow \infty$, and this will be indicated by the notation $x_k \rightarrow x$ or $x = \lim_{k \to \infty} x_k$. We say that $x$ is a cluster point of $\{x_k\}$ if some subsequence converge to $x$. Recall that every bounded sequence in $\NDemenstionalRealEuclideanSpace$ converges to $x$ if and only if it is bounded and has $x$ as its unique cluster point.
 
-  Let $\{x_k\}$ be a sequence in $\NDemenstionalRealEuclidianSpace$. We are interested in knowing how to handle convergence properties, we are led to consider direction $d_k \coloneqq x_k\left\lVert x_k\right\rVert^{-1}$ with $x_k \neq 0$, $k \in \NaturalNumberSet$. From classical analysis, the Bolzano-Weierstrass theorem implies that we can extract a convergent subsequence $d = \lim_{k \in K} d_k$, $K \subset \NaturalNumberSet$, with $d \neq 0$. Now suppose that the sequence $\{x_k\} \subset \NDemenstionalRealEuclidianSpace$ is such that $\left\lVert x_k \right\rVert \rightarrow + \infty$. Then
+  Let $\{x_k\}$ be a sequence in $\NDemenstionalRealEuclideanSpace$. We are interested in knowing how to handle convergence properties, we are led to consider direction $d_k \coloneqq x_k\left\lVert x_k\right\rVert^{-1}$ with $x_k \neq 0$, $k \in \NaturalNumberSet$. From classical analysis, the Bolzano-Weierstrass theorem implies that we can extract a convergent subsequence $d = \lim_{k \in K} d_k$, $K \subset \NaturalNumberSet$, with $d \neq 0$. Now suppose that the sequence $\{x_k\} \subset \NDemenstionalRealEuclideanSpace$ is such that $\left\lVert x_k \right\rVert \rightarrow + \infty$. Then
   \begin{equation}
     \exists t_k \coloneqq \left\lVert x_k \right\rVert, k \in K \subset \NaturalNumberSet, \text{ such that } \lim_{k \in K} t_k = + \infty \:\text{and}\: \lim_{k \in K} \frac{x_k}{t_k} = d. \notag
   \end{equation}
@@ -63,16 +61,16 @@ We use the book; Asymptotic Cones and Functions in Optimization and Variational 
 }
 
 \DEFINITION{2.1.1}{
-  A sequence $\{x_k\} \subset \RealNumberSet$ is said to converge to a direction $d \in \NDemenstionalRealEuclidianSpace$ if
+  A sequence $\{x_k\} \subset \RealNumberSet$ is said to converge to a direction $d \in \NDemenstionalRealEuclideanSpace$ if
   \begin{equation}
     \exists \{t_k\}, \:with\: t_k \rightarrow + \infty \:\text{ such that }\: \lim_{k \to \infty} \frac{x_k}{t_k} = d. \notag
   \end{equation}
 }
 
 \DEFINITION{2.1.2}{
-  Let $C$ be a nonempty set in $\NDemenstionalRealEuclidianSpace$. Then the asymptotic cone of the set $C$, denoted by $C_{\infty}$, is the set of vectors $d \in \NDemenstionalRealEuclidianSpace$ that are limits in direction of the sequences $\{x_k\} \subset C$, namely
+  Let $C$ be a nonempty set in $\NDemenstionalRealEuclideanSpace$. Then the asymptotic cone of the set $C$, denoted by $C_{\infty}$, is the set of vectors $d \in \NDemenstionalRealEuclideanSpace$ that are limits in direction of the sequences $\{x_k\} \subset C$, namely
   \begin{equation}
-    C_{\infty} = \{d \in \NDemenstionalRealEuclidianSpace \:|\: \exists t_k \rightarrow + \infty , \exists x_k \in C \:\text{ with }\: \lim_{k \to \infty} \frac{x_k}{t_k} = d \}. \notag
+    C_{\infty} = \{d \in \NDemenstionalRealEuclideanSpace \:|\: \exists t_k \rightarrow + \infty , \exists x_k \in C \:\text{ with }\: \lim_{k \to \infty} \frac{x_k}{t_k} = d \}. \notag
   \end{equation}
 }
 
@@ -81,7 +79,7 @@ We use the book; Asymptotic Cones and Functions in Optimization and Variational 
 }
 
 \PROPOSITION{2.1.1}{
-  Let $C \subset \NDemenstionalRealEuclidianSpace$ be nonempty. Then:
+  Let $C \subset \NDemenstionalRealEuclideanSpace$ be nonempty. Then:
   \begin{enumerate}[label=\roman*,align=CenterWithParen]
     \item $C_{\infty}$ is a closed cone.
     \item $(\text{cl}\:C)_{\infty} = C_{\infty}$.
@@ -243,15 +241,15 @@ We use the book; Asymptotic Cones and Functions in Optimization and Variational 
 }
 
 \PROPOSITION{2.1.2}{
-  A set $C \subset \NDemenstionalRealEuclidianSpace$ is bounded if and only if $C_{\infty} = \{0\}$.
+  A set $C \subset \NDemenstionalRealEuclideanSpace$ is bounded if and only if $C_{\infty} = \{0\}$.
 }
 
 \begin{proof}
   We show that:
 
   \begin{enumerate}[label=\roman*,align=CenterWithParen]
-    \item a set $C \subset \NDemenstionalRealEuclidianSpace$ is bounded $\Rightarrow $ $C_{\infty} = \{0\}$, and
-    \item a set $C \subset \NDemenstionalRealEuclidianSpace$ is unbounded $\Rightarrow $ $C_{\infty} \ne \{0\}$.
+    \item a set $C \subset \NDemenstionalRealEuclideanSpace$ is bounded $\Rightarrow $ $C_{\infty} = \{0\}$, and
+    \item a set $C \subset \NDemenstionalRealEuclideanSpace$ is unbounded $\Rightarrow $ $C_{\infty} \ne \{0\}$.
   \end{enumerate}
 
   \begin{enumerate}[label=\roman*,align=CenterWithParen]
@@ -286,19 +284,19 @@ Why do we take a subsequence of $\{d_k\}$?
 \end{center}
 
 \QUOTEBOX{
-  Associated with the asymptotic cone $C_{\infty}$ is the following related concept, which will help us in simplifying the definition of $C_{\infty}$ in the particular case where $C \subset \NDemenstionalRealEuclidianSpace$ is assumed convex.
+  Associated with the asymptotic cone $C_{\infty}$ is the following related concept, which will help us in simplifying the definition of $C_{\infty}$ in the particular case where $C \subset \NDemenstionalRealEuclideanSpace$ is assumed convex.
 }
 
 \DEFINITION{2.1.3}{
-  Let $C \subset \NDemenstionalRealEuclidianSpace$ be nonempty and define
+  Let $C \subset \NDemenstionalRealEuclideanSpace$ be nonempty and define
   \begin{equation}
-    C_{\infty}^1 = \{d \in \NDemenstionalRealEuclidianSpace \:|\: \forall t_k \rightarrow + \infty , \exists x_k \in C \:\text{ with }\: \lim_{k \to \infty} \frac{x_k}{t_k} = d \}. \notag
+    C_{\infty}^1 = \{d \in \NDemenstionalRealEuclideanSpace \:|\: \forall t_k \rightarrow + \infty , \exists x_k \in C \:\text{ with }\: \lim_{k \to \infty} \frac{x_k}{t_k} = d \}. \notag
   \end{equation}
   We say that C is asymptotically regular if $C_{\infty} = C_{\infty}^1$.
 }
 
 \PROPOSITION{2.1.3}{
-  Let $C$ be a nonempty convex set in $\NDemenstionalRealEuclidianSpace$. Then $C$ is asymptotically regular.
+  Let $C$ be a nonempty convex set in $\NDemenstionalRealEuclideanSpace$. Then $C$ is asymptotically regular.
 }
 
 \begin{proof}
@@ -397,7 +395,7 @@ If $\{s_k\} = 1,2,3,7,8,9,13, \cdots$ and $\{t_k\} = 1,3,4,6,8,10,11, \cdots$, t
 \end{proof}
 
 \REMARK{2.1.1}{
-  Note that the definitions of $C_{\infty}$ and $C_{\infty}^1$ are related to the theory of set convergence of Painleve-Kuratowski. Indeed, for a family $\{C_t\}_{t>0}$ of subsets of $\NDemenstionalRealEuclidianSpace$, the outer limit as $t \rightarrow + \infty$ is the set.
+  Note that the definitions of $C_{\infty}$ and $C_{\infty}^1$ are related to the theory of set convergence of Painleve-Kuratowski. Indeed, for a family $\{C_t\}_{t>0}$ of subsets of $\NDemenstionalRealEuclideanSpace$, the outer limit as $t \rightarrow + \infty$ is the set.
 
   \begin{equation}
     \limsup_{t \to +\infty} C_t = \{x \:|\: \liminf_{t \to +\infty} d(x, C_t) = 0\}, \notag
@@ -417,7 +415,7 @@ If $\{s_k\} = 1,2,3,7,8,9,13, \cdots$ and $\{t_k\} = 1,3,4,6,8,10,11, \cdots$, t
 }
 
 \PROPOSITION{}{
-  Let $\{C_t\}_{t > 0}$, $C \subset \NDemenstionalRealEuclidianSpace$, and $C \ne \varnothing $. Then,
+  Let $\{C_t\}_{t > 0}$, $C \subset \NDemenstionalRealEuclideanSpace$, and $C \ne \varnothing $. Then,
 
   \begin{enumerate}
     \item $C_{\infty} = \limsup_{t \to + \infty} t^{-1}C$, and
@@ -588,10 +586,10 @@ If $\{s_k\} = 1,2,3,7,8,9,13, \cdots$ and $\{t_k\} = 1,3,4,6,8,10,11, \cdots$, t
 \end{proof}
 
 \PROPOSITION{2.1.4}{
-  Let $C \subset \NDemenstionalRealEuclidianSpace$ be nonempty and define the normalized sets.
+  Let $C \subset \NDemenstionalRealEuclideanSpace$ be nonempty and define the normalized sets.
 
   \begin{equation}
-    C_N \coloneqq \{d \in \NDemenstionalRealEuclidianSpace \:|\: \exists \{x_k\} \in C, \left\lVert x_k \right\rVert \rightarrow +\infty \:\text{with}\: d = \lim_{k \to \infty} \frac{x_k}{\left\lVert x_k \right\rVert }\}. \notag
+    C_N \coloneqq \{d \in \NDemenstionalRealEuclideanSpace \:|\: \exists \{x_k\} \in C, \left\lVert x_k \right\rVert \rightarrow +\infty \:\text{with}\: d = \lim_{k \to \infty} \frac{x_k}{\left\lVert x_k \right\rVert }\}. \notag
   \end{equation}
 
   Then $C_{\infty} = \text{pos}\:C_N$, where for any set $C$, $\text{pos}\:C = \{\lambda x \:|\: x \in C, \lambda \geq 0\}$.
@@ -610,12 +608,12 @@ If $\{s_k\} = 1,2,3,7,8,9,13, \cdots$ and $\{t_k\} = 1,3,4,6,8,10,11, \cdots$, t
 \end{proof}
 
 \PROPOSITION{2.1.5}{
-  Let $C$ be a nonempty convex set in $\NDemenstionalRealEuclidianSpace$. Then the asymptotic cone $C_{\infty}$ is a closed convex cone. Moreover, define the following sets:
+  Let $C$ be a nonempty convex set in $\NDemenstionalRealEuclideanSpace$. Then the asymptotic cone $C_{\infty}$ is a closed convex cone. Moreover, define the following sets:
   \begin{equation}
     \begin{split}
-      D(x) &\coloneqq \{d \in \NDemenstionalRealEuclidianSpace \:|\: x + td \in \text{cl}\:C, \forall t >0\}\: \forall x \in C, \\
-      E &\coloneqq \{d \in \NDemenstionalRealEuclidianSpace \:|\: \exists x \in C \SuchThat x + td \in \text{cl}\:C, \forall t > 0\}, \\
-      F &\coloneqq \{d \in \NDemenstionalRealEuclidianSpace \:|\: d + \text{cl}\:C \subset \text{cl}\:C\}. \notag
+      D(x) &\coloneqq \{d \in \NDemenstionalRealEuclideanSpace \:|\: x + td \in \text{cl}\:C, \forall t >0\}\: \forall x \in C, \\
+      E &\coloneqq \{d \in \NDemenstionalRealEuclideanSpace \:|\: \exists x \in C \SuchThat x + td \in \text{cl}\:C, \forall t > 0\}, \\
+      F &\coloneqq \{d \in \NDemenstionalRealEuclideanSpace \:|\: d + \text{cl}\:C \subset \text{cl}\:C\}. \notag
     \end{split}
   \end{equation}
 

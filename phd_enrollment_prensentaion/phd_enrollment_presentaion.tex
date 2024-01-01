@@ -42,7 +42,7 @@
 % (Useful) Sets
 \newcommand{\NaturalNumberSet}{\mathbb{N}}
 \newcommand{\RealNumberSet}{\mathbb{R}}
-\newcommand{\NDemenstionalRealEuclidianSpace}{\mathbb{R}^n}
+\newcommand{\NDemenstionalRealEuclideanSpace}{\mathbb{R}^n}
 
 % Symbols
 \newcommand{\Epigraph}[1]{\text{epi\:${#1}$}} % epi
@@ -94,18 +94,18 @@
 % 1.2
 \begin{frame}{準備(2)}
   \begin{block}{定義 1 (Proper) \cite{ref1}}
-    $f: \NDemenstionalRealEuclidianSpace \rightarrow \RealNumberSet \cup \{\pm \infty\}$ に対して以下の2つが成り立つ時、$f$ は proper であるという。
+    $f: \NDemenstionalRealEuclideanSpace \rightarrow \RealNumberSet \cup \{\pm \infty\}$ に対して以下の2つが成り立つ時、$f$ は proper であるという。
     \begin{enumerate}
-      \item $\exists x \in \NDemenstionalRealEuclidianSpace \SuchThat f(x) < \infty$,
-      \item $\forall x \in \NDemenstionalRealEuclidianSpace, f(x) > -\infty$.
+      \item $\exists x \in \NDemenstionalRealEuclideanSpace \SuchThat f(x) < \infty$,
+      \item $\forall x \in \NDemenstionalRealEuclideanSpace, f(x) > -\infty$.
     \end{enumerate}
   \end{block}
 
   \begin{block}{定義 2 (Epigraph) \cite{ref1}}
-    $f: \NDemenstionalRealEuclidianSpace \rightarrow \RealNumberSet \cup \{\pm \infty\}$ に対して、以下の集合 $\Epigraph{f}$ を $f$ の epigraph という。
+    $f: \NDemenstionalRealEuclideanSpace \rightarrow \RealNumberSet \cup \{\pm \infty\}$ に対して、以下の集合 $\Epigraph{f}$ を $f$ の epigraph という。
 
     \begin{equation}
-      \Epigraph{f} \coloneqq \SetForm{(x,t) \in \NDemenstionalRealEuclidianSpace \times \RealNumberSet}{f(x) \leq t}. \notag
+      \Epigraph{f} \coloneqq \SetForm{(x,t) \in \NDemenstionalRealEuclideanSpace \times \RealNumberSet}{f(x) \leq t}. \notag
     \end{equation}
   \end{block}
 \end{frame}
@@ -177,8 +177,8 @@
 % 3.1
 \begin{frame}{Asymptotic Functions の定義}
   \begin{block}{定義 4 (Asymptotic Functions) \cite{ref1}}
-    $f: \NDemenstionalRealEuclidianSpace \rightarrow \RealNumberSet \cup \{+\infty\}$, proper とする。
-    この時、$f$ に対して $\Epigraph{f_{\infty}} = (\Epigraph{f})_{\infty}$ を満たす $f_{\infty}: \NDemenstionalRealEuclidianSpace \rightarrow \RealNumberSet \cup \{+\infty\}$ がただ一つ存在し、この関数 $f_{\infty}$ を asymptotic function と呼ぶ。
+    $f: \NDemenstionalRealEuclideanSpace \rightarrow \RealNumberSet \cup \{+\infty\}$, proper とする。
+    この時、$f$ に対して $\Epigraph{f_{\infty}} = (\Epigraph{f})_{\infty}$ を満たす $f_{\infty}: \NDemenstionalRealEuclideanSpace \rightarrow \RealNumberSet \cup \{+\infty\}$ がただ一つ存在し、この関数 $f_{\infty}$ を asymptotic function と呼ぶ。
   \end{block}
 
   \pause
