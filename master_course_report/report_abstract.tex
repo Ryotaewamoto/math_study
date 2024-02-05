@@ -1,0 +1,187 @@
+\documentclass[a4paper,11pt]{jsarticle}
+
+
+% 数式
+\usepackage{amsmath,amsfonts, amsthm, amssymb}
+\usepackage{bm}
+\usepackage{mathtools}
+% 画像
+\usepackage[dvipdfmx]{graphicx}
+
+\theoremstyle{definition}
+\newtheorem{thm}{定理}
+\newtheorem{prop}[thm]{命題}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{dfn}[thm]{定義}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{fact}[thm]{Fact}
+
+% Mathematical Sets
+\newcommand{\NaturalNumberSet}{\mathbb{N}}
+\newcommand{\RealNumberSet}{\mathbb{R}}
+\newcommand{\NDemenstionalRealEuclideanSpace}{\mathbb{R}^n}
+\newcommand{\NDemenstionalRealSymmetricMatrixSpace}{\mathbb{S}^n}
+\newcommand{\NDemenstionalRealOthonormalMatrixSpace}{\mathcal{U}_n}
+
+% Symbols like prefix
+\newcommand{\Closure}[1]{\text{\rm cl\:${#1}$}} % cl
+\newcommand{\Interior}[1]{\text{\rm int\:${#1}$}} % int
+\newcommand{\Domain}[1]{\text{\rm dom\:${#1}$}} % dom
+\newcommand{\Epigraph}[1]{\text{\rm epi\:${#1}$}} % epi
+\newcommand{\LevelSets}[2]{\text{\rm lev\:$({#1}, {#2})$}} % lev
+\newcommand{\Trace}[1]{\text{\rm tr$({#1})$}} % tr
+\newcommand{\Diagnosis}[1]{\text{\rm diag\:${#1}$}} % diag
+\newcommand{\InnerProduct}[2]{\left\langle {#1},{#2}\right\rangle} % <x,y>
+\newcommand{\Norm}[1]{\left\lVert {#1} \right\rVert} % ||x||
+
+% Extended real valued function e.g. f: X -> Rv{+∞}
+% #1: function symbol
+% #2: domain of function
+\newcommand{\ExtendedRealValuedFunction}[2]{{#1}: {#2} \to \RealNumberSet \cup \{+\infty\}}
+
+% Conjugate function e.g. f*
+% #1: function symbol
+\newcommand{\ConjugateFunction}[1]{{#1}^*}
+
+% Support function e.g. f*
+% #1: set symbol
+\newcommand{\SupportFunction}[1]{\sigma_{#1}}
+
+% Indicator function e.g. f*
+% #1: set symbol
+\newcommand{\IndicatorFunction}[1]{\delta_{#1}}
+
+% (Useful) Texts
+\newcommand{\SuchThat}{\:\text{\rm s.t.}\:}
+
+% Set form e.g. {x | ...}
+% #1: element
+% #2: conditions
+\newcommand{\SetForm}[2]{
+  \{{#1}\:|\:{#2}\}
+}
+
+\begin{document}
+
+\title{漸近関数の半正定値計画問題への応用}
+\author{F22A034C 岩本 崚汰}
+\date{\vspace{-0ex}}
+
+\maketitle
+
+漸近関数は、最適化問題の解を求めるための有力なツールの一つである。この概念の起源は、1913年の Steinitz にあり、その後、 Stocker によって研究が進められた。その20年後、Bourbaki と Choquet によってさらに研究が進められ、1970年、Rockafellar によって凸集合に対しての asymptotic cone を recession cone として定義された。同様に、asymptotic function も recession function として定義され、この理論の基礎となる理論がまとめられた。1999年には、Auslender と Teboulle はこの漸近錐 (asymptotic cone) と漸近関数 (asymptotic function) の理論と応用を『Asymptotic cones and functions in optimization and variational inequalities』でまとめた。この本に記述されているように、漸近関数の応用の一つとして、半正定値計画問題との関係が挙げられる。半正定値計画問題は、線形計画問題、2次凸計画問題、二次錐計画問題の一般化であり、その応用は、組合せ最適化、グラフ理論、統計学、量子力学、機械学習など多岐にわたる。そのため、様々な問題に対して適応できることから近年注目を集めている。
+
+はじめに、漸近錐と漸近関数の定義と簡単な性質を紹介する。
+
+\begin{dfn}
+  $C \subset \NDemenstionalRealEuclideanSpace$、$C \neq \emptyset$ とする。このとき$C$ の漸近錐 (Asymptotic cone)、記号で $C_\infty$、は点列 $\{ x_k \} \subset C$ を用いて以下のように定義する。
+
+  \begin{equation}
+    C_\infty = \left\{ d \in
+    \mathbb{R}^n \:\middle|\: \exists t_k \rightarrow +\infty, \exists x_k \in C \:\text{\rm with}\: \lim_{k \to \infty} \frac{x_k}{t_k} = d \right\}. \notag
+  \end{equation}
+\end{dfn}
+
+\begin{prop}
+  $C \subset \NDemenstionalRealEuclideanSpace$、$C \neq \emptyset$ とする。この時、以下が成り立つ。
+  \begin{enumerate}
+    \item $C_{\infty}$ は閉凸錐
+    \item $(\text{cl}\:C)_{\infty} = C_{\infty}$
+    \item $C$ が錐ならば, $C_{\infty} = \text{cl}\:C$
+  \end{enumerate}
+\end{prop}
+
+\begin{dfn}
+  proper な関数 $\ExtendedRealValuedFunction{f}{\NDemenstionalRealEuclideanSpace}$ に対して, ただ一つの$f$に関する$f_{\infty}: \NDemenstionalRealEuclideanSpace \to \overline{\RealNumberSet}$を$\Epigraph{f_\infty} = (\Epigraph{f})_{\infty}$を満たすように定義する。この関数を$f$の漸近関数 (Asymptotic function)と呼ぶ。
+\end{dfn}
+
+\begin{prop}\label{basicPropositionOfAsymptoticFunctions}
+  proper な関数 $\ExtendedRealValuedFunction{f}{\NDemenstionalRealEuclideanSpace}$ に対して以下が成り立つ。
+  \begin{enumerate}
+    \item $f_{\infty}$ は下半連続かつ positively homogeneous
+    \item $f_{\infty}(0) = 0$ または $f_{\infty}(0) = - \infty$
+    \item $f_{\infty}(0) = 0$ ならば, $f_{\infty}$ は proper
+    \item $(\alpha f)(x) \coloneqq \alpha f(x)$, $\alpha > 0$ とする。このとき、$(\alpha f)_{\infty} = \alpha f_{\infty}$
+  \end{enumerate}
+\end{prop}
+
+\begin{prop}
+  $\ExtendedRealValuedFunction{f}{\NDemenstionalRealEuclideanSpace}$ を proper かつ下半連続な凸関数とする。このとき、この漸近関数 $f_{\infty}$ は positively homogeneous かつ proper で下半連続な凸関数であり、任意の $d \in \NDemenstionalRealEuclideanSpace$ に対して, 以下が成り立つ。
+  \begin{equation}
+    f_{\infty}(d) = \sup \{f(x+d) -f(x) \:|\: x \in \Domain{f}\}
+  \end{equation}
+  また、
+  \begin{equation}
+    f_{\infty}(d) = \lim_{t \to +\infty} \frac{f(x+td) -f(x)}{t} = \sup_{t>0} \frac{f(x+td) - f(x)}{t}, \forall x \in \Domain{f}
+  \end{equation}
+\end{prop}
+
+次に半正定値計画問題への応用を考えるために、関数が symmetric であること、また spectrally defined であることを定義する。
+
+\begin{dfn}
+  $\ExtendedRealValuedFunction{f}{\NDemenstionalRealEuclideanSpace}$ とする。このとき、$f$ が symmetric であるとは、以下が成り立つことをいう。
+  \begin{equation}
+    \forall x \in \NDemenstionalRealEuclideanSpace \:\text{and}\: P: n \times n \text{ の置換行列},\quad f(Px) = f(x). \notag
+  \end{equation}
+\end{dfn}
+
+以下が symmetric な関数の例である。
+
+\begin{enumerate}
+  \item $f(x) = \max_{1 \leq i \leq n} x_i$ (or $\min_{1 \leq i \leq n} x_i$),
+  \item $f(x) = \sum_{i = 1}^{n} x_i$ (or $\prod_{i = 1}^{n} x_i$).
+\end{enumerate}
+
+\begin{dfn}
+  関数 $\ExtendedRealValuedFunction{\Phi}{\NDemenstionalRealSymmetricMatrixSpace}$ が spectrally defined であるとは、以下を満たすような symmetric な関数 $\ExtendedRealValuedFunction{f}{\NDemenstionalRealEuclideanSpace}$ が存在することをいう。
+  \begin{equation}
+    \Phi (X) = \Phi_{f}(X) \coloneqq f(\lambda (X)), \forall X \in \NDemenstionalRealSymmetricMatrixSpace \notag
+  \end{equation}
+  ただし、$\lambda (X) \coloneqq (\lambda_1 (X), \dotsb , \lambda_n (X))^T$ は $X$ の固有値を非減少に並べたベクトルである。
+\end{dfn}
+
+\begin{thm}[\mbox{\cite[Lewis (1996)]{Lewis96}}]\label{Lewis96}
+  $\ExtendedRealValuedFunction{f}{\NDemenstionalRealEuclideanSpace}$ は symmetric な関数とする。このとき、以下が成り立つ。
+  \begin{equation}
+    {\Phi_{f}}^* = \Phi_{f^*}. \notag
+  \end{equation}
+\end{thm}
+
+\begin{thm}[\mbox{\cite[Seeger (1997)]{Seeger97}}]\label{Seeger97}
+  $\ExtendedRealValuedFunction{f}{\NDemenstionalRealEuclideanSpace}$ はsymmetric かつ proper で下半連続な凸関数とし、その spectrally defined な関数を $\Phi_{f}$ とする。このとき、以下が成り立つ。
+  \begin{equation}
+    {(\Phi_{f})}_{\infty} = \Phi_{f_{\infty}}. \notag
+  \end{equation}
+\end{thm}
+
+\begin{thebibliography}{99}
+  \bibitem{Auslender99}  A. Auslender. Penalty and barrier methods: A unified framework. SIAM J. Optimization, 10 (1999), 211--230.
+
+  \bibitem{Auslender03}
+  A. Auslender and M. Teboulle. Asymptotic cones and functions in optimization and variational inequalities, Springer monographs in Mathematics, Springer-Verlag, New York, 2003.
+
+  \bibitem{BeckTeboulle12}
+  A. Beck and M. Teboulle. Smoothing and First Order Methods: A Unified Framework, SIAM J. Optim, 22 (2012), 557--580.
+
+  \bibitem{BenTalTeboulle89}
+  A. Ben-Tal and M. Teboulle. A smoothing technique for nondifferentiable optimization problems. In Optimization, Fifth French-German Conference, Lecture Notes in Mathematics 1405, Springer-Verlag, New York (1989), 1--11.
+
+  \bibitem{BorweinLewis00}
+  J.M. Borwein and A.S. Lewis. Convex Analysis and Nonlinear Optimization: Theory and Examples, Springer-Verlag, New York, 2000.
+
+  \bibitem{Lewis96}
+  A.S. Lewis. Convex Analysis on the Hermitian matrices. SIAM J. Optimization, 6 (1996), 164--177.
+
+  \bibitem{Rockafellar70}
+  R.T. Rockafellar. Convex Analysis. Princeton University Press, Princeton, New Jersey, 1970.
+
+  \bibitem{Rockafellar98}
+  R.T. Rockafellar and R.J.B Wets. Variational Analysis. Springer-Verlag, New York, 1998.
+
+  \bibitem{Seeger97}
+  A. Seeger. Convex analysis of spectrally defined matrix functions. SIAM J. Optimization, 7 (1997), 679--696.
+
+  \end{thebibliography}
+
+\end{document}

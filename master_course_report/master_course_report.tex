@@ -13,14 +13,14 @@
 \SetLabelAlign{CenterWithParen}{\hfil(\makebox[1.0em]{#1})\hfil}
 \SetLabelAlign{CenterWithParen2}{\hfil(\makebox[1.5em]{#1})\hfil}
 
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
 \theoremstyle{definition}
-\newtheorem{dfn}{Definition}[section]
-\newtheorem{prop}[dfn]{Proposition}
-\newtheorem{lem}[dfn]{Lemma}
-\newtheorem{thm}[dfn]{Theorem}
-\newtheorem{cor}[dfn]{Corollary}
-\newtheorem{rem}[dfn]{Remark}
-\newtheorem{fact}[dfn]{Fact}
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{fact}[thm]{Fact}
 
 % ヘッダーにチャプター名を表示しない。
 \pagestyle{plain}
@@ -33,15 +33,19 @@
 \newcommand{\RealNumberSet}{\mathbb{R}}
 \newcommand{\NDemenstionalRealEuclideanSpace}{\mathbb{R}^n}
 \newcommand{\NDemenstionalRealSymmetricMatrixSpace}{\mathbb{S}^n}
+\newcommand{\NDemenstionalRealOthonormalMatrixSpace}{\mathcal{U}_n}
+
 
 % Symbols like prefix
 \newcommand{\Closure}[1]{\text{\rm cl\:${#1}$}} % cl
 \newcommand{\Interior}[1]{\text{\rm int\:${#1}$}} % int
 \newcommand{\Domain}[1]{\text{\rm dom\:${#1}$}} % dom
 \newcommand{\Epigraph}[1]{\text{\rm epi\:${#1}$}} % epi
+\newcommand{\LevelSets}[2]{\text{\rm lev\:$({#1}, {#2})$}} % lev
 \newcommand{\Trace}[1]{\text{\rm tr$({#1})$}} % tr
 \newcommand{\Diagnosis}[1]{\text{\rm diag\:${#1}$}} % diag
 \newcommand{\InnerProduct}[2]{\left\langle {#1},{#2}\right\rangle} % <x,y>
+\newcommand{\Norm}[1]{\left\lVert {#1} \right\rVert} % ||x||
 
 % Extended real valued function e.g. f: X -> Rv{+∞}
 % #1: function symbol
@@ -61,7 +65,7 @@
 \newcommand{\IndicatorFunction}[1]{\delta_{#1}}
 
 % (Useful) Texts
-\newcommand{\SuchThat}{\:\text{s.t.}\:}
+\newcommand{\SuchThat}{\:\text{\rm s.t.}\:}
 
 % Set form e.g. {x | ...}
 % #1: element
@@ -74,18 +78,18 @@
 \begin{titlepage}
 \begin{center}
 \vspace*{10mm}
-{\bf \Huge Convex Analysis and Fundamental of Asymptotic Cones and Functions}
+{\bf \Huge Application of Asymptotic~Function to Semidefinite Programming}
 \vspace{80mm}
 
 {\bf \Huge Ryota Iwamoto}\\
 \vspace{15mm}
-{\huge Master's Program in Fundamental Sciences}\\
+{\LARGE Master's Program in Fundamental Sciences}\\
 \vspace{5mm}
-{\huge Graduate School of Science and Technology}\\
+{\LARGE Graduate School of Science and Technology}\\
 \vspace{5mm}
-{\huge Niigata University}\\
+{\LARGE Niigata University}\\
 \vspace{15mm}
-{\huge March 2024}
+{\LARGE March 2024}
 \end{center}
 \end{titlepage}
 
@@ -94,34 +98,23 @@
 % 1. Introduction
 % ----------------------------------------------------------------
 \chapter{Introduction}
+The concept of asymptotic cone and many of its properties seem to have been proposed first in the work of Steinitz in 1913. The corresponding theory was developed by Stocker in 1940. After over two decades, These concepts were used in Bourbaki and Choquet. In 1970, Rockafellar defined asymptotic cone for convex sets in \cite{Rockafellar70}. The definition and several results in nonconvex case have appeared in the book \cite{Rockafellar98} of Rockafellar and Wets in 1998 while they have preferred the term `horizon' to `asymptotic' dut to several reasons. In 2000, Auslender and Teboulle wrap up the theory of asymptotic cones and functions in their book \cite{Auslender03}. One of interested studies asymptotic function has been applied by is a smoothing technique for nondifferential optimization problems. In 1989, Ben-Tal and Teboulle introduced the idea in \cite{BenTalTeboulle89}. In this paper, they demonstrated smoothing mechanism by asymptotic function, error analysis, and the duality between a given problem and the approximate problem. In 1999, Auslender established penalty and barrier method in \cite{Auslender99}. Later, in 2012, Teboulle extended the smoothing idea in \cite{BeckTeboulle12}. In this paper, particularly, they compared the method using asymptotic function with that of infimal convolution.
 
+In this paper, we mainly follow the book of Auslender and Teboulle and mention the results of Lewis and Seeger, which are included in the book written by Auslender and Teboulle. Their results are useful to a relation between asymptotic function and semidefinite programming. In fact, semidefinite programming has been interested because it covers a variety of optimization problems. Here, in addition to their results, we also give definitions and properties of asymptotic cone and function in detail.
 
-% 2. Preliminaries
+As the structure of this paper, in Chapter 2, we introduce the basic mathematical concepts and the definitions of convex set and convex function. In addition, conjugate function and support function are also defined. In Chapter 3, we provide the definition of asymptotic cone and function. In Chapter 4, we show the relation between asymptotic function and semidefinite programming. In Chapter 5, we summarize the content and the future study.
+
+% 2. Basic Definitions
 % ----------------------------------------------------------------
-\chapter{Preliminaries}
+\chapter{Basic Definitions}
 
-$\NDemenstionalRealEuclideanSpace$: $n$-dimensional real Euclidean space. \\
-$\NDemenstionalRealSymmetricMatrixSpace$: $n$-dimensional real symmetric matrix space.
+Throughout this paper, we consider only finite-dimensional vector space. The $n$-dimensional real Euclidean vector space is denoted by $\NDemenstionalRealEuclideanSpace$. For vectors $x=(x_1,\dots,x_n), y=(y_1,\dots,y_n) \in \NDemenstionalRealEuclideanSpace$, the inner product of two vectors $x$ and $y$ is expressed by $\InnerProduct{x}{y} \coloneqq \sum_{i = 1}^{n} x_i y_i$. The norm arising from the inner product is denoted by $\Norm{x} \coloneqq \InnerProduct{x}{x} ^{1/2}$.
 
-The inner product of $\NDemenstionalRealEuclideanSpace$ $\left\langle \cdot ,\cdot \right\rangle$  is defined by
-
-  \begin{equation}
-    \InnerProduct{x}{y} \coloneqq \sum_{i = 1}^{n} x_i y_i \:\text{for}\: x=(x_1,\dots,x_n)^T \in \mathbb{R}^n \:\text{and}\: y=(y_1,\dots,y_n)^T \in \mathbb{R}^n. \notag
-  \end{equation}
-
-The norm is defined by $\left\lVert x \right\rVert \coloneqq \InnerProduct{x}{x} ^{1/2} $. Like that, we can define the inner product and the norm of $\NDemenstionalRealSymmetricMatrixSpace$.
-
-  \begin{equation}
-    \InnerProduct{X}{Y} \coloneqq \Trace{XY} \:\text{for}\: X,Y \in \NDemenstionalRealSymmetricMatrixSpace \quad \text{and} \quad \left\lVert X \right\rVert \coloneqq \InnerProduct{X}{X} ^{1/2} \notag
-  \end{equation}
-
-% 3. Convex Sets and Functions
-% ----------------------------------------------------------------
-\chapter{Convex Sets and Functions}
-
-Convexity is one of the most important concepts in convex analysis. In this chapter, we mainly introduce the definition of convex sets and functions.
+To consider semidefinite optimization, we recall define the space of symmetric real matrices of $n$, denoted by $\NDemenstionalRealSymmetricMatrixSpace$. The inner product of two matrices $X,Y \in \NDemenstionalRealSymmetricMatrixSpace$ is defined by $\InnerProduct{X}{Y} \coloneqq \Trace{XY}$, where $\Trace{X}$ is the trace of $X$. The norm arising from the inner product is denoted by $\Norm{X} \coloneqq \InnerProduct{X}{X} ^{1/2}$.
 
 \section{Convex Sets}
+
+We define convexity of sets and some basic topological properties.
 
 \begin{dfn}
   A subset $C$ of $\NDemenstionalRealEuclideanSpace$ is convex if
@@ -129,20 +122,18 @@ Convexity is one of the most important concepts in convex analysis. In this chap
     tx + (1-t)y \in C,\:\forall x,y \in C,\:t \in [0,1].\notag
   \end{equation}
 \end{dfn}
-If a given set is empty, for convenience, we define that the set is convex.
-
-We recall some basic topological concepts of sets. The closed unit ball in $n$ dimensional Euclidean space $\NDemenstionalRealEuclideanSpace$ will be denoted by:
+If a given set is empty, for convenience, we define that the set is convex. We recall some basic topological concepts for sets in $\NDemenstionalRealEuclideanSpace$. The closed unit ball in $n$ dimensional Euclidean space $\NDemenstionalRealEuclideanSpace$ will be denoted by:
 
 \begin{equation}
   \it{B} = \SetForm{x \in \NDemenstionalRealEuclideanSpace}{\left\lVert x \right\rVert \leq \text{1}}. \notag
 \end{equation}
 
-The ball considering the center $x_0$ and the radius $\delta$ is written as $\it{B}(x_0, \delta) \coloneqq x_0 + \delta \it{B}$. Let $C \subset \NDemenstionalRealEuclideanSpace$ be a nonempty set. The interior and closure of $C$ are defined respectively by $\text{int}\:C$ and $\text{cl}\:C$, respectively.
+The ball with the center $x_0$ and the radius $\delta$ is written as $\it{B}(x_0, \delta) \coloneqq x_0 + \delta \it{B}$. Let $C \subset \NDemenstionalRealEuclideanSpace$ be a nonempty set. The interior and closure of $C$ are defined by $\text{int}\:C$ and $\text{cl}\:C$, respectively.
 
 \begin{equation}
   \begin{split}
     \Interior{C} &\coloneqq \SetForm{x \in C}{\exists \epsilon > 0 \:\text{such that}\: x +\epsilon\it{B} \subset C}, \\
-    \Closure{C} &\coloneqq \bigcup_{\epsilon > 0}{C + \epsilon\it{B}}. \notag \\
+    \Closure{C} &\coloneqq \bigcup_{\epsilon > 0}{(C + \epsilon\it{B})}. \notag \\
     \end{split}
 \end{equation}
 
@@ -155,16 +146,115 @@ The boundary of $C$ is denoted by $\partial C$.
   \end{equation}
 \end{dfn}
 
-\section{Convex Functions}
-\begin{dfn}
-  A function $f$ is sublinear if $f$ satisfies the condition
+\begin{prop}
+  For $K \subset \NDemenstionalRealEuclideanSpace$, the following are equivalent:
+  \begin{enumerate}[label=\roman*,align=CenterWithParen]
+    \item $K$ is a convex cone.
+    \item $K$ is a cone such that $K + K \subset K$.
+  \end{enumerate}
+\end{prop}
 
+\section{Convex Functions}
+In this section, we now focus on the definition of convex functions and basic properties.
+Let $\ExtendedRealValuedFunction{f}{\NDemenstionalRealEuclideanSpace}$. The effective domain of $f$ is defined by
+\begin{equation}
+  \Domain{f} \coloneqq \SetForm{x \in \NDemenstionalRealEuclideanSpace}{f(x) < +\infty}. \notag
+\end{equation}
+If $\Domain{f} \neq \emptyset$, $f$ is called proper. With respect to rules of arithmetic, remark that:
+\begin{equation}
+  \infty + \infty = \infty, \quad \alpha \cdot \infty = \infty,\:\forall \alpha \geq 0, \quad \inf \emptyset = \infty, \quad \sup \emptyset = -\infty \notag
+\end{equation}
+Before introducing the definition of convex function, we need to prepare the definitions of epigraph and level set.
+
+\begin{dfn}
+  Let $\ExtendedRealValuedFunction{f}{\NDemenstionalRealEuclideanSpace}$.
+  The epigraph of $f$ and the level set of $f$ are defined, respectively, by
   \begin{equation}
-    f(\lambda x + \mu y) \leq \lambda f(x) + \mu f(y),\forall x, y \in{\NDemenstionalRealEuclideanSpace},\: \lambda, \mu \in{\RealNumberSet}_+. \notag
+    \begin{split}
+      \Epigraph{f} &\coloneqq \SetForm{(x,y) \in \NDemenstionalRealEuclideanSpace \times \RealNumberSet}{f(x) \leq y}, \\
+      \LevelSets{f}{\alpha} &\coloneqq \SetForm{x \in \NDemenstionalRealEuclideanSpace}{f(x) \leq \alpha} \quad \forall \alpha \in \RealNumberSet. \notag
+    \end{split}
+  \end{equation}
+\end{dfn}
+In convex analysis, convex function is one of the most important concepts. We now define convex function.
+\begin{dfn}
+  Let $\ExtendedRealValuedFunction{f}{\NDemenstionalRealEuclideanSpace}$. $f$ is called convex if $\Epigraph{f}$ is convex.
+\end{dfn}
+
+Clearly, if $f$ is convex, then $\Domain{f}$ is convex. In other books of convex analysis, the following inequality is often used to define convex function.
+
+\begin{prop}
+  A function $\ExtendedRealValuedFunction{f}{\NDemenstionalRealEuclideanSpace}$ is convex if and only if
+  \begin{equation}
+    f(tx + (1-t)y) \leq tf(x) + (1-t)f(y),\:\forall x,y \in \NDemenstionalRealEuclideanSpace,\:t \in [0,1]. \notag
+  \end{equation}
+\end{prop}
+
+Lower semicontinuity is as important a concept as convexity. We now define the lower semicontinuity of $f$ and some equivalent statements.
+
+\begin{dfn}
+  The function $\ExtendedRealValuedFunction{f}{\NDemenstionalRealEuclideanSpace}$ is lower semicontinuous (l.s.c.) at $x$ if
+  \begin{equation}
+    f(x) = \liminf_{y \to x} f(y) \coloneqq \sup_{r >0} \inf_{y \in \it{B}(x,r)} f(y). \notag
+  \end{equation}
+  and lower semicontinuous on $\NDemenstionalRealEuclideanSpace$ if this holds for every $x \in \NDemenstionalRealEuclideanSpace$.
+\end{dfn}
+
+\begin{prop}
+  Let $\ExtendedRealValuedFunction{f}{\NDemenstionalRealEuclideanSpace}$. The following statements are equivalent:
+  \begin{enumerate}[label=\roman*,align=CenterWithParen]
+    \item $f$ is l.s.c. on $\NDemenstionalRealEuclideanSpace$.
+    \item The epigraph $\Epigraph{f}$ is closed on $\NDemenstionalRealEuclideanSpace \times \RealNumberSet$.
+    \item The level sets $\LevelSets{f}{\alpha}$ are closed in $\NDemenstionalRealEuclideanSpace$.
+  \end{enumerate}
+\end{prop}
+
+If $f$ is not lower semicontinuous, obviously its epigraph is not closed. However, $\Closure{(\Epigraph{f})}$ is closed and leads to the lower semicontinuity of $f$, denoted by $\Closure{f}$, and defined such that $\Epigraph{\Closure{f}} = \Closure{(\Epigraph{f})}$. In terms of $f$, one has
+\begin{equation}
+  (\Closure{f})(x) \coloneqq \liminf_{y \to x} f(y),\: \forall x \in \NDemenstionalRealEuclideanSpace. \notag
+\end{equation}
+and it holds that $\Closure{f} \leq f$.
+
+\begin{dfn}
+  The indicator function of a set $C$ of $\mathbb{E}$, denoted by $\IndicatorFunction{C}$, is defined by
+  \begin{equation}
+    \IndicatorFunction{C}(x)=
+    \begin{cases}
+      0 & \text{if}\:x \in{C}, \\
+      +\infty & \text{otherwise}. \notag
+    \end{cases}
   \end{equation}
 \end{dfn}
 
+If a given set $C$ is a nonempty closed convex subset in $\NDemenstionalRealEuclideanSpace$, then $\IndicatorFunction{C}$ is a proper, l.s.c., and convex function.
+
+We introduce the definition of subdifferential of convex functions.
+
+\begin{dfn}
+  Let $\ExtendedRealValuedFunction{f}{\NDemenstionalRealEuclideanSpace}$ and $\bar{x}$ in $\NDemenstionalRealEuclideanSpace$. If it holds that
+
+  \begin{equation}
+    \exists \phi \in \NDemenstionalRealEuclideanSpace \:s.t.\: f(x) \geq f(\bar{x}) + \left\langle \phi, x-\bar{x} \right\rangle, \forall x \in \NDemenstionalRealEuclideanSpace \notag
+  \end{equation}
+
+  then $\phi$ is called the subgradient of $f$ at $\bar{x}$. Also, the set of all subgradients of $f$ at $\bar{x}$ is called the subdifferential of $f$ at $\bar{x}$, denoted by $\partial f(\bar{x})$, that is
+
+  \begin{equation}
+    \partial f(\bar{x}) \coloneqq \SetForm{\phi \in \NDemenstionalRealEuclideanSpace}{f(x) \geq f(\bar{x}) + \InnerProduct{\phi}{x-\bar{x}}, \forall x \in \NDemenstionalRealEuclideanSpace } . \notag
+  \end{equation}
+\end{dfn}
+
+We now consider the notion of subdifferential in $\NDemenstionalRealSymmetricMatrixSpace$. By the definition that $f$ is proper, the effective domain of $\ExtendedRealValuedFunction{\Phi}{\NDemenstionalRealSymmetricMatrixSpace}$ is naturally defined by
+\begin{equation}
+  \Domain{\Phi} \coloneqq \SetForm{X \in \NDemenstionalRealSymmetricMatrixSpace}{\Phi(X) < +\infty}. \notag
+\end{equation}
+and the subdifferential of $\Phi$ at $X \in \Domain{\Phi}$ is defined by
+\begin{equation}
+  \partial \Phi(X) \coloneqq \SetForm{Y \in \NDemenstionalRealSymmetricMatrixSpace}{\Phi(Z) \geq \Phi(X) + \InnerProduct{Z-X}{Y}, \forall Z \in \NDemenstionalRealSymmetricMatrixSpace}. \notag
+\end{equation}
+
 \section{Conjugate Functions}
+Duality plays a central role in solving optimization problems. The key concept of duality is conjugate functions. In this section, we introduce the definition of conjugate functions and some basic properties.
 
 \begin{dfn}
   Let $\ExtendedRealValuedFunction{f}{\NDemenstionalRealEuclideanSpace}$. The conjugate function of $f$ is defined by
@@ -181,9 +271,9 @@ The boundary of $C$ is denoted by $\partial C$.
   and the equality holds if and only if $y \in \partial f(x)$.
 \end{prop}
 
-\begin{proof}
-  TODO
-\end{proof}
+\begin{thm}{(Fenchel-Moreau)}
+  Let $\ExtendedRealValuedFunction{f}{\NDemenstionalRealEuclideanSpace}$ be convex. The conjugate function $\ConjugateFunction{f}$ is proper, l.s.c., and convex if and only if $f$ is proper. Moreover, $\ConjugateFunction{\Closure{f}} = \ConjugateFunction{f}$ and $f^{**} = \Closure{f}$.
+\end{thm}
 
 We now provide the definition of conjugate functions in $\NDemenstionalRealSymmetricMatrixSpace$.
 
@@ -196,6 +286,8 @@ We now provide the definition of conjugate functions in $\NDemenstionalRealSymme
 
 \section{Support Functions}
 
+Support functions are useful analytical tools in convex analysis. In this section, we introduce the definition of support function and some basic properties.
+
 \begin{dfn}
   Given a nonempty set $C \subset \NDemenstionalRealEuclideanSpace$, the function $\ExtendedRealValuedFunction{\sigma_C}{\NDemenstionalRealEuclideanSpace}$ defined by
   \begin{equation}
@@ -204,19 +296,30 @@ We now provide the definition of conjugate functions in $\NDemenstionalRealSymme
   is called the support function of $C$.
 \end{dfn}
 
+\begin{prop}\label{basicPropositionOfSupportFunctions}
+  For any nonempty set $C$ of $\NDemenstionalRealEuclideanSpace$, the support function $\SupportFunction{C}$ satisfies the following:
+  \begin{enumerate}[label=\roman*,align=CenterWithParen]
+    \item $\SupportFunction{C}$ is an l.s.c. positively homogeneous function.
+    \item The barrier cone $\Domain{\SupportFunction{C}}$ is a convex cone (not necessarily closed).
+    \item $\SupportFunction{C} = \SupportFunction{\Closure{C}}$.
+    \item $\SupportFunction{C} < +\infty$ if and only if $C$ is bounded.
+    \item $\SupportFunction{C} = \IndicatorFunction{C}^*$.
+  \end{enumerate}
+\end{prop}
+
 % 4. Asymptotic Cones
 % ----------------------------------------------------------------
 \chapter{Asymptotic Cones and Functions}
 
-Chapter 4 provides the definition of asymptotic cones and functions. In addition to these definitions, we show some basic properties of asymptotic cones and functions.
+This chapter provides the definitions of asymptotic cone and function. In addition to these definitions, we show some basic properties of asymptotic cones and functions.
 
-\section{Definitions of Asymptotic Cones}
+\section{Asymptotic Cones}
 
-Before introducing the definition of asymptotic cones, we explain the motivation of considering asymptotic cones briefly. In classical analysis, in most cases, the boundedness of a given set is supposed naturally since the assumption leads to the existence of a limit of a sequence in the set by using Bolzano-Weierstrass theorem. However, in convex analysis, we are interested in existence of unbounded sets. Actually, the set of all feasible solutions of a convex optimization problem is unbounded in general. In such a case, we need to consider the limit of a sequence in the set. Asymptotic cones are tools to consider the limit of a sequence in an unbounded set.
-The following statement is the definition of asymptotic cones.
+Before introducing the definition of asymptotic cone, we explain the motivation of considering asymptotic cones briefly. In classical analysis, in most cases, the boundedness of a given set is supposed naturally since the assumption leads to the existence of a limit of a sequence in the set by using Bolzano-Weierstrass theorem. However, in convex analysis, we are interested in existence of unbounded sets. Actually, the set of all feasible solutions of a convex optimization problem is unbounded in general. In such a case, we need to consider the limit of a sequence in the set. Asymptotic cones are tools based on the limit of a sequence in an unbounded set.
+The following statement is the definition of asymptotic cone.
 
 \begin{dfn}
-  $C \subset \mathbb{R}^n$, $C \neq \emptyset$. Then, the asymptotic cone of the set $C$, denoted by $C_\infty$, is the set below with $\{ x_k \} \subset C$;
+  $C \subset \mathbb{R}^n$, $C \neq \emptyset$. Then, the asymptotic cone of the set~$C$, denoted by $C_\infty$, is the set below with $\{ x_k \} \subset C$;
   \begin{equation}
     C_\infty = \left\{ d \in
     \mathbb{R}^n \:\middle|\: \exists t_k \rightarrow +\infty, \exists x_k \in C \:\text{\rm with}\: \lim_{k \to \infty} \frac{x_k}{t_k} = d \right\}. \notag
@@ -255,10 +358,10 @@ The following statement is the definition of asymptotic cones.
         Since $d_k \rightarrow d$ and ${t_k^m}^{-1} \cdot x_k^m \rightarrow d_k$ as $m \rightarrow \infty$ for each $k \in \NaturalNumberSet$,
         \begin{equation}
           \begin{split}
-            \forall n &\in \NaturalNumberSet, \exists k(n) \in \NaturalNumberSet \SuchThat \forall j \geq k(n), ||d_j -d|| < \frac{1}{n} \\
+            \forall n &\in \NaturalNumberSet, \exists k(n) \in \NaturalNumberSet \SuchThat \forall j \geq k(n), \Norm{d_j -d} < \frac{1}{n} \\
               &\text{and}\\
             \forall k &\in \NaturalNumberSet (1 \leq k \leq k(n)), \exists m(n,k) \in \NaturalNumberSet \SuchThat \\
-            &\forall m \geq m(n,k), ||\frac{x_k^m}{t_k^m} -d_k|| < \frac{1}{n}. \notag
+            &\forall m \geq m(n,k), \Norm{\frac{x_k^m}{t_k^m} -d_k} < \frac{1}{n}. \notag
           \end{split}
         \end{equation}
         Now we can rearrange
@@ -268,7 +371,7 @@ The following statement is the definition of asymptotic cones.
           m(n) &\coloneqq \max_{1 \leq k \leq k(n)}\{m(n,k)\} + n \notag
           \end{split}
         \end{equation}
-        as sequences of $n \in \NaturalNumberSet$. Then it holds that $k(1) \leq k(2) \leq \ldots$ and $m(1) \leq m(2) \leq \ldots$. We define
+        as sequences of $n \in \NaturalNumberSet$. Then it holds that $k(1) \leq k(2) \leq \ldots$ and $m(1) \leq m(2) \leq \cdots$. We define
         \begin{equation}
           \begin{split}
             t_n &\coloneqq t_{k(n)}^{m(n)} \:\text{and}\: \\
@@ -283,9 +386,9 @@ The following statement is the definition of asymptotic cones.
             \frac{x_n}{t_n} &= \frac{x_{k(n)}^{m(n)}}{t_{k(n)}^{m(n)}}. \notag
           \end{split}
         \end{equation}
-        Hence we obtain for each $n \in \NaturalNumberSet$
+        Hence we obtain for each $n \in \NaturalNumberSet$,
         \begin{equation}
-          0 \leq \left\lVert \frac{x_n}{t_n} - d\right\rVert \leq \left\lVert \frac{x_{k(n)}^{m(n)}}{t_{k(n)}^{m(n)}} - d_{k(n)}\right\rVert + \left\lVert d_{k(n)} -d \right\rVert< \frac{1}{2n} \rightarrow 0 \notag
+          0 \leq \Norm{\frac{x_n}{t_n} - d} \leq \Norm{\frac{x_{k(n)}^{m(n)}}{t_{k(n)}^{m(n)}} - d_{k(n)}} + \Norm{d_{k(n)} -d}< \frac{1}{2n} \rightarrow 0 \notag
         \end{equation}
         as $n \rightarrow \infty$.
         Thus $d \in C_{\infty}$, that is, $C_{\infty}$ is a closed set.
@@ -330,13 +433,13 @@ The following statement is the definition of asymptotic cones.
       \begin{equation}
         \lim_{k \to \infty} d_k = d. \notag
       \end{equation}
-      We define $y_k = k \cdot d_k$ and $s_k = k$ for each $k$. Since $d_k \in C$ and $C$ is a cone, $y_k$ is also a element of $C$.
+      We define $y_k = k \cdot d_k$ and $s_k = k$ for each $k$. Since $d_k \in C$ and $C$ is a cone, $y_k$ is also an element of $C$.
 
       There exist $\{s_k\}_{k=1}^{\infty}$ with $s_k \rightarrow \infty$ as $k \rightarrow \infty$ and $\{y_k\}_{k=1}^{\infty} \subset C$ such that
       \begin{equation}
         \lim_{k \to \infty} \frac{y_k}{s_k} = \lim_{k \to \infty} d_k = d. \notag
       \end{equation}
-      As $d \in C_{\infty}$, therefore $C_{\infty} \supset  \text{cl}\:C$.
+      As $d \in C_{\infty}$, we have $C_{\infty} \supset  \text{cl}\:C$.
 
     \end{enumerate}
   \end{enumerate}
@@ -355,7 +458,7 @@ The following statement is the definition of asymptotic cones.
   \end{enumerate}
 
   \begin{enumerate}[label=\roman*,align=CenterWithParen]
-    \item By Proposition 2.1.1 (i), $0 \in C_{\infty}$. Also, by the assumption $C$ is bounded,
+    \item By Proposition 2.1.1 (i), $0 \in C_{\infty}$. Also, by the assumption that $C$ is bounded,
     \begin{equation}
       \exists r > 0, \forall x_k \in C \:\text{where}\: k \in \NaturalNumberSet,  \left\lVert x_k \right\rVert \leq r. \notag
     \end{equation}
@@ -365,7 +468,7 @@ The following statement is the definition of asymptotic cones.
     \end{equation}
     Thus the limit becomes only 0 for any $\{x_k\}_{k=1}^{\infty} \subset C$ and $\{t_k\}_{k=1}^{\infty}$ with $t_k \rightarrow \infty$ as $k \rightarrow \infty$. Therefore if $C$ is bounded then $C_{\infty} = \{0\}$.
 
-    \item If $C$ is unbounded, then there exists a sequence $\{x_k\} \subset C$ with $x_k \ne 0$, $\forall k \in \NaturalNumberSet$, such that $t_k \coloneqq \left\lVert t_k \right\rVert \rightarrow \infty$ and thus the vectors $d_k = t_k^{-1} x_k \in \{ d \:\colon\: \left\lVert d\right\rVert = 1 \}$. By the Bolzano-Weierstrass, we can extract a subsequence of $\{d_k\}$ such that $\lim_{k \in K} d_k = d$, $K \subset \NaturalNumberSet$, and with $\left\lVert d \right\rVert = 1$. This nonzero vector $d$ is an element of $C_{\infty}$ by Definition 2.1.2, a contradiction.
+    \item If $C$ is unbounded, then there exists a sequence $\{x_k\} \subset C$ with $x_k \ne 0$, $\forall k \in \NaturalNumberSet$, such that $t_k \coloneqq \left\lVert t_k \right\rVert \rightarrow \infty$ and thus the vectors $d_k = t_k^{-1} x_k \in \{ d \:\colon\: \left\lVert d\right\rVert = 1 \}$. By the Bolzano-Weierstrass theorem, we can extract a subsequence of $\{d_k\}$ such that $\lim_{k \in K} d_k = d$, $K \subset \NaturalNumberSet$, and with $\left\lVert d \right\rVert = 1$. This nonzero vector $d$ is an element of $C_{\infty}$ by Definition~2.1.2, which is a contradiction.
   \end{enumerate}
 \end{proof}
 
@@ -382,9 +485,9 @@ The following statement is the definition of asymptotic cones.
 \end{prop}
 
 \begin{proof}
-  The inclusion $C^1_{\infty} \subset C_{\infty}$ clearly holds from the definitions of $C^1_{\infty}$ and $C_{\infty}$, respectively. We now show the reverse inclusion $C^1_{\infty} \supset C_{\infty}$. Let $d \in C_{\infty}$. Then, by the definition of asymptotic cones,
+  The inclusion $C^1_{\infty} \subset C_{\infty}$ clearly holds from the definitions of $C^1_{\infty}$ and $C_{\infty}$, respectively. We now show the reverse inclusion $C^1_{\infty} \supset C_{\infty}$. Let $d \in C_{\infty}$. Then, by the definition of asymptotic cone,
   \begin{equation}
-    \exists \{x_k\} \in C, \exists \{s_k\} \to +\infty \SuchThat d = \lim_{k \to \infty} \frac{x_k}{s_k}. \notag
+    \exists \{x_k\} \in C, \exists \{s_k\} \to +\infty \:\SuchThat\: d = \lim_{k \to \infty} \frac{x_k}{s_k}. \notag
   \end{equation}
   Let $x \in C$ and define $d_k = s_k^{-1}(x_k-x)$. Then we have
   \begin{equation}
@@ -395,16 +498,16 @@ The following statement is the definition of asymptotic cones.
 
 We note that it can be asymptotically regular even if $C$ is not convex. For example, let $C = \SetForm{x \in \NDemenstionalRealEuclideanSpace}{\left\lVert x \right\rVert \leq 1} \cup \SetForm{x \in \NDemenstionalRealEuclideanSpace}{\left\lVert x \right\rVert \geq 2}$. Then $C_{\infty} = C_{\infty}^1 = \NDemenstionalRealEuclideanSpace$.
 
-\begin{prop}
+\begin{prop}\label{RepresentationOfAsymptoticCone}
   Let $C$ be a nonempty convex set in $\NDemenstionalRealEuclideanSpace$. Then the asymptotic cone $C_{\infty}$ is a closed convex cone. Moreover, define the following sets:
   \begin{equation}
     \begin{split}
       D(x) &\coloneqq \SetForm{d \in \NDemenstionalRealEuclideanSpace}{x+td \in \Closure{C}, \forall t>0}, \forall x \in C \\
-      E &\coloneqq \SetForm{d \in \NDemenstionalRealEuclideanSpace}{\exists x \in C \SuchThat x+td \in \Closure{C}, \forall t>0}, \\
+      E &\coloneqq \SetForm{d \in \NDemenstionalRealEuclideanSpace}{\exists x \in C \:\SuchThat\: x+td \in \Closure{C}, \forall t>0}, \\
       F &\coloneqq \SetForm{d \in \NDemenstionalRealEuclideanSpace}{d + \Closure{C} \subset \Closure{C}}. \notag
     \end{split}
   \end{equation}
-  Then $D(x)$ is in fact independent of $x$, which iw thus now denoted by $D$, and $D = E = F = C_{\infty}$.
+  Then $D(x)$ is in fact independent of $x$, which is thus now denoted by $D$, and $D = E = F = C_{\infty}$.
 \end{prop}
 
 \begin{proof}
@@ -419,7 +522,7 @@ We note that it can be asymptotically regular even if $C$ is not convex. For exa
   \end{enumerate}
   We now show each statement.
   \begin{enumerate}[label=\roman*,align=CenterWithParen]
-    \item We have already shown that $C_{\infty}$ is a closed cone in Proposition \ref{basicPropositionOfAsymptoticCone}. We only show that $C_{\infty}$ is convex. Let $d_1, d_2 \in C_{\infty}$ and $\lambda \in (0,1)$. By Proposition \ref{ConvexSetIsAsymptoticallyRegular}, we have
+    \item We have already shown that $C_{\infty}$ is a closed cone in Proposition~\ref{basicPropositionOfAsymptoticCone}. We only show that $C_{\infty}$ is convex. Let $d_1, d_2 \in C_{\infty}$ and $\lambda \in (0,1)$. By Proposition~\ref{ConvexSetIsAsymptoticallyRegular}, we have
     \begin{equation}
       \forall t_k \to \infty, \exists x_k, y_k \in C \:\text{with}\: \lim_{k \to \infty} \frac{x_k}{t_k} = d_1 \: \text{and}\: \lim_{k \to \infty} \frac{y_k}{t_k} = d_2. \notag
     \end{equation}
@@ -438,60 +541,41 @@ We note that it can be asymptotically regular even if $C$ is not convex. For exa
     \end{equation}
     Passing to the limit as $k \to \infty$, we thus obtain $x + td \in \Closure{C}$, $\forall t>0$, proving $C_{\infty} \subset D(x)$.
     \item The inclusion $D(x) \subset E$ is obvious.
-    \item We now show that $E \subset C_{\infty}$. For that, let $d \in E$ and $x \in C$ be such that $x(t) \coloneqq x + td \in \Closure{C}, \forall t>0$. Then, since $d = \lim_{t \to \infty} t^{-1}x(t)$ and $x(t) \in \Closure{C}$, we have $d \in (\Closure{C})_{\infty} = C_{\infty}$ by Proposition \ref{basicPropositionOfAsymptoticCone}, which also proves that $D(x) = D = C_{\infty} = E$.
+    \item We now show that $E \subset C_{\infty}$. For this end, let $d \in E$ and $x \in C$ be such that $x(t) \coloneqq x + td \in \Closure{C}, \forall t>0$. Then, since $d = \lim_{t \to \infty} t^{-1}x(t)$ and $x(t) \in \Closure{C}$, we have $d \in (\Closure{C})_{\infty} = C_{\infty}$ by Proposition~\ref{basicPropositionOfAsymptoticCone}, which also proves that $D(x) = D = C_{\infty} = E$.
     \item Let $d \in C_{\infty}$. Using the representation $C_{\infty} = D$, we thus have $x+d \in \Closure{C}, \forall x \in C$, and hence $d + \Closure{C} \subset \Closure{C}$, proving the inclusion $C_{\infty} \subset F$.
     \item Now, if $d \in F$, then $d + \Closure{C} \subset \Closure{C}$, and it follows that
     \begin{equation}
       2d + \Closure{C} = d + (d + \Closure{C}) \subset d + \Closure{C} \subset \Closure{C}. \notag
     \end{equation}
-    and by induction, $\Closure{C} + md \subset \Closure{C} \forall m\in \NaturalNumberSet$. Therefore, $\forall x \in \Closure{C}$, $d_m \coloneqq x+md \in \Closure{C}$ and $d = \lim_{m \to \infty} m^{-1}d_m$, namely $d \in C_{\infty}$, showing that $F \subset C_{\infty}$.
+    and by induction, $\Closure{C} + md \subset \Closure{C}$, $\forall m\in \NaturalNumberSet$. Therefore, $\forall x \in \Closure{C}$, $d_m \coloneqq x+md \in \Closure{C}$ and $d = \lim_{m \to \infty} m^{-1}d_m$, namely $d \in C_{\infty}$, showing that $F \subset C_{\infty}$.
   \end{enumerate}
 \end{proof}
 
 \section{Asymptotic Functions}
 
+Considering the concept of asymptotic cone of the epigraph of a function, asymptotic functions can be defined. In this section, we introduce the definition of asymptotic function and some basic properties.
+
 \begin{dfn}
   For any proper function $\ExtendedRealValuedFunction{f}{\NDemenstionalRealEuclideanSpace}$, there exists a unique function $\ExtendedRealValuedFunction{f_{\infty}}{\NDemenstionalRealEuclideanSpace}$ associated with $f$, called the asymptotic function, such that $\Epigraph{f_\infty} = (\Epigraph{f})_{\infty}$.
 \end{dfn}
-
-\begin{prop}
-  For any proper function $\ExtendedRealValuedFunction{f}{\NDemenstionalRealEuclideanSpace}$, we have:
-  \begin{enumerate}[label=\roman*,align=CenterWithParen]
-    \item $f_{\infty}$ is lsc and positively homogeneous.
-    \item $f_{\infty}(0) = 0$ or $f_{\infty}(0) = - \infty$.
-    \item If $f_{\infty}(0) = 0$, then $f_{\infty}$ is proper.
-  \end{enumerate}
-\end{prop}
-
-\begin{proof}
-  We show each statement.
-  \begin{enumerate}[label=\roman*,align=CenterWithParen]
-    \item By the definition of the asymptotic function and the fact that asymptotic cones are closed (see Proposition \ref{basicPropositionOfAsymptoticCone}), it follows that $f_{\infty}$ is l.s.c. \\
-    First, note that $0 \in \Domain{f_{\infty}}$. Let $x \in \Domain{f_{\infty}}$. Since $(\Epigraph{f})_{\infty}$ is a cone, we have
-    \begin{equation}
-      (\lambda x, \lambda f_{\infty}(x)) \in \Epigraph{f_{\infty}}, \quad \forall \lambda > 0. \notag
-    \end{equation}
-    By the definition of epigraph, we obtain $f_{\infty} (\lambda x) \leq \lambda f_{\infty}(x)$. \\
-    Likewise, $\forall x \in \Domain{f_{\infty}}, \lambda > 0$, $(\lambda x, f_{\infty}(\lambda x)) \in \Epigraph{f_{\infty}}$ and hence one has $(x, \lambda^{-1}f_{\infty}(\lambda x)) \in \Epigraph{f_\infty}$ by the cone property. Therefore, $\lambda f_{\infty}(x) \leq f_{\infty} (\lambda x)$
-    \item Since $f$ is proper, then $\Epigraph{f}$ is nonempty, and hence either $f_{\infty}(0)$ is finite or $f_{\infty}(0) = - \infty$. If $f_{\infty}(0)$ is finite, then by the result of (i), $f_{\infty}(0) = \lambda f_{\infty}(0), \forall \lambda > 0$. Thus, $f_{\infty}(0) = 0$.
-  \item Suppose that $f_{\infty}$ is not proper. Then, by the definition, there exists $x$ such that $f_{\infty}(x) = -\infty$. Now let $\{\lambda_k\} \subset \NDemenstionalRealEuclideanSpace_{++}$ be a positive sequence converging to $0$. Then $\lambda_k x \rightarrow 0$, and under our assumption, the lower semicontinuity of $f_{\infty}$, and the result of (i), we have
-  \begin{equation}
-    0 = f_{\infty}(0) \leq \liminf_{k \to \infty} f_{\infty}(\lambda_k x) = \liminf_{k \to \infty} \lambda_k f_{\infty}(x) = - \infty, \notag
-  \end{equation}
-  leading to a contradiction. Therefore, $f_{\infty}$ is proper.
-  \end{enumerate}
-\end{proof}
 
 We now give a fundamental representation of the asymptotic function.
 
 \begin{thm}
   For any proper function $\ExtendedRealValuedFunction{f}{\NDemenstionalRealEuclideanSpace}$, the asymptotic function $f_{\infty}$ is represented as
   \begin{equation}
-    f_{\infty}(d) = \liminf_{t \to +\infty, d' \to d} \frac{f(td')}{t},
+    f_{\infty}(d) = \liminf_{
+      \def\arraystretch{0.5}
+      \tiny
+      \begin{array}{lcr}
+      d' \to d \\
+      t \to +\infty
+      \end{array}
+      } \frac{f(td')}{t},
   \end{equation}
   or equivalently,
   \begin{equation}
-    f_{\infty}(d) = \inf \left\{ \liminf_{k \to \infty} \frac{f(t_k d_k)}{t_k} \:|\: t_k \to +\infty, d_k \to d \right\},
+    f_{\infty}(d) = \inf \left\{ \liminf_{k \to \infty} \frac{f(t_k d_k)}{t_k} \:\middle|\: t_k \to +\infty, d_k \to d \right\},
   \end{equation}
   where $\{t_k\}$ and $\{d_k\}$ are sequences in $\RealNumberSet$ and  $\NDemenstionalRealEuclideanSpace$, respectively.
 \end{thm}
@@ -499,7 +583,7 @@ We now give a fundamental representation of the asymptotic function.
 \begin{proof}
   We show that $(\Epigraph{f})_{\infty} = \Epigraph{g}$, where $g$ is defined by
   \begin{equation}
-    g(d) = \inf \left\{ \liminf_{k \to \infty} \frac{f(t_k d_k)}{t_k} \:|\: t_k \to +\infty, d_k \to d \right\}. \notag
+    g(d) = \inf \left\{ \liminf_{k \to \infty} \frac{f(t_k d_k)}{t_k} \:\middle|\: t_k \to +\infty, d_k \to d \right\}. \notag
   \end{equation}
   To begin with, we prove $(\Epigraph{f})_{\infty} \subset \Epigraph{g}$. For any $(d, \mu) \in (\Epigraph{f})_{\infty}$, by the definition of asymptotic cones, one has
   \begin{equation}
@@ -525,6 +609,54 @@ We now give a fundamental representation of the asymptotic function.
   Furthermore, by the definition of epigraph, we obtain $g(d) \leq \mu$. As for these inequalities, it follows that $f(s_k u_k) \leq (\mu + \epsilon) s_k$ and hence $z_k \coloneqq s_k (u_k,\mu + \epsilon) \in \Epigraph{f}$. Since ${s_k}^{-1}z_k \to (d, \mu + \epsilon)$ as $k \to \infty$, it holds that $(d, \mu + \epsilon) \in (\Epigraph{f})_{\infty}$, and since $(\Epigraph{f})_{\infty}$ is closed and $\epsilon$ is arbitrary, we have $(d, \mu) \in (\Epigraph{f})_{\infty}$, proving $\Epigraph{g} \subset (\Epigraph{f})_{\infty}$.
 \end{proof}
 
+\begin{prop}\label{basicPropositionOfAsymptoticFunctions}
+  For any proper function $\ExtendedRealValuedFunction{f}{\NDemenstionalRealEuclideanSpace}$, we have:
+  \begin{enumerate}[label=\roman*,align=CenterWithParen]
+    \item $f_{\infty}$ is l.s.c. and positively homogeneous.
+    \item $f_{\infty}(0) = 0$ or $f_{\infty}(0) = - \infty$.
+    \item If $f_{\infty}(0) = 0$, then $f_{\infty}$ is proper.
+    \item Let $(\alpha f)(x) \coloneqq \alpha f(x)$, $\alpha > 0$. Then $(\alpha f)_{\infty} = \alpha f_{\infty}$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  We show each statement.
+  \begin{enumerate}[label=\roman*,align=CenterWithParen]
+    \item By the definition of the asymptotic function and the fact that asymptotic cones are closed (see Proposition~\ref{basicPropositionOfAsymptoticCone}), it follows that $f_{\infty}$ is l.s.c. \\
+    First, note that $0 \in \Domain{f_{\infty}}$. Let $x \in \Domain{f_{\infty}}$. Since $(\Epigraph{f})_{\infty}$ is a cone, we have
+    \begin{equation}
+      (\lambda x, \lambda f_{\infty}(x)) \in \Epigraph{f_{\infty}}, \quad \forall \lambda > 0. \notag
+    \end{equation}
+    By the definition of epigraph, we obtain $f_{\infty} (\lambda x) \leq \lambda f_{\infty}(x)$. \\
+    Likewise, $\forall x \in \Domain{f_{\infty}}, \lambda > 0$, $(\lambda x, f_{\infty}(\lambda x)) \in \Epigraph{f_{\infty}}$ and hence one has $(x, \lambda^{-1}f_{\infty}(\lambda x)) \in \Epigraph{f_\infty}$ by the cone property. Therefore, $\lambda f_{\infty}(x) \leq f_{\infty} (\lambda x)$.
+    \item Since $f$ is proper, then $\Epigraph{f}$ is nonempty, and hence either $f_{\infty}(0)$ is finite or $f_{\infty}(0) = - \infty$. If $f_{\infty}(0)$ is finite, then by the result of (i), $f_{\infty}(0) = \lambda f_{\infty}(0), \forall \lambda > 0$. Thus, $f_{\infty}(0) = 0$.
+  \item Suppose that $f_{\infty}$ is not proper. Then, by the definition, there exists $x$ such that $f_{\infty}(x) = -\infty$. Now let $\{\lambda_k\} \subset \NDemenstionalRealEuclideanSpace_{++}$ be a positive sequence converging to $0$. Then $\lambda_k x \rightarrow 0$, and under our assumptions, the lower semicontinuity of $f_{\infty}$, and the result of (i), we have
+  \begin{equation}
+    0 = f_{\infty}(0) \leq \liminf_{k \to \infty} f_{\infty}(\lambda_k x) = \liminf_{k \to \infty} \lambda_k f_{\infty}(x) = - \infty, \notag
+  \end{equation}
+  leading to a contradiction. Therefore, $f_{\infty}$ is proper.
+  \item Let $d \in \NDemenstionalRealEuclideanSpace$. Then, by the formula (3.1), we have
+  \begin{equation}
+    (\alpha f)_{\infty}(d) = \liminf_{
+      \def\arraystretch{0.5}
+      \tiny
+      \begin{array}{lcr}
+      d' \to d \\
+      t \to +\infty
+      \end{array}
+      } \frac{(\alpha f)(td')}{t} = \alpha \liminf_{
+        \def\arraystretch{0.5}
+        \tiny
+        \begin{array}{lcr}
+        d' \to d \\
+        t \to +\infty
+        \end{array}
+        } \frac{f(td')}{t} = \alpha f_{\infty}(d). \notag
+  \end{equation}
+  \end{enumerate}
+\end{proof}
+
+
 \begin{prop}
   Let $\ExtendedRealValuedFunction{f}{\NDemenstionalRealEuclideanSpace}$ be a proper, l.s.c, convex function. The asymptotic function $f_{\infty}$ is positively homogeneous, l.s.c., proper convex function, and for any $d \in \NDemenstionalRealEuclideanSpace$, one has
   \begin{equation}
@@ -537,10 +669,45 @@ We now give a fundamental representation of the asymptotic function.
 \end{prop}
 
 \begin{proof}
-  TODO
+  The proof is broken into three steps:
+  \begin{enumerate}[label=\roman*,align=CenterWithParen]
+    \item $f_{\infty}$ is positively homogeneous, and a proper l.s.c. convex function,
+    \item the formula (4.3) holds, and
+    \item the formula (4.4) holds.
+  \end{enumerate}
+
+  We now prove each statement.
+
+  \begin{enumerate}[label=\roman*,align=CenterWithParen]
+    \item By Proposition~\ref{basicPropositionOfAsymptoticFunctions} (a), the asymptotic function $f_{\infty}$is l.s.c. and positively homogeneous, while the convexity of $f_{\infty}$ follows from the convexity of $f$. In addition, since $f$ is proper, we get $x \in \Domain{f}$. Let $d = 0$. Then, by the representation of (4.3),
+    \begin{equation}
+      f_{\infty}(0) = \sup \{f(x+0) -f(x) \:|\: x \in \Domain{f}\} = 0. \notag
+    \end{equation}
+    Thus, by Proposition~\ref{basicPropositionOfAsymptoticFunctions} (c), $f_{\infty}$ is proper.
+    \item By the definition, the asymptotic function $f_{\infty}$ associated with $f$ is uniquely determined via the representation $F$ of the asymptotic cone, one has $(d,\mu) \in (\Epigraph{f})_{\infty}$ if and only if for all $(x, \alpha) \in \Epigraph{f}$ it holds that
+    \begin{equation}
+      (x, \alpha) + (d, \mu) \in \Epigraph{f}, \notag
+    \end{equation}
+    namely, if and only if $f(x+d) \leq \alpha + \mu$. The latter inequality is clearly equivalent to $f(x+d) - f(x) \leq \mu, \forall x \in \Domain{f}$, proving the formula (4.3).
+    \item To verify (4.4), let $x \in \Domain{f}$. Then again using Proposition~\ref{RepresentationOfAsymptoticCone} but via representation $D$ of the asymptotic cone, one has for any $x \in \Domain{f}$,
+    \begin{equation}
+      (\Epigraph{f})_{\infty} = \SetForm{(d,\mu) \in \NDemenstionalRealEuclideanSpace \times \RealNumberSet}{(x, f(x)) + t(d,\mu) \in \Epigraph{f}, \forall t>0} \notag
+    \end{equation}
+    and hence $(d,\mu) \in (\Epigraph{f})_{\infty}$ if and only if for any $x \in \Domain{f}$ we have
+    \begin{equation}
+      f(x+td) \leq f(x) + t\mu, \forall t>0, \notag
+    \end{equation}
+    which means exactly that
+    \begin{equation}
+      g(d) \coloneqq \sup_{t>0} \frac{f(x+td) - f(x)}{t} \leq \mu, \notag
+    \end{equation}
+    and hence $(\Epigraph{f})_{\infty} = \Epigraph{g}, \forall x \in \Domain{f}$, proving the formula (4.4).
+    It simply follows that the limit in $t$ in the first part of the formula (4.4) coincides with the supremum in $t$ by recalling that the convexity of $f$ implies that for fixed $x$, $d\in\NDemenstionalRealEuclideanSpace$, for any $t>0$ the function $t \mapsto t^{-1}(f(x+td)-f(x))$ is nondecreasing.
+  \end{enumerate}
+
 \end{proof}
 
-\begin{thm}
+\begin{thm}\label{propertiesOfAsymptoticFunctionsAndSupportFunctions}
   Let $\ExtendedRealValuedFunction{f}{\NDemenstionalRealEuclideanSpace}$ be a proper convex function, and $\ConjugateFunction{f}$ its conjugate. The following relations hold:
   \begin{enumerate}[label=\alph*,align=CenterWithParen]
     \item $(\ConjugateFunction{f})_{\infty} = \SupportFunction{\Domain{f}}$.
@@ -552,7 +719,39 @@ We now give a fundamental representation of the asymptotic function.
 \end{thm}
 
 \begin{proof}
-  TODO
+  (a) By the definition of the asymptotic function $f_{\infty}$ given by the formula (4.3), that of the conjugate function and $f^{**} \leq f$, we have
+  \begin{equation}
+    \begin{split}
+      (\ConjugateFunction{f})_{\infty} &= \sup \{ \ConjugateFunction{f}(x+d) - \ConjugateFunction{f}(x) \:|\: x \in \Domain{\ConjugateFunction{f}} \} \\
+      &= \sup_{x \in \Domain{\ConjugateFunction{f}}}\{ \sup_{u \in \Domain{f}} \{ \InnerProduct{u}{x+d} - f(u) \} -\ConjugateFunction{f}(u) \} \\
+      &= \sup_{u \in \Domain{f}} \{ \sup_{x \in \Domain{\ConjugateFunction{f}}} \{ \InnerProduct{u}{x} - \ConjugateFunction{f}(x) \} + \InnerProduct{u}{d} - f(u) \} \\
+      &= \sup_{u \in \Domain{f}} \{ \InnerProduct{u}{d} + f^{**}(u) - f(u) \} \\
+      &\leq \SupportFunction{\Domain{f}}(d). \notag
+    \end{split}
+  \end{equation}
+  We now prove the reverse inequality $(\ConjugateFunction{f})_{\infty}(d) \geq \SupportFunction{\Domain{f}}(d)$. Clearly, for any $d \notin \Domain{(\ConjugateFunction{f})_{\infty}}$ there is nothing to prove. Thus, let any $d \in \Domain{(\ConjugateFunction{f})_{\infty}}$ and take $\mu = (\ConjugateFunction{f})_{\infty}(d)$. Then, by the formula (4.4) one has
+  \begin{equation}
+    \ConjugateFunction{f}(z+td) - \ConjugateFunction{f}(z) \leq \mu t, \forall z \in \Domain{\ConjugateFunction{f}}, \forall t>0. \notag
+  \end{equation}
+  On the other hand, by the definition of the conjugate function, we have
+  \begin{equation}
+    f(x) + \ConjugateFunction{f}(z+td) \geq \InnerProduct{x}{z} + t\InnerProduct{x}{d},\forall t>0, \notag
+  \end{equation}
+  which combined with the inequality above implies
+  \begin{equation}
+    f(x) \geq \InnerProduct{x}{z} - \ConjugateFunction{f}(z) + t(\InnerProduct{x}{d} - \mu) \forall t>0. \notag
+  \end{equation}
+  Therefore, as $t \to +\infty$, it follows that $\InnerProduct{x}{d}\leq\mu, \forall x \in \Domain{f}$ and hence
+  \begin{equation}
+    \sup_{\Domain{f}} \InnerProduct{x}{d} \leq \mu \quad \text{and thus} \quad \SupportFunction{\Domain{f}}(d) \leq (\ConjugateFunction{f})_{\infty}(d). \notag
+  \end{equation}
+  (b) We now assume that $f$ is l.s.c., which implies that $f^{**}= f$. Then, replacing $f$ by $\ConjugateFunction{f}$ in the formula proven in (a) yields $(f^{**})_{\infty} = \SupportFunction{\Domain{\ConjugateFunction{f}}} = f_{\infty}$, proving the first formula of (b).
+
+  Taking conjugate in that formula and recalling that for any set $C \subset \NDemenstionalRealEuclideanSpace$, $\SupportFunction{C} = \SupportFunction{\Closure{C}}$ and $\SupportFunction{C} = \IndicatorFunction{C}^*$, we obtain
+  \begin{equation}
+    (\ConjugateFunction{f})_{\infty} = (\SupportFunction{\Closure{\Domain{\ConjugateFunction{f}}}})^* = \IndicatorFunction{\Closure{\Domain{\ConjugateFunction{f}}}}^{**} = \IndicatorFunction{\Closure{\Domain{\ConjugateFunction{f}}}}, \notag
+  \end{equation}
+  proving the second formula of (b).
 \end{proof}
 
 % 5. Application of Asymptotic Functions to Semidefinite Programming
@@ -563,7 +762,7 @@ This chapter can be considered as the main part of the paper. Semidefinite progr
 
 \section{Semidefinite Programming}
 
-Mathematical optimization problems are initially classified into two types, continuous optimization problem and discrete optimization problem. In continuous optimization problem, the variables of the problem are continuos. On the other hand, in the case that the variables can only be taken as discrete values like 0 or 1, the problem is called discrete optimization. General mathematical programming have twe types, convex programming and non-convex programming. Convex programming is a problem of minimizing a convex function subject to convex constraints of the domain. SDP we centrally consider is one of the convex programming problems and has several famous mathematical optimization problems like liner programming, convex quadratic programming, and second-order cone programming.
+Mathematical optimization problems are initially classified into two types, continuous optimization problem and discrete optimization problem. In continuous optimization problem, the variables of the problem are continuous. On the other hand, in the case that the variables can only be taken as discrete values like 0 or 1, the problem is called discrete optimization. General mathematical programming have twe types, convex programming and non-convex programming. Convex programming is a problem of minimizing a convex function subject to convex constraints of the domain. SDP we centrally consider is one of the convex programming problems and has several famous mathematical optimization problems like liner programming, convex quadratic programming, and second-order cone programming.
 
 When we suppose that $C \in \NDemenstionalRealSymmetricMatrixSpace$, $A_i \in \NDemenstionalRealSymmetricMatrixSpace$, $b_i \in \RealNumberSet$, $i = 1,\dots,m$, and $X \in \NDemenstionalRealSymmetricMatrixSpace$, which is a variable on the problem, the following constrained problem is called semidefinite programming (SDP).
 
@@ -619,16 +818,18 @@ the spectrally defined function is deduced;
 \begin{prop}
   The $\Phi$ is spectrally defined if and only if $\Phi$ is othonormally in variant, that is,
   \begin{equation}
-    \Phi (UAU^T) = \Phi (A), \forall A \in \mathcal{U}_n, \notag
+    \Phi (UAU^T) = \Phi (A), \forall A \in \NDemenstionalRealOthonormalMatrixSpace, \notag
   \end{equation}
-  where $\mathcal{U}_n \coloneqq$ the set $n \times n$ orthogonal matrices.
+  where $\NDemenstionalRealOthonormalMatrixSpace$ is the set $n \times n$ orthogonal matrices.
 \end{prop}
 
-\begin{proof}
-  TODO
-\end{proof}
+An important and useful inequality is the trace inequality
+\begin{equation}
+  \InnerProduct{X}{Y} \leq \InnerProduct{\lambda(X)}{\lambda(Y)}, \forall X,Y \in \NDemenstionalRealSymmetricMatrixSpace  \notag
+\end{equation}
+and equality holds if and only if $X$ and $Y$ are simultaneously diagonalizable.
 
-To prove the following key theorem, we introduce two properties of symmetric matrices.
+To prove the following Lewis's theorem, we introduce two properties of symmetric matrices.
 
 \begin{lem}\label{lemma1ForLewis96}
   $\forall Y \in \NDemenstionalRealSymmetricMatrixSpace$, there exists a orthogonal matrix $U_0$ diagonalizing $Y$ and satisfying
@@ -650,11 +851,11 @@ To prove the following key theorem, we introduce two properties of symmetric mat
 \end{proof}
 
 \begin{lem}\label{lemma2ForLewis96}
-  Let $B: \NDemenstionalRealSymmetricMatrixSpace \to \NDemenstionalRealSymmetricMatrixSpace$. Suppose to $B(X) = U^TXU$ with $U \in \mathcal{U}_n$ where $\mathcal{U}_n \coloneqq$ the set $n \times n$ orthogonal matrices. Then $U^TXU \in \NDemenstionalRealSymmetricMatrixSpace, \forall X \in \NDemenstionalRealSymmetricMatrixSpace$ and $B$ is surjective.
+  Let $B: \NDemenstionalRealSymmetricMatrixSpace \to \NDemenstionalRealSymmetricMatrixSpace$. Suppose to $B(X) = U^TXU$ with $U \in \NDemenstionalRealOthonormalMatrixSpace$ where $\NDemenstionalRealOthonormalMatrixSpace \coloneqq$ the set $n \times n$ orthogonal matrices. Then $U^TXU \in \NDemenstionalRealSymmetricMatrixSpace, \forall X \in \NDemenstionalRealSymmetricMatrixSpace$ and $B$ is surjective.
 \end{lem}
 
 \begin{proof}
-  $\forall X \in \NDemenstionalRealSymmetricMatrixSpace, U \in \mathcal{U}_n$, since $X$ is symmetric,
+  $\forall X \in \NDemenstionalRealSymmetricMatrixSpace, U \in \NDemenstionalRealOthonormalMatrixSpace$, since $X$ is symmetric,
   \begin{equation}
     (U^TXU)^T = U^TX^TU = U^TXU. \notag
   \end{equation}
@@ -662,7 +863,7 @@ To prove the following key theorem, we introduce two properties of symmetric mat
   In addition, we show that  $\forall Y \in \NDemenstionalRealSymmetricMatrixSpace, \exists X \in \NDemenstionalRealSymmetricMatrixSpace \SuchThat B(X) = Y$. For any $Y \in \NDemenstionalRealSymmetricMatrixSpace$, we put $X = UYU^T$. Then, we obtain $B(X) = U^TXU = Y$. Therefore, $B$ is surjective.
 \end{proof}
 
-\begin{thm}{(A.S.Lewis (1996), \cite{Lewis96})}
+\begin{thm}[\mbox{\cite[Lewis (1996)]{Lewis96}}]\label{Lewis96}
   Suppose that the function $\ExtendedRealValuedFunction{f}{\NDemenstionalRealEuclideanSpace}$ is symmetric, then
   \begin{equation}
     {\Phi_{f}}^* = \Phi_{f^*}. \notag
@@ -670,7 +871,7 @@ To prove the following key theorem, we introduce two properties of symmetric mat
 \end{thm}
 
 \begin{proof}
-  By the results of Lemma \ref{lemma1ForLewis96} and Lemma \ref{lemma2ForLewis96}, we have $\ConjugateFunction{\Phi_f}(Y) = \ConjugateFunction{\Phi}(\Diagnosis{\lambda (Y)})$. Using the definition of the conjugate functions, one thus has
+  By the results of Lemma~\ref{lemma1ForLewis96} and Lemma~\ref{lemma2ForLewis96}, we have $\ConjugateFunction{\Phi_f}(Y) = \ConjugateFunction{\Phi_f}(\Diagnosis{\lambda (Y)})$. Using the definition of the conjugate functions, one thus has
   \begin{equation}
     \begin{split}
       \ConjugateFunction{\Phi_f}(Y) &= \ConjugateFunction{\Phi}(\Diagnosis{\lambda (Y)})\\
@@ -696,7 +897,7 @@ To prove the following key theorem, we introduce two properties of symmetric mat
   \begin{enumerate}[label=\roman*,align=CenterWithParen]
     \item $\Phi_{f}$ is proper, convex, and lsc.
     \item $\ConjugateFunction{\Phi_f}(Y) + \Phi_f(X) \geq \InnerProduct{\lambda(X)}{\lambda(Y)}, \forall X,Y \in \NDemenstionalRealSymmetricMatrixSpace$.
-    \item $Y \in \partial \Phi_f(X) \Leftrightarrow \InnerProduct{\lambda(X)}{\lambda(Y)} = \InnerProduct{X}{Y} and \lambda(Y) \in \partial f(\lambda(x))$.
+    \item $Y \in \partial \Phi_f(X) \Leftrightarrow \InnerProduct{\lambda(X)}{\lambda(Y)} = \InnerProduct{X}{Y} \:\text{and}\: \lambda(Y) \in \partial f(\lambda(x))$.
   \end{enumerate}
 \end{prop}
 
@@ -733,7 +934,7 @@ To prove the following key theorem, we introduce two properties of symmetric mat
     \end{equation}
     Thus, $\lambda(Y) \in \partial f(\lambda(X))$.
 
-    ($\Leftarrow$) It is clear by the proof of ($\Rightarrow$).
+    ($\Leftarrow$) In the way of proving ($\Rightarrow$), it is clear.
   \end{enumerate}
 \end{proof}
 
@@ -754,7 +955,72 @@ As a result, the optimization problems $\min \{\Phi_{f}(X) \:|\: X \in \NDemenst
   \end{equation}
 \end{dfn}
 
-\begin{thm}{(A.Seeger (1997), \cite{Seeger97})}
+\begin{lem}\label{lemma1ForSeeger97}
+  Suppose that the function $\ExtendedRealValuedFunction{f}{\NDemenstionalRealEuclideanSpace}$ is symmetric, then
+  \begin{equation}
+    \Domain{\Phi_{\ConjugateFunction{f}}} = \SetForm{U (\Diagnosis{x}) U^T}{U \in \NDemenstionalRealOthonormalMatrixSpace, x \in \Domain{\ConjugateFunction{f}}}. \notag
+  \end{equation}
+\end{lem}
+
+\begin{proof}
+  We only show the inclusion
+  \begin{equation}
+    \Domain{\Phi_{\ConjugateFunction{f}}} \subset \SetForm{U (\Diagnosis{x}) U^T}{U \in \NDemenstionalRealOthonormalMatrixSpace, x \in \Domain{\ConjugateFunction{f}}} \notag
+  \end{equation}
+  because the reverse inclusion is leaded with the same way. Let $X \in \Domain{\Phi_{\ConjugateFunction{f}}}$. Then, since $\ConjugateFunction{f}$ is proper, $\ConjugateFunction{f}(\lambda(X)) < +\infty$. Let $x \coloneqq \lambda(X)$. We obtain $x \in \Domain{\ConjugateFunction{f}}$ and there exists $U \in \NDemenstionalRealOthonormalMatrixSpace$ such that $\Diagnosis{x} = U^TXU$. Accordingly, we get $X = U(\Diagnosis{x})U^T$. Hence, $X \in \SetForm{U (\Diagnosis{x}) U^T}{U \in \NDemenstionalRealOthonormalMatrixSpace, x \in \Domain{\ConjugateFunction{f}}}$.
+\end{proof}
+
+\begin{lem}\label{lemma2ForSeeger97}
+  Let $\ExtendedRealValuedFunction{f}{\NDemenstionalRealEuclideanSpace}$ be a symmetric, lsc, proper, convex function with induced spectral function $\Phi_{f}$. Then, for all $D \in \NDemenstionalRealSymmetricMatrixSpace$,
+  \begin{equation}
+    \Phi_{f_{\infty}}(D) = \sup \{\InnerProduct{Z}{D} \:|\: Z \in \Domain{\Phi}_{f_{\infty}}^*\}. \notag
+  \end{equation}
+\end{lem}
+
+\begin{proof}
+  Fix $D \in \NDemenstionalRealSymmetricMatrixSpace$. For the left side, by the definition of the spectrally defined function and Theorem~\ref{propertiesOfAsymptoticFunctionsAndSupportFunctions}, we have
+  \begin{equation}
+    \begin{split}
+      \Phi_{f_{\infty}}(D) &= f_{\infty}(\lambda(D)) \\
+      &= \sup \{\InnerProduct{x}{\lambda(D)}\:|\:x\in\Domain{\ConjugateFunction{f}}\} \\
+      &= \sup \{\InnerProduct{x}{\lambda(D)}\:|\:x\in\Closure{\Domain{\ConjugateFunction{f}}}\}\\
+      &= \sup \{\InnerProduct{x}{\lambda(D)}\:|\:x\in\Domain{(f_{\infty})^*}\}. \notag
+    \end{split}
+  \end{equation}
+  Thus, we need to show
+  \begin{equation}
+    \sup \{\InnerProduct{x}{\lambda(D)}\:|\:x\in\Domain{(f_{\infty})^*}\} =
+    \sup \{\InnerProduct{Z}{D} \:|\: Z \in \Domain{\Phi}_{f_{\infty}}^*\}. \notag
+  \end{equation}
+  For the fixed $D \in \NDemenstionalRealSymmetricMatrixSpace$, there exists $U \in \NDemenstionalRealOthonormalMatrixSpace$ such that $U^TDU = \Diagnosis{\lambda (D)}$.\\
+  ($\leq$) For each $x \in \Domain{f_{\infty}^*}$, $\InnerProduct{x}{\lambda(D)} = \InnerProduct{\Diagnosis{x}}{\Diagnosis{\lambda(D)}} = \InnerProduct{\Diagnosis{x}}{U^TDU}$. Let $Z(x) \coloneqq U(\Diagnosis{x})U^T$ where $U \in \NDemenstionalRealOthonormalMatrixSpace$. Then, Lemma~\ref{lemma1ForSeeger97} leads to $Z(x) \in \Domain{\Phi^*_{(f_{\infty})}}$. Considering the supremum in $\Domain{\Phi^*_{(f_{\infty})}}$, we obtain
+  \begin{equation}
+    \InnerProduct{x}{\lambda(D)} = \InnerProduct{Z(x)}{D} \leq \sup \{\InnerProduct{Z}{D} \:|\: Z \in \Domain{\Phi^*_{(f_{\infty})}}\}. \notag
+  \end{equation}
+  Since the right side is constant, we have
+  \begin{equation}
+    \sup \{\InnerProduct{x}{\lambda(D)}\:|\:x\in\Domain{(f_{\infty})^*}\} \leq
+    \sup \{\InnerProduct{Z}{D} \:|\: Z \in \Domain{\Phi^*_{(f_{\infty})}}\}. \notag
+  \end{equation}
+  ($\geq$) For each $Z \in \Domain{\Phi^*_{(f_{\infty})}}$, there exists $x(Z) \in \Domain{\ConjugateFunction{(f_{\infty})}}$ and $U_0 \in \NDemenstionalRealOthonormalMatrixSpace$ such that $Z= U_0(\Diagnosis{x(Z)})U_0^T$ by Lemma~\ref{lemma1ForSeeger97}. Thus, we have
+  \begin{equation}
+    \begin{split}
+      \InnerProduct{Z}{D} &= \InnerProduct{U_0(\Diagnosis{x(Z)})U_0^T}{D} \\
+      &\leq \InnerProduct{U_0(\Diagnosis{x(Z)})U_0^T}{\Diagnosis{\lambda(D)}}. \notag
+    \end{split}
+  \end{equation}
+  As $U_0(\Diagnosis{x(Z)})U_0^T \in \Domain{\Phi^*_{(f_{\infty})}} = \SetForm{U (\Diagnosis{x}) U^T}{U \in \NDemenstionalRealOthonormalMatrixSpace, x \in \Domain{\ConjugateFunction{(f_{\infty})}}}$, we have
+  \begin{equation}
+    \InnerProduct{Z}{D} \leq \sup \{\InnerProduct{x}{\lambda(D)}\:|\:x\in\Domain{(f_{\infty})^*}\}. \notag
+  \end{equation}
+  Likewise, since the right side is constant, we obtain
+  \begin{equation}
+    \sup \{\InnerProduct{Z}{D} \:|\: Z \in \Domain{\Phi^*_{(f_{\infty})}}\} \leq
+    \sup \{\InnerProduct{x}{\lambda(D)}\:|\:x\in\Domain{(f_{\infty})^*}\}. \notag
+  \end{equation}
+\end{proof}
+
+\begin{thm}[\mbox{\cite[Seeger (1997)]{Seeger97}}]\label{Seeger97}
   Let $\ExtendedRealValuedFunction{f}{\NDemenstionalRealEuclideanSpace}$ be a symmetric, lsc, proper, convex function with induced spectral function $\Phi_{f}$. Then
   \begin{equation}
     {(\Phi_{f})}_{\infty} = \Phi_{f_{\infty}}. \notag
@@ -762,29 +1028,78 @@ As a result, the optimization problems $\min \{\Phi_{f}(X) \:|\: X \in \NDemenst
 \end{thm}
 
 \begin{proof}
-  TODO
+  For any $D \in \NDemenstionalRealSymmetricMatrixSpace$, by the definition of asymptotic function, Theorem~\ref{Lewis96}, and Proposition~\ref{basicPropositionOfSupportFunctions}, we have
+  \begin{equation}
+    \begin{split}
+      (\Phi_f)_{\infty}(D) &= \sup \{\InnerProduct{Z}{D} \:|\: Z \in \Domain{\Phi_{f}^*} \}\\
+      &= \sup \{\InnerProduct{Z}{D} \:|\: Z \in \Domain{\Phi_{\ConjugateFunction{f}}} \}\\
+      &= \sup \{\InnerProduct{Z}{D} \:|\: Z \in \Closure{\Domain{\Phi_{\ConjugateFunction{f}}}} \}. \notag
+    \end{split}
+  \end{equation}
+  On the other hand, by the result of Lemma~\ref{lemma2ForSeeger97}, we have
+  \begin{equation}
+    \begin{split}
+      \Phi_{f_{\infty}}(D) &= \sup \{\InnerProduct{Z}{D} \:|\: Z \in \Domain{\Phi_{f_{\infty}}^*} \}\\
+      &= \sup \{\InnerProduct{Z}{D} \:|\: Z \in \Domain{\Phi_{\ConjugateFunction{(f_{\infty})}}} \}. \notag
+    \end{split}
+  \end{equation}
+  To prove the desired formula, it thus suffices to verify that $\Closure{\Domain{\Phi_{\ConjugateFunction{f}}}} = \Domain{\Phi_{\ConjugateFunction{(f_{\infty})}}}$. Use the equality of Lemma~\ref{lemma1ForSeeger97}, that is,
+  \begin{equation}
+    \Domain{\Phi_{\ConjugateFunction{f}}} = \SetForm{U (\Diagnosis{x}) U^T}{U \in \NDemenstionalRealOthonormalMatrixSpace, x \in \Domain{\ConjugateFunction{f}}} \notag
+  \end{equation}
+  and therefore, by Theorem~\ref{propertiesOfAsymptoticFunctionsAndSupportFunctions} (b), we have
+  \begin{equation}
+    \begin{split}
+      \Closure{\Domain{\Phi_{\ConjugateFunction{f}}}} &= \SetForm{U (\Diagnosis{x}) U^T}{U \in \NDemenstionalRealOthonormalMatrixSpace, x \in \Domain{\ConjugateFunction{f}}} \\
+      &= \SetForm{U(\Diagnosis{x})U^T}{U \in \NDemenstionalRealOthonormalMatrixSpace, x \in \Domain{\ConjugateFunction{(f_{\infty})}}} \\
+      &= \Domain{\Phi_{\ConjugateFunction{(f_{\infty})}}}. \notag
+    \end{split}
+  \end{equation}
 \end{proof}
 % 6. Conclusion
 % ----------------------------------------------------------------
 \chapter{Conclusion}
+In this paper, we introduced the concept of asymptotic functions and its properties in addition to several notions in convex analysis. We also showed the relation between asymptotic functions and semidefinite programming. In the future, we will study the relation between asymptotic functions and semidefinite programming more deeply, and consider the relation between asymptotic functions and the following general composite optimization model,
+\begin{equation}
+  \inf \{f_0(x) + p(F(x)) \:|\: F(x) \in \Domain{p}\} \notag
+\end{equation}
+where $F(x) = (f_1(x), \dots, f_m(x))^T$ with all $f_i$ real-valued, and $\ExtendedRealValuedFunction{p} {\NDemenstionalRealEuclideanSpace}$ is a certain given function. The idea was established by Ben-Tal and Teboulle in 1998 and have been developed by lots of researchers. In this way, asymptotic functions are useful to many fields in convex analysis. Therefore, from now on, we continue to study asymptotic functions and its applications.
 
-\begin{thebibliography}{9}
+\chapter*{Acknowledgements}
+
+I would like to appreciate to Professor Tamaki Tanaka of Niigata University for his helpful advice and encouragement. I have studied with his support during an undergraduate and a master's course at Niigata University. Thanks to him, my view of mathematics has been expanded.
+
+I also grateful to Professors Syuuji Yamada and Yusuke Suzuki of Niigata university for their support and encouragement on this research.
+
+Finally, I would like to thank past and present members of our laboratory. They give me an urge to study harder. This study would not be materialized without their support.
+
+\begin{thebibliography}{99}
+  \bibitem{Auslender99}  A. Auslender. Penalty and barrier methods: A unified framework. SIAM J. Optimization, 10 (1999), 211--230.
+
   \bibitem{Auslender03}
-  A. Auslender and M. Teboulle, Asymptotic cones and functions in optimization and variational inequalities, Springer monographs in Mathematics, Springer-Verlag, New York, 2003.
+  A. Auslender and M. Teboulle. Asymptotic cones and functions in optimization and variational inequalities, Springer monographs in Mathematics, Springer-Verlag, New York, 2003.
 
-  \bibitem{Auslender03}
-  J.M. Borwein and A.S. Lewis, Convex Analysis and Nonlinear Optimization: Theory and Examples, Springer-Verlag, New York, 2000.
+  \bibitem{BeckTeboulle12}
+  A. Beck and M. Teboulle. Smoothing and First Order Methods: A Unified Framework, SIAM J. Optim, 22 (2012), 557--580.
 
-  \bibitem{Tammer03}
-  A. G\"{o}pfert, H. Riahi, C. Tammer, and C. Z\u{a}linescu, Variational methods in partially ordered spaces, vol. 17 of CMS Books in Mathematics, Springer-Verlag, New York, 2003.
+  \bibitem{BenTalTeboulle89}
+  A. Ben-Tal and M. Teboulle. A smoothing technique for nondifferentiable optimization problems. In Optimization, Fifth French-German Conference, Lecture Notes in Mathematics 1405, Springer-Verlag, New York (1989), 1--11.
+
+  \bibitem{BorweinLewis00}
+  J.M. Borwein and A.S. Lewis. Convex Analysis and Nonlinear Optimization: Theory and Examples, Springer-Verlag, New York, 2000.
 
   \bibitem{Lewis96}
-  A.S. Lewis. Convex Analysis on the Hermitian matrices. SIAM J. Optimization,6, 1996, 164-177.
+  A.S. Lewis. Convex Analysis on the Hermitian matrices. SIAM J. Optimization, 6 (1996), 164--177.
+
+  \bibitem{Rockafellar70}
+  R.T. Rockafellar. Convex Analysis. Princeton University Press, Princeton, New Jersey, 1970.
+
+  \bibitem{Rockafellar98}
+  R.T. Rockafellar and R.J.B Wets. Variational Analysis. Springer-Verlag, New York, 1998.
 
   \bibitem{Seeger97}
-  A. Seeger. Convex analysis of spectrally defined matrix functions. SIAM J. Optimization , 7, 1997, 679-696.
+  A. Seeger. Convex analysis of spectrally defined matrix functions. SIAM J. Optimization, 7 (1997), 679--696.
 
   \end{thebibliography}
 \end{document}
 
-\end{document}
