@@ -1,6 +1,6 @@
 \documentclass[aspectratio=169, dvipdfmx, 11pt]{beamer}
 \usepackage{here, amsmath, latexsym, amssymb, bm, ascmac, mathtools, multicol, tcolorbox, subfig}
-\usetheme{metropolis}           % Use metropolis theme
+\usetheme{metropolis} % Use metropolis theme
 \setbeamercolor{background canvas}{bg=white}
 \setbeamercolor{block title}{bg=white}
 % Mathematical Sets
@@ -9,7 +9,7 @@
 \newcommand{\NDemenstionalRealEuclideanSpace}{\mathbb{R}^n}
 \newcommand{\NDemenstionalRealSymmetricMatrixSpace}{\mathbb{S}^n}
 
-% Symbols like prefix
+% Symbols of prefix
 \newcommand{\Closure}[1]{\text{\rm cl\:${#1}$}} % cl
 \newcommand{\Domain}[1]{\text{\rm dom\:${#1}$}} % dom
 \newcommand{\Epigraph}[1]{\text{\rm epi\:${#1}$}} % epi
@@ -103,7 +103,7 @@
 \end{frame}
 
 \begin{frame}{Motivation}
-In the $n$-dimensional real Euclidean space $\NDemenstionalRealEuclideanSpace$, asymptotic cones and functions play a significant role to consider optimization problems. In addition, semidefinite programming (SDP) is one of the most important optimization problems because these problems have appeared in various area of mathematical sciences. The following content explains the relation between asymptotic cones and SDP.
+In the $n$-dimensional real Euclidean space $\NDemenstionalRealEuclideanSpace$, asymptotic cones and functions play a significant role to consider optimization problems. In addition, semidefinite programming (SDP) is one of the most important optimization problems because these problems have appeared in various area of mathematical sciences. The following content explains the relation between asymptotic function and SDP.
 \bigskip
 
 \centering
@@ -114,7 +114,7 @@ In the $n$-dimensional real Euclidean space $\NDemenstionalRealEuclideanSpace$, 
 % ----------------------------------------------------------------
 \section{Preliminary}
 
-% 2.1 Preliminary of symbols like R^n and S^n
+% 2.1 Preliminary of symbols on R^n and S^n
 \begin{frame}{Preliminary}
 $\NDemenstionalRealEuclideanSpace$: $n$-dimensional real Euclidean space. \\
 $\NDemenstionalRealSymmetricMatrixSpace$: $n$-dimensional real symmetric matrix space.
@@ -173,12 +173,12 @@ The norm is defined by $\left\lVert x \right\rVert \coloneqq \InnerProduct{x}{x}
   \end{block}
 \end{frame}
 
-% 3. Spectrally defined matrix functions
+% 3. Spectrally defined matrix function
 % ----------------------------------------------------------------
-\section{Spectrally defined matrix functions}
+\section{Spectrally defined matrix function}
 
-% 3.1 Definition of Spectrally defined matrix functions
-\begin{frame}{Spectrally defined matrix functions}
+% 3.1 Definition of Spectrally defined matrix function
+\begin{frame}{Spectrally defined matrix function}
   \begin{block}{Definition 4}
     The function $\ExtendedRealValuedFunction{\Phi}{\NDemenstionalRealSymmetricMatrixSpace}$ is said to be spectrally defined if there exists a symmetric function $\ExtendedRealValuedFunction{f}{\NDemenstionalRealEuclideanSpace}$ such that
     \begin{equation}
@@ -206,7 +206,7 @@ The norm is defined by $\left\lVert x \right\rVert \coloneqq \InnerProduct{x}{x}
 \end{frame}
 
 % 3.2 Theorem of Spectrally defined matrix functions and conjugacy
-\begin{frame}{Spectrally defined matrix functions}
+\begin{frame}{Spectrally defined matrix function}
   \begin{block}{Theorem 5 (A.S.Lewis (1996))}
     Suppose that the function $\ExtendedRealValuedFunction{f}{\NDemenstionalRealEuclideanSpace}$ is symmetric, then
     \begin{equation}
@@ -227,7 +227,7 @@ The norm is defined by $\left\lVert x \right\rVert \coloneqq \InnerProduct{x}{x}
 
 % 4. Asymptotic cones and functions
 % ----------------------------------------------------------------
-\section{Asymptotic cones and functions}
+\section{Asymptotic cone and asymptotic function}
 
 % 4.1
 \begin{frame}{What is the notion of asymptotic cones?}
@@ -252,7 +252,7 @@ The norm is defined by $\left\lVert x \right\rVert \coloneqq \InnerProduct{x}{x}
 \end{frame}
 
 % 4.2
-\begin{frame}{Definition of Asymptotic Cones}
+\begin{frame}{Definition of asymptotic Cone}
   \begin{block}{Definition 6}
     $C \subset \mathbb{R}^n$, $C \neq \emptyset$. Then, the asymptotic cone of the set $C$, denoted by $C_\infty$, is the set below with $\{ x_k \} \subset C$;
     \begin{equation}
@@ -260,26 +260,34 @@ The norm is defined by $\left\lVert x \right\rVert \coloneqq \InnerProduct{x}{x}
       \mathbb{R}^n \:\middle|\: \exists t_k \rightarrow +\infty, \exists x_k \in C \:\text{\rm with}\: \lim_{k \to \infty} \frac{x_k}{t_k} = d \right\}. \notag
     \end{equation}
   \end{block}
+  \begin{example}
+    $C = \{(x,y) \in \mathbb{R}^2 \:|\: y=x^2\}$. We let $\textcolor{blue}{x_k} = (k, k^2)$ and $t_k = \left\lVert x_k \right\rVert$.
+  \end{example}
 
-  Example: $C = \{(x,y) \in \mathbb{R}^2 \:|\: y=x^2\}$. We let $\textcolor{blue}{x_k} = (k, k^2)$ and $t_k = \left\lVert x_k \right\rVert$.
+  \bigskip
 
   \centering
   \begin{columns}
     \pause
-    \begin{column}{0.48\textwidth}
+    \begin{column}{0.32\textwidth}
     \centering
-    \includegraphics[keepaspectratio, scale=0.09]{figures/figure_asymptotic_cone_1.eps}
+    \includegraphics[keepaspectratio, scale=0.032]{figures/asymptotic_cone_example/x*x_graph+example_vectors.eps}
     \end{column}
     \pause
-    \begin{column}{0.48\textwidth}
+    \begin{column}{0.32\textwidth}
     \centering
-    \includegraphics[keepaspectratio, scale=0.09]{figures/figure_asymptotic_cone_2.eps}
+    \includegraphics[keepaspectratio, scale=0.032]{figures/asymptotic_cone_example/x*x_graph+a_large_vector.eps}
+    \end{column}
+    \pause
+    \begin{column}{0.32\textwidth}
+    \centering
+    \includegraphics[keepaspectratio, scale=0.032]{figures/asymptotic_cone_example/asymptotic_cone_of_graph_of_x*x.eps}
     \end{column}
   \end{columns}
 \end{frame}
 
 % 4.3
-\begin{frame}{Properties around Asymptotic Cones}
+\begin{frame}{Properties around asymptotic cone}
   \begin{block}{Proposition 7}
     Let $C$ be a nonempty convex set in $\NDemenstionalRealEuclideanSpace$. Then the asymptotic cone $C_{\infty}$ is a closed convex cone. Moreover, define the following sets;
     \begin{align}
@@ -296,54 +304,31 @@ The norm is defined by $\left\lVert x \right\rVert \coloneqq \InnerProduct{x}{x}
 \end{frame}
 
 % 4.4
-\begin{frame}{Definition of Asymptotic Functions}
+\begin{frame}{Definition of asymptotic function}
   \begin{block}{Definition 8}
     Let $f: \NDemenstionalRealEuclideanSpace \rightarrow \RealNumberSet \cup \{+\infty\}$ be proper. Then, there exists $f_{\infty}: \NDemenstionalRealEuclideanSpace \rightarrow \RealNumberSet \cup \{\pm\infty\}$ satisfying $\Epigraph{f_{\infty}} = (\Epigraph{f})_{\infty}$, which is called asymptotic function of $f$.
   \end{block}
 
-  \pause
-  \begin{exampleblock}{How to create asymptotic function of $f$}
-    To gain asymptotic function of $f$, we have 4 steps including providing the definition of $f$.
-    \begin{enumerate}
-      \item provide $f$
-      \item consider $\Epigraph{f}$
-      \item take $(\Epigraph{f})_{\infty}$, the asymptotic cone of $(\Epigraph{f})$
-      \item define $f_{\infty}$
-    \end{enumerate}
-  \end{exampleblock}
+  \begin{example}
+    $f(x,y) = \sqrt{1+x^2+y^2}$, where $x,y \in \RealNumberSet$. Then, the asymptotic function $f_{\infty}$ is $f_{\infty}(x,y) = \sqrt{x^2+y^2}$
+    \centering
+    \begin{columns}
+      \pause
+      \begin{column}{0.48\textwidth}
+      \centering
+      \includegraphics[keepaspectratio, scale=0.5]{figures/asymptotic_function_example/asymptotic_function_example_1.png}
+      \end{column}
+      \pause
+      \begin{column}{0.48\textwidth}
+      \centering
+      \includegraphics[keepaspectratio, scale=0.5]{figures/asymptotic_function_example/asymptotic_function_example_2.png}
+      \end{column}
+    \end{columns}
+  \end{example}
 \end{frame}
 
 % 4.5
-\begin{frame}{How to create Asymptotic Functions}
-  \begin{figure}[htbp]
-    \begin{tabular}{cc}
-      \begin{minipage}[t]{0.45\hsize}
-        \centering
-        \includegraphics[keepaspectratio, scale=0.06]{figures/asymptotic_function_def/graph_base.eps}
-        \caption{(1) provide $f$}
-      \end{minipage} &
-      \begin{minipage}[t]{0.45\hsize}
-        \centering
-        \includegraphics[keepaspectratio, scale=0.06]{figures/asymptotic_function_def/asymptotic_function_epigraph.eps}
-        \caption{(2) consider $\Epigraph{f}$}
-      \end{minipage} \\
-
-      \begin{minipage}[t]{0.45\hsize}
-        \centering
-        \includegraphics[keepaspectratio, scale=0.06]{figures/asymptotic_function_def/asymptotic_cone_epigraph_f.eps}
-        \caption{(3) take the asymptotic cone of $(\Epigraph{f})$}
-      \end{minipage} &
-      \begin{minipage}[t]{0.45\hsize}
-        \centering
-        \includegraphics[keepaspectratio, scale=0.06]{figures/asymptotic_function_def/asymptotic_function_f.eps}
-        \caption{(4) obtain $f_{\infty}$}
-      \end{minipage}
-    \end{tabular}
-  \end{figure}
-\end{frame}
-
-% 4.6
-\begin{frame}{Properties around Asymptotic Functions}
+\begin{frame}{Properties around asymptotic function}
   \begin{block}{Proposition 9}
     Let $\ExtendedRealValuedFunction{f}{\NDemenstionalRealEuclideanSpace}$ be a proper, lsc, convex function. Then, the asymptotic function is a lsc, proper, convex function, and one has
     \begin{equation}
@@ -356,9 +341,9 @@ The norm is defined by $\left\lVert x \right\rVert \coloneqq \InnerProduct{x}{x}
   \end{block}
 \end{frame}
 
-% 5. Applications of asymptotic functions to SDP
+% 5. Applications of asymptotic function to SDP
 % ----------------------------------------------------------------
-\section{Applications of asymptotic functions to SDP}
+\section{Applications of asymptotic function to SDP}
 
 % 5.1
 \begin{frame}{Application of the notion of asymptotic function}
@@ -380,7 +365,6 @@ The norm is defined by $\left\lVert x \right\rVert \coloneqq \InnerProduct{x}{x}
   \end{block}
 \end{frame}
 
-
 % 6. Conclusions
 % ----------------------------------------------------------------
 \section{Conclusion}
@@ -389,23 +373,49 @@ The norm is defined by $\left\lVert x \right\rVert \coloneqq \InnerProduct{x}{x}
 \begin{frame}{Conclusion}
   Summary:
   \begin{enumerate}[]
-    \item We figure out why a semidefinite programming with a penalty function like log barrier functions can be solved with using Fenchel duality.
-    \item Asymptotic function can be applied to spectrally defined functions.
+    \item We figure out concepts of asymptotic cones and functions. In addition, spectrally defined matrix functions which play a significant role in optimization problems are also introduced.
+    \item While the theorem of A.S.Lewis (1996) means we can apply the conjugacy to these functions, the result of A.Seeger (1997) shows the relation between spectral functions and asymptotic functions.
   \end{enumerate}
   Issue:
   \begin{enumerate}[]
-    \item These consequences hardly appears in current studies because the way with using barrier function might not be utilized to obtain an optimal value.
-    \item Actually, there are strong relations between spectral functions and composite optimization models.
+    \item We have not yet considered the practical application of asymptotic functions to semidefinite programming in detail.
+    \item There exist some other important results in the field of optimization and variational inequalities we do not know.
   \end{enumerate}
 \end{frame}
 
 % References
 % ----------------------------------------------------------------
 \begin{frame}[t]{References}
-  \begin{enumerate}[]
-    \item A. Auslender and M. Teboulle, asymptotic cones and functions in optimization and variational inequalities, Springer monographs in Mathematics, Springer-Verlag, New York, 2003.
-    \item A.S. Lewis. Convex Analysis on the Hermitian matrices. SIAM J. Optimization,6, 1996, 164-177.
-    \item A. Seeger. Convex analysis of spectrally defined matrix functions. SIAM J. Optimization , 7, 1997, 679-696.
-  \end{enumerate}
+  \begin{thebibliography}{99}
+    \bibitem{Auslender99}  A. Auslender. Penalty and barrier methods: A unified framework. SIAM J. Optimization, 10 (1999), 211--230.
+
+    \bibitem{Auslender03}
+    A. Auslender and M. Teboulle. Asymptotic cones and functions in optimization and variational inequalities, Springer monographs in Mathematics, Springer-Verlag, New York, 2003.
+
+    \bibitem{BeckTeboulle12}
+    A. Beck and M. Teboulle. Smoothing and First Order Methods: A Unified Framework, SIAM J. Optim, 22 (2012), 557--580.
+
+    \bibitem{BenTalTeboulle89}
+    A. Ben-Tal and M. Teboulle. A smoothing technique for nondifferentiable optimization problems. In Optimization, Fifth French-German Conference, Lecture Notes in Mathematics 1405, Springer-Verlag, New York (1989), 1--11.
+
+    \bibitem{BorweinLewis00}
+    J.M. Borwein and A.S. Lewis. Convex Analysis and Nonlinear Optimization: Theory and Examples, Springer-Verlag, New York, 2000.
+    \end{thebibliography}
+\end{frame}
+
+\begin{frame}[t]{References}
+  \begin{thebibliography}{99}
+    \bibitem{Lewis96}
+    A.S. Lewis. Convex Analysis on the Hermitian matrices. SIAM J. Optimization, 6 (1996), 164--177.
+
+    \bibitem{Rockafellar70}
+    R.T. Rockafellar. Convex Analysis. Princeton University Press, Princeton, New Jersey, 1970.
+
+    \bibitem{Rockafellar98}
+    R.T. Rockafellar and R.J.B Wets. Variational Analysis. Springer-Verlag, New York, 1998.
+
+    \bibitem{Seeger97}
+    A. Seeger. Convex analysis of spectrally defined matrix functions. SIAM J. Optimization, 7 (1997), 679--696.
+  \end{thebibliography}
 \end{frame}
 \end{document}
