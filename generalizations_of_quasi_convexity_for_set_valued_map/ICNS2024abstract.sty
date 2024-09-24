@@ -1,0 +1,38 @@
+% template of abstract for ICNS 2024
+% Created by: 2013-06-20
+% Last Updated by: 2023-09-06
+
+\renewcommand{\title}[1]{\newcommand{\myTitle}{#1}}
+\renewcommand{\author}[1]{\newcommand{\myAuthorName}{#1}}
+\newcommand{\affiliation}[1]{\newcommand{\myAffiliation}{#1}}
+
+\renewcommand{\maketitle}
+{
+\thispagestyle{empty}
+\pagestyle{empty}
+\begin{center}
+{\large\bf\myTitle} \\
+{\bf\myAuthorName} \\
+{\it\myAffiliation}
+\end{center}
+\vspace{\baselineskip}
+}
+
+\addtolength{\topmargin}{-30pt}
+\addtolength{\textheight}{70pt}
+\addtolength{\oddsidemargin}{-40pt}
+\addtolength{\textwidth}{80pt}
+
+\makeatletter
+\long\def\@makecaption#1#2{%
+  \vskip\abovecaptionskip
+  \sbox\@tempboxa{{\it #1: #2}}%
+  \ifdim \wd\@tempboxa >\hsize
+    {\it #1: #2}\par
+  \else
+    \global \@minipagefalse
+    \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}%
+  \fi
+  \vskip\belowcaptionskip}
+\makeatother
+

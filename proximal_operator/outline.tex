@@ -1,0 +1,149 @@
+\documentclass[a4paper,11pt]{jsarticle}
+
+% 英文化
+\usepackage[english]{babel}
+% 数式
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{mathtools}
+% 画像
+\usepackage[dvipdfmx]{graphicx}
+% 箇条書き
+\usepackage{enumitem}
+
+% 枠付き文章
+\usepackage{ascmac}
+
+\newcommand{\MiniBox}[1]{\fbox{
+  \begin{minipage}{.8\textwidth}
+    #1
+  \end{minipage}
+}}
+
+\SetLabelAlign{Center}{\hfil#1\hfil}
+\SetLabelAlign{CenterWithParen}{\hfil(\makebox[1.0em]{#1})\hfil}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{conj}[thm]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{fact}[thm]{Fact}
+
+
+% Mathematical Sets
+\newcommand{\NaturalNumberSet}{\mathbb{N}}
+\newcommand{\RealNumberSet}{\mathbb{R}}
+\newcommand{\NDemenstionalRealEuclideanSpace}{\mathbb{R}^n}
+\newcommand{\MDemenstionalRealEuclideanSpace}{\mathbb{R}^m}
+\newcommand{\NDemenstionalRealSymmetricMatrixSpace}{\mathbb{S}^n}
+\newcommand{\NDemenstionalRealOthonormalMatrixSpace}{\mathcal{U}_n}
+
+
+% Symbols like prefix
+\newcommand{\Closure}[1]{\text{\rm cl\:${#1}$}} % cl
+\newcommand{\Interior}[1]{\text{\rm int\:${#1}$}} % int
+\newcommand{\Domain}[1]{\text{\rm dom\:${#1}$}} % dom
+\newcommand{\Epigraph}[1]{\text{\rm epi\:${#1}$}} % epi
+\newcommand{\KEpigraph}[1]{\text{\rm epi$_K$\:${#1}$}} % epi_K
+\newcommand{\LevelSets}[2]{\text{\rm lev\:$({#1}, {#2})$}} % lev
+\newcommand{\Trace}[1]{\text{\rm tr$({#1})$}} % tr
+\newcommand{\Diagnosis}[1]{\text{\rm diag\:${#1}$}} % diag
+\newcommand{\InnerProduct}[2]{\left\langle {#1},{#2}\right\rangle} % <x,y>
+\newcommand{\Norm}[1]{\left\lVert {#1} \right\rVert} % ||x||
+
+% Extended real valued function e.g. f: X -> Rv{+∞}
+% #1: function symbol
+% #2: domain of function
+\newcommand{\ExtendedRealValuedFunction}[2]{{#1}: {#2} \to \RealNumberSet \cup \{+\infty\}}
+\newcommand{\VectorValuedFunction}[3]{{#1}\:\colon{#2} \to {#3}}
+
+
+% Conjugate function e.g. f*
+% #1: function symbol
+\newcommand{\ConjugateFunction}[1]{{#1}^*}
+
+% Support function e.g. f*
+% #1: set symbol
+\newcommand{\SupportFunction}[1]{\sigma_{#1}}
+
+% Indicator function e.g. f*
+% #1: set symbol
+\newcommand{\IndicatorFunction}[1]{\delta_{#1}}
+
+% (Useful) Texts
+\newcommand{\SuchThat}{\:\text{\rm s.t.}\:}
+
+% Set form e.g. {x | ...}
+% #1: element
+% #2: conditions
+\newcommand{\SetForm}[2]{
+  \{{#1}\:|\:{#2}\}
+}
+
+\begin{document}
+
+\title{%
+  Sparse Optimization and First Order Methods: \\
+  Recent Researches}
+\author{Ryota Iwamoto}
+\date{\today}
+\maketitle
+
+In 2024, Teboule, Cohen, Luke, Pinta, and Sabach proposed a new method: a Semi-Bregman Proximal Alternating Method (SBPALM) for a class of nonconvex problems \cite{Teboulle2024}.
+This algorithm is a revised method of Proximal Alternating Linearized Minimization (PALM) method, which is a first order method for nonconvex-nonsmooth optimization problems \cite{Bolte2014}.
+In 2018,
+
+\begin{thebibliography}{99}
+  \bibitem{Teboulle2024}
+  M. Teboule, E. Cohen, D. R. Luke, T. Pinta, and S. Sabach.
+  A Semi-Bregman Proximal Alternating Method for a Class of Nonconvex Problems: Local and Global Convergence Analysis.
+  Jonunal of Global Optimization, Springer, 89 (2024), 33--55.
+
+  \bibitem{Bolte2014}
+  J. Bolte, S. Sabach, and M. Teboulle.
+  Proximal alternating linearized minimization for nonconvex and nonsmooth problems.
+  Math. Program., 146(1-2):459--494, 2014.
+
+  \bibitem{Bolte2018}
+  J. Bolte, S. Sabach, M. Teboulle, and Y. Vasibourd.
+  First Order Methods Beyond Convexity and Lipschitz Gradient Continuity with Applications to Quadratic Inverse Problems.
+  SIAM J. Optim., 28(3);2131--2151, 2018
+
+  \bibitem{BenTalTeboulle89}
+
+  \bibitem{BorweinLewis00}
+  J.M. Borwein and A.S. Lewis. Convex Analysis and Nonlinear Optimization: Theory and Examples, Springer-Verlag, New York, 2000.
+
+  \bibitem{Lewis96}
+  A.S. Lewis. Convex Analysis on the Hermitian matrices. SIAM J. Optimization, 6 (1996), 164--177.
+
+  \bibitem{Rockafellar70}
+  R.T. Rockafellar. Convex Analysis. Princeton University Press, Princeton, New Jersey, 1970.
+
+  \bibitem{Rockafellar98}
+  R.T. Rockafellar and R.J.B Wets. Variational Analysis. Springer-Verlag, New York, 1998.
+
+  \bibitem{Seeger97}
+  A. Seeger. Convex analysis of spectrally defined matrix functions. SIAM J. Optimization, 7 (1997), 679--696.
+
+  \bibitem{Flores2024}
+  F. Flores-Baz\'{a}n, R. L\'{o}pez and C. Vera. Vector Asymptotic Functions and Their Application to Multiobjective Optimization Problems. SIAM J. Optimization, 34 (2024), 1826--1851.
+
+  \bibitem{Tanaka1995}
+  T. Tanaka. Cone-Quasiconvexity of Vector-Valued Functions. Science Reports of the Hirosaki University, 42 (1995), 157--163.
+
+  \bibitem{Tanaka1996}
+  T. Tanaka. Approximately Efficient Solutions in Vector Optimization. J. Multi-Criteria Decision Analysis, 5 (1996), 271--278.
+
+  \bibitem{Bot2009}
+  R.I. Bo\c{t}, S.-M. Grad and G. Wanka. Duality in Vector Optimization, Springer-Verlag, Berlin-Heidelberg (2009)
+\end{thebibliography}
+
+\end{document}

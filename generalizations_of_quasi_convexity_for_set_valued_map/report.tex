@@ -1,0 +1,348 @@
+\documentclass[a4paper,11pt]{jsarticle}
+
+% 英文化
+\usepackage[english]{babel}
+% 数式
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{mathtools}
+% 画像
+\usepackage[dvipdfmx]{graphicx}
+% 箇条書き
+\usepackage{enumitem}
+
+% 枠付き文章
+\usepackage{ascmac}
+
+\DeclareFontFamily{U}{MnSymbolD}{}
+\DeclareFontShape{U}{MnSymbolD}{m}{n}{
+    <-6>  MnSymbolD5
+   <6-7>  MnSymbolD6
+   <7-8>  MnSymbolD7
+   <8-9>  MnSymbolD8
+   <9-10> MnSymbolD9
+  <10-12> MnSymbolD10
+  <12->   MnSymbolD12}{}
+\DeclareFontShape{U}{MnSymbolD}{b}{n}{
+    <-6>  MnSymbolD-Bold5
+   <6-7>  MnSymbolD-Bold6
+   <7-8>  MnSymbolD-Bold7
+   <8-9>  MnSymbolD-Bold8
+   <9-10> MnSymbolD-Bold9
+  <10-12> MnSymbolD-Bold10
+  <12->   MnSymbolD-Bold12}{}
+\DeclareSymbolFont{MnSyD}{U}{MnSymbolD}{m}{n}
+\SetSymbolFont{MnSyD}{bold}{U}{MnSymbolD}{b}{n}
+
+\DeclareMathSymbol\preccurlyeq{\mathrel}{MnSyD}{"6C}
+\DeclareMathSymbol\npreccurlyeq{\mathrel}{MnSyD}{"E4}
+
+\newcommand{\MiniBox}[1]{\fbox{
+  \begin{minipage}{.8\textwidth}
+    #1
+  \end{minipage}
+}}
+
+\SetLabelAlign{Center}{\hfil#1\hfil}
+\SetLabelAlign{CenterWithParen}{\hfil(\makebox[1.0em]{#1})\hfil}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{conj}[thm]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{fact}[thm]{Fact}
+
+\renewcommand\labelenumi{(\theenumi)}
+
+% Mathematical Sets
+\newcommand{\NaturalNumberSet}{\mathbb{N}}
+\newcommand{\RealNumberSet}{\mathbb{R}}
+\newcommand{\NDemenstionalRealEuclideanSpace}{\mathbb{R}^n}
+\newcommand{\MDemenstionalRealEuclideanSpace}{\mathbb{R}^m}
+\newcommand{\NDemenstionalRealSymmetricMatrixSpace}{\mathbb{S}^n}
+\newcommand{\NDemenstionalRealOthonormalMatrixSpace}{\mathcal{U}_n}
+
+
+% Symbols like prefix
+\newcommand{\Closure}[1]{\text{\rm cl\:${#1}$}} % cl
+\newcommand{\Interior}[1]{\text{\rm int\:${#1}$}} % int
+\newcommand{\Domain}[1]{\text{\rm dom\:${#1}$}} % dom
+\newcommand{\Epigraph}[1]{\text{\rm epi\:${#1}$}} % epi
+\newcommand{\KEpigraph}[1]{\text{\rm epi$_K$\:${#1}$}} % epi_K
+\newcommand{\LevelSets}[2]{\text{\rm lev\:$({#1}, {#2})$}} % lev
+\newcommand{\OrderingLevelSets}[3]{\text{\rm lev\:$({#1}, {#2}, {#3})$}} % lev
+\newcommand{\Trace}[1]{\text{\rm tr$({#1})$}} % tr
+\newcommand{\Diagnosis}[1]{\text{\rm diag\:${#1}$}} % diag
+\newcommand{\InnerProduct}[2]{\left\langle {#1},{#2}\right\rangle} % <x,y>
+\newcommand{\Norm}[1]{\left\lVert {#1} \right\rVert} % ||x||
+
+% Extended real valued function e.g. f: X -> Rv{+∞}
+% #1: function symbol
+% #2: domain of function
+\newcommand{\ExtendedRealValuedFunction}[2]{{#1}: {#2} \to \RealNumberSet \cup \{+\infty\}}
+\newcommand{\VectorValuedFunction}[3]{{#1}\:\colon{#2} \to {#3}}
+
+
+% Conjugate function e.g. f*
+% #1: function symbol
+\newcommand{\ConjugateFunction}[1]{{#1}^*}
+
+% Support function e.g. f*
+% #1: set symbol
+\newcommand{\SupportFunction}[1]{\sigma_{#1}}
+
+% Indicator function e.g. f*
+% #1: set symbol
+\newcommand{\IndicatorFunction}[1]{\delta_{#1}}
+
+% (Useful) Texts
+\newcommand{\SuchThat}{\:\text{\rm s.t.}\:}
+
+% Set form e.g. {x | ...}
+% #1: element
+% #2: conditions
+\newcommand{\SetForm}[2]{
+  \{{#1}\:|\:{#2}\}
+}
+
+\begin{document}
+
+\title{%
+  Set-valued Ky Fan inequalities via scalarization}
+\author{Ryota Iwamoto and Tamaki Tanaka}
+\date{\today}
+\maketitle
+
+\section{Introduction}
+In convex analysis and optimization theory, Ky Fan minimax inequality plays a key role. A quarter century ago, Georgiev and Tanaka \cite{GeorgievTanaka2000, GeorgievTanaka2001}
+extended Ky Fan minimax inequality for set-valued maps. After that, Kuwano, Tanaka, and Yamada \cite{KuwanoTanakaYamada2010} constructed the result of four types set-valued Ky Fan minimax inequality
+with set relations \cite{KuroiwaTanakaHa1997}, which are binary relations depending on a given convex cone. However, this result is limited to the case of the specific scalarization functions. To obtain more practical results,
+we need to generalize the convexity properties for set-valued maps. In addition, Dechboon and Tanaka \cite{DechboonTanaka2024} proposed generalized continuity to inherit properties of cone continuity for set-valued maps.
+The aim of this paper is to generalize the convexity properties for set-valued maps and to apply them to the set-valued Ky Fan minimax inequality.
+
+\section{Mathematical Preliminaries}
+
+Basically, let $X$ be a topological space, $Y$ a real topological vector space, and $\theta_Y$ be a zero vector in $Y$.
+Define that $\mathcal{P}(Y)$ is the set of all nonempty subsets of $Y$. The sets of neighborhoods of $x \in X$ and $y \in Y$ is denoted by $\mathcal{N}_X (x)$ and $\mathcal{N}_Y (y)$, respectively.
+
+\subsection{Set relations and these scalarization functions}
+
+\begin{dfn}
+  For $A,B \in \mathcal{P}(Y)$, we define two binary relations on $\mathcal{P}(Y)$:
+  \begin{equation}
+    A \preccurlyeq_1 B \overset{\text{def}}{\Longleftrightarrow} A \cap B \ne \emptyset \quad \text{and} \quad A \preccurlyeq_2 \overset{\text{def}}{\Longleftrightarrow} B \subset A. \notag
+  \end{equation}
+\end{dfn}
+
+\subsection{Semicontinuity for set-valued maps}
+
+\begin{dfn}[\cite{DechboonTanaka2024}]
+  Let $F \colon X \to \mathcal{P}(Y)$, $x_0 \in X$, $\preccurlyeq$ a binary relation on $\mathcal{P}(Y)$
+  and $C \subset Y$ a convex cone. We say that $F$ is $(\preccurlyeq, C)$-continuous at $x_0$ if
+  \begin{equation}
+    \forall W \subset Y, W\:\text{open},W \preccurlyeq F(x_0), \exists V \in \mathcal{N}_{X}(x_0) \SuchThat W + C \preccurlyeq F(x), \forall x \in V. \notag
+  \end{equation}
+\end{dfn}
+
+\begin{dfn}[\cite{DechboonTanaka2024}]
+  Let $\varphi \colon \mathcal{P}(Y) \to \RealNumberSet \cup \{\pm \infty\}$, $A_0 \in \mathcal{P}(Y)$,
+  $\preccurlyeq$ a binary relation on $\mathcal{P}(Y)$, and $C$ a convex cone in $Y$ with $C \ne Y$. Then,
+  we say that $\varphi$ is $(\preccurlyeq, C)$-lower semicontinuous at $A_0$ if
+  \begin{equation}
+    \forall r < \varphi (A_0), \exists W \in \mathcal{P}(Y), W\:\text{open}, \SuchThat W \preccurlyeq A_0 \:\text{and}\:
+    r > \varphi (A), \forall A \in U(W + C, \preccurlyeq); \notag
+  \end{equation}
+  where $U(V,\preccurlyeq) \coloneqq \SetForm{A \in \mathcal{P}(Y)}{V \preccurlyeq A}$.
+\end{dfn}
+
+\begin{thm}[\cite{DechboonTanaka2024}]
+  Let $F \colon X \to \mathcal{P}(Y)$, $\varphi \colon \mathcal{P}(Y) \to \RealNumberSet \cup \{\pm \infty\}$, $x_0 \in X$,
+  $\preccurlyeq$ a binary relation on $\mathcal{P}(Y)$, and $C$ a convex cone. If $F$ is $(\preccurlyeq, C)$-continuous at $x_0$
+  and $\varphi$ is $(\preccurlyeq, C)$-lower semicontinuous at $F(x_0)$, then $(\varphi \circ F)$ is lower semicontinuous at $x_0$.
+\end{thm}
+
+\begin{dfn}
+  Let $\mathcal{A} \subset \mathcal{P}(Y) \backslash \{\emptyset\}$. $\mathcal{A}$ is said to be convex if for each $A_1, A_2 \in \mathcal{A}$ and $\lambda \in (0,1)$,
+  \begin{equation}
+    \lambda A_1 + (1-\lambda) A_2 \in \mathcal{A}. \notag
+  \end{equation}
+\end{dfn}
+
+\begin{dfn}
+  Let $\varphi \colon \mathcal{P}(Y) \to \RealNumberSet \cup \{\pm \infty\}$. Then,
+  \begin{enumerate}
+    \item $\varphi$ is quasi convex if for any $\alpha \in \RealNumberSet$,
+          $\OrderingLevelSets{\varphi}{\leq}{\alpha} \coloneqq \SetForm{A \in \mathcal{P}(Y) \backslash \{\emptyset\}}{\varphi(A) \leq \alpha}$ is convex.
+    \item $\varphi$ is quasi concave if for any $\alpha \in \RealNumberSet$,
+          $\OrderingLevelSets{\varphi}{\geq}{\alpha} \coloneqq \SetForm{A \in \mathcal{P}(Y) \backslash \{\emptyset\}}{\varphi(A) \geq \alpha}$ is convex.
+  \end{enumerate}
+\end{dfn}
+
+\subsection{Quasiconvexity properties for composite functions of set-valued map and scalarization function}
+
+\begin{dfn}
+  Let $X$ be a nonempty set, $Y$ a real topological vector space, $C$ a convex cone in $Y$, and $F\colon X \to 2^Y \backslash \{\emptyset\}$ a set-valued map.
+  \begin{enumerate}
+    \item $F$ is called $(\preccurlyeq)$-convex if for each $x,y \in X$ and $\lambda \in (0,1)$,
+          \begin{equation}
+            F(\lambda x + (1-\lambda)y) \preccurlyeq \lambda F(x) + (1-\lambda) F(y). \notag
+          \end{equation}
+    \item $F$ is called $(\preccurlyeq)$-properly quasi convex if for each $x,y \in X$ and $\lambda \in (0,1)$,
+          \begin{equation}
+            F(\lambda x + (1-\lambda)y) \preccurlyeq F(x) \quad \text{or} \quad F(\lambda x + (1-\lambda)y) \preccurlyeq F(y) \notag
+          \end{equation}
+    \item $F$ is called $(\preccurlyeq)$-naturally quasi convex if for each $x,y \in X$ and $\lambda \in (0,1)$, there exists $\mu \in [0,1]$ such that
+          \begin{equation}
+            F(\lambda x + (1-\lambda)y) \preccurlyeq \mu F(x) + (1-\mu) F(y). \notag
+          \end{equation}
+  \end{enumerate}
+\end{dfn}
+
+\begin{dfn}
+  Let $X$ be a nonempty set, $Y$ a real topological vector space, $C$ a convex cone in $Y$, and $F\colon X \to 2^Y \backslash \{\emptyset\}$ a set-valued map.
+  \begin{enumerate}
+    \item $F$ is called $(\preccurlyeq)$-concave if for each $x,y \in X$ and $\lambda \in (0,1)$,
+          \begin{equation}
+            \lambda F(x) + (1-\lambda) F(y) \preccurlyeq F(\lambda x + (1-\lambda)y) . \notag
+          \end{equation}
+    \item $F$ is called $(\preccurlyeq)$-properly quasi concave if for each $x,y \in X$ and $\lambda \in (0,1)$,
+          \begin{equation}
+            F(x) \preccurlyeq F(\lambda x + (1-\lambda)y) \quad \text{or} \quad F(y) \preccurlyeq F(\lambda x + (1-\lambda)y) \notag
+          \end{equation}
+    \item $F$ is called $(\preccurlyeq)$-naturally quasi concave if for each $x,y \in X$ and $\lambda \in (0,1)$, there exists $\mu \in [0,1]$ such that
+          \begin{equation}
+            \mu F(x) + (1-\mu) F(y) \preccurlyeq F(\lambda x + (1-\lambda)y). \notag
+          \end{equation}
+  \end{enumerate}
+\end{dfn}
+
+\begin{rem}
+  Obvously, if $F$ is $(\preccurlyeq)$-properly quasi convex, then $F$ is $(\preccurlyeq)$-properly quasi convex.
+\end{rem}
+
+\begin{thm}
+  Let $\varphi$ be $(\preccurlyeq)$-monotone and $(\preccurlyeq)$-quasi convex. If $F$ is $(\preccurlyeq)$-naturally quasi convex, then $(\varphi \circ F)$ is quasi convex.
+\end{thm}
+
+\begin{thm}
+  Let $\varphi$ be $(\preccurlyeq)$-monotone and $(\preccurlyeq)$-quasi concave. If $F$ is $(\preccurlyeq)$-naturally quasi concave, then $(\varphi \circ F)$ is quasi concave.
+\end{thm}
+
+\section{Scalarization functions preserving well properties}
+
+To extend Ky Fan inequality for set-valued maps with a binary relation, consider assumptions of scalarization fucntions. To begin with, introduce four properties;
+\begin{enumerate}
+  \item $\varphi$ is $(\preccurlyeq, C)$-lower semicontinuous,
+  \item $\varphi$ is quasi concave,
+  \item $\varphi$ is $(\preccurlyeq)$-monotone,
+  \item $\varphi(\{\theta\}) = 0$,
+\end{enumerate}
+and define the set of functions satisfying these properties as $\Phi(\preccurlyeq, C)$. In addition, establish three vaital properties for Ky Fan inequality;
+\begin{enumerate}[label=(A\arabic*)]
+  \item $\varphi (A) \leq 0 \Rightarrow A \preccurlyeq \{\theta\}$,
+  \item there is an open neighborhood $G$ of $\theta$ such that $\{\theta\} + G \preccurlyeq A$, then
+        $0 < \varphi (A)$,
+  \item there is an open neighborhood $G$ of $\theta$ such that $\{\theta\} \preccurlyeq A + G$, then
+        $0 < \varphi (A)$.
+\end{enumerate}
+
+\section{Applications for Ky-Fan Minimax Inequality}
+
+Recall original Ky Fan inequality and provide main results
+
+\begin{thm}[\cite{Fan1972}]
+  Let $X$ be a nonempty compact convex subset of a Hausdorff topological vector space and $f \colon X \times X \to \RealNumberSet$. If $f$ satisfies
+  the following conditions:
+  \begin{enumerate}
+    \item for each fixed $y \in X$, $f(\cdot,y)$ is lower semicontinuous,
+    \item for each fixed $x \in X$,$f(x,\cdot)$ is quasi concave,
+    \item $f(x,x) \leq 0$ for all $x \in X$,
+  \end{enumerate}
+  then there exists $\bar{x} \in X$ such that $f(\bar{x},y) \leq 0$ for all $y \in X$.
+\end{thm}
+
+\begin{thm}
+  Let $X$ be a nonempty compact convex subset of a Hausdorff topological vector space,
+  $Y$ a real topological vector space, $\preccurlyeq$ a binary relation on $\mathcal{P}(Y)$,
+  $C$ a convex cone in $Y$, $\varphi\colon \mathcal{P}(Y) \to \RealNumberSet \cup \{\pm \infty\}$,
+  and $F\colon X \times X \to \mathcal{P}(Y) \backslash \{\emptyset\}$ a set-valued map.
+  For the scaralization function $\varphi \in \Phi(\preccurlyeq, C)$ satisfying Assumption (A1),
+  if $F$ satisfies the following conditions:
+  \begin{enumerate}
+    \item $(\varphi \circ F)(x,y) \in \RealNumberSet$ for all $x,y \in X$,
+    \item for each fixed $y \in X$, $F(\cdot,y)$ is $(\preccurlyeq, C)$-continuous,
+    \item for each fixed $x \in X$, $F(x,\cdot)$ is $(\preccurlyeq)$-naturally quasi concave,
+    \item for all $x \in X$, $F(x,x) \preccurlyeq \{\theta\}$,
+  \end{enumerate}
+  then there exists $\bar{x} \in X$ such that $ F(\bar{x},y) \preccurlyeq \{\theta\} $ for all $y \in X$.
+\end{thm}
+
+\begin{thm}
+  Let $X$ be a nonempty compact convex subset of a Hausdorff topological vector space,
+  $Y$ a real topological vector space, $\preccurlyeq$ a binary relation on $\mathcal{P}(Y)$,
+  $C$ a convex cone in $Y$, $\varphi\colon \mathcal{P}(Y) \to \RealNumberSet \cup \{\pm \infty\}$,
+  and $F\colon X \times X \to \mathcal{P}(Y) \backslash \{\emptyset\}$ a set-valued map.
+  For the scaralization function $\varphi \in \Phi(\preccurlyeq, C)$ satisfying Assumption (A2),
+  if $F$ satisfies the following conditions:
+  \begin{enumerate}
+    \item $(\varphi \circ F)(x,y) \in \RealNumberSet$ for all $x,y \in X$,
+    \item for each fixed $y \in X$, $F(\cdot,y)$ is $(\preccurlyeq, C)$-continuous,
+    \item for each fixed $x \in X$, $F(x,\cdot)$ is $(\preccurlyeq)$-naturally quasi concave,
+    \item for all $x \in X$, $F(x,x) \preccurlyeq \{\theta\}$,
+  \end{enumerate}
+  then for any open neighborhood $G$ of $\theta$ there exists $\bar{x} \in X$ such that $\{\theta\} + G \npreccurlyeq F(\bar{x},y)$
+  for all $y \in X$.
+\end{thm}
+
+\begin{thm}
+  Let $X$ be a nonempty compact convex subset of a Hausdorff topological vector space,
+  $Y$ a real topological vector space, $\preccurlyeq$ a binary relation on $\mathcal{P}(Y)$,
+  $C$ a convex cone in $Y$, $\varphi\colon \mathcal{P}(Y) \to \RealNumberSet \cup \{\pm \infty\}$,
+  and $F\colon X \times X \to \mathcal{P}(Y) \backslash \{\emptyset\}$ a set-valued map.
+  For the scaralization function $\varphi \in \Phi(\preccurlyeq, C)$ satisfying Assumption (A3),
+  if $F$ satisfies the following conditions:
+  \begin{enumerate}
+    \item $(\varphi \circ F)(x,y) \in \RealNumberSet$ for all $x,y \in X$,
+    \item for each fixed $y \in X$, $F(\cdot,y)$ is $(\preccurlyeq, C)$-continuous,
+    \item for each fixed $x \in X$, $F(x,\cdot)$ is $(\preccurlyeq)$-naturally quasi concave,
+    \item for all $x \in X$, $F(x,x) \preccurlyeq \{\theta\}$,
+  \end{enumerate}
+  then for any open neighborhood $G$ of $\theta$ there exists $\bar{x} \in X$ such that
+  $\{\theta\} \npreccurlyeq F(\bar{x},y) + G$ for all $y \in X$.
+\end{thm}
+
+\begin{thebibliography}{99}
+  \bibitem{DechboonTanaka2024}
+  P. Dechboon and T. Tanaka, Inheritance Properties on Cone Continuity for Set-Valued Maps via Scalarization, Minimax Theory and its Applications. 9 (2024),
+
+  \bibitem{Fan1972}
+  K. Fan, A minimax inequality and its applications, Inequalities III, O. Shisha (ed.), Academic Press, New York, (1972), 103--113.
+
+  \bibitem{GeorgievTanaka2000}
+  P. G. Georgiev and T. Tanaka, Vector-valued set-valued variants of Ky Fan's inequality, J. Nonlinear and Convex Anal. 1 (2000), 245--254.
+
+  \bibitem{GeorgievTanaka2001}
+  P. G. Georgiev and T. Tanaka, Fan's inequality for set-valued maps, Nonlinear Anal. 47 (2001), no.1, 607--618.
+
+  \bibitem{KobayashiSaitoTanaka2016}
+  S. Kobayashi, Y. Saito, and T. Tanaka, Convexity for compositions of set-valued map and monotone scalarizing function, Yokohama Publishers, Yokohama, (2016), 43--54.
+
+  \bibitem{KuroiwaTanakaHa1997}
+  D. Kuroiwa, T. Tanaka, and T.X.D. Ha, On cone convexity of set-valued maps, Nonlinear Anal. 30 (1997), 1487--1496.
+
+  \bibitem{KuwanoTanakaYamada2010}
+  I. Kuwano, T. Tanaka, and S. Yamada, Unified scalarization for sets and set-valued Ky Fan minimax inequality, J. Nonlinear Convex Anal. 11 (2010), 513--525.
+
+  \bibitem{SondaKuwanoTanaka2010}
+  Y. Sonda, I. Kuwano, and T. Tanaka, Cone-semicontinuity of set-valued maps by analogy with real-valued semicontinuity, Nihonkai Mathematical Journal. 21 (2010), 91--103.
+
+\end{thebibliography}
+
+\end{document}

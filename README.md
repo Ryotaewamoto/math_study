@@ -7,6 +7,13 @@ I pretended this below article; this title means preparing the best LaTeX enviro
 
 [VSCode で最高の LaTeX 環境を作る](https://qiita.com/rainbartown/items/d7718f12d71e688f3573)
 
+To format tex codes automatically on save, in the case that you use Mac, you neet to install ``perl`` and ``latexindent``.
+
+```
+brew install perl
+brew install latexindent
+```
+
 ## My Using Books
 - Asymptotic Cones and Functions in Optimization and Variational Inequalities (author: Alfred Auslender & Marc Teboulle) 🌟
 
