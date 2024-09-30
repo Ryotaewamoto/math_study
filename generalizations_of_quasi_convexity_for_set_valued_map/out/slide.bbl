@@ -109,6 +109,43 @@
       \field{pages}{245\bibrangedash 254}
       \range{pages}{10}
     \endentry
+    \entry{MR3458699}{article}{}
+      \name{author}{3}{}{%
+        {{hash=d411f4e57e5759519e3784fbb31c688f}{%
+           family={Kobayashi},
+           familyi={K\bibinitperiod},
+           given={Shogo},
+           giveni={S\bibinitperiod}}}%
+        {{hash=71f1509e9af1b5b1c8720a74a22a6cf9}{%
+           family={Saito},
+           familyi={S\bibinitperiod},
+           given={Yutaka},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=5b6354f472ce234872e60fa5e0b387c2}{%
+           family={Tanaka},
+           familyi={T\bibinitperiod},
+           given={Tamaki},
+           giveni={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{acc5f17ff0fda178235a31d66b254127}
+      \strng{fullhash}{acc5f17ff0fda178235a31d66b254127}
+      \strng{bibnamehash}{acc5f17ff0fda178235a31d66b254127}
+      \strng{authorbibnamehash}{acc5f17ff0fda178235a31d66b254127}
+      \strng{authornamehash}{acc5f17ff0fda178235a31d66b254127}
+      \strng{authorfullhash}{acc5f17ff0fda178235a31d66b254127}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1348-9151,1349-8169}
+      \field{journaltitle}{Pac. J. Optim.}
+      \field{number}{1}
+      \field{title}{Convexity for compositions of set-valued map and monotone scalarizing function}
+      \field{volume}{12}
+      \field{year}{2016}
+      \field{pages}{43\bibrangedash 54}
+      \range{pages}{12}
+    \endentry
     \entry{MR2778674}{article}{}
       \name{author}{3}{}{%
         {{hash=ca7ce835b6f8c2bc85630a4cb1c9ce63}{%

@@ -14,6 +14,12 @@ brew install perl
 brew install latexindent
 ```
 
+Or you can use ``Foramtting``.
+
+[LaTeX Workshop をもう少し使いこなす](https://qiita.com/Yarakashi_Kikohshi/items/1a275f2046b002e398b3#-format-%E3%81%A8-lint)
+
+[James-Yu/LaTeX-Workshop](https://github.com/James-Yu/LaTeX-Workshop/wiki/Format)
+
 ## My Using Books
 - Asymptotic Cones and Functions in Optimization and Variational Inequalities (author: Alfred Auslender & Marc Teboulle) 🌟
 

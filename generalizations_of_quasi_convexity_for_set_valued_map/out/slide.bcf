@@ -2365,9 +2365,12 @@
     <bcf:citekey order="2" intorder="1">MR341029</bcf:citekey>
     <bcf:citekey order="3" intorder="1">MR1807037</bcf:citekey>
     <bcf:citekey order="4" intorder="1">MR2778674</bcf:citekey>
-    <bcf:citekey order="5" intorder="1">500001551932</bcf:citekey>
+    <bcf:citekey order="5" intorder="1">MR2778674</bcf:citekey>
     <bcf:citekey order="6" intorder="1">500001551932</bcf:citekey>
     <bcf:citekey order="7" intorder="1">500001551932</bcf:citekey>
+    <bcf:citekey order="8" intorder="1">500001551932</bcf:citekey>
+    <bcf:citekey order="9" intorder="1">MR3458699</bcf:citekey>
+    <bcf:citekey order="10" intorder="1">MR3458699</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">

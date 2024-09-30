@@ -41,6 +41,7 @@
 
 % Symbols of prefix
 \newcommand{\Closure}[1]{\text{\rm cl\:${#1}$}} % cl
+\newcommand{\Interior}[1]{\text{\rm int\:${#1}$}} % int
 \newcommand{\Domain}[1]{\text{\rm dom\:${#1}$}} % dom
 \newcommand{\Epigraph}[1]{\text{\rm epi\:${#1}$}} % epi
 \newcommand{\Trace}[1]{\text{\rm tr$({#1})$}} % tr
@@ -68,9 +69,9 @@
 
 \title{Set-Valued Fan-Takahashi Inequalities Via Scalarization
 }
-\author[Ryota Iwamoto]{Ryota Iwamoto and Tamaki Tanaka}
+\author[Ryota Iwamoto]{Ryota Iwamoto* and Tamaki Tanaka}
 \institute[Niigata Univ]{Niigata Univ}
-\date{26th, September, 2024}
+\date{27th, September, 2024}
 \titlegraphic{
   \vspace{5cm}
   \hspace{11cm}
@@ -121,12 +122,12 @@
 \end{frame}
 
 \begin{frame}{Introduction}
-  \begin{block}{Theorem (Takahashi \cite{MR399979})} % 高橋先生の論文を引用する形に変更
+  \begin{block}{Theorem (Takahashi \cite{MR399979} in 1976)} % 高橋先生の論文を引用する形に変更
     Let $X$ be a nonempty compact convex subset of a Hausdorff topological vector space and $f \colon X \times X \to \RealNumberSet$. If $f$ satisfies
     the following conditions:
     \begin{enumerate}
       \item for each fixed $y \in X$, $f(\cdot,y)$ is lower semicontinuous,
-      \item for each fixed $x \in X$,$f(x,\cdot)$ is quasi concave,
+      \item for each fixed $x \in X$, $f(x,\cdot)$ is quasi concave,
       \item $f(x,x) \leq 0$ for all $x \in X$,
     \end{enumerate}
     then there exists $\bar{x} \in X$ such that $f(\bar{x},y) \leq 0$ for all $y \in X$.
@@ -134,12 +135,12 @@
 \end{frame}
 
 \begin{frame}{Motivation}
-  \begin{block}{Theorem (Fan \cite{MR341029})}
+  \begin{block}{Theorem (Fan \cite{MR341029} in 1972)}
     Let $X$ be a nonempty compact convex set in a Hausdorff topological vector space and $f \colon X \times X \to \RealNumberSet$. If $f$ satisfies
     the following conditions:
     \begin{enumerate}
       \item for each fixed $y \in X$, $f(\cdot,y)$ is lower semicontinuous,
-      \item for each fixed $x \in X$,$f(x,\cdot)$ is quasi concave,
+      \item for each fixed $x \in X$, $f(x,\cdot)$ is quasi concave,
     \end{enumerate}
     then the minimax inequality
     \begin{equation}
@@ -147,6 +148,32 @@
     \end{equation}
     holds.
   \end{block}
+\end{frame}
+
+\begin{frame}{Motivation}
+  Obseve Fan-Takahashi minimax inequality with an example.
+
+  Consider $\min \{ g(x) \coloneqq x^2 \:|\: x \in [-2, 2]\}$. Letting $f(x,y) \coloneqq x^2 - y^2$,
+  we have the result of Fan-Takahashi minimax inequality. Checking the function satisfying the assumptions,
+  \begin{columns}[t]
+    \begin{column}{0.6\textwidth} % 左:60%
+      \begin{itemize}
+        \item for each fixed $y \in [-2,2]$, $f(\cdot, y)$ is continuous,
+        \item for each fixed $x \in [-2,2]$, $f(x,\cdot)$ is concave, and
+        \item $f(x,x) \leq 0$ for all $x \in [-2,2]$.
+      \end{itemize}
+
+      \vspace{1cm}
+      In this case, $0$ is a solution of the minimization.
+    \end{column}
+    \begin{column}{0.4\textwidth} % 右:40%
+      \begin{figure}
+        \begin{center}
+          \includegraphics[keepaspectratio, scale=0.12]{figures/minimax_example.png}
+        \end{center}
+      \end{figure}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 % 2. Background
@@ -165,6 +192,21 @@
   % set-relations の比較に依存しない形、またスカラー化関数がその比較に依存しない形を目指す。
 \end{frame}
 
+\begin{frame}
+  \begin{block}{Theorem \cite{MR2778674}}
+    Let $X$ be a nonempty compact convex subset of a Hausdorff topological vector space,
+    $Y$ a real topological vector space, $C$ a proper closed convex cone in $Y$ with $\Interior{C} \ne \emptyset$
+    and $F\colon X \times X \to \mathcal{P}(Y) \backslash \{\emptyset\}$ If $F$ satisfies the following conditions:
+    \begin{enumerate}
+      \item $F$ is $C$-bounded on $X \times X$,
+      \item for each fixed $y \in X$, $F(\cdot,y)$ is $C$-lower continuous,
+      \item for each fixed $x \in X$, $f(x, \cdot)$ is type (5) properly $C$-quasi concave,
+      \item for all $x \in X$, $F(x,x) \subset -C$,
+    \end{enumerate}
+    then there exists $\bar{x} \in X$ such that $F(\bar{x},y) \subset -C$ for all $y \in X$.
+  \end{block}
+\end{frame}
+
 % 3. Preliminaries
 % ----------------------------------------------------------------
 \section{Preliminaries}
@@ -173,13 +215,7 @@
   Let $X$ be a topological space, $Y$ a real topological vector space, and $\theta_Y$ be a zero vector in $Y$.
   Define that $\mathcal{P}(Y)$ is the set of all nonempty subsets of $Y$.
   The sets of neighborhoods of $x \in X$ and $y \in Y$ is denoted by $\mathcal{N}_X (x)$ and $\mathcal{N}_Y (y)$, respectively.
-\end{frame}
 
-% \begin{frame}{Preliminaries}
-%   Set-relations
-% \end{frame}
-
-\begin{frame}{Preliminaries}
   \begin{block}{Definition \cite{500001551932}}
     Let $F \colon X \to \mathcal{P}(Y)$, $x_0 \in X$, $\preccurlyeq$ a binary relation on $\mathcal{P}(Y)$
     and $C \subset Y$ a convex cone. We say that $F$ is $(\preccurlyeq, C)$-continuous at $x_0$ if
@@ -187,7 +223,9 @@
       \forall W \subset Y, W\:\text{open},W \preccurlyeq F(x_0), \exists V \in \mathcal{N}_{X}(x_0) \SuchThat W + C \preccurlyeq F(x), \forall x \in V. \notag
     \end{equation}
   \end{block}
+\end{frame}
 
+\begin{frame}{Preliminaries (Lower semicontinuity)}
   \begin{block}{Definition \cite{500001551932}}
     Let $\varphi \colon \mathcal{P}(Y) \to \RealNumberSet \cup \{\pm \infty\}$, $A_0 \in \mathcal{P}(Y)$,
     $\preccurlyeq$ a binary relation on $\mathcal{P}(Y)$, and $C$ a convex cone in $Y$ with $C \ne Y$. Then,
@@ -199,9 +237,6 @@
     where $U(V,\preccurlyeq) \coloneqq \SetForm{A \in \mathcal{P}(Y)}{V \preccurlyeq A}$.
   \end{block}
 
-\end{frame}
-
-\begin{frame}{Preliminaries}
   \begin{block}{Theorem \cite{500001551932}}
     Let $F \colon X \to \mathcal{P}(Y)$, $\varphi \colon \mathcal{P}(Y) \to \RealNumberSet \cup \{\pm \infty\}$, $x_0 \in X$,
     $\preccurlyeq$ a binary relation on $\mathcal{P}(Y)$, and $C$ a convex cone. If $F$ is $(\preccurlyeq, C)$-continuous at $x_0$
@@ -209,15 +244,15 @@
   \end{block}
 \end{frame}
 
-\begin{frame}
-  \begin{block}{Definition}
+\begin{frame}{Preliminaries (Convexity)}
+  \begin{block}{Definition \cite{MR3458699}}
     Let $\mathcal{A} \subset \mathcal{P}(Y) \backslash \{\emptyset\}$. $\mathcal{A}$ is said to be convex if for each $A_1, A_2 \in \mathcal{A}$ and $\lambda \in (0,1)$,
     \begin{equation}
       \lambda A_1 + (1-\lambda) A_2 \in \mathcal{A}. \notag
     \end{equation}
   \end{block}
 
-  \begin{block}{Definition}
+  \begin{block}{Definition \cite{MR3458699}}
     Let $\varphi \colon \mathcal{P}(Y) \to \RealNumberSet \cup \{\pm \infty\}$. Then,
     \begin{enumerate}
       \item $\varphi$ is quasi convex if for any $\alpha \in \RealNumberSet$,
@@ -228,18 +263,20 @@
   \end{block}
 \end{frame}
 
-\begin{frame}{Preliminaries}
-  Let $X$ be a nonempty set, $Y$ a real topological vector space, $C$ a convex cone in $Y$, and $F\colon X \to 2^Y \backslash \{\emptyset\}$ a set-valued map.
-  \begin{enumerate}
-    \item $F$ is called $(\preccurlyeq)$-naturally quasi convex if for each $x,y \in X$ and $\lambda \in (0,1)$, there exists $\mu \in [0,1]$ such that
-          \begin{equation}
-            F(\lambda x + (1-\lambda)y) \preccurlyeq \mu F(x) + (1-\mu) F(y). \notag
-          \end{equation}
-    \item $F$ is called $(\preccurlyeq)$-naturally quasi concave if for each $x,y \in X$ and $\lambda \in (0,1)$, there exists $\mu \in [0,1]$ such that
-          \begin{equation}
-            \mu F(x) + (1-\mu) F(y) \preccurlyeq F(\lambda x + (1-\lambda)y). \notag
-          \end{equation}
-  \end{enumerate}
+\begin{frame}{Preliminaries (Convexity)}
+  \begin{block}{Definition}
+    Let $X$ be a nonempty set, $Y$ a real topological vector space, $C$ a convex cone in $Y$, and $F\colon X \to 2^Y \backslash \{\emptyset\}$ a set-valued map.
+    \begin{enumerate}
+      \item $F$ is called $(\preccurlyeq)$-naturally quasi convex if for each $x,y \in X$ and $\lambda \in (0,1)$, there exists $\mu \in [0,1]$ such that
+            \begin{equation}
+              F(\lambda x + (1-\lambda)y) \preccurlyeq \mu F(x) + (1-\mu) F(y). \notag
+            \end{equation}
+      \item $F$ is called $(\preccurlyeq)$-naturally quasi concave if for each $x,y \in X$ and $\lambda \in (0,1)$, there exists $\mu \in [0,1]$ such that
+            \begin{equation}
+              \mu F(x) + (1-\mu) F(y) \preccurlyeq F(\lambda x + (1-\lambda)y). \notag
+            \end{equation}
+    \end{enumerate}
+  \end{block}
 \end{frame}
 
 % Main results
@@ -279,23 +316,17 @@
   \end{block}
 \end{frame}
 
-\begin{frame}{Main results}
-  \begin{block}{Corollary}
-    - 具体的な二項関係とスカラー化関数を与えた結果を紹介する。
-  \end{block}
-\end{frame}
-
 % 6. Conclusions
 % ----------------------------------------------------------------
 \section{Conclusion}
 
 % 6.1
 \begin{frame}{Conclusion}
-  \begin{enumerate}
-    \item Fan-Takahashi minimax inequalitiy and its beckground are introduced.
-    \item We give a new result of set-valued Fan-Takahashi inequalities via scalarization.
+  \begin{itemize}
+    \item Fan-Takahashi minimax inequalitiy and beckgrounds of my consequence were introduced with an example.
+    \item We gave a new result of set-valued Fan-Takahashi inequalities via scalarization  .
     \item One of the next steps is to find a scalarization function satisfying the properties $(A1)$ in $\Phi(\preccurlyeq, C)$.
-  \end{enumerate}
+  \end{itemize}
 \end{frame}
 
 % References
@@ -305,7 +336,7 @@
 \end{frame}
 
 \begin{frame}
-  Thank you for your attention!
+  Thank you for your listening!
 \end{frame}
 
 \begin{frame}{Theme}
