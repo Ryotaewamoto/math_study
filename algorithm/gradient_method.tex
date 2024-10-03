@@ -90,15 +90,26 @@
 \begin{document}
 
 \title{%
-  Sparse Optimization and First Order Methods: \\
-  Recent Researches}
+  Review: A Semi-Bregman Proximal Alternating Method for a Class of Nonconvex Problems: Local and Global Convergence Analysis}
 \author{Ryota Iwamoto}
 \date{\today}
 \maketitle
 
-In 2024, Teboule, Cohen, Luke, Pinta, and Sabach proposed a new method: a Semi-Bregman Proximal Alternating Method (SBPALM) for a class of nonconvex problems \cite{Teboulle2024}.
-This algorithm is a revised method of Proximal Alternating Linearized Minimization (PALM) method, which is a first order method for nonconvex-nonsmooth optimization problems \cite{Bolte2014}.
-In 2018,
+In this section we discuss methods for solving the unconstrained optimization
+problem below:
+
+\begin{equation}
+  \label{eq:unconstrained_optimization}
+  \min_{x \in \RealNumberSet^n} f(x),
+\end{equation}
+
+where $f: \RealNumberSet^n \to \RealNumberSet$ is a continuously differentiable (which implies $\Domain{f}$ is open).
+
+\section{Line Search}
+
+
+
+
 
 \begin{thebibliography}{99}
   \bibitem{Teboulle2024}
@@ -116,34 +127,6 @@ In 2018,
   First Order Methods Beyond Convexity and Lipschitz Gradient Continuity with Applications to Quadratic Inverse Problems.
   SIAM J. Optim., 28(3);2131--2151, 2018
 
-  \bibitem{BenTalTeboulle89}
-
-  \bibitem{BorweinLewis00}
-  J.M. Borwein and A.S. Lewis. Convex Analysis and Nonlinear Optimization: Theory and Examples, Springer-Verlag, New York, 2000.
-
-  \bibitem{Lewis96}
-  A.S. Lewis. Convex Analysis on the Hermitian matrices. SIAM J. Optimization, 6 (1996), 164--177.
-
-  \bibitem{Rockafellar70}
-  R.T. Rockafellar. Convex Analysis. Princeton University Press, Princeton, New Jersey, 1970.
-
-  \bibitem{Rockafellar98}
-  R.T. Rockafellar and R.J.B Wets. Variational Analysis. Springer-Verlag, New York, 1998.
-
-  \bibitem{Seeger97}
-  A. Seeger. Convex analysis of spectrally defined matrix functions. SIAM J. Optimization, 7 (1997), 679--696.
-
-  \bibitem{Flores2024}
-  F. Flores-Baz\'{a}n, R. L\'{o}pez and C. Vera. Vector Asymptotic Functions and Their Application to Multiobjective Optimization Problems. SIAM J. Optimization, 34 (2024), 1826--1851.
-
-  \bibitem{Tanaka1995}
-  T. Tanaka. Cone-Quasiconvexity of Vector-Valued Functions. Science Reports of the Hirosaki University, 42 (1995), 157--163.
-
-  \bibitem{Tanaka1996}
-  T. Tanaka. Approximately Efficient Solutions in Vector Optimization. J. Multi-Criteria Decision Analysis, 5 (1996), 271--278.
-
-  \bibitem{Bot2009}
-  R.I. Bo\c{t}, S.-M. Grad and G. Wanka. Duality in Vector Optimization, Springer-Verlag, Berlin-Heidelberg (2009)
 \end{thebibliography}
 
 \end{document}
