@@ -17,6 +17,27 @@
 % 枠付き文章
 \usepackage{ascmac}
 
+% アルゴリズム
+\usepackage{algorithmicx}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{algpascal}
+\usepackage{algc}
+
+\newcommand{\alg}{\texttt{algorithmicx}}
+\newcommand{\old}{\texttt{algorithmic}}
+\newcommand{\euk}{Euclid}
+\newcommand\ASTART{\bigskip\noindent\begin{minipage}[b]{0.5\linewidth}}
+\newcommand\ACONTINUE{\end{minipage}\begin{minipage}[b]{0.5\linewidth}}
+\newcommand\AENDSKIP{\end{minipage}\bigskip}
+\newcommand\AEND{\end{minipage}}
+
+\algnewcommand\algorithmicinput{{\bfseries\gtfamily 入力}}%
+\algnewcommand\AlgInput{\item[\algorithmicinput]}%
+
+\algnewcommand\algorithmicinitialize{{\bfseries\gtfamily 初期化}}%
+\algnewcommand\AlgInitialize{\item[\algorithmicinitialize]}%
+
 \newcommand{\MiniBox}[1]{\fbox{
   \begin{minipage}{.8\textwidth}
     #1
@@ -35,6 +56,8 @@
 \newtheorem{dfn}[thm]{Definition}
 \newtheorem{rem}[thm]{Remark}
 \newtheorem{fact}[thm]{Fact}
+\newtheorem{problem}[thm]{Problem}
+
 
 
 % Mathematical Sets
@@ -90,10 +113,14 @@
 \begin{document}
 
 \title{%
-  Review: A Semi-Bregman Proximal Alternating Method for a Class of Nonconvex Problems: Local and Global Convergence Analysis}
+  第3章 数理計画法の基礎}
 \author{Ryota Iwamoto}
 \date{\today}
 \maketitle
+
+\section{数理計画法の基礎}
+
+\subsection{問題設定}
 
 In this section we discuss methods for solving the unconstrained optimization
 problem below:
@@ -105,11 +132,123 @@ problem below:
 
 where $f: \RealNumberSet^n \to \RealNumberSet$ is a continuously differentiable (which implies $\Domain{f}$ is open).
 
-\section{Line Search}
+\subsection{反復法 (Iteration methods)}
 
+上の問題に対して、最小点ではない$x_0 \in X$を選び、$y_{g} \in X$を決めながら、$k \in \{0, 1, 2, \ldots\}$に対して、
 
+\begin{equation}
+  \label{eq:iteration}
+  x_{k+1} = x_k + y_{g} = x_k + \bar{\epsilon_{g}} \bar{y_{g}} \tag*{(3.2.1)}
+\end{equation}
 
+を求めていく方法を反復法 (iteration methods) 、この場合には直線探索法 (line search methods) という。
+テキストによっては以下を反復法と呼ぶこともある。
+\begin{algorithm}
+  \caption{反復法}
+  \label{alg:factorial}
+  \begin{algorithmic}[1]
+    \AlgInitialize 初期解$x_0$を定める。$k \leftarrow 0$とする。
+    \State 停止条件を満たすなら、結果を出力し、計算を終了する。
+    \State 関数$f(x)$、集合$S$、点列の履歴$x_o, \ldots, x_k$などの情報を用いて、$x_{k+1}$を計算する。
+    \State $k \leftarrow k +1$とする。ステップ1に戻る。
+  \end{algorithmic}
+\end{algorithm}
 
+ここで、
+
+\begin{itemize}
+  \item $y_{g}$は探索ベクトル (search vector)、
+  \item $\bar{\epsilon_{g}} > 0$はステップサイズ (step length)、
+  \item $\bar{y_{g}} \in \RealNumberSet^n$は探索方向 (search direction)、ただし大きさは$1$である必要はない、
+  \item $x_0$ は初期点 (initial point)、
+  \item $k \in \{0, 1, 2, \ldots\}$に対して$x_k$を試行点 (trial point)、
+\end{itemize}
+
+とする。反復法は、探索方向$\bar{y_{g}}$を求める方法と、ステップサイズ$\bar{\epsilon_{g}}$を求める方法を具体的に示す必要がある。
+
+\begin{rem}
+  反復法は、探索方向とステップサイズの二つをどのように決定するかが重要である。
+  探索方向は、当然、最小点に近づく方向を選ぶことが重要になる。
+  ステップサイズは、探索方向にどれだけ進むかを示すため、適切なステップサイズを選ぶ必要がある。
+  ステップサイズが大きすぎると、最小点を通り過ぎてしまう可能性があり、小さすぎると収束が遅くなる可能性がある。
+  以降に登場するニュートン法は、探索方向とステップサイズを同時に決定する方法である。
+\end{rem}
+
+\begin{dfn}{(大域的収束性)}
+  初期点が最小点から十分離れていても、最小点に収束する性質があるとき、反復法は大域的収束性を持つという。
+\end{dfn}
+
+\begin{dfn}(収束率)
+  $x$を最小点、$\{x_k\}_{k \in \NaturalNumberSet}$を反復法で得られた点列とする。このとき、ある$k_0$がとれて、任意の＄$k \geq k_0$に対して、
+
+  \begin{equation}
+    \label{eq:convergence_rate}
+    \Norm{x_{k+1} - x}_{X} \leq r \Norm{x_k - x}^{p}_{X} \tag{3.2.2}
+  \end{equation}
+
+  が成り立つような$p \in [1, \infty)$が取れるとき、$p$をそのアルゴリズムの収束次数という。ただし、$p = 1$のとき$r \in (0,1)$として、$p >1$のとき$r$は正の定数とする。
+  また、$r$が$0$に収束する数列$\{r_k\}_{k \in \NaturalNumberSet}$に置き換えられるとき、超$p$次収束という。
+\end{dfn}
+
+\subsection{勾配法 (Gradient methods)}
+
+探索方向$\bar{y_{g}} \in \RealNumberSet^n$を見つける方法の一つとして、勾配法 (gradient method) がある。
+
+\begin{problem}
+\label{prob:gradient_methods}
+$X = \RealNumberSet^d$とする。$A \in \RealNumberSet^{d \times d}$は正定値実対称行列とする。
+$f \in C^1 (X;\RealNumberSet)$に対して、極小点でない$x_k \in X$における$f$の勾配を$g(x_k) \in X' = \RealNumberSet^d$とする。
+このとき、任意の$y \in X$に対して、
+\begin{equation}
+  \label{eq:gradient_methods}
+  \bar{y}_{g} \cdot (Ay) = -g(x_k) \cdot y \tag{3.2.3}
+\end{equation}
+を満たす$\bar{y}_{g} \in X$を求めよ。
+\end{problem}
+式\eqref{eq:gradient_methods}は、任意の$y \in X$との内積を用いた表現になっている。この方程式は、対称行列の随伴性から
+\begin{equation}
+  \label{eq:gradient_methods_2}
+  \bar{y}_{g} = -A^{-1} g(x_k) \tag{3.2.4}
+\end{equation}
+によって$\bar{y}_{g}$を求めることと同値である。わざわざ内積を用いて表現したのは、関数空間での勾配法を定義する時に
+それが Problem \ref{prob:gradient_methods}の自然な拡張になっているようにするためである。
+特に$A$に単位行列$I$を使った場合には、$\bar{y}_{g} = -g(x_k)$となる。
+
+\begin{thm}{(勾配法)}
+  Problem \ref{prob:gradient_methods}の解$\bar{y}_{g}$は$f$の$k_{k}$における降下方向になっている。
+\end{thm}
+
+\begin{proof}
+  $\bar{y}_{g}$が$f$の$x_{k}$における降下方向とは、
+  \begin{equation}
+    \label{eq:descent_direction}
+    f(x_k + \bar{\epsilon} \bar{y}_{g}) \leq f(x_k) \tag{3.2.5} \notag
+  \end{equation}
+  を満たすような$\bar{\epsilon} > 0$が存在することをいう。ここで$A$は正定値実対称行列なので、ある正定値$\alpha$が存在して、
+  任意の$y \in X$に対して、
+  \begin{equation}
+    \label{eq:descent_direction_2}
+    y \cdot (Ay) \geq \alpha \Norm{y}^{2}_{X}, \quad A = A^{T} \notag
+  \end{equation}
+  が成り立つ。また、$f$の$x_k$まわりでのテイラー展開、
+  \begin{equation}
+    \label{eq:descent_direction_2}
+    f(x_k + \epsilon y) = f(x_k) + \epsilon g(x_k) \cdot  y + o(\epsilon\Norm{y}_{X}) \notag
+  \end{equation}
+  である。以上から、式\eqref{eq:gradient_methods}を用いると、$\epsilon > 0$に対して、
+  \begin{align}
+    \label{eq:descent_direction_3}
+    f(x_k + \epsilon \bar{y}_{g}) - f(x_k) & = \epsilon g(x_k) \cdot  y  \tag{3.2.6} + o(\epsilon) \notag         \\
+                                           & = - \epsilon \bar{y}_g \cdot (A\bar{y}_g) + o(\epsilon) \notag       \\
+                                           & \leq - \epsilon \alpha \Norm{\bar{y}_g}^{2}_{X} + o(\epsilon) \notag
+  \end{align}
+  が成り立つ。ここで十分小さな$\bar{\epsilon} > 0$に対して、
+  \begin{equation}
+    \label{eq:descent_direction}
+    f(x_k + \bar{\epsilon} \bar{y}_{g}) \leq f(x_k) \tag{3.2.5} \notag
+  \end{equation}
+  が成り立つ。よって、$\bar{y}_{g}$は$f$の$x_{k}$における降下方向である。
+\end{proof}
 
 \begin{thebibliography}{99}
   \bibitem{Teboulle2024}

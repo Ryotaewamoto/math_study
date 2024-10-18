@@ -1,0 +1,220 @@
+\documentclass{jsarticle}
+\usepackage{algorithmicx}
+\usepackage[ruled]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{algpascal}
+\usepackage{algc}
+
+\newcommand{\alg}{\texttt{algorithmicx}}
+\newcommand{\old}{\texttt{algorithmic}}
+\newcommand{\euk}{Euclid}
+\newcommand\ASTART{\bigskip\noindent\begin{minipage}[b]{0.5\linewidth}}
+\newcommand\ACONTINUE{\end{minipage}\begin{minipage}[b]{0.5\linewidth}}
+\newcommand\AENDSKIP{\end{minipage}\bigskip}
+\newcommand\AEND{\end{minipage}}
+
+
+
+\title{The \alg\ package\footnote{This is the documentation for the version 1.2
+of the package. This package is released under LPPL.}}
+\author{Sz\'asz J\'anos\\szaszjanos@users.sourceforge.net}
+
+
+
+\begin{document}
+\maketitle
+\begin{abstract}
+The \alg\ package provides many possibilities to customize the layout of algorithms. 
+You can use one of the predefined layouts (\textbf{pseudocode}, \textbf{pascal} 
+and \textbf{c} and others), with or without modifications, or you can define a 
+completely new layout for your specific needs.
+\end{abstract}
+\tableofcontents
+
+
+
+
+\section{Introduction}
+All this has begun in my last year at the university. The only thing that I knew of 
+\LaTeX\ was that it exists, and that it is ``good''. I started using it, but I needed to typeset some 
+algorithms. So I begun searching for a good algorithmic style, and I have found the \old\ package. 
+It was a great joy for me, and I started to use it\dots\ 
+Well\dots\ Everything went nice, until I needed some block that wasn't defined in there. What to do? 
+I was no \LaTeX\ guru, in fact I only knew the few basic macros. But there was no other way, so I opened 
+the style file, and I copied one existing block, renamed a few things, and voil\`a! This (and some other 
+small changes) where enough for me\dots
+
+One year later --- for one good soul --- I had to make some really big changes on the style. And there on 
+a sunny day came the idea. What if I would write some macros to let others create blocks automatically? 
+And so I did! Since then the style was completely rewritten\dots\ several times\dots
+
+I had fun writing it, may you have fun using it! I am still no \LaTeX\ guru, so if you are, and you find 
+something really ugly in the style, please mail me! All ideas for improvements are welcome!
+
+Thanks go to Benedek Zsuzsa, Ionescu Clara, Sz\H ocs Zolt\'an, Cseke Botond, Kanoc 
+%Szotyori Zolt\'an Csaba
+and many-many others. Without them I would have never started or continued \textbf{algorithmicx}.
+
+
+
+
+\section{General informations}
+
+\subsection{The package}
+The package \textbf{algorithmicx} itself doesn't define any algorithmic commands, but gives 
+a set of macros to define such a command set. You may use only \textbf{algorithmicx}, and define 
+the commands yourself, or you may use one of the predefined command sets.
+
+These predefined command sets (layouts) are:
+\begin{description}
+\item[algpseudocode] has the same look\footnote{almost :-)} as the one defined in the
+\old\ package. The main difference is that while the \old\ package doesn't 
+allow you to modify predefined structures, or to create new ones, the \alg\ 
+package gives you full control over the definitions (ok, there are some 
+limitations --- you can not send mail with a, say, \verb:\For: command).
+\item[algcompatible] is fully compatible with the \old\ package, it should be
+used only in old documents.
+\item[algpascal] aims to create a formatted pascal program, it performs 
+automatic indentation (!), so you can transform a pascal program into an 
+\textbf{algpascal} algorithm description with some basic substitution rules.
+\item[algc] -- yeah, just like the \textbf{algpascal}\dots\ but for c\dots\ 
+This layout is incomplete.
+\end{description}
+
+To create floating algorithms you will need \verb:algorithm.sty:. This file may or may not be
+included in the \alg\ package. You can find it on CTAN, in the \old\ package.
+
+
+
+\subsection{The algorithmic block}
+Each algorithm begins with the \verb:\begin{algorithmic}[lines]: command, the 
+optional \verb:lines: controls the line numbering: $0$ means no line numbering, 
+$1$ means number every line, and $n$ means number lines $n$, $2n$, $3n$\dots\ until the
+\verb:\end{algorithmic}: command, witch ends the algorithm.
+
+
+
+\subsection{Simple lines}
+
+A simple line of text is beginned with \verb:\State:. This macro marks the begin of every 
+line. You don't need to use \verb:\State: before a command defined in the package, since 
+these commands use automatically a new line.
+
+To obtain a line that is not numbered, and not counted when counting the lines for line numbering
+(in case you choose to number lines), use the \verb:Statex: macro. This macro jumps into a new line, 
+the line gets no number, and any label will point to the previous numbered line.
+
+We will call \textit{statament\/}s the lines starting with \verb:\State:. The \verb:\Statex: 
+lines are not stataments.
+
+
+
+\subsection{Placing comments in sources}\label{Putting comments in sources}
+
+Comments may be placed everywhere in the source using the \verb:\Comment: macro 
+(there are no limitations like those in the \old\ package), feel the freedom!
+If you would like to change the form in witch comments are displayed, just 
+change the \verb:\algorithmiccomment: macro:
+
+\begin{verbatim}
+\algrenewcommand{\algorithmiccomment}[1]{\hskip3em$\rightarrow$ #1}
+\end{verbatim}
+
+will result:
+\medskip
+\begin{algorithmic}[1]
+\algrenewcommand{\algorithmiccomment}[1]{\hskip3em$\rightarrow$ #1}
+\State $x\gets x+1$\Comment{Here is the new comment}
+\end{algorithmic}
+
+
+
+\subsection{Labels and references}
+Use the \verb:\label: macro, as usual to label a line. When you use \verb:\ref: to reference 
+the line, the \verb:\ref: will be subtitued with the corresponding line number. When using the 
+\textbf{algorithmicx} package togedher with the \textbf{algorithm} package, then you can label 
+both the algorithm and the line, and use the \verb:\algref: macro to reference a given line 
+from a given algorithm:
+
+\begin{verbatim}
+\algref{<algorithm>}{<line>}
+\end{verbatim}
+
+\noindent\begin{minipage}[t]{0.5\linewidth}
+\begin{verbatim}
+The \textbf{while} in algorithm
+\ref{euclid} ends in line
+\ref{euclidendwhile}, so
+\algref{euclid}{euclidendwhile}
+is the line we seek.
+\end{verbatim}
+\end{minipage}\begin{minipage}[t]{0.5\linewidth}
+The \textbf{while} in algorithm \ref{euclid} ends in line \ref{euclidendwhile},
+so \algref{euclid}{euclidendwhile} is the line we seek.
+\end{minipage}
+
+\subsection{Breaking up long algorithms}
+
+Sometimes you have a long algorithm that needs to be broken into parts, each on a
+separate float. For this you can use the following:
+
+\begin{description}
+\item[]\verb:\algstore{<savename>}: saves the line number, indentation, open blocks of
+the current algorithm and closes all blocks. If used, then this must be the last command
+before closing the algorithmic block. Each saved algorithm must be continued later in the
+document.
+\item[]\verb:\algstore*{<savename>}: Like the above, but the algorithm must not be continued.
+\item[]\verb:\algrestore{<savename>}: restores the state of the algorithm saved under
+\verb:<savename>: in this algorithmic block. If used, then this must be the first command
+in an algorithmic block. A save is deleted while restoring.
+\item[]\verb:\algrestore*{<savename>}: Like the above, but the save will not be deleted, so it
+can be restored again.
+\end{description}
+
+See example in the \textbf{Examples} section.
+
+\subsection{Multiple layouts in the same document}
+
+You can load multiple algorithmicx layouts in the same document. You can switch between the layouts
+using the \verb:\alglanguage{<layoutname>}: command. After this command all new algorithmic
+environments will use the given layout until the layout is changed again.
+
+
+
+
+\section{The predefined layouts}
+
+\subsection{The \textbf{algpseudocode} layout}\label{algpseudocode}
+\alglanguage{pseudocode}
+If you are familiar with the \old\ package, then you'll find it easy to 
+switch. You can use the old algorithms with the \textbf{algcompatible} layout, but please
+use the \textbf{algpseudocode} layout for new algorithms.
+
+To use \textbf{algpseudocode}, simply load \verb:algpseudocode.sty::
+
+\begin{verbatim}
+\usepackage{algpseudocode}
+\end{verbatim}
+
+You don't need to manually load the \textbf{algorithmicx} package, as this is done by
+\textbf{algpseudocode}.
+
+The first algorithm one should write is the first algorithm ever (ok, 
+an improved version), \textit{\euk's algorithm}:
+
+\begin{algorithm}[H]
+\caption{\euk's algorithm}\label{euclid}
+\begin{algorithmic}[1]
+\Procedure{\euk}{$a,b$}\Comment{The g.c.d. of a and b}
+   \State $r\gets a\bmod b$
+   \While{$r\not=0$}\Comment{We have the answer if r is 0}
+      \State $a\gets b$
+      \State $b\gets r$
+      \State $r\gets a\bmod b$
+   \EndWhile\label{euclidendwhile}
+   \State \Return $b$\Comment{The gcd is b}
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\end{document}
