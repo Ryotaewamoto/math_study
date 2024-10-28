@@ -1,16 +1,16 @@
 [0] Config.pm:307> INFO - This is Biber 2.19
 [0] Config.pm:310> INFO - Logfile is 'out/slide.blg'
-[33] biber-darwin:340> INFO - === Sat Oct 26, 2024, 08:35:46
+[31] biber-darwin:340> INFO - === Mon Oct 28, 2024, 17:22:29
 [39] Biber.pm:419> INFO - Reading 'out/slide.bcf'
-[75] Biber.pm:979> INFO - Found 5 citekeys in bib section 0
-[81] Biber.pm:4419> INFO - Processing section 0
-[85] Biber.pm:4610> INFO - Looking for bibtex file 'main.bib' for section 0
-[85] bibtex.pm:1713> INFO - LaTeX decoding ...
-[91] bibtex.pm:1519> INFO - Found BibTeX data source 'main.bib'
-[115] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[115] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[115] Biber.pm:4239> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
-[115] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
-[119] bbl.pm:660> INFO - Writing 'out/slide.bbl' with encoding 'UTF-8'
-[119] bbl.pm:661> INFO - Converting UTF-8 to TeX macros on output to .bbl
-[121] bbl.pm:763> INFO - Output to out/slide.bbl
+[76] Biber.pm:979> INFO - Found 7 citekeys in bib section 0
+[82] Biber.pm:4419> INFO - Processing section 0
+[87] Biber.pm:4610> INFO - Looking for bibtex file 'main.bib' for section 0
+[87] bibtex.pm:1713> INFO - LaTeX decoding ...
+[93] bibtex.pm:1519> INFO - Found BibTeX data source 'main.bib'
+[121] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[121] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[121] Biber.pm:4239> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[121] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
+[127] bbl.pm:660> INFO - Writing 'out/slide.bbl' with encoding 'UTF-8'
+[127] bbl.pm:661> INFO - Converting UTF-8 to TeX macros on output to .bbl
+[130] bbl.pm:763> INFO - Output to out/slide.bbl

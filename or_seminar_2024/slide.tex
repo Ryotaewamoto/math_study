@@ -148,12 +148,12 @@
   with set relations.
   % I. Kuwano と T. Tanaka, S. Yamada によって set-relations の比較にに対してスカラー関数を対応させたものの minimax 不等式の拡張が進められた。
 
-  - \textbf{Our goal is to generalize the result of four types set-valued minimax inequalities which is independent on the specific set-relations and scalarization functions.}
+  - \textbf{Our goal is to generalize the result of four types set-valued minimax inequalities which is not related to the specific set-relations and scalarization functions.}
   % set-relations の比較に依存しない形、またスカラー化関数がその比較に依存しない形を目指す。
 \end{frame}
 
 \begin{frame}{Background}
-  \begin{block}{Theorem (Takahashi \cite{MR399979} in 1976)} % 高橋先生の論文を引用する形に変更
+  \begin{block}{Theorem (Fan-Takahashi \cite{MR399979})} % 高橋先生の論文を引用する形に変更
     Let $X$ be a nonempty compact convex subset of a Hausdorff topological vector space and $f \colon X \times X \to \RealNumberSet$. If $f$ satisfies
     the following conditions:
     \begin{enumerate}
@@ -196,7 +196,7 @@
     \end{equation}
   \end{block}
 
-  \begin{block}{Definition (set-relations)}
+  \begin{block}{Definition (set-relations) \cite{kuroiwa1997cone}}
     For $A,B \in \mathcal{P}(Y) \backslash \{\emptyset\}$ and a convex cone $C$, we write
     \begin{equation}
       A \preccurlyeq_{C}^{(3L)} B \overset{\text{def}}{\Longleftrightarrow} B \subset A + C
@@ -347,7 +347,7 @@
 \section{Applications}
 
 \begin{frame}{Tammer's scalarization function}
-  \begin{block}{Definition}
+  \begin{block}{Definition \cite{MR2778674}}
     Let $C$ be a proper closed convex cone in $Y$ with $\Interior{C} \ne \emptyset$,
     $V, V' \in \mathcal{P}(Y) \backslash \{\emptyset\}$, and direction $k \in \Interior{C}$.
     For each $j = (3U), (3L)$, $I^{(j)}_{k, V'} (V) \colon \mathcal{P}(Y) \to \RealNumberSet \cup \{\pm \infty\}$
@@ -381,7 +381,7 @@
 
 
 \begin{frame}{Hiriart-Urruty Oriented Distance}
-  \begin{block}{Definition (Hiriart-Urruty distance)}
+  \begin{block}{Definition (Hiriart-Urruty Oriented distance) \cite{xu2016new}}
     Let $Y$ be a real normed vector space. For a set $A \subset Y$, let the oriented distance function
     $\Delta_{A} \colon Y \to \RealNumberSet\cup\{\pm \infty\}$ be defined by
     \begin{align*}
@@ -391,7 +391,7 @@
     and $\Norm{y}$ denotes the norm of $y$ in $Y$.
   \end{block}
 
-  \begin{block}{Definition}
+  \begin{block}{Definition \cite{xu2016new}}
     For the set $A \in Y$, let the functions $\mathcal{D}^{+}_{A} \colon \mathcal{P}(Y) \to \RealNumberSet \cup \{\pm \infty\}$
     and $\mathcal{D}^{-}_{A} \colon \mathcal{P}(Y) \to \RealNumberSet \cup \{\pm \infty\}$ be defined as
     \begin{align*}
@@ -439,7 +439,7 @@
   \begin{itemize}
     \item We gave a new result of set-valued Fan-Takahashi inequalities via scalarization  .
     \item Kuwano's result which is introduced at first implies the only (3L) type minimax inequality.
-          This results in the same type minimax inequality holds
+          This talk results in the same type minimax inequality holds
           while the scalarization function is the oriented distance function.
     \item We need to check other scalarization functions to satisfy our assumption.
   \end{itemize}

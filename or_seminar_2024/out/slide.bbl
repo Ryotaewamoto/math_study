@@ -119,6 +119,40 @@
       \field{pages}{43\bibrangedash 54}
       \range{pages}{12}
     \endentry
+    \entry{kuroiwa1997cone}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=35ccd3637c06cdf29682ded1583082b3}{%
+           family={Kuroiwa},
+           familyi={K\bibinitperiod},
+           given={Daishi},
+           giveni={D\bibinitperiod}}}%
+        {{hash=5b6354f472ce234872e60fa5e0b387c2}{%
+           family={Tanaka},
+           familyi={T\bibinitperiod},
+           given={Tamaki},
+           giveni={T\bibinitperiod}}}%
+        {{hash=07b06d4482b30a6d30ed4aea243865f5}{%
+           family={Ha},
+           familyi={H\bibinitperiod},
+           given={Truong\bibnamedelimb Xuan\bibnamedelima Duc},
+           giveni={T\bibinitperiod\bibinitdelim X\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \strng{namehash}{7d35f59eac9e0a3c95ad19c273998626}
+      \strng{fullhash}{7d35f59eac9e0a3c95ad19c273998626}
+      \strng{bibnamehash}{7d35f59eac9e0a3c95ad19c273998626}
+      \strng{authorbibnamehash}{7d35f59eac9e0a3c95ad19c273998626}
+      \strng{authornamehash}{7d35f59eac9e0a3c95ad19c273998626}
+      \strng{authorfullhash}{7d35f59eac9e0a3c95ad19c273998626}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the second world congress on Nonlinear analysts: part 3}
+      \field{title}{On cone of convexity of set-valued maps}
+      \field{year}{1997}
+      \field{pages}{1487\bibrangedash 1496}
+      \range{pages}{10}
+    \endentry
     \entry{MR2778674}{article}{}
       \name{author}{3}{}{%
         {{hash=ca7ce835b6f8c2bc85630a4cb1c9ce63}{%
@@ -191,6 +225,40 @@
       \verb{url}
       \verb https://doi.org/10.2969/jmsj/02810168
       \endverb
+    \endentry
+    \entry{xu2016new}{article}{}
+      \name{author}{2}{}{%
+        {{hash=d7af35af5215e2c2f9ca570fbd643fcc}{%
+           family={Xu},
+           familyi={X\bibinitperiod},
+           given={YD},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=5f56bb7d7006631a83969794336cc7a4}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={SJ},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Taylor \& Francis}%
+      }
+      \strng{namehash}{e3fe1ea41317c455403adc48194cde8d}
+      \strng{fullhash}{e3fe1ea41317c455403adc48194cde8d}
+      \strng{bibnamehash}{e3fe1ea41317c455403adc48194cde8d}
+      \strng{authorbibnamehash}{e3fe1ea41317c455403adc48194cde8d}
+      \strng{authornamehash}{e3fe1ea41317c455403adc48194cde8d}
+      \strng{authorfullhash}{e3fe1ea41317c455403adc48194cde8d}
+      \field{sortinit}{X}
+      \field{sortinithash}{1965c258adceecf23ce3d67b05113442}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Optimization}
+      \field{number}{1}
+      \field{title}{A new nonlinear scalarization function and applications}
+      \field{volume}{65}
+      \field{year}{2016}
+      \field{pages}{207\bibrangedash 231}
+      \range{pages}{25}
     \endentry
   \enddatalist
 \endrefsection
