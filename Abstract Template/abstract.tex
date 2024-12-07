@@ -1,0 +1,87 @@
+\documentclass[book,twoside,oldfontcommands,fleqn,b5paper,10pt]{memoir}
+
+\usepackage{geometry}
+\usepackage{amssymb,amsmath,mathrsfs}
+\usepackage{amsthm,stmaryrd}
+\usepackage[hypertexnames=false,colorlinks,linkcolor={blue},citecolor={blue}]{hyperref}
+\usepackage{graphicx,float}
+\usepackage{enumitem}
+\usepackage{sfmath}
+\usepackage[T1]{fontenc}
+\renewcommand*\familydefault{\sfdefault}
+
+
+\let\footruleskip\undefined
+\usepackage{fancyhdr}
+\fancyhead[OL,ER]{\scriptsize{The 12th Asian Conferences on Fixed Point Theory and Optimization 2025\\
+15-18 January, 2025\\
+Duangtawan Hotel Chiang Mai, Chiang Mai, Thailand}}
+\fancyhead[LE,OR]{\includegraphics[height=1.75em]{ACFPTO2025.png}}
+\fancyfoot[C]{\thepage}
+\pagestyle{fancy}
+
+
+
+%======================
+
+\newcommand{\Ti}{\LARGE}
+\newcommand{\Au}{\normalsize}
+\newcommand{\Af}{\footnotesize\it}
+\newcommand{\Ab}{\begin{center}{\bfseries Abstract}\end{center}\normalsize}
+
+%======================
+
+\begin{document}
+
+%=======================
+\newpage{}
+~\vskip 1em
+
+\begin{center}\Ti
+Your Title Goes Here
+\end{center}
+\vskip 1em
+\begin{center}\Au
+ First Author, Second Author 
+\end{center}
+\begin{center}\Af
+Affiliation Line1,\\
+Affiliation Line2,\\
+Affiliation Line3.
+
+\vskip 1em
+$^\ast$presenting author.\\
+email: presenting.author@email.com
+\end{center}
+
+\vskip 1 em
+
+
+\Ab
+
+Your abstract goes here.
+
+\vskip 1cm
+
+{\noindent\bfseries Acknowledgements}\footnotesize
+
+Your acknowledgements goes here.
+
+\vskip 1cm
+
+{\noindent\bfseries References}\footnotesize
+\begin{enumerate}[label={[\arabic*]}]
+\item Reference no.1
+\item Reference no.2
+\item Reference no.3
+
+\end{enumerate}
+
+}
+
+
+
+
+\end{document}
+
+

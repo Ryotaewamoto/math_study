@@ -1,0 +1,266 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{500001551932}{thesis}{}
+      \name{author}{1}{}{%
+        {{hash=c9c87d874034b32dce9ac7d384af2f77}{%
+           family={Dechboon},
+           familyi={D\bibinitperiod},
+           given={Premyuda},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {新潟大学}%
+      }
+      \strng{namehash}{c9c87d874034b32dce9ac7d384af2f77}
+      \strng{fullhash}{c9c87d874034b32dce9ac7d384af2f77}
+      \strng{bibnamehash}{c9c87d874034b32dce9ac7d384af2f77}
+      \strng{authorbibnamehash}{c9c87d874034b32dce9ac7d384af2f77}
+      \strng{authornamehash}{c9c87d874034b32dce9ac7d384af2f77}
+      \strng{authorfullhash}{c9c87d874034b32dce9ac7d384af2f77}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Inheritance properties on cone continuity for set-valued maps via scalarization}
+      \field{type}{phdthesis}
+      \field{year}{2022}
+      \verb{urlraw}
+      \verb https://ci.nii.ac.jp/naid/500001551932
+      \endverb
+      \verb{url}
+      \verb https://ci.nii.ac.jp/naid/500001551932
+      \endverb
+    \endentry
+    \entry{MR1807037}{article}{}
+      \name{author}{2}{}{%
+        {{hash=103c85876779c505decdd283f8e01068}{%
+           family={Georgiev},
+           familyi={G\bibinitperiod},
+           given={Pando\bibnamedelima Gr.},
+           giveni={P\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=5b6354f472ce234872e60fa5e0b387c2}{%
+           family={Tanaka},
+           familyi={T\bibinitperiod},
+           given={Tamaki},
+           giveni={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{a46858c91355e4e80b7f0433fe6f0d9a}
+      \strng{fullhash}{a46858c91355e4e80b7f0433fe6f0d9a}
+      \strng{bibnamehash}{a46858c91355e4e80b7f0433fe6f0d9a}
+      \strng{authorbibnamehash}{a46858c91355e4e80b7f0433fe6f0d9a}
+      \strng{authornamehash}{a46858c91355e4e80b7f0433fe6f0d9a}
+      \strng{authorfullhash}{a46858c91355e4e80b7f0433fe6f0d9a}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1345-4773,1880-5221}
+      \field{journaltitle}{J. Nonlinear Convex Anal.}
+      \field{number}{3}
+      \field{title}{Vector-valued set-valued variants of {K}y {F}an's inequality}
+      \field{volume}{1}
+      \field{year}{2000}
+      \field{pages}{245\bibrangedash 254}
+      \range{pages}{10}
+    \endentry
+    \entry{MR3458699}{article}{}
+      \name{author}{3}{}{%
+        {{hash=d411f4e57e5759519e3784fbb31c688f}{%
+           family={Kobayashi},
+           familyi={K\bibinitperiod},
+           given={Shogo},
+           giveni={S\bibinitperiod}}}%
+        {{hash=71f1509e9af1b5b1c8720a74a22a6cf9}{%
+           family={Saito},
+           familyi={S\bibinitperiod},
+           given={Yutaka},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=5b6354f472ce234872e60fa5e0b387c2}{%
+           family={Tanaka},
+           familyi={T\bibinitperiod},
+           given={Tamaki},
+           giveni={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{acc5f17ff0fda178235a31d66b254127}
+      \strng{fullhash}{acc5f17ff0fda178235a31d66b254127}
+      \strng{bibnamehash}{acc5f17ff0fda178235a31d66b254127}
+      \strng{authorbibnamehash}{acc5f17ff0fda178235a31d66b254127}
+      \strng{authornamehash}{acc5f17ff0fda178235a31d66b254127}
+      \strng{authorfullhash}{acc5f17ff0fda178235a31d66b254127}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1348-9151,1349-8169}
+      \field{journaltitle}{Pac. J. Optim.}
+      \field{number}{1}
+      \field{title}{Convexity for compositions of set-valued map and monotone scalarizing function}
+      \field{volume}{12}
+      \field{year}{2016}
+      \field{pages}{43\bibrangedash 54}
+      \range{pages}{12}
+    \endentry
+    \entry{kuroiwa1997cone}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=35ccd3637c06cdf29682ded1583082b3}{%
+           family={Kuroiwa},
+           familyi={K\bibinitperiod},
+           given={Daishi},
+           giveni={D\bibinitperiod}}}%
+        {{hash=5b6354f472ce234872e60fa5e0b387c2}{%
+           family={Tanaka},
+           familyi={T\bibinitperiod},
+           given={Tamaki},
+           giveni={T\bibinitperiod}}}%
+        {{hash=07b06d4482b30a6d30ed4aea243865f5}{%
+           family={Ha},
+           familyi={H\bibinitperiod},
+           given={Truong\bibnamedelimb Xuan\bibnamedelima Duc},
+           giveni={T\bibinitperiod\bibinitdelim X\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \strng{namehash}{7d35f59eac9e0a3c95ad19c273998626}
+      \strng{fullhash}{7d35f59eac9e0a3c95ad19c273998626}
+      \strng{bibnamehash}{7d35f59eac9e0a3c95ad19c273998626}
+      \strng{authorbibnamehash}{7d35f59eac9e0a3c95ad19c273998626}
+      \strng{authornamehash}{7d35f59eac9e0a3c95ad19c273998626}
+      \strng{authorfullhash}{7d35f59eac9e0a3c95ad19c273998626}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the second world congress on Nonlinear analysts: part 3}
+      \field{title}{On cone of convexity of set-valued maps}
+      \field{year}{1997}
+      \field{pages}{1487\bibrangedash 1496}
+      \range{pages}{10}
+    \endentry
+    \entry{MR2778674}{article}{}
+      \name{author}{3}{}{%
+        {{hash=ca7ce835b6f8c2bc85630a4cb1c9ce63}{%
+           family={Kuwano},
+           familyi={K\bibinitperiod},
+           given={Issei},
+           giveni={I\bibinitperiod}}}%
+        {{hash=5b6354f472ce234872e60fa5e0b387c2}{%
+           family={Tanaka},
+           familyi={T\bibinitperiod},
+           given={Tamaki},
+           giveni={T\bibinitperiod}}}%
+        {{hash=ccfc2e62f65a978c37cafca551931f7a}{%
+           family={Yamada},
+           familyi={Y\bibinitperiod},
+           given={Syuuji},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{4532194d92826c7c1bfb11026fed39f5}
+      \strng{fullhash}{4532194d92826c7c1bfb11026fed39f5}
+      \strng{bibnamehash}{4532194d92826c7c1bfb11026fed39f5}
+      \strng{authorbibnamehash}{4532194d92826c7c1bfb11026fed39f5}
+      \strng{authornamehash}{4532194d92826c7c1bfb11026fed39f5}
+      \strng{authorfullhash}{4532194d92826c7c1bfb11026fed39f5}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1345-4773,1880-5221}
+      \field{journaltitle}{J. Nonlinear Convex Anal.}
+      \field{number}{3}
+      \field{title}{Unified scalarization for sets and set-valued {K}y {F}an minimax inequality}
+      \field{volume}{11}
+      \field{year}{2010}
+      \field{pages}{513\bibrangedash 525}
+      \range{pages}{13}
+    \endentry
+    \entry{MR399979}{article}{}
+      \name{author}{1}{}{%
+        {{hash=ead62bfeea3cd423b515c18f10f86175}{%
+           family={Takahashi},
+           familyi={T\bibinitperiod},
+           given={Wataru},
+           giveni={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{ead62bfeea3cd423b515c18f10f86175}
+      \strng{fullhash}{ead62bfeea3cd423b515c18f10f86175}
+      \strng{bibnamehash}{ead62bfeea3cd423b515c18f10f86175}
+      \strng{authorbibnamehash}{ead62bfeea3cd423b515c18f10f86175}
+      \strng{authornamehash}{ead62bfeea3cd423b515c18f10f86175}
+      \strng{authorfullhash}{ead62bfeea3cd423b515c18f10f86175}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0025-5645,1881-1167}
+      \field{journaltitle}{J. Math. Soc. Japan}
+      \field{number}{1}
+      \field{title}{Nonlinear variational inequalities and fixed point theorems}
+      \field{volume}{28}
+      \field{year}{1976}
+      \field{pages}{168\bibrangedash 181}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.2969/jmsj/02810168
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.2969/jmsj/02810168
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.2969/jmsj/02810168
+      \endverb
+    \endentry
+    \entry{xu2016new}{article}{}
+      \name{author}{2}{}{%
+        {{hash=d7af35af5215e2c2f9ca570fbd643fcc}{%
+           family={Xu},
+           familyi={X\bibinitperiod},
+           given={YD},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=5f56bb7d7006631a83969794336cc7a4}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={SJ},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Taylor \& Francis}%
+      }
+      \strng{namehash}{e3fe1ea41317c455403adc48194cde8d}
+      \strng{fullhash}{e3fe1ea41317c455403adc48194cde8d}
+      \strng{bibnamehash}{e3fe1ea41317c455403adc48194cde8d}
+      \strng{authorbibnamehash}{e3fe1ea41317c455403adc48194cde8d}
+      \strng{authornamehash}{e3fe1ea41317c455403adc48194cde8d}
+      \strng{authorfullhash}{e3fe1ea41317c455403adc48194cde8d}
+      \field{sortinit}{X}
+      \field{sortinithash}{1965c258adceecf23ce3d67b05113442}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Optimization}
+      \field{number}{1}
+      \field{title}{A new nonlinear scalarization function and applications}
+      \field{volume}{65}
+      \field{year}{2016}
+      \field{pages}{207\bibrangedash 231}
+      \range{pages}{25}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
