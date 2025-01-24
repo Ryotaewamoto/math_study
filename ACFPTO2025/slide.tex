@@ -1,0 +1,519 @@
+\documentclass[aspectratio=169, dvipdfmx, 11pt]{beamer}
+\usepackage[T1]{fontenc}
+\usepackage{here, amsmath, latexsym, amssymb, bm, ascmac, mathtools, multicol, tcolorbox, subfig}
+\usepackage[scale=2]{ccicons}
+\usepackage[sortcites,style=numeric,backend=biber]{biblatex}
+\addbibresource{ref.bib}
+
+\usetheme{metropolis} % Use metropolis theme
+\setbeamercolor{background canvas}{bg=white}
+\setbeamercolor{block title}{bg=white}
+\setbeamertemplate{footline}[frame number]
+
+\DeclareFontFamily{U}{MnSymbolD}{}
+\DeclareFontShape{U}{MnSymbolD}{m}{n}{
+    <-6>  MnSymbolD5
+   <6-7>  MnSymbolD6
+   <7-8>  MnSymbolD7
+   <8-9>  MnSymbolD8
+   <9-10> MnSymbolD9
+  <10-12> MnSymbolD10
+  <12->   MnSymbolD12}{}
+\DeclareFontShape{U}{MnSymbolD}{b}{n}{
+    <-6>  MnSymbolD-Bold5
+   <6-7>  MnSymbolD-Bold6
+   <7-8>  MnSymbolD-Bold7
+   <8-9>  MnSymbolD-Bold8
+   <9-10> MnSymbolD-Bold9
+  <10-12> MnSymbolD-Bold10
+  <12->   MnSymbolD-Bold12}{}
+\DeclareSymbolFont{MnSyD}{U}{MnSymbolD}{m}{n}
+\SetSymbolFont{MnSyD}{bold}{U}{MnSymbolD}{b}{n}
+
+\DeclareMathSymbol\preccurlyeq{\mathrel}{MnSyD}{"6C}
+\DeclareMathSymbol\npreccurlyeq{\mathrel}{MnSyD}{"E4}
+
+% Mathematical Sets
+\newcommand{\NaturalNumberSet}{\mathbb{N}}
+\newcommand{\RealNumberSet}{\mathbb{R}}
+\newcommand{\NDemenstionalRealEuclideanSpace}{\mathbb{R}^n}
+\newcommand{\NDemenstionalRealSymmetricMatrixSpace}{\mathbb{S}^n}
+
+% Symbols of prefix
+\newcommand{\Closure}[1]{\text{\rm cl\:${#1}$}} % cl
+\newcommand{\Interior}[1]{\text{\rm int\:${#1}$}} % int
+\newcommand{\Boundary}[1]{\mbox{\rm bd}\mbox{$\,#1$}}  % bd
+\newcommand{\Domain}[1]{\text{\rm dom\:${#1}$}} % dom
+\newcommand{\Epigraph}[1]{\text{\rm epi\:${#1}$}} % epi
+\newcommand{\Trace}[1]{\text{\rm tr$({#1})$}} % tr
+\newcommand{\InnerProduct}[2]{\left\langle {#1},{#2}\right\rangle} % <x,y>
+\newcommand{\OrderingLevelSets}[3]{\text{\rm lev\:$({#1}, {#2}, {#3})$}} % lev
+\newcommand{\Nbd}[2]{\mbox{$\mathcal{N}_{#1}({#2})$}}
+\newcommand{\Norm}[1]{\left\lVert {#1} \right\rVert} % ||x||
+\newcommand{\pow}[1]{\mathcal{P}_{0}(#1)}
+
+% Extended real valued function e.g. f: X -> Rv{+∞}
+% #1: function symbol
+% #2: domain of function
+\newcommand{\ExtendedRealValuedFunction}[2]{{#1}: {#2} \to \RealNumberSet \cup \{+\infty\}}
+
+% Conjugate function e.g. f*
+% #1: function symbol
+\newcommand{\ConjugateFunction}[1]{{#1}^*}
+
+% (Useful) Texts
+\newcommand{\SuchThat}{\:\text{s.t.}\:}
+
+% Set form e.g. {x | ...}
+% #1: element
+% #2: conditions
+\newcommand{\SetForm}[2]{
+  \{{#1}\:|\:{#2}\}
+}
+
+\newcommand{\setrel}[2]{\preccurlyeq^{(#1)}_{#2}\!}
+\newcommand{\notsetrel}[2]{{\not\preccurlyeq}^{(#1)}_{#2}\!}
+
+\title{Set-Valued Fan-Takahashi Inequalities with Set-Relations Based on Scalarization Methods
+}
+\author[Ryota Iwamoto]{
+  Ryota Iwamoto\texorpdfstring{$^{*a}$}{} and Tamaki Tanaka\texorpdfstring{$^{b}$}{}
+  }
+\institute[Niigata Univ]{
+  \texorpdfstring{$^{a}$}{}Graduate school of Science and Technology, Niigata University, Niigata 950--2181, Japan, \\
+  E-mail: {\texttt lengtaiyanben@math.sc.niigata-u.ac.jp}
+  \\
+  \texorpdfstring{$^{b}$}{}Faculty of Science, Niigata University, Niigata 950--2181, Japan, \\
+  E-mail: {\texttt tamaki@math.sc.niigata-u.ac.jp}
+}
+\date{17th, January, 2025}
+\titlegraphic{
+  \vspace{5.5cm}
+  \hspace{7.5cm}
+  \includegraphics[keepaspectratio, scale=0.15]{figures/niigata_university_logo.png}
+  \includegraphics[keepaspectratio, scale=0.10]{figures/ACFPTO.png}
+  }
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Contents}
+  \tableofcontents
+\end{frame}
+
+% 1. Introduction
+% ----------------------------------------------------------------
+\section{Introduction}
+
+\begin{frame}{Background}
+  - Georgiev and Tanaka \cite{MR1807037} extended Fan-Takahashi minimax inequality to the form of set-valued maps.
+  % P. G. Georgiev と T. Tanaka によって集合値への minimax 不等式の拡張が進められた。
+
+  - Kuwano, Tanaka, and Yamada \cite{MR2778674} constructed the result of four types of set-valued minimax inequalities
+  with set relations.
+  % I. Kuwano と T. Tanaka, S. Yamada によって set-relations の比較にに対してスカラー関数を対応させたものの minimax 不等式の拡張が進められた。
+
+  - \textbf{Our goal is to generalize the result of four types of set-valued minimax inequalities which is not related to the specific set-relations and scalarization functions.}
+  % set-relations の比較に依存しない形、またスカラー化関数がその比較に依存しない形を目指す。
+  \renewcommand{\thefootnote}{\fnsymbol{footnote}}%
+  \footnote[0]{[2] Pando Gr. Georgiev and Tamaki Tanaka. “Vector-valued set-valued variants of
+    Ky Fan's inequality”. In: J. Nonlinear Convex Anal. 1.3 (2000), pp. 245--254.}
+  \footnote[0]{[5] Issei Kuwano, Tamaki Tanaka, and Syuuji Yamada. “Uniﬁed scalarization for
+    sets and set-valued Ky Fan minimax inequality”. In: J. Nonlinear Convex Anal.
+    11.3 (2010), pp. 513--525.}
+\end{frame}
+
+\begin{frame}{Background}
+  - Georgiev and Tanaka \cite{MR1807037} extended \textcolor{orange}{Fan-Takahashi minimax inequality} to the form of set-valued maps.
+  % P. G. Georgiev と T. Tanaka によって集合値への minimax 不等式の拡張が進められた。
+
+  - Kuwano, Tanaka, and Yamada \cite{MR2778674} constructed the result of \textcolor{orange}{four types of set-valued minimax inequalities
+  with set relations}.
+  % I. Kuwano と T. Tanaka, S. Yamada によって set-relations の比較にに対してスカラー関数を対応させたものの minimax 不等式の拡張が進められた。
+
+  - \textbf{Our goal is to generalize the result of four types of set-valued minimax inequalities which is not related to the specific set-relations and scalarization functions.}
+  % set-relations の比較に依存しない形、またスカラー化関数がその比較に依存しない形を目指す。
+  \renewcommand{\thefootnote}{\fnsymbol{footnote}}%
+  \footnote[0]{[2] Pando Gr. Georgiev and Tamaki Tanaka. “Vector-valued set-valued variants of
+    Ky Fan's inequality”. In: J. Nonlinear Convex Anal. 1.3 (2000), pp. 245--254.}
+  \footnote[0]{[5] Issei Kuwano, Tamaki Tanaka, and Syuuji Yamada. “Uniﬁed scalarization for
+    sets and set-valued Ky Fan minimax inequality”. In: J. Nonlinear Convex Anal.
+    11.3 (2010), pp. 513--525.}
+\end{frame}
+
+\begin{frame}{Fan-Takahashi Minimax Inequality}
+  \begin{block}{Theorem (Fan-Takahashi \cite{MR399979})} % 高橋先生の論文を引用する形に変更
+    Let $X$ be a nonempty compact convex subset of a Hausdorff topological vector space and $f \colon X \times X \to \RealNumberSet$. If $f$ satisfies
+    the following conditions:
+    \begin{enumerate}
+      \item for each fixed $y \in X$, $f(\cdot,y)$ is lower semicontinuous,
+      \item for each fixed $x \in X$, $f(x,\cdot)$ is quasi concave,
+      \item $f(x,x) \leq 0$ for all $x \in X$,
+    \end{enumerate}
+    then there exists $\bar{x} \in X$ such that $f(\bar{x},y) \leq 0$ for all $y \in X$.
+  \end{block}
+\end{frame}
+
+\begin{frame}{Ordering and Set-relations}
+  \centering
+  \includegraphics[keepaspectratio, scale=0.28]{figures/eps/set-relations_3.eps}
+\end{frame}
+
+\begin{frame}{Ordering and Set-relations}
+  \begin{block}{Lemma}
+    Let $Y$ be a real topological vector space, $C$ a convex cone
+    with $\Interior{C} \ne \emptyset$, and $A, \{\theta_Y\} \subset Y$. Then
+    \begin{enumerate}
+      \item $A \setrel{1}{C} \{\theta_Y\} \Leftrightarrow A \setrel{2U}{C} \{\theta_Y\} \Leftrightarrow A \setrel{3U}{C} \{\theta_Y\} \Leftrightarrow A \subset -C$,
+      \item $A \setrel{2L}{C} \{\theta_Y\} \Leftrightarrow A \setrel{3L}{C} \{\theta_Y\} \Leftrightarrow A \setrel{4}{C} \{\theta_Y\} \Leftrightarrow A \cap (-C) \ne \emptyset$,
+      \item $\{\theta_Y\} \notsetrel{1}{\Interior{C}}\:A \Leftrightarrow \{\theta_Y\} \notsetrel{2L}{\Interior{C}}\:A \Leftrightarrow \{\theta_Y\} \notsetrel{3L}{\Interior{C}}\:A \Leftrightarrow A \cap \Interior{C} = \emptyset$,
+      \item $\{\theta_Y\} \notsetrel{2U}{\Interior{C}}\:A \Leftrightarrow \{\theta_Y\} \notsetrel{3U}{\Interior{C}}\:A \Leftrightarrow \{\theta_Y\} \notsetrel{4}{\Interior{C}}\:A \Leftrightarrow A \not\subset \Interior{C}$.
+    \end{enumerate}
+  \end{block}
+  \centering
+  \begin{columns}
+    \begin{column}{0.48\textwidth}
+      \centering
+      \includegraphics[keepaspectratio, scale=0.18]{figures/eps/case2_set_relations.eps}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \centering
+      \includegraphics[keepaspectratio, scale=0.18]{figures/eps/case1_set_relations.eps}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Four types of Set-Valued Minimax Inequalities with Set-relations}
+  Let $f:X \to \RealNumberSet$ and $F:X \to \pow{Y}$.
+
+  \centering
+  \includegraphics[keepaspectratio, scale=0.35]{figures/eps/4types_set_relations.eps}
+\end{frame}
+
+\begin{frame}{Four types of Set-Valued Minimax Inequalities with Set-relations}
+  \centering
+  \includegraphics[keepaspectratio, scale=0.38]{figures/eps/kuwano_tanaka_yamada_results.eps}
+\end{frame}
+
+\begin{frame}{Four types of Set-Valued Minimax Inequalities with Set-relations}
+  \centering
+  \includegraphics[keepaspectratio, scale=0.38]{figures/eps/kuwano_tanaka_yamada_results_properly.eps}
+\end{frame}
+
+\begin{frame}{Four types of Set-Valued Minimax Inequalities with Set-relations}
+  \centering
+  \includegraphics[keepaspectratio, scale=0.38]{figures/eps/kuwano_tanaka_yamada_results_naturally.eps}
+\end{frame}
+
+\begin{frame}{Our Result}
+  \centering
+  \includegraphics[keepaspectratio, scale=0.38]{figures/eps/iwamoto_tanaka_results.eps}
+\end{frame}
+
+% 3. Preliminaries
+% ----------------------------------------------------------------
+\section{Preliminaries}
+
+\begin{frame}{Preliminaries}
+  Let $X$ be a topological space, $Y$ a real topological vector space, and $\theta_Y$ be a zero vector in $Y$.
+  Define that $\pow{Y}$ is the set of all nonempty subsets of $Y$.
+  The sets of neighborhoods of $x \in X$ and $y \in Y$ is denoted by $\mathcal{N}_X (x)$ and $\mathcal{N}_Y (y)$, respectively.
+
+  \begin{block}{Definition}
+    For $A,B \in \pow{Y}$, we define two binary relations on $\pow{Y}$:
+    \begin{equation}
+      A \preccurlyeq_1 B \overset{\text{def}}{\Longleftrightarrow} A \cap B \ne \emptyset \quad \text{and} \quad A \preccurlyeq_2 B \overset{\text{def}}{\Longleftrightarrow} B \subset A. \notag
+    \end{equation}
+  \end{block}
+
+  \begin{block}{Definition}
+    $A$ is said to be $C$-bounded if for each neighborhood $U$ of $\theta_Y$
+    there exists $t > 0$ such that $A \subset tU + C$.
+  \end{block}
+\end{frame}
+
+\begin{frame}{Preliminaries (Lower Semicontinuity)}
+  \begin{block}{Definition}
+    Let $f:Y\rightarrow \RealNumberSet \cup \{ \pm \infty\}$ and $y_{0}\in{Y}$.
+    We say that $f$ is
+    lower semicontinuous (l.s.c.\ shortly) at $y_{0}$ if
+    \begin{equation}
+      \forall r < f \left( y_{0} \right),
+      \exists V \in \Nbd{Y}{y_{0}} \:\SuchThat\: r < f \left( y \right),\: \forall y \in V; \notag
+    \end{equation}
+  \end{block}
+
+  \begin{block}{Definition \cite{500001551932}}
+    Let $F \colon X \to \pow{Y}$, $x_0 \in X$, $\preccurlyeq$ a binary relation on $\pow{Y}$
+    and $C \subset Y$ a convex cone. We say that $F$ is $(\preccurlyeq, C)$-continuous at $x_0$ if
+    \begin{equation}
+      \forall W \subset Y, W\:\text{open},W \preccurlyeq F(x_0), \exists V \in \mathcal{N}_{X}(x_0) \:\SuchThat\: W + C \preccurlyeq F(x), \forall x \in V. \notag
+    \end{equation}
+  \end{block}
+
+  \begin{alertblock}{Remark}
+    As special cases, $(\preccurlyeq_1, C)$-continuity and $(\preccurlyeq_2, C)$-continuity coincide with “C-lower
+    continuity” and “C-upper continuity” for set-valued maps, respectively.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Preliminaries (Lower Semicontinuity)}
+  \begin{block}{Definition \cite{500001551932}}
+    Let $\varphi \colon \pow{Y} \to \RealNumberSet \cup \{\pm \infty\}$, $A_0 \in \pow{Y}$,
+    $\preccurlyeq$ a binary relation on $\pow{Y}$, and $C$ a convex cone in $Y$ with $C \ne Y$. Then,
+    we say that $\varphi$ is $(\preccurlyeq, C)$-lower semicontinuous at $A_0$ if
+    \begin{equation}
+      \forall r < \varphi (A_0), \exists W \in \pow{Y}, W\:\text{open}, \SuchThat W \preccurlyeq A_0 \:\text{and}\:
+      r > \varphi (A), \forall A \in U(W + C, \preccurlyeq); \notag
+    \end{equation}
+    where $U(V,\preccurlyeq) \coloneqq \SetForm{A \in \pow{Y}}{V \preccurlyeq A}$.
+  \end{block}
+
+  \begin{block}{Theorem \cite{500001551932}}
+    Let $F \colon X \to \pow{Y}$, $\varphi \colon \pow{Y} \to \RealNumberSet \cup \{\pm \infty\}$, $x_0 \in X$,
+    $\preccurlyeq$ a binary relation on $\pow{Y}$, and $C$ a convex cone. If $F$ is $(\preccurlyeq, C)$-continuous at $x_0$
+    and $\varphi$ is $(\preccurlyeq, C)$-lower semicontinuous at $F(x_0)$, then $(\varphi \circ F)$ is lower semicontinuous at $x_0$.
+  \end{block}
+\end{frame}
+
+\begin{frame}{Preliminaries (Convexity)}
+  \begin{block}{Definition}
+    Let $X$ be a nonempty set, $Y$ a real topological vector space, $C$ a convex cone in $Y$, and $F\colon X \to \pow{Y}$ a set-valued map.
+    \begin{enumerate}
+      \item $F$ is called type $(j)$ properly quasi $C$-concave if for each $x,y \in X$ and $\lambda \in (0,1)$,
+            \begin{equation}
+              F(x) \setrel{j}{C} F(\lambda x + (1-\lambda)y) \quad \text{or} \quad F(y) \setrel{j}{C} F(\lambda x + (1-\lambda)y) \notag
+            \end{equation}
+      \item $F$ is called type $(j)$ naturally quasi $C$-concave if for each $x,y \in X$ and $\lambda \in (0,1)$, there exists $\mu \in [0,1]$ such that
+            \begin{equation}
+              \mu F(x) + (1-\mu) F(y) \setrel{j}{C} F(\lambda x + (1-\lambda)y). \notag
+            \end{equation}
+    \end{enumerate}
+  \end{block}
+  \begin{alertblock}{Remark}
+    If $F$ is type $(j)$ properly quasi $C$-concave,
+    then $F$ is type $(j)$ naturally quasi $C$-concave.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Preliminaries (Convexity)}
+  \begin{block}{Definition \cite{MR3458699}}
+    Let $\mathcal{A} \subset \pow{Y}$. $\mathcal{A}$ is said to be convex if for each $A_1, A_2 \in \mathcal{A}$ and $\lambda \in (0,1)$,
+    \begin{equation}
+      \lambda A_1 + (1-\lambda) A_2 \in \mathcal{A}. \notag
+    \end{equation}
+  \end{block}
+
+  \begin{block}{Definition \cite{MR3458699}}
+    Let $\varphi \colon \pow{Y} \to \RealNumberSet \cup \{\pm \infty\}$. Then,
+    \begin{enumerate}
+      \item $\varphi$ is concave if for $A, B \in \pow{Y}$,
+            $\varphi(\lambda A + (1-\lambda) B) \geq  \lambda \varphi (A) + (1- \lambda) \varphi (B)$,
+      \item $\varphi$ is quasi concave if for any $\alpha \in \RealNumberSet$,
+            $\OrderingLevelSets{\varphi}{\geq}{\alpha} \coloneqq \SetForm{A \in \pow{Y}}{\varphi(A) \geq \alpha}$ is convex.
+    \end{enumerate}
+  \end{block}
+
+  \begin{alertblock}{Remark}
+    If $\varphi$ is concave, then $\varphi$ is quasi concave.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Preliminaries (Monotonicity)}
+  \begin{block}{Definition}
+    Let $C$ be a convex cone in $Y$.
+    A scalarization function $\varphi$ is $(\setrel{j}{C})$-monotone if
+    for any $A, B \in \pow{Y}$ with
+    $A \setrel{j}{C} B$, $\varphi (A) \leq \varphi (B)$.
+  \end{block}
+
+  \begin{block}{Definition}
+    Let $C$ be a convex cone in $Y$.
+    A scalarization function $\varphi$ is $(\setrel{j}{\Interior{C}})$-monotone if
+    for any $A, B \in \pow{Y}$ with
+    $A \setrel{j}{\Interior{C}} B$, $\varphi (A) < \varphi (B)$.
+  \end{block}
+
+  \begin{block}{Proposition}
+    Let $\varphi$ be $(\setrel{j}{C})$-monotone and quasi concave.
+    If $F$ is type $(j)$ naturally quasi $C$-concave,
+    then $(\varphi \circ F)$ is quasi concave.
+  \end{block}
+
+  \begin{block}{Proposition}
+    Let $\varphi$ be $(\setrel{j}{\Interior{C}})$-monotone and quasi concave.
+    If $F$ is type $(j)$ naturally quasi $C$-concave,
+    then $(\varphi \circ F)$ is quasi concave.
+  \end{block}
+\end{frame}
+
+% Main results
+% ----------------------------------------------------------------
+\section{Main results}
+
+% 4.1
+\begin{frame}{Specific Scalarization Function}
+  Let $\varphi: \pow{Y} \to \RealNumberSet \cup \{\pm \infty\}$, $\preccurlyeq$ a binary relation
+  on $\pow{Y}$, and $C' \subset Y$  a convex cone.
+  In order to generalize four types of set-valued minimax inequalities \cite{MR2778674},
+  we provide a new class of scalarization functions which satisfy;
+  \begin{enumerate}
+    \item $\varphi$ is $(\preccurlyeq, C')$-lower semicontinuous,
+    \item $\varphi$ is quasi concave,
+    \item $\varphi(\{\theta_{Y}\}) = 0$,
+  \end{enumerate}
+  In addition, we define conditions between inequalities and set-relations as follows;\\
+  \vspace{2mm}
+  (A1) $\varphi$ is $(\setrel{j}{\Interior{C}})$-monotone,\\
+  (A2) $\varphi (A) > 0 \Rightarrow  \{\theta_Y\} \setrel{j}{\Interior{C}} A \quad\text{for any}\:A \in \pow{Y}$.\\
+  \vspace{2mm}
+  If $\varphi$ satisfies conditions (i)--(iii), (A1), and (A2),
+  we write the notation as $\varphi \in \Phi(\setrel{j}{\Interior{C}}\:, \preccurlyeq, C')$.
+\end{frame}
+
+\begin{frame}{Main Result}
+  \begin{block}{Theorem}
+    Let $X$ be a nonempty compact convex subset of a Hausdorff topological vector space,
+    $Y$ a real topological vector space, $\preccurlyeq$ a binary relation on $\mathcal{P}(Y)$,
+    $C$ a convex cone in $Y$, $C'$ a convex cone in $Y$,
+    $\varphi\colon \pow{Y} \to \RealNumberSet \cup \{\pm \infty\}$,
+    and $F\colon X \times X \to \pow{Y}$.
+    For the scaralization function $\varphi \in \Phi(\setrel{j}{\Interior{C}}\:, \preccurlyeq, C')$,
+    if $F$ satisfies the following conditions:
+    \begin{enumerate}
+      \item $(\varphi \circ F)(x,y) \in \RealNumberSet$ for all $x,y \in X$,
+      \item for each fixed $y \in X$, $F(\cdot,y)$ is $(\preccurlyeq, C')$-continuous,
+      \item for each fixed $x \in X$, $F(x,\cdot)$ is $j$-naturally quasi $C$-concave,
+      \item for all $x \in X$, $\{\theta_Y\} \notsetrel{j}{\Interior{C}}\: F(x,x) $,
+    \end{enumerate}
+    then there exists $\bar{x} \in X$ such that $\{\theta_Y\} \notsetrel{j}{\Interior{C}}\: F(\bar{x},y)$
+    for all $y \in X$.
+  \end{block}
+\end{frame}
+
+% % 5. Examples
+% % ----------------------------------------------------------------
+% \section{Examples}
+
+% \begin{frame}{Hiriart-Urruty Oriented Distance}
+%   \begin{block}{Definition (Hiriart-Urruty Oriented distance) \cite{xu2016new}}
+%     Let $Y$ be a real normed vector space. For a set $A \subset Y$, let the oriented distance function
+%     $\Delta_{A} \colon Y \to \RealNumberSet\cup\{\pm \infty\}$ be defined by
+%     \begin{align*}
+%       \Delta_{A}(y) \coloneq d_{A} (y) - d_{Y \backslash A}(y),
+%     \end{align*}
+%     $ d_{A} (y)= \inf\{\Norm{y - z} \mid z \in A\}$, $d_{\emptyset} (y) \coloneq + \infty$,
+%     and $\Norm{y}$ denotes the norm of $y$ in $Y$.
+%   \end{block}
+%   \begin{block}{Definition \cite{xu2016new}}
+%     For the set $A \in Y$, let the functions $\mathcal{D}^{+}_{A} \colon \mathcal{P}(Y) \to \RealNumberSet \cup \{\pm \infty\}$
+%     and $\mathcal{D}^{-}_{A} \colon \mathcal{P}(Y) \to \RealNumberSet \cup \{\pm \infty\}$ be defined as
+%     \begin{align*}
+%       \mathcal{D}^{(1)}_{A}(B) & \coloneq \sup\{\Delta_{A}(b) \mid b \in B\},\: B \in \mathcal{P}(Y),                              \\
+%       \mathcal{D}^{(2)}_{A}(B) & \coloneq \inf\{-\Delta_{A}(b) \mid b \in B\} = -\mathcal{D}^{(1)}_{A}(B),\: B \in \mathcal{P}(Y).
+%     \end{align*}x
+%   \end{block}
+% \end{frame}
+
+% \begin{frame}{Hiriart-Urruty Oriented Distance}
+%   \begin{exampleblock}{Example}
+%     Let $Y = \RealNumberSet^{2}$, $A = [0,2] \times [0.2]$, $y_{1} = (1,1)$, and $y_{2} = (3, 3)$. Then,
+%     \begin{align*}
+%       \Delta_{A}(y_{1}) & = d_{A}(y_{1}) - d_{Y \backslash A}(y_{1}) = 0 - 1 = -1,        \\
+%       \Delta_{A}(y_{2}) & = d_{A}(y_{2}) - d_{Y \backslash A}(y_{2}) = 1 - 0 = \sqrt{2} .
+%     \end{align*}
+%   \end{exampleblock}
+%   \centering
+%   \includegraphics[keepaspectratio, scale=0.10]{figures/eps/hiriart-urruty_distance_example.eps}
+% \end{frame}
+
+% \begin{frame}{Hiriart-Urruty Oriented Distance}
+%   \begin{block}{Proposition \cite{xu2016new}}
+%     If the set $ A $ is nonempty and $ A \neq Y $, then
+%     \begin{enumerate}
+%       \item $\Delta_A(y) < 0$ for every $y \in \Interior{A}$, $\Delta_A(y) = 0$ for every $y \in \Boundary{A}$, and \\
+%             $\Delta_A(y) > 0$ for every $y \in \operatorname{int} A^c$;
+%       \item $\Delta_A$ is positively homogeneous if $ A $ is a cone;
+%       \item $\Delta_A$ is convex if $ A $ is convex;
+%       \item $\Delta_A$ is subadditive if $ A $ is a convex cone;
+%       \item if $A$ is a closed and convex cone,
+%             then $\Delta_A$ is nonincreasing with respect to the ordering relation induced on $Y$,
+%             i.e., the following is true: if \( y_1, y_2 \in Y \), then
+%             \begin{equation}
+%               y_1 - y_2 \in A \Rightarrow \Delta_A(y_1) \leq \Delta_A(y_2); \notag
+%             \end{equation}
+%             if $A$ has a nonempty interior, then
+%             \begin{equation}
+%               y_1 - y_2 \in \operatorname{int} A \Rightarrow \Delta_A(y_1) < \Delta_A(y_2). \notag
+%             \end{equation}
+%     \end{enumerate}
+%   \end{block}
+% \end{frame}
+
+% \begin{frame}{Applications}
+%   \begin{block}{Lemma}
+%     Let $C$ be a proper closed convex cone with $\Interior{C} \ne \emptyset$ in $Y$.
+%     Then, if $B_0$ is $C$-bounded, $\mathcal{D}^{(2)}_{C}(\cdot)$ is
+%     $(\preccurlyeq_2, C)$-lower semicontinuous at $B_0$.
+%   \end{block}
+%   \begin{block}{Proposition}
+%     Let $C$ be a proper closed convex cone with $\Interior{C} \ne \emptyset$ in $Y$.
+%     Then, for any set in $\SetForm{B \in \pow{Y}}{B \:\text{is $C$-bounded}}$,
+%     $\mathcal{D}^{(2)}_{C}(B) \in \Phi(\setrel{3L}{\Interior{C}}\:, \preccurlyeq_2, C)$.
+%   \end{block}
+% \end{frame}
+
+% \begin{frame}{Applications}
+%   \begin{block}{Theorem}
+%     Let $X$ be a nonempty compact convex subset of a topological vector space,
+%     $Y$ a real normed vector space, $C$ a closed convex cone in $Y$ with $\Interior{C} \ne \emptyset$,
+%     and, $F\colon X \times X \to \mathcal{P}(Y) \backslash \{\emptyset\}$.
+%     If $F$ satisfies the following conditions:
+%     \begin{enumerate}
+%       \item $F$ is $C$-bounded on $X \times X$,
+%       \item for each fixed $y \in X$, $F(\cdot,y)$ is $(\preccurlyeq_{2}, C)$-continuous (that is, $C$-upper continuous),
+%       \item for each fixed $x \in X$, $F(x,\cdot)$ is $(\preccurlyeq_{C}^{(3L)})$-naturally quasi concave,
+%       \item for all $x \in X$, $F(x,x) \preccurlyeq_{C}^{(3L)} \{\theta_{\hat{Y}}\}$,
+%     \end{enumerate}
+%     then there exists $\bar{x} \in X$ such that $\{\theta_{\hat{Y}}\} \notsetrel{3L}{\Interior{C}}\: F(\bar{x},y)$ for all $y \in X$.
+%   \end{block}
+% \end{frame}
+
+
+% 6. Conclusions
+% ----------------------------------------------------------------
+\section{Conclusion}
+
+% 6.1
+\begin{frame}{Conclusion}
+  \begin{itemize}
+    \item We introduce the background and the basic notion.
+    \item We gave a new result of set-valued Fan-Takahashi inequalities via scalarization methods.
+    \item Next step is to check other scalarization functions to satisfy new assumption.
+  \end{itemize}
+\end{frame}
+
+% References
+% ----------------------------------------------------------------
+\begin{frame}[allowframebreaks]{Reference}
+  \printbibliography
+\end{frame}
+
+\begin{frame}
+  Thank you for your listening!
+\end{frame}
+
+\begin{frame}[noframenumbering]{Theme}
+  Get the source of this theme and the demo presentation from
+
+  \begin{center}\url{github.com/matze/mtheme}\end{center}
+
+  The theme \emph{itself} is licensed under a
+  \href{http://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons
+    Attribution-ShareAlike 4.0 International License}.
+
+  \begin{center}\ccbysa\end{center}
+\end{frame}
+
+\end{document}

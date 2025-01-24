@@ -1,0 +1,16 @@
+[0] Config.pm:307> INFO - This is Biber 2.19
+[0] Config.pm:310> INFO - Logfile is 'out/slide.blg'
+[32] biber-darwin:340> INFO - === Fri Jan 17, 2025, 11:40:47
+[40] Biber.pm:419> INFO - Reading 'out/slide.bcf'
+[76] Biber.pm:979> INFO - Found 5 citekeys in bib section 0
+[83] Biber.pm:4419> INFO - Processing section 0
+[88] Biber.pm:4610> INFO - Looking for bibtex file 'ref.bib' for section 0
+[89] bibtex.pm:1713> INFO - LaTeX decoding ...
+[95] bibtex.pm:1519> INFO - Found BibTeX data source 'ref.bib'
+[118] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[119] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[119] Biber.pm:4239> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[119] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
+[123] bbl.pm:660> INFO - Writing 'out/slide.bbl' with encoding 'UTF-8'
+[123] bbl.pm:661> INFO - Converting UTF-8 to TeX macros on output to .bbl
+[126] bbl.pm:763> INFO - Output to out/slide.bbl
