@@ -1,0 +1,59 @@
+\documentclass{amsart}
+% 箇条書き
+\usepackage{enumitem}
+
+\title{Scalarization methods with a characterizing function 
+of an ordering cone in set optimization}
+
+\author{Ryota Iwamoto*}
+\address[Ryota Iwamoto]
+{Graduate School of Science and Technology, Niigata University,
+8050 Ikarashi-2nocho, Niigata-City 950-2181, Japan}
+\email{iwamoto@m.sc.niigata-u.ac.jp}
+\thanks{*Presenting author}
+
+\author{Tamaki Tanaka}
+\address[Tamaki Tanaka]
+{Department of Mathematics, Faculty of Science, Niigata University,
+Niigata 950–2181, Japan.}
+\email{tamaki@math.sc.niigata-u.ac.jp}
+
+\keywords{set optimization; Fan-Takahashi minimax inequality; Hiriart-
+Urruty oriented distance}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+In convex analysis and optimization theory,
+Fan-Takahashi minimax inequality plays a key role to solve equilibrium problems and
+other problems. Let $X$ be a nonempty compact convex subset of a Hausdorff topological vector space and $f \colon X \times X \to \mathbb{R}$.
+Fan-Takahashi minimax inequality is: if $f$ satisfies
+the following conditions:
+\begin{enumerate}[label=(\alph*)]
+  \item for each fixed $y \in X$, $f(\cdot,y)$ is lower semicontinuous,
+  \item for each fixed $x \in X$, $f(x,\cdot)$ is quasi concave,
+  \item $f(x,x) \leq 0$ for all $x \in X$,
+\end{enumerate}
+then there exists $\bar{x} \in X$ such that $f(\bar{x},y) \leq 0$ for all $y \in X$. 
+In addition, a number of researchers, including Georgiev and Tanaka, 
+study Fan-Takahashi minimax inequalities for set-valued maps. In this talk,
+we explain set-valued Fan-Takahashi minimax inequalities generalized by scalarization functions,
+and consider relations between scalarization functions for set-valued Fan-Takahashi minimax inequalities 
+and characterizing functions of the ordering cone $C$ \cite{EJ2021} defined by
+\begin{equation}
+  f(y) \leq 0 \Leftrightarrow y \in -C \quad \text{for all}\: y \in Y, \notag
+\end{equation}
+where $C$ is a convex cone in a real topological vector space $Y$ 
+and $f: Y \to \mathbb{R} \cup \{\pm \infty\}$.
+
+\begin{thebibliography}{88}
+  \bibitem{EJ2021}
+	G.\ Eichfelder and J.\ Jahn,
+	{\em Optimality conditions in discrete-continuous nonlinear optimization}, 
+	Minimax Theory Appl.
+	{\bf 6} (2021), 127--144.
+\end{thebibliography}
+
+\end{document}

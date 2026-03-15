@@ -1,0 +1,333 @@
+\documentclass[a4paper,11pt]{jsarticle}
+
+\usepackage[english]{babel}
+\usepackage{amssymb, amsmath, amsthm}
+\usepackage{bm}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{authblk}
+\usepackage{indentfirst}
+\usepackage{mathtools}
+\usepackage{enumitem}
+
+\theoremstyle{definition}
+\newtheorem{dfn}{Definition}[section]
+\newtheorem{prop}[dfn]{Proposition}
+\newtheorem{lem}[dfn]{Lemma}
+\newtheorem{thm}[dfn]{Theorem}
+\newtheorem{cor}[dfn]{Corollary}
+\newtheorem{rem}[dfn]{Remark}
+\newtheorem{fact}[dfn]{Fact}
+
+\renewcommand{\refname}{References}
+
+% (Useful) Sets
+\newcommand{\rnum}{\mathbb{R}}
+\newcommand{\NaturalNumberSet}{\mathbb{N}}
+\newcommand{\RealNumberSet}{\mathbb{R}}
+\newcommand{\NDemenstionalRealEuclideanSpace}{\mathbb{R}^n}
+
+% (Useful) Texts
+\newcommand{\SuchThat}{\quad\text{s.t.}\quad}
+\newcommand{\With}{\quad\text{with}\quad}
+
+\newcommand{\Interior}[1]{\mbox{\rm int}\mbox{$\,#1$}}
+\newcommand{\Closure}[1]{\mbox{\rm cl}\mbox{$\,#1$}}
+\newcommand{\Boundary}[1]{\mbox{\rm bd}\mbox{$\,#1$}}
+\newcommand{\Complement}[1]{\mbox{$\,#1^{c}$}}
+\newcommand{\OrderingLevelSets}[3]{\text{\rm lev\:$({#1}, {#2}, {#3})$}} % lev
+
+
+\newcommand{\Painleve}{Painlev\'e}
+\newcommand{\InnerProduct}[2]{\left\langle {#1},{#2}\right\rangle} % <x,y>
+\newcommand{\Norm}[1]{\left\lVert {#1} \right\rVert} % <x,y>
+\newcommand{\SetValudMapping}{\it \Gamma}
+\newcommand{\pow}[1]{\mathcal{P}_{0}(#1)}
+
+% Set form e.g. {x | ...}
+% #1: element
+% #2: conditions
+\newcommand{\SetForm}[2]{
+  \{{#1}\:|\:{#2}\}
+}
+
+\newcommand{\setrel}[2]{\preccurlyeq^{(#1)}_{#2}\!}
+\newcommand{\notsetrel}[2]{{\not\preccurlyeq}^{(#1)}_{#2}\!}
+
+\SetLabelAlign{Center}{\hfil#1\hfil}
+\SetLabelAlign{CenterWithParen}{\hfil(\makebox[1.0em]{#1})\hfil}
+
+\title{%
+Set-Valued Fan-Takahashi Inequalities Via Scalarization \\
+  \large (スカラー化関数による集合値関数のミニマックス定理の一般化
+  とその応用
+  )}
+\author{
+  Ryota Iwamoto$^{a}$ and Tamaki Tanaka$^{b}$
+  }
+\affil{
+  $^{a}$Graduate school of Science and Technology, Niigata University, \\
+  $^{b}$Faculty of Science, Niigata University \\
+}
+\date{\vspace{-5ex}}
+
+\begin{document}
+\maketitle
+\section{\rm Introduction}
+Real-valued minimax inequality was found by W. Takahashi and Ky. Fan;
+
+\begin{thm}{(\cite{Takahashi1976})}\label{FanTakahashiMinimaxInequality}
+  Let $X$ be a nonempty compact convex subset of a Hausdorff topological vector space and $f \colon X \times X \to \rnum$. If $f$ satisfies
+  the following conditions:
+  \begin{enumerate}
+    \item for each fixed $y \in X$, $f(\cdot,y)$ is lower semicontinuous,
+    \item for each fixed $x \in X$, $f(x,\cdot)$ is quasi concave,
+    \item $f(x,x) \leq 0$ for all $x \in X$,
+  \end{enumerate}
+  then there exists $\bar{x} \in X$ such that $f(\bar{x},y) \leq 0$ for all $y \in X$.
+\end{thm}
+
+In a history of set-valued minimax inequalities,
+Georgiev and Tanaka [2] extended the minimax inequality to set-valued maps.
+Kuwano, Tanaka, and Yamada [5] constructed the result of four types of set-valued
+minimax inequalities with set-relations.
+Our goal is to generalize the result of four types of set-valued minimax
+inequalities which is not related to the specific set-relations and scalarization
+functions.
+
+\section{\rm Preliminaries}
+
+Let $X$ be a topological space,
+$Y$ a real topological vector space,
+and $\theta_Y$ be a zero vector in $Y$.
+Define that $\pow{Y}$ is the set of all nonempty subsets of $Y$.
+The sets of neighborhoods of $x \in X$ and
+$y \in Y$ is denoted by $\mathcal{N}_X (x)$ and $\mathcal{N}_Y (y)$, respectively.
+
+For $A \in \pow{Y}$, the interior, the closure, the boundary, and the complement of $A$ are denoted by
+$\Interior{A}$, $\Closure{A}$, $\Boundary{A}$, and $\Complement{A}$, respectively.
+For given $A,B\in\pow{Y}$ and $t\in\rnum$,
+the algebraic sum $A+B$ and the scalar multiplication $tA$ are denoted as follows:
+$A+B:= \{a+b \mid a\in{A},b\in{B} \}, \quad tA:= \{ta\mid a\in{A}\}$.
+In particular, we denote $A+\{y\}$ by $A+y$ and
+$(-1)A$ by $-A$ for $A\in\pow{Y}$ and $y\in Y$.
+Let us recall that $A$ is said to be $C$-bounded if for each neighborhood $U$ of $\theta_Y$
+there exists $t > 0$ such that $A \subset tU + C$.
+
+We define binary relations on $\pow{Y}$ as follows:
+
+\begin{dfn}
+  For $A,B \in \pow{Y}$, we define two binary relations on $\pow{Y}$:
+  \begin{equation}
+    A \preccurlyeq_1 B \overset{\text{def}}{\Longleftrightarrow} A \cap B \ne \emptyset \quad \text{and} \quad A \preccurlyeq_2 B \overset{\text{def}}{\Longleftrightarrow} B \subset A. \notag
+  \end{equation}
+\end{dfn}
+
+\begin{dfn}
+  For $A,B \in \pow{Y}$ and a convex cone $C$, we define;
+  \begin{equation}
+    A \preccurlyeq_{C}^{(3L)} B \overset{\text{def}}{\Longleftrightarrow} B \subset A + C
+    \quad \text{and} \quad A \preccurlyeq_{C}^{(3U)} B \overset{\text{def}}{\Longleftrightarrow} A \subset B -C. \notag
+  \end{equation}
+\end{dfn}
+
+We note that recent studies contain six or eight types of binary relations with a convex cone, that is, set-relations.
+In this paper, we focus on the above two types of set-relations:
+
+For set-valued maps and scalarization functions, we define the following concepts of continuity and semicontinuity,
+which are works of P. Dechboon and T. Tanaka \cite{DechboonTanaka2024}.
+
+\begin{dfn}{(\cite{DechboonTanaka2024})}
+  Let $F \colon X \to \pow{Y}$, $x_0 \in X$, $\preccurlyeq$ a binary relation on $\pow{Y}$
+  and $C \subset Y$ a convex cone. We say that $F$ is $(\preccurlyeq, C)$-continuous at $x_0$ if
+  \begin{equation}
+    \forall W \subset Y, W\:\text{open},W \preccurlyeq F(x_0), \exists V \in \mathcal{N}_{X}(x_0) \:\SuchThat\: W + C \preccurlyeq F(x), \forall x \in V. \notag
+  \end{equation}
+\end{dfn}
+
+Especially, $(\preccurlyeq_1, C)$-continuity and $(\preccurlyeq_2, C)$-continuity coincide with classical “C-lower
+continuity” and “C-upper continuity” for set-valued maps, respectively.
+
+\begin{dfn}{(\cite{DechboonTanaka2024})}
+  Let $\varphi \colon \pow{Y} \to \RealNumberSet \cup \{\pm \infty\}$, $A_0 \in \pow{Y}$,
+  $\preccurlyeq$ a binary relation on $\pow{Y}$, and $C$ a convex cone in $Y$ with $C \ne Y$. Then,
+  we say that $\varphi$ is $(\preccurlyeq, C)$-lower semicontinuous at $A_0$ if
+  \begin{equation}
+    \forall r < \varphi (A_0), \exists W \in \pow{Y}, W\:\text{open}, \SuchThat W \preccurlyeq A_0 \:\text{and}\:
+    r > \varphi (A), \forall A \in U(W + C, \preccurlyeq); \notag
+  \end{equation}
+  where $U(V,\preccurlyeq) \coloneqq \SetForm{A \in \pow{Y}}{V \preccurlyeq A}$.
+\end{dfn}
+
+\begin{thm}{(\cite{DechboonTanaka2024})}
+  Let $F \colon X \to \pow{Y}$, $\varphi \colon \pow{Y} \to \RealNumberSet \cup \{\pm \infty\}$, $x_0 \in X$,
+  $\preccurlyeq$ a binary relation on $\pow{Y}$, and $C$ a convex cone. If $F$ is $(\preccurlyeq, C)$-continuous at $x_0$
+  and $\varphi$ is $(\preccurlyeq, C)$-lower semicontinuous at $F(x_0)$, then $(\varphi \circ F)$ is lower semicontinuous at $x_0$.
+\end{thm}
+
+We define concepts of convexity and concavity for set-valued maps. These notions are utilized to
+extend minimax inequality for real-valued maps to that for set-valued maps.
+
+\begin{dfn}{(\cite{KuwanoTanakaYamada2010})}
+  Let $X$ be a nonempty set, $Y$ a real topological vector space,
+  $C$ a convex cone in $Y$, and $F\colon X \to \pow{Y}$ a set-valued map
+  where $j= 3U, 3L$.
+  \begin{enumerate}
+    \item $F$ is called type $(j)$ properly quasi $C$-concave if for each $x,y \in X$ and $\lambda \in (0,1)$,
+          \begin{equation}
+            F(x) \setrel{j}{C} F(\lambda x + (1-\lambda)y) \quad \text{or} \quad F(y) \setrel{j}{C} F(\lambda x + (1-\lambda)y) \notag
+          \end{equation}
+    \item $F$ is called type $(j)$ naturally quasi $C$-concave if for each $x,y \in X$ and $\lambda \in (0,1)$, there exists $\mu \in [0,1]$ such that
+          \begin{equation}
+            \mu F(x) + (1-\mu) F(y) \setrel{j}{C} F(\lambda x + (1-\lambda)y). \notag
+          \end{equation}
+  \end{enumerate}
+\end{dfn}
+
+If $F$ is type $(j)$ properly quasi $C$-concave,
+clearly $F$ is type $(j)$ naturally quasi $C$-concave.
+
+\begin{dfn}{(\cite{KobayashiSaitoTanaka2016})}
+  Let $\mathcal{A} \subset \pow{Y}$. $\mathcal{A}$ is said to be convex if for each $A_1, A_2 \in \mathcal{A}$ and $\lambda \in (0,1)$,
+  \begin{equation}
+    \lambda A_1 + (1-\lambda) A_2 \in \mathcal{A}. \notag
+  \end{equation}
+\end{dfn}
+
+\begin{dfn}{(\cite{KobayashiSaitoTanaka2016})}
+  Let $\varphi \colon \pow{Y} \to \RealNumberSet \cup \{\pm \infty\}$. Then,
+  \begin{enumerate}
+    \item $\varphi$ is quasi convex if for any $\alpha \in \RealNumberSet$,
+          $\OrderingLevelSets{\varphi}{\leq}{\alpha} \coloneqq \SetForm{A \in \pow{Y}}{\varphi(A) \leq \alpha}$ is convex.
+    \item $\varphi$ is quasi concave if for any $\alpha \in \RealNumberSet$,
+          $\OrderingLevelSets{\varphi}{\geq}{\alpha} \coloneqq \SetForm{A \in \pow{Y}}{\varphi(A) \geq \alpha}$ is convex.
+  \end{enumerate}
+\end{dfn}
+
+\begin{dfn}{(\cite{KobayashiSaitoTanaka2016})}
+  Let $C$ be a convex cone in $Y$ and $j= 3U, 3L$..
+  For a given binary relation $\preccurlyeq$,
+  a scalarization function $\varphi$ is $(\setrel{j}{C})$-monotone if
+  for any $A, B \in \pow{Y}$ with
+  $A \setrel{j}{C} B$, $\varphi (A) \leq \varphi (B)$.
+\end{dfn}
+
+\begin{prop}{(\cite{KobayashiSaitoTanaka2016})}
+  Let $\varphi$ be $(\setrel{j}{C})$-monotone and quasi convex where $j= 3U, 3L$.
+  If $F$ is type $(j)$ naturally quasi $C$-convex,
+  then $(\varphi \circ F)$ is quasi convex.
+\end{prop}
+
+\begin{prop}{(\cite{KobayashiSaitoTanaka2016})}
+  Let $\varphi$ be $(\setrel{j}{C})$-monotone and quasi concave where $j= 3U, 3L$.
+  If $F$ is type $(j)$ naturally quasi $C$-concave,
+  then $(\varphi \circ F)$ is quasi concave.
+\end{prop}
+
+\section{\rm Main Results}
+
+Let $\varphi: \pow{Y} \to \rnum \cup \{\pm \infty\}$, $\preccurlyeq$ a binary relation
+on $\pow{Y}$, and $C' \subset Y$  a convex cone.
+To generalize four types of set-valued minimax inequalities \cite{KuwanoTanakaYamada2010},
+we provide a new class of scalarization functions that satisfy;
+\begin{enumerate}
+  \item $\varphi$ is $(\preccurlyeq, C')$-lower semicontinuous,
+  \item $\varphi$ is quasi concave,
+  \item $\varphi(\{\theta_{Y}\}) = 0$.
+\end{enumerate}
+In addition, we give necessary conditions between inequalities and set-relations as follows;
+\begin{enumerate}[label=(B\arabic*)]
+  \item $\varphi$ is $(\setrel{j}{\Interior{C}})$-monotone,
+  \item $\varphi (A) > 0 \Rightarrow  \{\theta_Y\} \setrel{j}{\Interior{C}} A \quad\text{for any}\:A\in \pow{Y}$,
+\end{enumerate}
+where $j= 3U, 3L$.
+If $\varphi$ satisfies conditions (i)--(iii), (B1), and (B2),
+we write the notation as $\varphi \in \Phi(\setrel{j}{\Interior{C}}\:, \preccurlyeq, C')$.
+
+\begin{thm}\label{NewSetValuedFanTakahashiMinimaxInequalitiesType2}
+  Let $X$ be a nonempty compact convex subset of a Hausdorff topological vector space,
+  $Y$ a real topological vector space, $\preccurlyeq$ a binary relation on $\pow{Y}$,
+  $C$ a convex cone in $Y$, $C'$ a convex cone in $Y$,
+  $\varphi\colon \pow{Y} \to \rnum \cup \{\pm \infty\}$,
+  and $F\colon X \times X \to \pow{Y}$.
+  For the scaralization function $\varphi \in \Phi(\setrel{j}{\Interior{C}}\:, \preccurlyeq, C')$
+  satisfying Assumption (A2) where $j= 3U, 3L$,
+  if $F$ satisfies the following conditions:
+  \begin{enumerate}
+    \item $(\varphi \circ F)(x,y) \in \rnum$ for all $x,y \in X$,
+    \item for each fixed $y \in X$, $F(\cdot,y)$ is $(\preccurlyeq, C')$-continuous,
+    \item for each fixed $x \in X$, $F(x,\cdot)$ is type $(j)$ naturally quasi $C$-concave,
+    \item for all $x \in X$, $\{\theta_Y\} \notsetrel{j}{\Interior{C}}\: F(x,x) $,
+  \end{enumerate}
+  then there exists $\bar{x} \in X$ such that $\{\theta_Y\} \notsetrel{j}{\Interior{C}}\: F(\bar{x},y)$
+  for all $y \in X$.
+\end{thm}
+
+In the first part of this section, we provide conditions under which
+semicontinuity and convexity can be preserved when considering
+composite functions of a set-valued map and a
+scalarization function.
+
+Let $\hat{Y}$ be a real normed vector space
+equipped with $\Norm{y}$ the norm of $y \in \hat{Y}$
+and $\theta_{\hat{Y}}$ the zero vector of $\hat{Y}$.
+As a scalarization function,
+we introduce the Hiriart-Urruty oriented distance function.
+
+\begin{dfn}{(\cite{XuLi2016})}
+  For the set $A \in Y$, let generalized oriented distance functions $\mathcal{D}^{(1)}_{A} \colon \pow{\hat{Y}} \to \rnum \cup \{\pm \infty\}$
+  and $\mathcal{D}^{(2)}_{A} \colon \pow{\hat{Y}} \to \rnum \cup \{\pm \infty\}$ be defined as
+  \begin{align*}
+    \mathcal{D}^{(1)}_{A}(B) & \coloneq \sup\{\Delta_{A}(b) \mid b \in B\},\: \text{for all}\: B \in \pow{\hat{Y}},                              \\
+    \mathcal{D}^{(2)}_{A}(B) & \coloneq \inf\{-\Delta_{A}(b) \mid b \in B\} = -\mathcal{D}^{(1)}_{A}(B),\: \text{for all}\: B \in \pow{\hat{Y}}.
+  \end{align*}
+\end{dfn}
+
+As $\mathcal{D}^{(2)}_{A}(B)$ satisfies the conditions conditions (i)--(iii), (B1), and (B2),
+the following result is obtained by Theorem~3.1.
+
+\begin{prop}
+  Let $X$ be a nonempty compact convex subset of a topological vector space,
+  $\hat{Y}$ a real normed vector space, $C$ a closed convex cone in $\hat{Y}$ with $\Interior{C} \ne \emptyset$,
+  and, $F\colon X \times X \to \pow{\hat{Y}}$.
+  If $F$ satisfies the following conditions:
+  \begin{enumerate}
+    \item $F$ is $C$-bounded on $X \times X$,
+    \item for each fixed $y \in X$, $F(\cdot,y)$ is $(\preccurlyeq_{2}, C)$-continuous (that is, $C$-upper continuous),
+    \item for each fixed $x \in X$, $F(x,\cdot)$ is type $(j)$ naturally quasi $C$-concave,
+    \item for all $x \in X$, $F(x,x) \preccurlyeq_{C}^{(3L)} \{\theta_{\hat{Y}}\}$,
+  \end{enumerate}
+  then there exists $\bar{x} \in X$ such that $\{\theta_{\hat{Y}}\} \notsetrel{3L}{\Interior{C}}\: F(\bar{x},y)$ for all $y \in X$.
+\end{prop}
+
+We remark that the above concequence was found by using another scalarization function. However,
+Our main result avoids to depend on the specific scalarization function.
+If we find a scalarization function that satisfies the conditions (i)--(iii), (B1), and (B2),
+Theorem~3.1 can be applied to obtain minimax inequalities for set-valued maps.
+
+\begin{thebibliography}{9}
+  \bibitem{DechboonTanaka2024}
+  P.~Dechboon and T.~Tanaka,
+  Inheritance properties on cone continuity for set-valued maps via
+  scalarization, Minimax Theory Appl. {\bf 9} (2024), no.~2, 201--224.
+
+  \bibitem{KobayashiSaitoTanaka2016}
+  S.~Kobayashi, Y.~Saito and T.~Tanaka,
+  Convexity for compositions of set-valued map and
+  monotone scalarizing function, Pac. J. Optim. {\bf 12} (2016), no.~1, 43--54.
+
+  \bibitem{KuwanoTanakaYamada2010}
+  I.~Kuwano, T.~Tanaka and S.~Yamada,
+  Unified scalarization for sets and set-valued Ky Fan minimax inequality,
+  J. Nonlinear Convex Anal. {\bf 11} (2010), no.~3, 513--525.
+
+  \bibitem{Takahashi1976}
+  W.~Takahashi,
+  Nonlinear variational inequalities and fixed point theorems,
+  J. Math. Soc. Japan {\bf 28} (1976), no.~1, 168--181.
+
+  \bibitem{XuLi2016}
+  Y.~D.~Xu and S.~J.~Li,
+  A new nonlinear scalarization function and applications,
+  Optimization {\bf 65} (2016), no.~1, 207--231.
+\end{thebibliography}
+\end{document}

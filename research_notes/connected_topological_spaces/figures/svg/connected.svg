@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="512mm"
+   height="512mm"
+   viewBox="0 0 512 512"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25)"
+   sodipodi:docname="figures.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="true"
+     inkscape:zoom="0.34896589"
+     inkscape:cx="1293.8227"
+     inkscape:cy="941.35274"
+     inkscape:window-width="2032"
+     inkscape:window-height="1156"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       id="grid1"
+       units="mm"
+       originx="0"
+       originy="0"
+       spacingx="0.99999997"
+       spacingy="0.99999997"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="5"
+       dotted="false"
+       gridanglex="30"
+       gridanglez="30"
+       visible="true" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:2.5;stroke-dasharray:none"
+       d="m 275.98208,128.13454 c -24.44686,169.68016 -97.55059,111.28124 -150.88031,145.57297 -20.47816,15.54751 -43.849701,29.90362 -31.085897,59.139 21.385297,31.72592 36.335217,89.19333 66.720937,84.91756 90.95212,5.34821 176.75346,5.90088 210.01934,-42.45878 55.84422,-70.05847 -104.26788,-37.5163 47.76612,-153.15488 5.97617,-16.61397 10.65729,-33.58874 -50.79888,-74.30287 -50.98308,-28.39834 -90.26683,-70.528405 -91.74131,-19.713 z"
+       id="path1"
+       sodipodi:nodetypes="cccccccc" />
+    <path
+       style="fill:#000000;fill-opacity:0;stroke:#fb0000;stroke-width:2.5;stroke-dasharray:none;stroke-opacity:1"
+       d="M 370.75615,451.12455 C 310.82669,463.13013 270.96883,448.37359 235.03968,428.37876 186.78564,235.50585 212.77423,340.40529 192.5809,260.81823 186.39119,212.82292 182.17556,100.58472 351.80132,43.975165 479.3787,32.059646 454.19575,154.15225 455.6737,235.03968 461.41207,386.8958 423.2975,435.92434 370.75615,451.12455 Z"
+       id="path2"
+       sodipodi:nodetypes="cccccc" />
+    <path
+       style="fill:#000000;fill-opacity:0;stroke:#0000ff;stroke-width:2.5;stroke-dasharray:none;stroke-opacity:1"
+       d="M 64.446367,139.50743 C 181.50029,176.38963 193.50296,222.17257 11.372888,293.42051 27.393874,354.66379 18.315405,412.48442 74.302864,479.17768 130.87901,490.62931 184.90119,471.43329 239.58884,460.22287 342.15833,443.82561 357.66617,334.30175 315.40809,279.77304 222.39763,209.57117 325.84003,225.97217 197.13006,78.093828 122.32173,67.452165 79.357487,129.40044 64.446367,139.50743 Z"
+       id="path3"
+       sodipodi:nodetypes="ccccccc" />
+    <text
+       xml:space="preserve"
+       style="font-size:50.8px;font-family:'Hiragino Mincho ProN';-inkscape-font-specification:'Hiragino Mincho ProN';fill:#0000ff;fill-opacity:1;stroke:#0000ff;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+       x="56.864456"
+       y="238.83064"
+       id="text3"><tspan
+         sodipodi:role="line"
+         id="tspan3"
+         style="font-size:50.8px;fill:#0000ff;fill-opacity:1;stroke-width:1;stroke-dasharray:none"
+         x="56.864456"
+         y="238.83064">U</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:50.8px;font-family:'Hiragino Mincho ProN';-inkscape-font-specification:'Hiragino Mincho ProN';fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+       x="467.0466"
+       y="100.83961"
+       id="text4"><tspan
+         sodipodi:role="line"
+         id="tspan4"
+         style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:1;stroke-opacity:1"
+         x="467.0466"
+         y="100.83961">V</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:50.8px;font-family:'Hiragino Mincho ProN';-inkscape-font-specification:'Hiragino Mincho ProN';fill:#00000a;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+       x="364.69061"
+       y="421.55505"
+       id="text5"><tspan
+         sodipodi:role="line"
+         id="tspan5"
+         style="fill:#00000a;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-opacity:1"
+         x="364.69061"
+         y="421.55505">A</tspan></text>
+  </g>
+</svg>

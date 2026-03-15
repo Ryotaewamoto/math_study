@@ -1,0 +1,311 @@
+\documentclass[a4paper,11pt]{jsarticle}
+
+\usepackage[english]{babel}
+\usepackage{amssymb, amsmath, amsthm}
+\usepackage{bm}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{authblk}
+\usepackage{indentfirst}
+\usepackage{mathtools}
+\usepackage{enumitem}
+
+\theoremstyle{definition}
+\newtheorem{dfn}{Definition}[section]
+\newtheorem{prop}[dfn]{Proposition}
+\newtheorem{lem}[dfn]{Lemma}
+\newtheorem{thm}[dfn]{Theorem}
+\newtheorem{cor}[dfn]{Corollary}
+\newtheorem{rem}[dfn]{Remark}
+\newtheorem{fact}[dfn]{Fact}
+
+\renewcommand{\refname}{References}
+
+% (Useful) Sets
+\newcommand{\rnum}{\mathbb{R}}
+\newcommand{\NaturalNumberSet}{\mathbb{N}}
+\newcommand{\RealNumberSet}{\mathbb{R}}
+\newcommand{\NDemenstionalRealEuclideanSpace}{\mathbb{R}^n}
+
+% (Useful) Texts
+\newcommand{\SuchThat}{\quad\text{s.t.}\quad}
+\newcommand{\With}{\quad\text{with}\quad}
+
+\newcommand{\Interior}[1]{\mbox{\rm int}\mbox{$\,#1$}}
+\newcommand{\Closure}[1]{\mbox{\rm cl}\mbox{$\,#1$}}
+\newcommand{\Boundary}[1]{\mbox{\rm bd}\mbox{$\,#1$}}
+\newcommand{\Complement}[1]{\mbox{$\,#1^{c}$}}
+\newcommand{\OrderingLevelSets}[3]{\text{\rm lev\:$({#1}, {#2}, {#3})$}} % lev
+
+
+\newcommand{\Painleve}{Painlev\'e}
+\newcommand{\InnerProduct}[2]{\left\langle {#1},{#2}\right\rangle} % <x,y>
+\newcommand{\Norm}[1]{\left\lVert {#1} \right\rVert} % <x,y>
+\newcommand{\SetValudMapping}{\it \Gamma}
+\newcommand{\pow}[1]{\mathcal{P}_{0}(#1)}
+
+% Set form e.g. {x | ...}
+% #1: element
+% #2: conditions
+\newcommand{\SetForm}[2]{
+  \{{#1}\:|\:{#2}\}
+}
+
+
+
+\SetLabelAlign{Center}{\hfil#1\hfil}
+\SetLabelAlign{CenterWithParen}{\hfil(\makebox[1.0em]{#1})\hfil}
+
+\newcommand{\defarrow}{\;\mathrel{\overset{\mathrm{def}}{\Longleftrightarrow}}\;}
+\newcommand{\bleq}[1]{\leq_{#1}\!}
+\newcommand{\setrel}[2]{\preccurlyeq^{(#1)}_{#2}\!}
+\newcommand{\notsetrel}[2]{{\not\preccurlyeq}^{(#1)}_{#2}\!}
+\newcommand{\st}{\ \mathrm{s.t.}\ }
+
+
+\title{%
+Scalarization methods with a characterizing function of \\
+an ordering cone in set optimization \\
+  \large (集合最適化における順序錐による特徴づけ関数を用いたスカラー化
+  )}
+\author{
+  Ryota Iwamoto$^{a}$ and Tamaki Tanaka$^{b}$
+  }
+\affil{
+  $^{a}$Graduate school of Science and Technology, Niigata University, \\
+  $^{b}$Faculty of Science, Niigata University \\
+}
+\date{\vspace{-5ex}}
+
+\begin{document}
+\maketitle
+\section{\rm Introduction}
+In 2024, Dechboon and Tanaka examined whether composite functions of a set-valued
+map and several scalarization functions originated from Gerstewitz's (Tammer's) sublinear
+scalarizing functional (see \cite{Tammer2003})
+are lower (upper) semicontinuous.
+
+Last year, in this workshop, we talked about ``Set-Valued Fan-Takahashi Inequalities
+with Set-Relations Based on Scalarization Methods'' (see \cite{IwamotoTanaka2024}).
+
+This paper, containing these results, explains relations between
+a characterizing function of an ordering cone and scalarization functions which lead to
+set-valued Fan-Takahashi inequalities.
+
+\section{\rm Preliminaries}
+
+Let $X$ be a topological space and $Y$ a real topological vector space
+with the zero vector $\theta_Y$.
+Define that $\pow{Y}$ is the set of all nonempty subsets of $Y$.
+The sets of neighborhoods of $x \in X$ and
+$y \in Y$ is denoted by $\mathcal{N}_X (x)$ and $\mathcal{N}_Y (y)$, respectively.
+
+For $A \in \pow{Y}$, the interior, the closure, the boundary, and the complement of $A$ are denoted by
+$\Interior{A}$, $\Closure{A}$, $\Boundary{A}$, and $\Complement{A}$, respectively.
+For given $A,B\in\pow{Y}$ and $t\in\rnum$,
+the algebraic sum $A+B$ and the scalar multiplication $tA$ are denoted as follows:
+$A+B:= \{a+b \mid a\in{A},b\in{B} \}, \quad tA:= \{ta\mid a\in{A}\}$.
+In particular, we denote $A+\{y\}$ by $A+y$ and
+$(-1)A$ by $-A$ for $A\in\pow{Y}$ and $y\in Y$.
+Let us recall that $A$ is said to be $C$-bounded if for each neighborhood $U$ of $\theta_Y$
+there exists $t > 0$ such that $A \subset tU + C$.
+
+We define set-relations on $\pow{Y}$ as follows;
+
+\begin{dfn}[set-relations, \cite{KuroiwaTanakaHa1997}]\label{SetRelations}
+  Let $C$ be a convex cone in $Y$.
+  The six types of set-relations are defined as follows:
+  \begin{enumerate}
+    %
+    \item $A\setrel{1}{C}B \defarrow
+            \forall{a\in{A}}, \forall{b\in{B}}, a\bleq{C}b
+            \\
+            \iff
+            A\subset{\left(\bigcap_{b\in{B}}(b-C)\right)}
+            \iff
+            B\subset{\left(\bigcap_{a\in{A}}(a+C)\right)};$
+          %
+    \item $A\setrel{2L}{C}B \defarrow
+            \exists{a\in{A}}\st\forall{b\in{B}}, a\bleq{C}b
+            \iff
+            A\cap{\left(\bigcap_{b\in{B}}(b-C)\right)}\ne\emptyset$;
+          %
+    \item $A\setrel{2U}{C}B \defarrow
+            \exists{b\in{B}}\st\forall{a\in{A}}, a\bleq{C}b
+            \iff
+            \left(\bigcap_{a\in{A}}(a+C)\right)\cap{B}\ne\emptyset$;
+          %
+    \item $A\setrel{3L}{C}B \defarrow
+            \forall{b\in{B}}, \exists{a\in{A}}\st a\bleq{C}b
+            \iff B\subset{A+C}$;
+          %
+    \item $A\setrel{3U}{C} B \defarrow
+            \forall{a\in{A}}, \exists{b\in{B}}\st a\bleq{C}b
+            \iff A\subset{B-C}$;
+          %
+    \item $A\setrel{4}{C}B \defarrow
+            \exists{a\in{A}}, \exists{b\in{B}}\st a\bleq{C}b
+            \\
+            \iff A\cap{(B-C)}\ne\emptyset
+            \iff (A+C)\cap{B}\ne\emptyset$.
+  \end{enumerate}
+\end{dfn}
+
+For set-valued maps and scalarization functions, we introduce the following concepts of continuity and semicontinuity depending on
+binary relations and cones, which are works of Dechboon and Tanaka \cite{DechboonTanaka2024}.
+We can obtain the result of upper semicontinuity for composite functions similarly.
+
+\begin{dfn}{(\cite{DechboonTanaka2024})}
+  Let $F \colon X \to \pow{Y}$, $x_0 \in X$, $\preccurlyeq$ a binary relation on $\pow{Y}$
+  and $C \subset Y$ a convex cone. We say that $F$ is $(\preccurlyeq, C)$-continuous at $x_0$ if
+  \begin{equation}
+    \forall W \subset Y, W\:\text{open},W \preccurlyeq F(x_0), \exists V \in \mathcal{N}_{X}(x_0) \st W + C \preccurlyeq F(x), \forall x \in V. \notag
+  \end{equation}
+\end{dfn}
+
+Especially, $(\preccurlyeq_1, C)$-continuity and $(\preccurlyeq_2, C)$-continuity coincide with classical “$C$-lower
+continuity” and “$C$-upper continuity” for set-valued maps, respectively.
+
+\begin{dfn}{(\cite{DechboonTanaka2024})}
+  Let $\varphi \colon \pow{Y} \to \RealNumberSet \cup \{\pm \infty\}$, $A_0 \in \pow{Y}$,
+  $\preccurlyeq$ a binary relation on $\pow{Y}$, and $C$ a convex cone in $Y$ with $C \ne Y$. Then,
+  we say that $\varphi$ is $(\preccurlyeq, C)$-lower semicontinuous at $A_0$ if
+  \begin{equation}
+    \forall r < \varphi (A_0), \exists W \in \pow{Y}, W\:\text{open}, \st W \preccurlyeq A_0 \:\text{and}\:
+    r > \varphi (A), \forall A \in U(W + C, \preccurlyeq); \notag
+  \end{equation}
+  where $U(V,\preccurlyeq) \coloneqq \SetForm{A \in \pow{Y}}{V \preccurlyeq A}$.
+\end{dfn}
+
+\begin{thm}{(\cite{DechboonTanaka2024})}
+  Let $F \colon X \to \pow{Y}$, $\varphi \colon \pow{Y} \to \RealNumberSet \cup \{\pm \infty\}$, $x_0 \in X$,
+  $\preccurlyeq$ a binary relation on $\pow{Y}$, and $C$ a convex cone. If $F$ is $(\preccurlyeq, C)$-continuous at $x_0$
+  and $\varphi$ is $(\preccurlyeq, C)$-lower semicontinuous at $F(x_0)$, then $(\varphi \circ F)$ is lower semicontinuous at $x_0$.
+\end{thm}
+
+\section{\rm Set-Valued Fan-Takahashi Inequalities}
+
+Let $\varphi: \pow{Y} \to \rnum \cup \{\pm \infty\}$, $\preccurlyeq$ a binary relation
+on $\pow{Y}$, and $C' \subset Y$  a convex cone.
+To generalize four types of set-valued minimax inequalities \cite{KuwanoTanakaYamada2010},
+we provide a new class of scalarization functions that satisfy;
+\begin{enumerate}
+  \item $\varphi$ is $(\preccurlyeq, C')$-lower semicontinuous,
+  \item $\varphi$ is quasi concave,
+  \item $\varphi(\{\theta_{Y}\}) = 0$.
+\end{enumerate}
+In addition, we give necessary conditions between inequalities and set-relations as follows;
+\begin{enumerate}[label=(B\arabic*)]
+  \item $\varphi$ is $(\setrel{j}{\Interior{C}})$-monotone,
+  \item $\varphi (A) > 0 \Rightarrow  \{\theta_Y\} \setrel{j}{\Interior{C}} A \quad\text{for any}\:A\in \pow{Y}$,
+\end{enumerate}
+where $C$ is a convex cone with $\Interior{C} \ne \emptyset$ in $Y$ and $j= 1, 2L, 2U, 3U, 3L, 4$.
+If $\varphi$ satisfies conditions (i)--(iii), (B1), and (B2),
+we write the notation as $\varphi \in \Phi(\setrel{j}{\Interior{C}}\:, \preccurlyeq, C')$.
+
+\begin{thm}\label{NewSetValuedFanTakahashiMinimaxInequalitiesType2}
+  Let $X$ be a nonempty compact convex subset of a Hausdorff topological vector space,
+  $Y$ a real topological vector space, $\preccurlyeq$ a binary relation on $\pow{Y}$,
+  $C$ a convex cone in $Y$, $C'$ a convex cone in $Y$,
+  $\varphi\colon \pow{Y} \to \rnum \cup \{\pm \infty\}$,
+  and $F\colon X \times X \to \pow{Y}$.
+  For the scalarization function $\varphi \in \Phi(\setrel{j}{\Interior{C}}\:, \preccurlyeq, C')$
+  satisfying Assumption (A2) where $j= 3U, 3L$,
+  if $F$ satisfies the following conditions:
+  \begin{enumerate}
+    \item $(\varphi \circ F)(x,y) \in \rnum$ for all $x,y \in X$,
+    \item for each fixed $y \in X$, $F(\cdot,y)$ is $(\preccurlyeq, C')$-continuous,
+    \item for each fixed $x \in X$, $F(x,\cdot)$ is type $(j)$ naturally quasi $C$-concave,
+    \item for all $x \in X$, $\{\theta_Y\} \notsetrel{j}{\Interior{C}}\: F(x,x) $,
+  \end{enumerate}
+  then there exists $\bar{x} \in X$ such that $\{\theta_Y\} \notsetrel{j}{\Interior{C}}\: F(\bar{x},y)$
+  for all $y \in X$.
+\end{thm}
+
+\section{\rm Characterizing Functions of an Ordering Cone and Some Related Results}
+
+In this section, we describe the definition of characterizing functions.
+
+\begin{dfn}{(\cite{HuqTanaka2025})}
+  Let $C$ be a convex cone in $Y$ and $f: Y \to \rnum \cup \{\pm \infty\}$.
+  We say that $f$ is a characterizing function of the ordering cone $-C$ if
+  \begin{equation}
+    f(y) \leq 0 \Leftrightarrow y \in -C \quad \text{for all}\: y \in Y. \notag
+  \end{equation}
+\end{dfn}
+
+We define a class of scalarization functions for set-valued
+Fan-Takahashi inequalities, characterized by
+monotonicity, continuity, and ordering with the origin.
+
+\begin{dfn}\label{Scalarization3ConditionsDefinition}
+  Let $C$ be a convex cone in $Y$ and
+  $\setrel{j}{C} (j= 1, 2U, 2L, 3U, 3L, 4)$ set-relations in Definition~\ref{SetRelations},
+  For a scalarization function $\varphi: \pow{Y} \to \rnum \cup \{\pm \infty\}$,
+  we consider a class of scalarization functions satisfying the
+  following three conditions is denoted by $\Phi_0(\setrel{j}{C})$;
+  \begin{enumerate}
+    \item $\varphi$ is $(\setrel{j}{C})$-monotone,
+    \item $\varphi (A) \leq 0 \Rightarrow  A \setrel{j}{C} \{\theta_Y\}\quad\text{for any}\:A\in \pow{Y}$,
+    \item $\varphi(\{\theta_{Y}\}) \leq 0$.
+  \end{enumerate}
+\end{dfn}
+
+\begin{lem}
+  Let $C$ be a convex cone in $Y$,
+  $\setrel{j}{C} (j= 1, 2U, 2L, 3U, 3L, 4)$ set-relations in Definition~\ref{SetRelations},
+  and a scalarization function $\varphi \in \Phi_0(\setrel{j}{C})$.
+  Then, if we define $f(y) = \varphi (\{y\})$ for any $y \in Y$,
+  $f$ is a characterizing function of $-C$.
+\end{lem}
+
+\begin{lem}
+  Let $C$ be a closed convex cone in $Y$ and $f: Y \to \rnum \cup \{\pm \infty\}$
+  a characterizing function of $-C$. Define $\varphi_s : \pow{Y} \to \rnum \cup \{\pm \infty\}$ by
+  \begin{equation}
+    \varphi_s (A) = \sup_{a \in A} f(a) \quad \text{for all}\: A \in \pow{Y}. \notag
+  \end{equation}
+  If $f$ satisfies that for all $a, b \in Y$ with $a \bleq{C} b$, $f(a) \leq f(b)$,
+  then $\varphi_s$ is an element of $\Phi_0(\setrel{3U}{C})$.
+\end{lem}
+
+\section{\rm Conclusion}
+
+
+We can give an example of interior ordering type of set-valued minimax
+inequalities.
+By observing the new class of scalarization functions in the beginning of section 3,
+we identified several properties related to characterizing functions of an ordering cone (see Definition 4.2).
+These properties serve as key elements for establishing a new example for the
+set-valued Fan-Takahashi inequalities.
+
+\begin{thebibliography}{9}
+  \bibitem{DechboonTanaka2024}
+  P.~Dechboon and T.~Tanaka,
+  Inheritance properties on cone continuity for set-valued maps via
+  scalarization, Minimax Theory Appl. {\bf 9} (2), (2024), 201--224.
+
+  \bibitem{Tammer2003}
+  A. G\"{o}phert, H. Riahi, C. Tammer, C. Z\u{a}linescu: Variational Methods in Partially Ordered
+  Spaces, CMS Books in Mathematics vol. 17, Springer, New York (2003).
+
+  \bibitem{HuqTanaka2025}
+  M.\ Z.\ Huq and T.\ Tanaka, {\em Characterization of set-relations in set optimization via twofold scalar optimization problems},
+  Taiwanese J. Math. {\bf29} (4), (2025), 825--849
+
+  \bibitem{IwamotoTanaka2024}
+  R.Iwamoto and T.Tanaka,
+  Set-valued Fan-Takahashi inequalities via scalarization,
+  RIMS Kokyuroku, {\bf 2323} (2025), 155--159.
+
+  \bibitem{KuwanoTanakaYamada2010}
+  I.~Kuwano, T.~Tanaka and S.~Yamada,
+  Unified scalarization for sets and set-valued Ky Fan minimax inequality,
+  J. Nonlinear Convex Anal. {\bf 11} (3), (2010), 513--525.
+
+  \bibitem{KuroiwaTanakaHa1997}
+  D.~Kuroiwa, T.~Tanaka and T.~X.~D.~Ha,
+  {\em On cone convexity of set-valued maps},
+  Nonlinear Anal.
+    {\bf 30} (1997), 1487--1496.
+\end{thebibliography}
+\end{document}

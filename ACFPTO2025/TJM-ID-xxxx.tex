@@ -1,0 +1,109 @@
+\documentclass[fleqn,reqno,10pt, dvipdfmx]{thaijmath}
+\pagestyle{myheadings}
+\pagenumbering{arabic} 
+\setcounter{page}{1}
+
+
+\loadTHAIJMATHsty	%loads the predefined rules and commands for Thai J. Math.
+
+\Title{Putting an Article Title and Headings in This Style}
+
+\Author{First Author$^1$, Second Author$^{2,\cor}$ and Third Author$^{1}$}
+
+\Inst{
+$^{1}$First Affiliation  \\
+e-mail : example1@tjm.com (F. Author); example3@tjm.com (T. Author)
+
+\vskip0.1cm
+
+$^{2}$Second Affiliation \\
+e-mail : example2@tjm.com (S. Author)
+
+}
+
+\Abstract{
+The abstract must not exceed 200 words. You may find Mathematics Subject Classification (MSC) at https://mathscinet.ams.org/mathscinet/msc/msc2020.html. Put at least 3 key words (or phrases).
+﻿}
+
+\Msc{49K35; 47H10; 20M12}
+
+\Kw{optimal control; fixed points; semigroups}
+
+\date{\footnotesize{Submission date: xx.xx.xxxx / Acceptance date: xx.xx.xxxx}}
+
+\begin{document}
+\setlength{\unitlength}{1cm}
+\makeTHAIJMATHtitle
+\pagestyle{fancy}
+
+\fancyhead[ER]{\rm \footnotesize{ {\bf Thai} {\bf J.} {\bf M}ath. Vol. x (20xx) /R. Iwamoto et al.}} %use "and" in case of two authors.
+\fancyhead[EL]{\thepage}
+\fancyhead[OL]{\rm \footnotesize {Putting an Article Title ...}}
+\fancyhead[OR]{\thepage}
+\fancyfoot[C]{}
+%-----------------------------------%
+\section{Introduction}
+\lipsum[2-4]
+
+\section{Using Enviroments}
+\begin{definition}
+This is the first definition.
+\end{definition}
+
+\begin{theorem}
+Theorem statement ...
+\end{theorem}
+
+\begin{proof}
+The proof is complete.
+\end{proof}
+
+\begin{corollary}
+Corollary statement ...
+\end{corollary}
+
+\begin{remark}
+Remark statement ...
+\end{remark}
+
+\begin{example}
+Example  statement ...
+\end{example}
+
+\subsection{Enviroment 1}
+
+$\colon$
+
+\subsection{Enviroment 2}
+
+\newpage
+
+
+\section*{Acknowledgements}
+Ex: We would like to thank the referees for
+their comments and suggestions on the manuscript. This work was
+supported by the National Research Council of Thailand and
+Mathematical Association of Thailand. 
+
+\vskip0.5cm
+The reference styles should be used such as \cite{DG, RTR, SS}: 
+
+
+\begin{thebibliography}{20}
+%Book
+\bibitem{DG} D. Gopal, P. Kumam, M. Abbas, Background and Recent Developments of Metric Fixed Point Theory, Taylor $\&$ Francis Group LLC, New York, 2017. 
+
+\vskip0.1cm
+
+%Article
+\bibitem{RTR} R.T. Rockafellar, On the maximal monotonicity of subdifferential mappings, Pacific J. Math. 33 (2) (1970) 209--216.
+
+\vskip0.1cm
+
+
+\bibitem{SS} S. Suantai, Matrix transformation of some vector valued sequence spaces, Lecture Note in Pure and Applied Mathematics, Marcel Dekker, New York - Basel (2000), 489--495. \\
+	
+
+\noindent Explanation: Every reference given in the reference list must also be cited in the text. The references will be cited sequentially in the text (not alphabetical order). Unpublished results is not recommended in the reference list. Any references cited in the abstract must be given in full. 
+\end{thebibliography}
+\end{document}

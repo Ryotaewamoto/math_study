@@ -1,0 +1,83 @@
+\documentclass[a4paper,10pt]{jsarticle}
+
+% 英文化
+\usepackage[english]{babel}
+% 数式
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{mathtools}
+% 画像
+\usepackage[dvipdfmx]{graphicx}
+% 箇条書き
+\usepackage{enumitem}
+
+% 枠付き文章
+\usepackage{ascmac}
+
+
+\newcommand{\Af}{\footnotesize\it}
+\newcommand{\Au}{\normalsize}
+\newcommand{\Ti}{\LARGE}
+
+\begin{document}
+
+\begin{center}\Ti
+  Set-Valued Fan-Takahashi Inequalities with Set-Relations Based on Scalarization Methods
+\end{center}
+\vskip 1em
+\begin{center}\Au
+  Ryota Iwamoto$^\ast$$^{a}$, Tamaki Tanaka$^{b}$
+\end{center}
+\begin{center}\Af
+  $^{a}$Graduate School of Science and Technology,
+  Niigata University, Niigata 950--2181, Japan.\\
+  $^{b}$Faculty of Science, Niigata University, Niigata 950--2181, Japan.
+
+  \vskip 1em
+  $^\ast$presenting author.\\
+  email: f24j003a@mail.cc.niigata-u.ac.jp
+\end{center}
+\date{}
+
+In convex analysis and optimization theory,
+Fan-Takahashi minimax inequality plays a key role to solve equilibrium problems and
+other problems.
+Let $X$ be a nonempty compact convex subset of a Hausdorff topological vector space and $f \colon X \times X \to \mathbb{R}$.
+Fan-Takahashi minimax inequality is: if $f$ satisfies
+the following conditions:
+\begin{enumerate}[label=(\alph*)]
+  \item for each fixed $y \in X$, $f(\cdot,y)$ is lower semicontinuous,
+  \item for each fixed $x \in X$, $f(x,\cdot)$ is quasi concave,
+  \item $f(x,x) \leq 0$ for all $x \in X$,
+\end{enumerate}
+then there exists $\bar{x} \in X$ such that $f(\bar{x},y) \leq 0$ for all $y \in X$.
+
+About a quarter of a century ago, Georgiev and Tanaka [2] extended the minimax inequality to the form of set-valued maps.
+After that, Kuwano, Tanaka, and Yamada [4] constructed the result of four types of set-valued minimax inequalities with set relations [3],
+which are binary relations depending on a given convex cone. However, this result is limited to the case of specific scalarization functions. To obtain more practical results,
+we need to replace them into more general scalarization functions. In addition,
+Dechboon and Tanaka [1] proposed generalized
+semi-continuity to inherit properties of cone continuity for set-valued maps.
+
+The aim of this talk is to explain Fan-Takahashi minimax inequality and our results
+in detail.
+
+\begin{thebibliography}{99}
+  \bibitem{} {\rm P.~Dechboon and T.~Tanaka},
+  {\em Inheritance Properties on Cone Continuity for Set-Valued Maps via Scalarization},
+  Minimax Theory and its Applications, {\bf 9(2)} (2024), 201--224.
+  \bibitem{} {\rm P.G.~Georgiev and T.~Tanaka},
+  {\em Vector-valued set-valued variants of Ky Fan's inequality},
+  J. Nonlinear and Convex Anal., {\bf 1} (2000), 245--254.
+  \bibitem{} {\rm D.~Kuroiwa, T.~Tanaka, and T.X.D.~Ha},
+  {\em  On cone convexity of set-valued maps},
+  Nonlinear Anal., {\bf 30} (1997) 1487--1496.
+  \bibitem{} {\rm I.~Kuwano, T.~Tanaka, and S.~Yamada},
+  {\em Unified scalarization for sets and set-valued Ky Fan minimax inequality},
+  J. Nonlinear Convex Anal., {\bf 11} (2010), 513--525.
+\end{thebibliography}
+
+\end{document}
